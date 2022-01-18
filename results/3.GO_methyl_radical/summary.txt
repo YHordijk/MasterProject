@@ -1,0 +1,4 @@
+======== SUMMARY OF CALCULATION GO_methyl_radical (ID = 3) ========
+==== GENERAL
+Termination status : NORMAL TERMINATION
+Task:                SINGLE POINT                                                                                                                                                    

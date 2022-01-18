@@ -1,0 +1,4 @@
+======== SUMMARY OF CALCULATION TS_TS_CH2CCHO (ID = 4) ========
+==== GENERAL
+Termination status : NORMAL TERMINATION
+Task:                SINGLE POINT                                                                                                                                                    

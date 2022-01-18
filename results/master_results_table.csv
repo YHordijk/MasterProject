@@ -1,0 +1,6 @@
+"sep=,"
+id,name,directory,logfile,outfile,adfrkf,amsrkf
+1,GO_P_CH2CCHO_rad,calculations\1.GO_P_CH2CCHO_rad,GO_P.run.log,GO_P.run.out,GO_P.run.adf.rkf,GO_P.run.ams.rkf
+2,GO_R_CH2CCHO,calculations\2.GO_R_CH2CCHO,GO_R.log,GO_R.out,GO_R.adf.rkf,GO_R.ams.rkf
+3,GO_methyl_radical,calculations\3.GO_methyl_radical,GO_rad.log,GO_rad.out,GO_rad.adf.rkf,GO_rad.ams.rkf
+4,TS_TS_CH2CCHO,calculations\4.TS_TS_CH2CCHO,TSRC_TS.log,TSRC_TS.out,TSRC_TS.adf.rkf,TSRC_TS.ams.rkf
