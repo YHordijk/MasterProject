@@ -33,7 +33,7 @@ class ReactionRunner:
             print(f'\t{m.name}: \tpath={os.path.relpath(m.path, paths.master)}, \tflags={m.flags}')
 
         print('Pre-optimizing molecules ...')
-        # mols = [pre_optimize.pre_optimize(m, m.path) for m in mols]
+        mols = [pre_optimize.pre_optimize(m, m.path) for m in mols]
 
         dft_jobs = []
         for mol in mols:
@@ -58,7 +58,7 @@ class ReactionRunner:
         elif 'TSRC' in mol.flags:
             s.input.ams.task = 'TransitionStateSearch'
             tsrc = [f for f in mol.flags if f.startswith('TSRC=')][0].split('=')[1].split('_')
-            s.input.ams.TransitionStateSearch.ReactionCoordinate = f'Distance {tsrc[0]} {tsrc[1]} -1.0'
+            s.input.ams.TransitionStateSearch.ReactionCoordinate.Distance = f'{tsrc[0]} {tsrc[1]} -1.0'
 
         if 'radical' in mol.flags:
             s.input.adf.Unrestricted = 'Yes'
