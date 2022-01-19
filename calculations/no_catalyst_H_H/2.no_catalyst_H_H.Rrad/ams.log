@@ -446,3 +446,27 @@
 <Jan20-2022> <00:37:05>  >>>> PTBAS
 <Jan20-2022> <00:37:06>  >>>> CYCLE
 <Jan20-2022> <00:37:09>  using orbital data from restart file
+<Jan20-2022> <00:37:13>              |Error|         MaxErr       Wt(A-DIIS)
+<Jan20-2022> <00:37:13>      1      0.00000005      0.00000001
+<Jan20-2022> <00:37:18>      2      0.00000004      0.00000001    100.0
+<Jan20-2022> <00:37:19>  SCF converged
+<Jan20-2022> <00:37:24>      3      0.00000002      0.00000000    100.0
+<Jan20-2022> <00:37:29>  >>>> TOTEN
+<Jan20-2022> <00:37:39>  >>>> POPAN
+<Jan20-2022> <00:37:39>  >>>> DEBYE
+<Jan20-2022> <00:37:39>  >>>> AMETS
+<Jan20-2022> <00:37:39>   Bond Energy          -0.64778253 a.u.
+<Jan20-2022> <00:37:39>   Bond Energy         -17.62705951 eV
+<Jan20-2022> <00:37:39>   Bond Energy        -406.49       kcal/mol
+<Jan20-2022> <00:37:39>  >>>> POPUL
+<Jan20-2022> <00:37:39>  >>>> ENGRAD
+<Jan20-2022> <00:37:42>  >>>> ENHESS
+<Jan20-2022> <00:37:44>  === NUCLEUS:     1
+<Jan20-2022> <00:39:30>  === NUCLEUS:     2
+<Jan20-2022> <00:41:09>  === NUCLEUS:     3
+<Jan20-2022> <00:42:51>  === NUCLEUS:     4
+<Jan20-2022> <00:44:23>  >>>> CALC_HESS_PMAT
+<Jan20-2022> <00:44:30>  >>>> CALC_HESS_WMAT
+<Jan20-2022> <00:44:31>  PES point character: Geometry corresponds to a local minimum on the PES.
+<Jan20-2022> <00:44:31>  Geometry optimization successful!
+<Jan20-2022> <00:44:31>  NORMAL TERMINATION

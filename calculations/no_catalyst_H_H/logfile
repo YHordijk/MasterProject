@@ -24,3 +24,8 @@
 [00:27:17] JOB 4.no_catalyst_H_H.P1 RUNNING
 [00:27:17] Executing 3.no_catalyst_H_H.TS.run
 [00:27:17] Executing 4.no_catalyst_H_H.P1.run
+[00:44:31] Execution of 2.no_catalyst_H_H.Rrad.run finished with returncode 0
+[00:44:31] JOB 2.no_catalyst_H_H.Rrad FINISHED
+[00:44:31] Starting 2.no_catalyst_H_H.Rrad.postrun()
+[00:44:31] 2.no_catalyst_H_H.Rrad.postrun() finished
+[00:44:31] JOB 2.no_catalyst_H_H.Rrad SUCCESSFUL
