@@ -85,16 +85,19 @@ def generate_stationary_points(template_name, substituents={}):
 
                 la, lb = s.atoms[s.connector[0]], s.atoms[s.connector[1]]
                 m.substitute(m.connector[R], s, (la, lb))
-            mpath = os.path.join(paths.xyz, template_name, '_'.join(list(sorted(m.substituents.values()))), f'{m.name}.xyz')
+
+            sorted_Rnames = list(sorted(m.substituents.keys()))
+            sorted_R = [m.substituents[R] for R in sorted_Rnames]
+            mpath = os.path.join(paths.xyz, template_name, '_'.join(sorted_R), f'{m.name}.xyz')
             m.path = mpath
             os.makedirs(os.path.dirname(mpath), exist_ok=True)
-            write_mol(m, mpath)
+            write_mol(m, m.path)
 
     return mols
 
 
 if __name__ == '__main__':
-    mols = generate_stationary_points('no_catalyst', {'R1':'F', 'R2': 'F'})
+    mols = generate_stationary_points('no_catalyst', {'R1':'F', 'R2': 'H'})
     for mol in mols:
         print(type(mol))
         print(mol.name)
