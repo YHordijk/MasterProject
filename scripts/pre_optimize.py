@@ -3,23 +3,23 @@ import os
 
 
 def pre_optimize(mol, path):
-	'''
-	Uses DFTB to preoptimize a molecule in xyz file
-	'''
-	# mol = plams.Molecule(file)
-	# name = os.path.basename(file.strip('.xyz'))
+    '''
+    Uses DFTB to preoptimize a molecule in xyz file
+    '''
+    # mol = plams.Molecule(file)
+    # name = os.path.basename(file.strip('.xyz'))
 
-	name = mol.name
+    name = mol.name
 
-	settings = plams.Settings()
-	settings.input.ams.task = 'GeometryOptimization'
-	settings.input.DFTB
-	settings.input.DFTB.model = 'GFN1-xTB'
+    settings = plams.Settings()
+    settings.input.ams.task = 'GeometryOptimization'
+    settings.input.DFTB
+    settings.input.DFTB.model = 'GFN1-xTB'
 
-	job = plams.AMSJob(molecule=mol, settings=settings, name=name)
-	res = job.run()
+    job = plams.AMSJob(molecule=mol, settings=settings, name=name)
+    res = job.run()
 
-	if self.check_termination_succes(res):
+    if self.check_termination_succes(res):
     molecule = res.get_main_molecule()
     molecule.write(path)
 
