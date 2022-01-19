@@ -6,17 +6,17 @@ import struct_generator, paths, results_database, pre_optimize, os, multiprocess
 class ReactionRunner:
     ''' 
     This class holds functions and methods to generate and run AMSJobs for a given reaction and R-groups
-    - First generates coordinates
-    - Pre-optimizes them
+    - First generates coordinates using struct_generator.generate_stationary_points
+    - Pre-optimizes them using DFTB optionally (not sure if spinpolarization is possible with dftb)
     - 
     '''
-    def __init__(self, template, substituents):
+    def __init__(self, template, substituents, pre_optimize=False):
         self.template = template
         self.substituents = substituents
 
-        self.begin_calculations()
+        self.begin_calculations(pre_optimize=pre_optimize)
 
-    def begin_calculations(self):
+    def begin_calculations(self, pre_optimize):
         sorted_Rnames = list(sorted(self.substituents.keys()))
         sorted_R = [self.substituents[R] for R in sorted_Rnames]
         reaction_name = f'{self.template}_{"_".join(sorted_R)}'
@@ -28,16 +28,18 @@ class ReactionRunner:
         plams.config.default_jobrunner = plams.JobRunner(parallel=True, maxjobs=multiprocessing.cpu_count())
         plams.config.job.runscript.nproc = 1
 
-        
-
-        print(f'Beginning Reaction {reaction_name}')
+        print(f'=== Beginning Reaction {reaction_name}')
         mols = struct_generator.generate_stationary_points(self.template, self.substituents)
-        print(f'Found {len(mols)} molecules to calculate:')
+        print(f'== Found {len(mols)} molecules to calculate:')
         for m in mols:
             print(f'\t{m.name}: \tpath={os.path.relpath(m.path, paths.master)}, \tflags={m.flags}')
 
-        print('Pre-optimizing molecules ...')
-        # mols = [pre_optimize.pre_optimize(m, m.path) for m in mols]
+        
+        if pre_optimize: 
+            print('== Pre-optimizing molecules ...')
+            mols = [pre_optimize.pre_optimize(m, m.path) for m in mols]
+        else:
+            print('== Skipping pre-optimization step')
 
         ids = database.get_n_free_ids(len(mols))
         dft_jobs = []
@@ -50,6 +52,8 @@ class ReactionRunner:
         #starts runs and wait for finish
         dft_results = [j.run() for j in dft_jobs]
         dft_results = [r for r in dft_results if r.ok()]
+
+        print('== Calculations finished')
 
         print(dft_results)
 

@@ -85,14 +85,14 @@ def create_database_from_calculations(calc_path=paths.calculations, out_path=pat
 
 		data.append(data_dict)
 
+	#open csv in normal writing mode for first two lines
 	writer = csv.writer(open(out_path, 'w+', newline=''))
 	writer.writerow(['sep=,'])
 	writer.writerow(fields)
+	#switch to dictwriter for writing data
 	writer = csv.DictWriter(open(out_path, 'a', newline=''), fields)
 	for d in data:
-		# l = [i[1] for i in sorted(d.items(), key=lambda p: fields.index(p[0]))]
 		writer.writerow(d)
-		# writer.writerow(l)
 
 
 
