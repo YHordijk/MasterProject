@@ -27,7 +27,7 @@ def pre_optimize(mol, path):
     return mol
 
 
-def check_termination_succes(result :Results) -> bool:
+def check_termination_succes(result):
     term = result.readrkf('General', 'termination status', 'ams')
     if term == 'NORMAL TERMINATION':
         return True
