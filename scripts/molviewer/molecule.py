@@ -10,7 +10,7 @@ import periodictable as pt
 import networkx as nx
 import matplotlib.pyplot as plt
 from math import cos, sin, pi
-
+import scm.plams as plams
 
 import itertools as it
 
@@ -95,16 +95,16 @@ class Molecule:
 		self.update_molecule()
 
 
-	def __repr__(self):
-		s = f'{self.name}\n'
-		for e, p in zip(self.elements, self.positions):
-			s += f'{e:2}\t{p[0]:>10.6f}\t{p[1]:>10.6f}\t{p[2]:>10.6f}\n'
-		return s
+	# def __repr__(self):
+	# 	s = f'{self.name}\n'
+	# 	for e, p in zip(self.elements, self.positions):
+	# 		s += f'{e:2}\t{p[0]:>10.6f}\t{p[1]:>10.6f}\t{p[2]:>10.6f}\n'
+	# 	return s
 
 
 	def update_molecule(self):
 		#this should be run anytime changes are made to the molecules positions and elements
-		self.atom_numbers = np.asarray([pt.elements.symbol(e).number for e in self.elements])
+		self.atom_numbers = np.asarray([plams.Atom(symbol=e).atnum for e in self.elements])
 		self.masses = np.asarray([pt.elements[n].mass for n in self.atom_numbers])
 		self.radii = np.asarray([pt.elements[n].covalent_radius for n in self.atom_numbers])
 		self.colours = np.asarray([data.ATOM_COLOURS[n] for n in self.atom_numbers])
@@ -364,7 +364,7 @@ class Molecule:
 		
 		for iter in range(max_iter):
 			if all_saturated():
-				print('✔️ Bond order guessing succesful!')
+				# print('✔️ Bond order guessing succesful!')
 				break #final condition
 
 			B = np.zeros((N,N)).astype(int)
@@ -398,7 +398,7 @@ class Molecule:
 					B[b,a] += 1
 					if saturated(a): break
 
-		if not all_saturated(): print('❌ Bond order guessing failed 😥')
+		# if not all_saturated(): print('❌ Bond order guessing failed 😥')
 
 
 

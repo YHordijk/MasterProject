@@ -4,9 +4,21 @@ import molviewer.molecule as chemmolecule
 from OpenGL.GL import *
 import glfw
 from OpenGL.GLU import *
+from OpenGL.GLUT import *
 import numpy as np
 from math import cos, sin
 import molviewer.data as data
+import molviewer.text as text
+
+'''
+n  n-1 o
+
+0  0   0
+0  1   0
+1  0   1
+1  1   0
+'''
+
 
 class atom(world.circle2D):
 	def __init__(self, **kwargs):
@@ -16,7 +28,6 @@ class atom(world.circle2D):
 		self.element = kwargs.get('element', 1)
 		self.molecule = kwargs.get('molecule')
 		self.colors = (2*self.resolution) * data.ATOM_COLOURS[self.element]
-
 
 	def get_vertices(self):
 		v = []
@@ -107,30 +118,48 @@ class bond(world.rectangle2D):
 
 
 class MoleculeDrawer:
-	def __init__(self, molecule, **kwargs):
-		if type(molecule) is str:
-			self.molecule = chemmolecule.load_molecule(molecule)
+	def __init__(self, molecules, **kwargs):
+		if type(molecules) is not list:
+			if type(molecules) is str:
+				self.molecules = [chemmolecule.load_molecule(molecules)]
+			elif type(molecules) is dict:
+				self.molecules = list(molecules.values())
+			else:
+				self.molecules = [molecules]
+
 		else:
-			self.molecule = molecule
+			self.molecules = molecules
+
+		print(self.molecules)
+
+		self.molidx = 0
 
 
 		self.scale = kwargs.get('scale', 1/5)
 		self.position = kwargs.get('position', [0,0,0])
-		self.positions = self.molecule.positions * self.scale
 		self.orientation = kwargs.get('orientation', [0,0,0,0])
-		self.elements = self.molecule.atom_numbers
-		self.radii = self.molecule.radii
-		self.bonds = self.molecule.unique_bonds
-		self.sub_objects = self.get_sub_objects()
-
 		self.vertices = []
-		for o in self.sub_objects:
-			self.vertices = self.vertices + o.vertices
-
 		self.colors = []
-		for o in self.sub_objects:
-			self.colors = self.colors + o.colors
-		self.colors = (np.asarray(self.colors)/255).tolist()
+		for m in self.molecules:
+			self.positions = m.positions * self.scale
+			self.elements = m.atom_numbers
+			self.radii = m.radii
+			self.bonds = m.unique_bonds
+			self.sub_objects = self.get_sub_objects()
+
+			vertices = []
+			for o in self.sub_objects:
+				vertices = vertices + o.vertices
+
+			vertices = vertices + [0,0,.02,0,0,0,0,.02,0,0,0,0,.02,0,0,0,0,0]
+			self.vertices.append(vertices)
+
+			colors = []
+			for o in self.sub_objects:
+				colors = colors + o.colors
+			colors = (np.asarray(colors)/255).tolist()
+			colors = colors + [0,0,1,0,0,1,0,1,0,0,1,0,1,0,0,1,0,0]
+			self.colors.append(colors)
 
 
 	def get_sub_objects(self):
@@ -146,8 +175,8 @@ class MoleculeDrawer:
 
 
 	def mainloop(self):
+		self.last_buttons = {'left':False, 'right':False, 'lmb':0, 'lmb_up':0, 'lmb_down':0}
 		self.scr = screen.Screen(screen_width=1600, screen_height=900)
-
 		wrld = world.World()
 		self.wrld = wrld
 		wrld.add_object(self)
@@ -158,46 +187,57 @@ class MoleculeDrawer:
 		self.scr.mainloop(wrld)
 
 
-    def rotate_target(self, delta):
-        right = glm.normalize(glm.cross(self.target - self.eye, self.up))
-        M = glm.mat4(1)
-        M = glm.translate(M, self.eye)
-        M = glm.rotate(M, delta.y, right)
-        M = glm.rotate(M, delta.x, self.up)
-        M = glm.translate(M, -self.eye)
-        self.target = glm.vec3(M * glm.vec4(self.target, 1.0))
-        
-
 	def pre_draw(self):
+		
 		glLoadIdentity()
 		glRotatef(*self.orientation)
 		mouse_pos = glfw.get_cursor_pos(self.scr.window)
+		mouse_d = [mouse_pos[0] - self.last_mouse_pos[0], mouse_pos[1] - self.last_mouse_pos[1]]
 		if glfw.get_mouse_button(self.scr.window, glfw.MOUSE_BUTTON_LEFT):
-			dx = np.sqrt((mouse_pos[0] - self.last_mouse_pos[0])**2)
-			dy = np.sqrt((mouse_pos[1] - self.last_mouse_pos[1])**2)
-			self.mouse_rx += np.sqrt((mouse_pos[0] - self.last_mouse_pos[0])**2) - self.mouse_d_last[0]
-			self.mouse_ry += np.sqrt((mouse_pos[1] - self.last_mouse_pos[1])**2) - self.mouse_d_last[1]
-			self.mouse_d_last = [dx, dy]
+			self.mouse_rx += mouse_d[0]
+			self.mouse_ry += mouse_d[1]
 
-
-		
 		glRotatef(self.mouse_ry/5, 0, 0, 1)
-		glRotatef(self.mouse_rx/5, 0, 1, 0)
+		glRotatef(self.mouse_rx/5, 1, 0, 0)
 		glTranslatef(*self.position)
-
+		self.last_mouse_pos = mouse_pos
+		self.button_action()
 		
-
 
 	def start(self):
 		glEnableClientState(GL_VERTEX_ARRAY)
-		glVertexPointer(3, GL_FLOAT, 0, self.vertices)
+		glVertexPointer(3, GL_FLOAT, 0, self.vertices[self.molidx])
 		glEnableClientState(GL_COLOR_ARRAY)
-		glColorPointer(3, GL_FLOAT, 0, self.colors)
+		glColorPointer(3, GL_FLOAT, 0, self.colors[self.molidx])
 
 
 	def draw(self):
 		self.pre_draw()
-		glDrawArrays(GL_LINES, 0, len(self.vertices)//3)
+		glDrawArrays(GL_LINES, 0, len(self.vertices[self.molidx])//3)
+		# text.render_text(self.scr.window, self.molecules[self.molidx].name, 50., 50., 1, (255,255,255))
+
+	def button_action(self):
+		lmb = glfw.get_mouse_button(self.scr.window, glfw.MOUSE_BUTTON_LEFT)
+		buttons = {'left': glfw.get_key(self.scr.window, glfw.KEY_LEFT),
+				   'right': glfw.get_key(self.scr.window, glfw.KEY_RIGHT),
+				   'lmb_down': int(lmb and not self.last_buttons['lmb']),
+				   'lmb_up': int(self.last_buttons['lmb'] and not lmb), 
+				   'lmb': lmb,}
+
+		if buttons['left'] and not self.last_buttons['left']:
+			self.molidx += 1
+			self.molidx = self.molidx%len(self.molecules)
+			self.start()
+			print(f'Currently drawing: {self.molecules[self.molidx].name}')
+		elif buttons['right'] and not self.last_buttons['right']:
+			self.molidx -= 1
+			self.molidx = self.molidx%len(self.molecules)
+			self.start()
+			print(f'Currently drawing: {self.molecules[self.molidx].name}')
+
+		self.last_buttons = buttons
+
+		
 
 
 
