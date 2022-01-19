@@ -91,3 +91,12 @@ def generate_stationary_points(template_name, substituents={}):
             write_mol(m, mpath)
 
     return mols
+
+
+if __name__ == '__main__':
+    mols = generate_stationary_points('no_catalyst', {'R1':'F', 'R2': 'F'})
+    for mol in mols:
+        print(type(mol))
+        print(mol.name)
+        print(mol)
+        print()
