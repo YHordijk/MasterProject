@@ -1,5 +1,5 @@
 import scm.plams as plams
-import struct_generator, paths, results_database, pre_optimize, os, multiprocessing
+import struct_generator, paths, results_database, pre_optimize, os, multiprocessing, utility
 
 
 
@@ -33,12 +33,12 @@ class ReactionRunner:
             print(f'\t{m.name}: \tpath={os.path.relpath(m.path, paths.master)}, \tflags={m.flags}')
 
         print('Pre-optimizing molecules ...')
-        mols = [pre_optimize.pre_optimize(m, m.path) for m in mols]
+        # mols = [pre_optimize.pre_optimize(m, m.path) for m in mols]
 
         dft_jobs = []
         for mol in mols:
-            s = self.define_settings(mol)
             m = utility.load_mol(mol.path)
+            s = self.define_settings(m)
             dft_jobs.append(plams.AMSJob(name=mol.name, settings=s, molecule=m))
 
         #starts runs and wait for finish
