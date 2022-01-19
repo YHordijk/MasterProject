@@ -1,5 +1,5 @@
 import paths
-import scm.plams
+import scm.plams as plams
 
 
 def write_mol(mol, path, comment=None):

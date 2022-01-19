@@ -24,15 +24,12 @@ class ReactionRunner:
 
         print(f'Beginning Reaction {reaction_name}')
         self.init_mols = struct_generator.generate_stationary_points(self.template, self.substituents)
-        flags = [m.flags for m in self.init_mols]
         print(f'Found {len(self.init_mols)} molecules to calculate:')
         for m in self.init_mols:
-            print(f'\t{m.name}: {m.path}')
+            print(f'\t{m.name}: path={os.path.relpath(m.path, paths.master)}, flags=({m.flags})')
 
         print('Pre-optimizing molecules ...')
         self.preopt_mols = [pre_optimize.pre_optimize(m, m.path) for m in self.init_mols]
-        for m, f in zip(self.preopt_mols, flags):
-            m.flags = f
 
 
 

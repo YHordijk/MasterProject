@@ -17,10 +17,11 @@ def pre_optimize(mol, path):
     settings.input.DFTB
     settings.input.DFTB.model = 'GFN1-xTB'
 
-    m = plams.Molecule(mol.path) #make clean copy of molecule
-    m.flags = mol.flags
+    m = utility.load_mol(mol.path)
     job = plams.AMSJob(molecule=m, settings=settings, name=name + '_preopt')
     res = job.run()
+
+
 
     if check_termination_succes(res):
         molecule = res.get_main_molecule()
