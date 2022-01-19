@@ -1,0 +1,5 @@
+#!/bin/sh
+
+unset AMS_SWITCH_LOGFILE_AND_STDOUT
+AMS_JOBNAME="Rrad_preopt" AMS_RESULTSDIR=. $AMSBIN/ams <"Rrad_preopt.in"
+

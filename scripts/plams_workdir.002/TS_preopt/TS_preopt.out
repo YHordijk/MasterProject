@@ -1,0 +1,1385 @@
+
+
+ Parallel Execution: Process Information
+ ==============================================================================
+ Rank   Node Name                              NodeID   MyNodeRank  NodeMaster
+    0   node110                                   0          0          0
+    1   node110                                   0          1         -1
+    2   node110                                   0          2         -1
+    3   node110                                   0          3         -1
+ ==============================================================================
+
+
+May use up to 122928MB of RAM as shared memory on node 0
+
+ *******************************************************************************
+ *                                                                             *
+ *  --------------------------------                                           *
+ *   Amsterdam Modeling Suite (AMS)              2021.102                      *
+ *  --------------------------------                                           *
+ *                                               r95042 2021-06-07             *
+ *                                                                             *
+ *                                                                             *
+ *                              =================                              *
+ *                              |               |                              *
+ *                              |     A M S     |                              *
+ *                              |               |                              *
+ *                              =================                              *
+ *                                                                             *
+ *                                                                             *
+ *   Online information and documentation:  https://www.scm.com/support/       *
+ *   E-mail:  support@scm.com   info@scm.com                                   *
+ *                                                                             *
+ *   Scientific publications using AMS results must be properly referenced     *
+ *   See the User Manuals (or the web site) for recommended citations          *
+ *   The terms and conditions of the End User License Agreement apply to       *
+ *   the use of AMS, https://www.scm.com/license-terms/                        *
+ *                                                                             *
+ **********************  x86_64_linux_intel / intelmpi  ************************
+ 
+ Licensed to: VU/FEW (+ SARA) / ALGEMEEN / Amsterdam / THE NETHERLANDS
+ SCM User ID: u7668
+  
+ AMS 2021.102  RunTime: Jan19-2022 20:21:35  ShM Nodes: 1  Procs: 4
+
+ AMS jobname: TS_preopt
+ AMS jobid  : 284699671
+
+ Start   directory: /scistor/tc/yhk800/MasterProject/scripts/plams_workdir.002/TS_preopt/
+ Results directory: /scistor/tc/yhk800/MasterProject/scripts/plams_workdir.002/TS_preopt/
+ Scratch directory: /scratch/3423/amstmp_TS_preopt_kid0.284699671/
+
+
+ Communication costs MPI_COMM_WORLD:      0.887 usec per message,   0.0036 usec per 8-byte item
+ Communication costs for intra-node:      0.888 usec per message,   0.0036 usec per 8-byte item
+
+ RNG seed: -797321328 -1705168039 1694033949 -2054071179 1834887640 -1543685337 -1814310503 -1859783117
+       ***************************
+       *  GEOMETRY OPTIMIZATION  *
+       ***************************
+
+Optimization Method                    Quasi Newton
+Optimization Coordinates               Delocalized Coordinates
+Optimize lattice                       F
+ 
+ ------------------------------------------------------
+ Convergence criteria (Hartree,Angstrom)
+ ------------------------------------------------------
+ Maximum gradient               0.001000000000
+ Maximum rms gradient           0.000666666667
+ Maximum step allowed           0.010000000000
+ Maximum rms step allowed       0.006666666667
+ Maximum energy change allowe   0.000120000000
+ Maximum stress energy allowe   0.000500000000
+ 
+Initial model Hessian                  Automatic Hessian
+ 
+------------------------------------
+Quasi-Newton Optimizer Parameters
+------------------------------------
+Hessian Update Method                  BFGS
+Maximum number of steps                  250
+First GDIIS cycle                          0
+Maximum GDIIS vectors                      0
+Trust radius (bohr)                        0.200000
+Trust radius varies                        T
+Constraints converged at all steps         T
+Use projector                              T
+ 
+ Rigid motions settings for: old optimizer
+ Atomic rotations (x,y,z):     T T T
+ Atomic translations (x,y,z):  T T T
+ Tolerance:                   1.000000000000000E-006
+ 
+--------
+Geometry
+--------
+Formula: C4H7O
+Atoms
+  Index Symbol   x (angstrom)   y (angstrom)   z (angstrom)
+      1      C     0.81668000    -0.23471900     0.88197500
+      2      C     0.81678400    -0.23413100    -0.47719300
+      3      C    -1.53160000    -0.46998000    -1.30857600
+      4      H     0.85636200    -1.16386700     1.44859300
+      5      C     0.73893400     1.00063500     1.66014300
+      6      H    -1.75224300    -1.42324600    -0.84366900
+      7      H     0.86540100     0.70149500    -1.02879400
+      8      H    -1.29572100    -0.45322200    -2.36675600
+      9      H    -1.93437200     0.42729600    -0.85485600
+     10      O     0.73088900     1.05622100     2.88164900
+     11      H     0.99495642    -1.13003362    -1.03443002
+     12      H     0.69350848     1.89581258     1.07576845
+ 
+Total System Charge             0.00000
+ 
+ 
+-------------------------
+DFTB Engine configuration
+-------------------------
+DFTB Resources dir                     /cm/shared/package/ams2021.102/atomicdata/DFTB/GFN1-xTB
+ 
+SCC convergence enabled.
+Maximum SCC cycles                       500
+SCC charge convergence                   0.000000010000
+SCC charge mixing                        0.150000000000
+DIIS max dimension                       20
+Adaptive SCC charge mixing             T
+Adaptive SCC mixing strategy              3
+Spin polarization                      F
+Orbital-dependent SCC                  T
+Orbital fill strategy                  Fermi
+Fermi temperature (kelvin)                     300.0000
+Use of symmetry                        T
+Radial function extrapolation method   Auto
+
+ Settings for Grimme D3 dispersion correction
+
+      damping                        BJ
+      s6                          1.000
+      s8                          2.400
+      a1                          0.630
+      a2                          5.000
+
+ Other (technical) parameters
+
+      alpha                      14.000
+      version                         4
+ 
+
+---------------------
+Periodic DFTB options
+---------------------
+ kpoints config
+ grid method with params
+Assume insulator                        F
+Ewald tolerance                    1.00E-10
+Ewald range factor                  2.00
+
+ BZStruct config
+ ---------------
+ Enabled        T
+ Automatic      T
+ CalcFatBands   T
+ useSymmetry    T
+ deltaK          0.100000000000000     
+ 
+ Using automatic Hessian for delocalized coordinates.
+ 
+----------------------------------------------------------------------
+Geometry Convergence after Step   1       (Hartree/Angstrom,Angstrom)
+----------------------------------------------------------------------
+current energy                              -16.77200920 Hartree
+energy change                     -16.77200920     0.00012000    F
+constrained gradient max            0.05636578     0.00100000    F
+constrained gradient rms            0.01640816     0.00066667    F
+gradient max                        0.05636578
+gradient rms                        0.01640816
+cart. step max                      0.03009359     0.01000000    F
+cart. step rms                      0.01112767     0.00666667    F
+ 
+ 
+--------
+Geometry
+--------
+Formula: C4H7O
+Atoms
+  Index Symbol   x (angstrom)   y (angstrom)   z (angstrom)
+      1      C     0.82302362    -0.23483283     0.87965898
+      2      C     0.81905055    -0.23644017    -0.47086810
+      3      C    -1.52172060    -0.46315244    -1.29737375
+      4      H     0.85896982    -1.16279134     1.44310786
+      5      C     0.72921771     0.99912628     1.65320538
+      6      H    -1.75070319    -1.40987595    -0.83637112
+      7      H     0.87452895     0.69536632    -1.02261311
+      8      H    -1.29550203    -0.44906016    -2.35109279
+      9      H    -1.92388337     0.43049520    -0.84906927
+     10      O     0.72480444     1.02612741     2.85892304
+     11      H     0.99562230    -1.13960189    -1.03088934
+     12      H     0.66617070     1.91690053     1.05723666
+ 
+Total System Charge             0.00000
+ 
+
+ dE(predicted):    -0.14681E-02, dE(actual):    -0.17764E-02, Trust radius:    0.200000, all in a.u.
+ 
+----------------------------------------------------------------------
+Geometry Convergence after Step   2       (Hartree/Angstrom,Angstrom)
+----------------------------------------------------------------------
+current energy                              -16.77378564 Hartree
+energy change                      -0.00177644     0.00012000    F
+constrained gradient max            0.02191156     0.00100000    F
+constrained gradient rms            0.00659180     0.00066667    F
+gradient max                        0.02191156
+gradient rms                        0.00659180
+cart. step max                      0.02135888     0.01000000    F
+cart. step rms                      0.00732314     0.00666667    F
+ 
+ 
+--------
+Geometry
+--------
+Formula: C4H7O
+Atoms
+  Index Symbol   x (angstrom)   y (angstrom)   z (angstrom)
+      1      C     0.82638574    -0.23607307     0.87484838
+      2      C     0.82024837    -0.23990999    -0.47399229
+      3      C    -1.51046686    -0.45746197    -1.28723869
+      4      H     0.85947056    -1.16277486     1.43697939
+      5      C     0.72099926     0.99603952     1.65403730
+      6      H    -1.74759301    -1.39980996    -0.82894451
+      7      H     0.88141369     0.68843316    -1.02790159
+      8      H    -1.29698678    -0.44608659    -2.33996144
+      9      H    -1.91278849     0.43425471    -0.84285542
+     10      O     0.71799613     1.01891553     2.86176661
+     11      H     0.99608846    -1.14737398    -1.03640824
+     12      H     0.64481182     1.92410846     1.04352492
+ 
+Total System Charge             0.00000
+ 
+
+ dE(predicted):    -0.40586E-03, dE(actual):    -0.56886E-03, Trust radius:    0.200000, all in a.u.
+ 
+----------------------------------------------------------------------
+Geometry Convergence after Step   3       (Hartree/Angstrom,Angstrom)
+----------------------------------------------------------------------
+current energy                              -16.77435450 Hartree
+energy change                      -0.00056886     0.00012000    F
+constrained gradient max            0.02376377     0.00100000    F
+constrained gradient rms            0.00563257     0.00066667    F
+gradient max                        0.02376377
+gradient rms                        0.00563257
+cart. step max                      0.02086703     0.01000000    F
+cart. step rms                      0.00929420     0.00666667    F
+ 
+ 
+--------
+Geometry
+--------
+Formula: C4H7O
+Atoms
+  Index Symbol   x (angstrom)   y (angstrom)   z (angstrom)
+      1      C     0.82424582    -0.23908403     0.86886311
+      2      C     0.81707700    -0.24326647    -0.48108041
+      3      C    -1.48959982    -0.45020862    -1.27087399
+      4      H     0.85523858    -1.16490027     1.43031818
+      5      C     0.70947636     0.98999795     1.65448245
+      6      H    -1.73956489    -1.38940202    -0.81714491
+      7      H     0.88678524     0.68161582    -1.03786467
+      8      H    -1.29711684    -0.44143461    -2.32568646
+      9      H    -1.89705690     0.43919550    -0.83087906
+     10      O     0.70743526     1.01626915     2.86020890
+     11      H     0.99824641    -1.15281657    -1.04551977
+     12      H     0.62441269     1.92629513     1.02903105
+ 
+Total System Charge             0.00000
+ 
+
+ dE(predicted):    -0.40858E-03, dE(actual):    -0.70626E-03, Trust radius:    0.200000, all in a.u.
+ 
+----------------------------------------------------------------------
+Geometry Convergence after Step   4       (Hartree/Angstrom,Angstrom)
+----------------------------------------------------------------------
+current energy                              -16.77506076 Hartree
+energy change                      -0.00070626     0.00012000    F
+constrained gradient max            0.02685480     0.00100000    F
+constrained gradient rms            0.00791630     0.00066667    F
+gradient max                        0.02685480
+gradient rms                        0.00791630
+cart. step max                      0.02723122     0.01000000    F
+cart. step rms                      0.01063902     0.00666667    F
+ 
+ 
+--------
+Geometry
+--------
+Formula: C4H7O
+Atoms
+  Index Symbol   x (angstrom)   y (angstrom)   z (angstrom)
+      1      C     0.81494509    -0.24360714     0.86198214
+      2      C     0.80856565    -0.24554993    -0.49094613
+      3      C    -1.46236860    -0.44345446    -1.25136188
+      4      H     0.84456670    -1.16956798     1.42278257
+      5      C     0.69901637     0.98333869     1.65178252
+      6      H    -1.72520694    -1.38189588    -0.80269637
+      7      H     0.88582455     0.67861541    -1.04748476
+      8      H    -1.29292525    -0.43561711    -2.31057919
+      9      H    -1.87819163     0.44354409    -0.81385945
+     10      O     0.69409924     1.01734928     2.85667675
+     11      H     0.99925709    -1.15506791    -1.05592273
+     12      H     0.61199662     1.92417392     1.01348096
+ 
+Total System Charge             0.00000
+ 
+
+ dE(predicted):    -0.93256E-03, dE(actual):    -0.11852E-02, Trust radius:    0.400000, all in a.u.
+ 
+----------------------------------------------------------------------
+Geometry Convergence after Step   5       (Hartree/Angstrom,Angstrom)
+----------------------------------------------------------------------
+current energy                              -16.77624591 Hartree
+energy change                      -0.00118515     0.00012000    F
+constrained gradient max            0.03106011     0.00100000    F
+constrained gradient rms            0.01055177     0.00066667    F
+gradient max                        0.03106011
+gradient rms                        0.01055177
+cart. step max                      0.05361298     0.01000000    F
+cart. step rms                      0.02020985     0.00666667    F
+ 
+ 
+--------
+Geometry
+--------
+Formula: C4H7O
+Atoms
+  Index Symbol   x (angstrom)   y (angstrom)   z (angstrom)
+      1      C     0.79333151    -0.24994558     0.84927148
+      2      C     0.78640650    -0.24910237    -0.51021901
+      3      C    -1.40875562    -0.43223475    -1.21513599
+      4      H     0.82123304    -1.17704182     1.40842131
+      5      C     0.67692345     0.97370305     1.63995796
+      6      H    -1.69477433    -1.36951922    -0.77437032
+      7      H     0.88025933     0.67531140    -1.06360864
+      8      H    -1.28059643    -0.42630625    -2.28209287
+      9      H    -1.84134171     0.45074391    -0.78202283
+     10      O     0.67307494     1.01518767     2.84468678
+     11      H     0.99826451    -1.15695951    -1.07207439
+     12      H     0.59555371     1.91842443     0.99104095
+ 
+Total System Charge             0.00000
+ 
+
+ dE(predicted):    -0.25448E-02, dE(actual):    -0.35291E-02, Trust radius:    0.800000, all in a.u.
+ 
+----------------------------------------------------------------------
+Geometry Convergence after Step   6       (Hartree/Angstrom,Angstrom)
+----------------------------------------------------------------------
+current energy                              -16.77977502 Hartree
+energy change                      -0.00352911     0.00012000    F
+constrained gradient max            0.04326934     0.00100000    F
+constrained gradient rms            0.01457218     0.00066667    F
+gradient max                        0.04326934
+gradient rms                        0.01457218
+cart. step max                      0.10465645     0.01000000    F
+cart. step rms                      0.03891768     0.00666667    F
+ 
+ 
+--------
+Geometry
+--------
+Formula: C4H7O
+Atoms
+  Index Symbol   x (angstrom)   y (angstrom)   z (angstrom)
+      1      C     0.75341030    -0.25738032     0.82548614
+      2      C     0.73431938    -0.25749478    -0.55073134
+      3      C    -1.30409917    -0.41173340    -1.14879446
+      4      H     0.77795276    -1.18640961     1.38165061
+      5      C     0.64441611     0.96042491     1.61250173
+      6      H    -1.63507887    -1.34298019    -0.71857897
+      7      H     0.86963907     0.66638192    -1.09652804
+      8      H    -1.25393808    -0.41196699    -2.22612843
+      9      H    -1.76690242     0.46455085    -0.72527639
+     10      O     0.63218201     1.00412447     2.82004496
+     11      H     0.98992147    -1.16196019    -1.10078817
+     12      H     0.55775635     1.90670430     0.96099678
+ 
+Total System Charge             0.00000
+ 
+
+ dE(predicted):    -0.63569E-02, dE(actual):    -0.11866E-01, Trust radius:    1.000000, all in a.u.
+ 
+----------------------------------------------------------------------
+Geometry Convergence after Step   7       (Hartree/Angstrom,Angstrom)
+----------------------------------------------------------------------
+current energy                              -16.79164144 Hartree
+energy change                      -0.01186642     0.00012000    F
+constrained gradient max            0.08474877     0.00100000    F
+constrained gradient rms            0.02282140     0.00066667    F
+gradient max                        0.08474877
+gradient rms                        0.02282140
+cart. step max                      0.12307621     0.01000000    F
+cart. step rms                      0.04318725     0.00666667    F
+ 
+ 
+--------
+Geometry
+--------
+Formula: C4H7O
+Atoms
+  Index Symbol   x (angstrom)   y (angstrom)   z (angstrom)
+      1      C     0.70051822    -0.25799686     0.80411510
+      2      C     0.65114352    -0.26532456    -0.60231758
+      3      C    -1.18102296    -0.39500547    -1.08414985
+      4      H     0.72509345    -1.18889321     1.35709483
+      5      C     0.60309952     0.94984488     1.58536752
+      6      H    -1.56336042    -1.31642655    -0.66274024
+      7      H     0.84996873     0.65653978    -1.13607307
+      8      H    -1.21724134    -0.40403940    -2.16753731
+      9      H    -1.68438620     0.47144496    -0.67394678
+     10      O     0.61034363     0.98813897     2.79898556
+     11      H     0.97242100    -1.16341188    -1.13153714
+     12      H     0.53300177     1.89739030     0.94659339
+ 
+Total System Charge             0.00000
+ 
+ Rebuilding optimization coordinates
+
+ dE(predicted):    -0.14477E-01, dE(actual):    -0.23574E-01, Trust radius:    1.000000, all in a.u.
+ 
+----------------------------------------------------------------------
+Geometry Convergence after Step   8       (Hartree/Angstrom,Angstrom)
+----------------------------------------------------------------------
+current energy                              -16.81521533 Hartree
+energy change                      -0.02357389     0.00012000    F
+constrained gradient max            0.12694770     0.00100000    F
+constrained gradient rms            0.03003902     0.00066667    F
+gradient max                        0.12694770
+gradient rms                        0.03003902
+cart. step max                      0.21177414     0.01000000    F
+cart. step rms                      0.08180260     0.00666667    F
+ 
+ 
+--------
+Geometry
+--------
+Formula: C4H7O
+Atoms
+  Index Symbol   x (angstrom)   y (angstrom)   z (angstrom)
+      1      C     0.59785712    -0.26162049     0.76759512
+      2      C     0.49658127    -0.28172976    -0.69170783
+      3      C    -0.96924882    -0.36527161    -0.98647682
+      4      H     0.63575660    -1.19740983     1.31171266
+      5      C     0.54055801     0.93311858     1.53866552
+      6      H    -1.40814850    -1.26414596    -0.55998665
+      7      H     0.78973531     0.63350310    -1.20082074
+      8      H    -1.12725842    -0.38601819    -2.06306163
+      9      H    -1.50151438     0.49174227    -0.58081787
+     10      O     0.59009560     0.96345248     2.76014802
+     11      H     0.90279553    -1.17178947    -1.18160220
+     12      H     0.45236958     1.87842984     0.92020684
+ 
+Total System Charge             0.00000
+ 
+
+ dE(predicted):    -0.40485E-01, dE(actual):    -0.26764E-01, Trust radius:    1.000000, all in a.u.
+ Oscillation detected, halving the step
+ Persistent oscillations may indicate discontinuity in the atomic forces.
+ 
+----------------------------------------------------------------------
+Geometry Convergence after Step   9       (Hartree/Angstrom,Angstrom)
+----------------------------------------------------------------------
+current energy                              -16.84197916 Hartree
+energy change                      -0.02676384     0.00012000    F
+constrained gradient max            0.06829745     0.00100000    F
+constrained gradient rms            0.01513166     0.00066667    F
+gradient max                        0.06829745
+gradient rms                        0.01513166
+cart. step max                      0.14069455     0.01000000    F
+cart. step rms                      0.05329640     0.00666667    F
+ 
+ 
+--------
+Geometry
+--------
+Formula: C4H7O
+Atoms
+  Index Symbol   x (angstrom)   y (angstrom)   z (angstrom)
+      1      C     0.66415871    -0.25865448     0.79131316
+      2      C     0.57550890    -0.27322057    -0.63897357
+      3      C    -1.10994337    -0.38481539    -1.04912859
+      4      H     0.69695831    -1.19404371     1.33708409
+      5      C     0.59077582     0.94823426     1.56592118
+      6      H    -1.51194472    -1.29885178    -0.62599518
+      7      H     0.84146570     0.64583749    -1.15546303
+      8      H    -1.18362188    -0.39935762    -2.13127547
+      9      H    -1.62269551     0.48001381    -0.64280162
+     10      O     0.60221076     0.98006557     2.78273725
+     11      H     0.95669852    -1.16294774    -1.14407648
+     12      H     0.50000767     1.89000113     0.94451269
+ 
+Total System Charge             0.00000
+ 
+
+ dE(predicted):    -0.12056E-01, dE(actual):     0.77385E-02, Trust radius:    0.120782, all in a.u.
+ 
+----------------------------------------------------------------------
+Geometry Convergence after Step  10       (Hartree/Angstrom,Angstrom)
+----------------------------------------------------------------------
+current energy                              -16.83424069 Hartree
+energy change                       0.00773848     0.00012000    F
+constrained gradient max            0.11580746     0.00100000    F
+constrained gradient rms            0.02658371     0.00066667    F
+gradient max                        0.11580746
+gradient rms                        0.02658371
+cart. step max                      0.02940758     0.01000000    F
+cart. step rms                      0.01267841     0.00666667    F
+ 
+ 
+--------
+Geometry
+--------
+Formula: C4H7O
+Atoms
+  Index Symbol   x (angstrom)   y (angstrom)   z (angstrom)
+      1      C     0.64777356    -0.25910982     0.78615970
+      2      C     0.55085099    -0.27534055    -0.65314276
+      3      C    -1.08080765    -0.38096832    -1.03564369
+      4      H     0.68248561    -1.19537836     1.33058624
+      5      C     0.58044517     0.94624481     1.55862218
+      6      H    -1.48544553    -1.29308487    -0.60992445
+      7      H     0.82994677     0.64375565    -1.16467895
+      8      H    -1.16656428    -0.39684575    -2.11711240
+      9      H    -1.59328794     0.48386658    -0.62789188
+     10      O     0.60067376     0.97715357     2.77687443
+     11      H     0.94350083    -1.16398421    -1.15135241
+     12      H     0.49000759     1.88595222     0.94135844
+ 
+Total System Charge             0.00000
+ 
+
+ dE(predicted):    -0.47294E-02, dE(actual):    -0.54313E-02, Trust radius:    0.241564, all in a.u.
+ 
+----------------------------------------------------------------------
+Geometry Convergence after Step  11       (Hartree/Angstrom,Angstrom)
+----------------------------------------------------------------------
+current energy                              -16.83967198 Hartree
+energy change                      -0.00543130     0.00012000    F
+constrained gradient max            0.10075595     0.00100000    F
+constrained gradient rms            0.02265489     0.00066667    F
+gradient max                        0.10075595
+gradient rms                        0.02265489
+cart. step max                      0.05447887     0.01000000    F
+cart. step rms                      0.02163443     0.00666667    F
+ 
+ 
+--------
+Geometry
+--------
+Formula: C4H7O
+Atoms
+  Index Symbol   x (angstrom)   y (angstrom)   z (angstrom)
+      1      C     0.61720922    -0.25934265     0.77836607
+      2      C     0.49637213    -0.27880846    -0.67696096
+      3      C    -1.02961845    -0.37566174    -1.01612097
+      4      H     0.65884945    -1.19779973     1.31916880
+      5      C     0.56553513     0.94442963     1.54592864
+      6      H    -1.44066347    -1.28528092    -0.58772506
+      7      H     0.80960787     0.64070294    -1.17292595
+      8      H    -1.13503600    -0.39377305    -2.09681990
+      9      H    -1.54597832     0.48825669    -0.60755850
+     10      O     0.60891432     0.97319240     2.76619438
+     11      H     0.92090987    -1.16297523    -1.15662203
+     12      H     0.47347715     1.87932107     0.93892991
+ 
+Total System Charge             0.00000
+ 
+
+ dE(predicted):    -0.72441E-02, dE(actual):    -0.60662E-02, Trust radius:    0.483129, all in a.u.
+ 
+----------------------------------------------------------------------
+Geometry Convergence after Step  12       (Hartree/Angstrom,Angstrom)
+----------------------------------------------------------------------
+current energy                              -16.84573818 Hartree
+energy change                      -0.00606620     0.00012000    F
+constrained gradient max            0.03999492     0.00100000    F
+constrained gradient rms            0.00945620     0.00066667    F
+gradient max                        0.03999492
+gradient rms                        0.00945620
+cart. step max                      0.03465758     0.01000000    F
+cart. step rms                      0.01140850     0.00666667    F
+ 
+ 
+--------
+Geometry
+--------
+Formula: C4H7O
+Atoms
+  Index Symbol   x (angstrom)   y (angstrom)   z (angstrom)
+      1      C     0.60223845    -0.25638609     0.78203229
+      2      C     0.46852326    -0.27599548    -0.67738611
+      3      C    -1.02702142    -0.38154738    -1.02378049
+      4      H     0.65363767    -1.19631036     1.31966291
+      5      C     0.55778676     0.94728838     1.54837376
+      6      H    -1.44187790    -1.29392919    -0.60210363
+      7      H     0.80680090     0.64504428    -1.15677578
+      8      H    -1.12957157    -0.39994873    -2.10581216
+      9      H    -1.55989874     0.47667369    -0.62138929
+     10      O     0.64357190     0.97528437     2.76741795
+     11      H     0.92922125    -1.15041469    -1.14228181
+     12      H     0.49616834     1.88250214     0.94589678
+ 
+Total System Charge             0.00000
+ 
+
+ dE(predicted):    -0.69547E-03, dE(actual):    -0.85614E-03, Trust radius:    0.483129, all in a.u.
+ 
+----------------------------------------------------------------------
+Geometry Convergence after Step  13       (Hartree/Angstrom,Angstrom)
+----------------------------------------------------------------------
+current energy                              -16.84659432 Hartree
+energy change                      -0.00085614     0.00012000    F
+constrained gradient max            0.01390669     0.00100000    F
+constrained gradient rms            0.00554719     0.00066667    F
+gradient max                        0.01390669
+gradient rms                        0.00554719
+cart. step max                      0.05048819     0.01000000    F
+cart. step rms                      0.01572744     0.00666667    F
+ 
+ 
+--------
+Geometry
+--------
+Formula: C4H7O
+Atoms
+  Index Symbol   x (angstrom)   y (angstrom)   z (angstrom)
+      1      C     0.60815798    -0.25560408     0.78433149
+      2      C     0.43815346    -0.27921196    -0.67867874
+      3      C    -1.03181166    -0.38064528    -1.03277193
+      4      H     0.66749223    -1.19595196     1.32070039
+      5      C     0.60827495     0.95216213     1.54419327
+      6      H    -1.46182631    -1.29035486    -0.61617789
+      7      H     0.82762094     0.63644898    -1.13396854
+      8      H    -1.13536457    -0.40217841    -2.11636312
+      9      H    -1.57632170     0.47721541    -0.64064573
+     10      O     0.65508675     0.97552578     2.76646239
+     11      H     0.94321531    -1.14399041    -1.11737461
+     12      H     0.45690153     1.87884563     0.95414745
+ 
+Total System Charge             0.00000
+ 
+
+ dE(predicted):    -0.96364E-03, dE(actual):    -0.39021E-03, Trust radius:    0.483129, all in a.u.
+ 
+----------------------------------------------------------------------
+Geometry Convergence after Step  14       (Hartree/Angstrom,Angstrom)
+----------------------------------------------------------------------
+current energy                              -16.84698453 Hartree
+energy change                      -0.00039021     0.00012000    F
+constrained gradient max            0.02763068     0.00100000    F
+constrained gradient rms            0.00703107     0.00066667    F
+gradient max                        0.02763068
+gradient rms                        0.00703107
+cart. step max                      0.05449229     0.01000000    F
+cart. step rms                      0.02088353     0.00666667    F
+ 
+ 
+--------
+Geometry
+--------
+Formula: C4H7O
+Atoms
+  Index Symbol   x (angstrom)   y (angstrom)   z (angstrom)
+      1      C     0.60072030    -0.25098222     0.79469976
+      2      C     0.43104373    -0.27223253    -0.66886056
+      3      C    -1.05702303    -0.39401253    -1.05484741
+      4      H     0.66387311    -1.19215540     1.32944326
+      5      C     0.59773990     0.95617291     1.55737739
+      6      H    -1.48255208    -1.31098677    -0.64833694
+      7      H     0.82992235     0.64791801    -1.10909410
+      8      H    -1.14472828    -0.41372298    -2.14051841
+      9      H    -1.62033483     0.45534325    -0.66946281
+     10      O     0.70217882     0.98141075     2.77565546
+     11      H     0.96734509    -1.12397168    -1.09767520
+     12      H     0.51139382     1.88948014     0.96547398
+ 
+Total System Charge             0.00000
+ 
+
+ dE(predicted):    -0.92883E-03, dE(actual):    -0.81194E-03, Trust radius:    0.483129, all in a.u.
+ 
+----------------------------------------------------------------------
+Geometry Convergence after Step  15       (Hartree/Angstrom,Angstrom)
+----------------------------------------------------------------------
+current energy                              -16.84779647 Hartree
+energy change                      -0.00081194     0.00012000    F
+constrained gradient max            0.00467647     0.00100000    F
+constrained gradient rms            0.00184746     0.00066667    F
+gradient max                        0.00467647
+gradient rms                        0.00184746
+cart. step max                      0.01374615     0.01000000    F
+cart. step rms                      0.00484129     0.00666667    T
+ 
+ 
+--------
+Geometry
+--------
+Formula: C4H7O
+Atoms
+  Index Symbol   x (angstrom)   y (angstrom)   z (angstrom)
+      1      C     0.60254922    -0.25125347     0.79361408
+      2      C     0.43899616    -0.27195230    -0.67211769
+      3      C    -1.05470528    -0.39318541    -1.05091434
+      4      H     0.65565312    -1.19206757     1.33019003
+      5      C     0.60046691     0.95531263     1.55721269
+      6      H    -1.47590616    -1.30988064    -0.64033109
+      7      H     0.82734653     0.64933260    -1.11920320
+      8      H    -1.14628807    -0.41335341    -2.13590994
+      9      H    -1.61238028     0.45760909    -0.66176617
+     10      O     0.68843267     0.97954732     2.77612352
+     11      H     0.96513415    -1.12703576    -1.10687691
+     12      H     0.51027994     1.88918789     0.96383346
+ 
+Total System Charge             0.00000
+ 
+
+ dE(predicted):    -0.56978E-04, dE(actual):    -0.59953E-04, Trust radius:    0.483129, all in a.u.
+ 
+----------------------------------------------------------------------
+Geometry Convergence after Step  16       (Hartree/Angstrom,Angstrom)
+----------------------------------------------------------------------
+current energy                              -16.84785642 Hartree
+energy change                      -0.00005995     0.00012000    T
+constrained gradient max            0.00384980     0.00100000    F
+constrained gradient rms            0.00080246     0.00066667    F
+gradient max                        0.00384980
+gradient rms                        0.00080246
+cart. step max                      0.00935619     0.01000000    T
+cart. step rms                      0.00268460     0.00666667    T
+ 
+ 
+--------
+Geometry
+--------
+Formula: C4H7O
+Atoms
+  Index Symbol   x (angstrom)   y (angstrom)   z (angstrom)
+      1      C     0.60069103    -0.25047105     0.79402570
+      2      C     0.43791417    -0.27030828    -0.67348941
+      3      C    -1.05511861    -0.39522339    -1.05178959
+      4      H     0.64629693    -1.19158594     1.33078463
+      5      C     0.60438762     0.95583028     1.55795144
+      6      H    -1.47317462    -1.31315871    -0.64079819
+      7      H     0.82495784     0.65267039    -1.11866144
+      8      H    -1.14749652    -0.41545338    -2.13669303
+      9      H    -1.61398610     0.45429838    -0.66170701
+     10      O     0.68898402     0.97905483     2.77702422
+     11      H     0.96793948    -1.12369586    -1.10716696
+     12      H     0.51818366     1.89030370     0.96437406
+ 
+Total System Charge             0.00000
+ 
+
+ dE(predicted):    -0.93490E-05, dE(actual):    -0.15792E-04, Trust radius:    0.483129, all in a.u.
+ 
+----------------------------------------------------------------------
+Geometry Convergence after Step  17       (Hartree/Angstrom,Angstrom)
+----------------------------------------------------------------------
+current energy                              -16.84787221 Hartree
+energy change                      -0.00001579     0.00012000    T
+constrained gradient max            0.00186182     0.00100000    F
+constrained gradient rms            0.00039895     0.00066667    T
+gradient max                        0.00186182
+gradient rms                        0.00039895
+cart. step max                      0.03734718     0.01000000    F
+cart. step rms                      0.01127887     0.00666667    F
+ 
+ 
+--------
+Geometry
+--------
+Formula: C4H7O
+Atoms
+  Index Symbol   x (angstrom)   y (angstrom)   z (angstrom)
+      1      C     0.59144097    -0.24714951     0.79526945
+      2      C     0.43389844    -0.26300607    -0.67665726
+      3      C    -1.05680159    -0.40405556    -1.05555421
+      4      H     0.60894975    -1.18955825     1.33132877
+      5      C     0.61734954     0.95783159     1.56068534
+      6      H    -1.46270685    -1.32718089    -0.64422473
+      7      H     0.81387487     0.66676331    -1.11420735
+      8      H    -1.15073083    -0.42408253    -2.14016099
+      9      H    -1.62234145     0.43937267    -0.66240083
+     10      O     0.69395740     0.97783366     2.78021713
+     11      H     0.97845152    -1.10927619    -1.10690416
+     12      H     0.55423713     1.89476874     0.96646327
+ 
+Total System Charge             0.00000
+ 
+
+ dE(predicted):    -0.24742E-04, dE(actual):    -0.32878E-04, Trust radius:    0.483129, all in a.u.
+ 
+----------------------------------------------------------------------
+Geometry Convergence after Step  18       (Hartree/Angstrom,Angstrom)
+----------------------------------------------------------------------
+current energy                              -16.84790509 Hartree
+energy change                      -0.00003288     0.00012000    T
+constrained gradient max            0.00301225     0.00100000    F
+constrained gradient rms            0.00084671     0.00066667    F
+gradient max                        0.00301225
+gradient rms                        0.00084671
+cart. step max                      0.03631030     0.01000000    F
+cart. step rms                      0.01111133     0.00666667    F
+ 
+ 
+--------
+Geometry
+--------
+Formula: C4H7O
+Atoms
+  Index Symbol   x (angstrom)   y (angstrom)   z (angstrom)
+      1      C     0.58125661    -0.24353207     0.79600557
+      2      C     0.43014405    -0.25542867    -0.67776955
+      3      C    -1.05807008    -0.41290020    -1.05913723
+      4      H     0.57342225    -1.18696904     1.33038983
+      5      C     0.62949650     0.95967010     1.56300020
+      6      H    -1.45319714    -1.34088468    -0.64838815
+      7      H     0.80231990     0.68028889    -1.10882482
+      8      H    -1.15219334    -0.43264306    -2.14358487
+      9      H    -1.63174170     0.42395389    -0.66404071
+     10      O     0.70021155     0.97693635     2.78292144
+     11      H     0.98738285    -1.09472023    -1.10565433
+     12      H     0.59054743     1.89848967     0.96893705
+ 
+Total System Charge             0.00000
+ 
+
+ dE(predicted):    -0.13847E-04, dE(actual):    -0.22420E-04, Trust radius:    0.483129, all in a.u.
+ 
+----------------------------------------------------------------------
+Geometry Convergence after Step  19       (Hartree/Angstrom,Angstrom)
+----------------------------------------------------------------------
+current energy                              -16.84792751 Hartree
+energy change                      -0.00002242     0.00012000    T
+constrained gradient max            0.00503075     0.00100000    F
+constrained gradient rms            0.00122841     0.00066667    F
+gradient max                        0.00503075
+gradient rms                        0.00122841
+cart. step max                      0.08717062     0.01000000    F
+cart. step rms                      0.02662527     0.00666667    F
+ 
+ 
+--------
+Geometry
+--------
+Formula: C4H7O
+Atoms
+  Index Symbol   x (angstrom)   y (angstrom)   z (angstrom)
+      1      C     0.55543384    -0.23332298     0.79741147
+      2      C     0.42057874    -0.23654126    -0.67794138
+      3      C    -1.06041794    -0.43426361    -1.06780747
+      4      H     0.49043420    -1.17728669     1.32690320
+      5      C     0.65869991     0.96343045     1.56868423
+      6      H    -1.43143664    -1.37304810    -0.65915720
+      7      H     0.77355445     0.71153279    -1.09625576
+      8      H    -1.15278326    -0.45403650    -2.15219756
+      9      H    -1.65591868     0.38608125    -0.67065314
+     10      O     0.71774005     0.97431192     2.78937823
+     11      H     1.00597618    -1.05902386    -1.10119074
+     12      H     0.67771805     1.90442756     0.97668055
+ 
+Total System Charge             0.00000
+ 
+
+ dE(predicted):    -0.30674E-04, dE(actual):    -0.42656E-04, Trust radius:    0.483129, all in a.u.
+ 
+----------------------------------------------------------------------
+Geometry Convergence after Step  20       (Hartree/Angstrom,Angstrom)
+----------------------------------------------------------------------
+current energy                              -16.84797017 Hartree
+energy change                      -0.00004266     0.00012000    T
+constrained gradient max            0.00669198     0.00100000    F
+constrained gradient rms            0.00147162     0.00066667    F
+gradient max                        0.00669198
+gradient rms                        0.00147162
+cart. step max                      0.07413583     0.01000000    F
+cart. step rms                      0.02288578     0.00666667    F
+ 
+ 
+--------
+Geometry
+--------
+Formula: C4H7O
+Atoms
+  Index Symbol   x (angstrom)   y (angstrom)   z (angstrom)
+      1      C     0.53189966    -0.22249346     0.79893813
+      2      C     0.41067381    -0.21969035    -0.67559685
+      3      C    -1.06210776    -0.45278308    -1.07594356
+      4      H     0.42268932    -1.16489329     1.32413957
+      5      C     0.68440813     0.96615886     1.57424113
+      6      H    -1.41435375    -1.40012768    -0.67005337
+      7      H     0.74793055     0.73682999    -1.08621612
+      8      H    -1.14989053    -0.47333556    -2.16074385
+      9      H    -1.67912265     0.35252058    -0.68043268
+     10      O     0.73691474     0.97119860     2.79543091
+     11      H     1.01868348    -1.02757603    -1.09558658
+     12      H     0.75185388     1.90645239     0.98567769
+ 
+Total System Charge             0.00000
+ 
+
+ dE(predicted):    -0.23126E-04, dE(actual):    -0.34260E-04, Trust radius:    0.483129, all in a.u.
+ 
+----------------------------------------------------------------------
+Geometry Convergence after Step  21       (Hartree/Angstrom,Angstrom)
+----------------------------------------------------------------------
+current energy                              -16.84800443 Hartree
+energy change                      -0.00003426     0.00012000    T
+constrained gradient max            0.00549482     0.00100000    F
+constrained gradient rms            0.00117738     0.00066667    F
+gradient max                        0.00549482
+gradient rms                        0.00117738
+cart. step max                      0.07483773     0.01000000    F
+cart. step rms                      0.02376815     0.00666667    F
+ 
+ 
+--------
+Geometry
+--------
+Formula: C4H7O
+Atoms
+  Index Symbol   x (angstrom)   y (angstrom)   z (angstrom)
+      1      C     0.50639795    -0.20899614     0.80182613
+      2      C     0.39777062    -0.20184928    -0.67033875
+      3      C    -1.06394118    -0.47202626    -1.08562949
+      4      H     0.35775656    -1.14815913     1.32363848
+      5      C     0.71217755     0.96876737     1.58112541
+      6      H    -1.39884180    -1.42795005    -0.68436223
+      7      H     0.72040660     0.76115805    -1.07685857
+      8      H    -1.14249984    -0.49360500    -2.17142402
+      9      H    -1.70642743     0.31658323    -0.69597060
+     10      O     0.76251929     0.96695212     2.80264772
+     11      H     1.02756896    -0.99466014    -1.08810995
+     12      H     0.82669161     1.90604618     0.99731031
+ 
+Total System Charge             0.00000
+ 
+
+ dE(predicted):    -0.27112E-04, dE(actual):    -0.38336E-04, Trust radius:    0.483129, all in a.u.
+ 
+----------------------------------------------------------------------
+Geometry Convergence after Step  22       (Hartree/Angstrom,Angstrom)
+----------------------------------------------------------------------
+current energy                              -16.84804276 Hartree
+energy change                      -0.00003834     0.00012000    T
+constrained gradient max            0.00205756     0.00100000    F
+constrained gradient rms            0.00076208     0.00066667    F
+gradient max                        0.00205756
+gradient rms                        0.00076208
+cart. step max                      0.05394237     0.01000000    F
+cart. step rms                      0.01814349     0.00666667    F
+ 
+ 
+--------
+Geometry
+--------
+Formula: C4H7O
+Atoms
+  Index Symbol   x (angstrom)   y (angstrom)   z (angstrom)
+      1      C     0.48704800    -0.19746248     0.80614212
+      2      C     0.38535494    -0.18845616    -0.66429604
+      3      C    -1.06585060    -0.48646247    -1.09441032
+      4      H     0.31328898    -1.13296391     1.32728683
+      5      C     0.73462987     0.97069474     1.58758569
+      6      H    -1.38866301    -1.44920647    -0.69881291
+      7      H     0.69837485     0.77804977    -1.07063987
+      8      H    -1.13287860    -0.50810895    -2.18135436
+      9      H    -1.72975774     0.28854051    -0.71231892
+     10      O     0.78714375     0.96326843     2.80915117
+     11      H     1.03025450    -0.97015812    -1.08169311
+     12      H     0.88063398     1.90452608     1.00721414
+ 
+Total System Charge             0.00000
+ 
+
+ dE(predicted):    -0.22115E-04, dE(actual):    -0.32520E-04, Trust radius:    0.483129, all in a.u.
+ 
+----------------------------------------------------------------------
+Geometry Convergence after Step  23       (Hartree/Angstrom,Angstrom)
+----------------------------------------------------------------------
+current energy                              -16.84807529 Hartree
+energy change                      -0.00003252     0.00012000    T
+constrained gradient max            0.00387372     0.00100000    F
+constrained gradient rms            0.00094753     0.00066667    F
+gradient max                        0.00387372
+gradient rms                        0.00094753
+cart. step max                      0.05938216     0.01000000    F
+cart. step rms                      0.02082931     0.00666667    F
+ 
+ 
+--------
+Geometry
+--------
+Formula: C4H7O
+Atoms
+  Index Symbol   x (angstrom)   y (angstrom)   z (angstrom)
+      1      C     0.46625911    -0.18413683     0.81295169
+      2      C     0.36933923    -0.17356013    -0.65728286
+      3      C    -1.06851344    -0.50258128    -1.10537713
+      4      H     0.26382281    -1.11362795     1.33489508
+      5      C     0.76129453     0.97211338     1.59556353
+      6      H    -1.37627497    -1.47351454    -0.71736758
+      7      H     0.67132985     0.79698880    -1.06371922
+      8      H    -1.11990483    -0.52314855    -2.19350807
+      9      H    -1.75644306     0.25622332    -0.73261394
+     10      O     0.81745368     0.95912239     2.81697899
+     11      H     1.03119985    -0.94264628    -1.07409579
+     12      H     0.94001614     1.90102863     1.01742974
+ 
+Total System Charge             0.00000
+ 
+
+ dE(predicted):    -0.22762E-04, dE(actual):    -0.32701E-04, Trust radius:    0.483129, all in a.u.
+ 
+----------------------------------------------------------------------
+Geometry Convergence after Step  24       (Hartree/Angstrom,Angstrom)
+----------------------------------------------------------------------
+current energy                              -16.84810799 Hartree
+energy change                      -0.00003270     0.00012000    T
+constrained gradient max            0.00408447     0.00100000    F
+constrained gradient rms            0.00110990     0.00066667    F
+gradient max                        0.00408447
+gradient rms                        0.00110990
+cart. step max                      0.05539663     0.01000000    F
+cart. step rms                      0.01998150     0.00666667    F
+ 
+ 
+--------
+Geometry
+--------
+Formula: C4H7O
+Atoms
+  Index Symbol   x (angstrom)   y (angstrom)   z (angstrom)
+      1      C     0.44765721    -0.17195995     0.82061937
+      2      C     0.35276767    -0.15982563    -0.65110422
+      3      C    -1.07134549    -0.51755108    -1.11642707
+      4      H     0.21605164    -1.09384454     1.34393708
+      5      C     0.78705827     0.97231630     1.60286381
+      6      H    -1.36274423    -1.49651873    -0.73614375
+      7      H     0.64343688     0.81541952    -1.05573590
+      8      H    -1.10694183    -0.53578422    -2.20527893
+      9      H    -1.78075489     0.22518575    -0.75177145
+     10      O     0.84711221     0.95574620     2.82399362
+     11      H     1.03186870    -0.91628453    -1.06573139
+     12      H     0.99541278     1.89536188     1.02463327
+ 
+Total System Charge             0.00000
+ 
+
+ dE(predicted):    -0.18090E-04, dE(actual):    -0.24513E-04, Trust radius:    0.483129, all in a.u.
+ 
+----------------------------------------------------------------------
+Geometry Convergence after Step  25       (Hartree/Angstrom,Angstrom)
+----------------------------------------------------------------------
+current energy                              -16.84813250 Hartree
+energy change                      -0.00002451     0.00012000    T
+constrained gradient max            0.00260023     0.00100000    F
+constrained gradient rms            0.00080968     0.00066667    F
+gradient max                        0.00260023
+gradient rms                        0.00080968
+cart. step max                      0.02718150     0.01000000    F
+cart. step rms                      0.01016694     0.00666667    F
+ 
+ 
+--------
+Geometry
+--------
+Formula: C4H7O
+Atoms
+  Index Symbol   x (angstrom)   y (angstrom)   z (angstrom)
+      1      C     0.43892641    -0.16682988     0.82524291
+      2      C     0.34378850    -0.15343551    -0.64818135
+      3      C    -1.07306657    -0.52474772    -1.12249220
+      4      H     0.19135367    -1.08398150     1.34925551
+      5      C     0.80002221     0.97178887     1.60605048
+      6      H    -1.35487207    -1.50803351    -0.74671030
+      7      H     0.62775733     0.82504564    -1.04983369
+      8      H    -1.10020400    -0.54060784    -2.21141073
+      9      H    -1.79221012     0.20955252    -0.76069149
+     10      O     0.86269602     0.95518973     2.82694179
+     11      H     1.03279325    -0.90288831    -1.06016953
+     12      H     1.02259427     1.89120846     1.02585305
+ 
+Total System Charge             0.00000
+ 
+
+ dE(predicted):    -0.80585E-05, dE(actual):    -0.10244E-04, Trust radius:    0.483129, all in a.u.
+ 
+---------------------------------------------------------
+Geometry Convergence after Step  26       ** CONVERGED **
+---------------------------------------------------------
+current energy                              -16.84814274 Hartree
+energy change                      -0.00001024     0.00012000    T
+constrained gradient max            0.00082705     0.00100000    T
+constrained gradient rms            0.00033001     0.00066667    T
+gradient max                        0.00082705
+gradient rms                        0.00033001
+cart. step max                      0.00569393     0.01000000    T
+cart. step rms                      0.00221126     0.00666667    T
+ 
+Geometry optimization converged
+
+Optimized geometry:
+ 
+--------
+Geometry
+--------
+Formula: C4H7O
+Atoms
+  Index Symbol   x (angstrom)   y (angstrom)   z (angstrom)
+      1      C     0.43892641    -0.16682988     0.82524291
+      2      C     0.34378850    -0.15343551    -0.64818135
+      3      C    -1.07306657    -0.52474772    -1.12249220
+      4      H     0.19135367    -1.08398150     1.34925551
+      5      C     0.80002221     0.97178887     1.60605048
+      6      H    -1.35487207    -1.50803351    -0.74671030
+      7      H     0.62775733     0.82504564    -1.04983369
+      8      H    -1.10020400    -0.54060784    -2.21141073
+      9      H    -1.79221012     0.20955252    -0.76069149
+     10      O     0.86269602     0.95518973     2.82694179
+     11      H     1.03279325    -0.90288831    -1.06016953
+     12      H     1.02259427     1.89120846     1.02585305
+ 
+Total System Charge             0.00000
+ 
+Performing a single point calculation on the final geometry ...
+
+Estimated upper bound for memory consumption:    0.118 MiB
+
+Number of basis functions:           34
+    Cycle:   1, MaxQDiff:   0.000000005061, PartialEnergy:     -17.0474399700, Used mix:   0.150 nvec:    0
+ Evaluation was successful
+
+
+    =====================
+     CALCULATION RESULTS
+    =====================
+
+Energy (hartree)           -16.84814274
+
+Gradients (hartree/bohr)
+  Index   Atom            d/dx            d/dy            d/dz
+      1      C   -0.0001347272    0.0000531550   -0.0002738708
+      2      C   -0.0001609801    0.0002821977    0.0004376568
+      3      C    0.0004084410   -0.0002821802    0.0002474051
+      4      H    0.0000243815   -0.0000354653    0.0001002644
+      5      C    0.0001144284    0.0001656464   -0.0001003401
+      6      H   -0.0001374573   -0.0000761534   -0.0000060148
+      7      H    0.0003164742    0.0000868133   -0.0001346202
+      8      H   -0.0000769220    0.0000073151   -0.0001254542
+      9      H   -0.0001625193    0.0000650870   -0.0000409452
+     10      O   -0.0000410954   -0.0000340447    0.0000149775
+     11      H   -0.0000871847   -0.0000675686   -0.0002553048
+     12      H   -0.0000628391   -0.0001648024    0.0001362462
+
+
+--------------
+Atomic charges
+--------------
+  Index   Atom    Charge
+      1      C   -0.0235
+      2      C   -0.0357
+      3      C   -0.0757
+      4      H    0.0623
+      5      C    0.3501
+      6      H    0.0398
+      7      H    0.0359
+      8      H    0.0408
+      9      H    0.0405
+     10      O   -0.4946
+     11      H    0.0574
+     12      H    0.0027
+
+
+Dipole moment vector    (Debye):    -0.78267444   -1.15999506   -4.37032696
+              magnitude (Debye):     4.58889154
+
+ 
+--------------------
+Energy Decomposition
+--------------------
+Total Energy (hartree)               -16.84814274
+Total Energy (eV)                   -458.46129074
+Electronic Energy (hartree)          -17.09915968
+Coulomb Energy (hartree)               0.05171971
+Repulsion Energy (hartree)             0.20282763
+Dispersion Energy (hartree)           -0.00353040
+ 
+----------------------
+Gradient Decomposition
+----------------------
+Total Gradients (hartree/bohr)
+  Index   Atom            d/dx            d/dy            d/dz
+      1      C   -0.0001347272    0.0000531550   -0.0002738708
+      2      C   -0.0001609801    0.0002821977    0.0004376568
+      3      C    0.0004084410   -0.0002821802    0.0002474051
+      4      H    0.0000243815   -0.0000354653    0.0001002644
+      5      C    0.0001144284    0.0001656464   -0.0001003401
+      6      H   -0.0001374573   -0.0000761534   -0.0000060148
+      7      H    0.0003164742    0.0000868133   -0.0001346202
+      8      H   -0.0000769220    0.0000073151   -0.0001254542
+      9      H   -0.0001625193    0.0000650870   -0.0000409452
+     10      O   -0.0000410954   -0.0000340447    0.0000149775
+     11      H   -0.0000871847   -0.0000675686   -0.0002553048
+     12      H   -0.0000628391   -0.0001648024    0.0001362462
+ 
+Total Gradients (eV/angstrom)
+  Index   Atom            d/dx            d/dy            d/dz
+      1      C   -0.0069279492    0.0027333422   -0.0140829997
+      2      C   -0.0082779290    0.0145111867    0.0225052174
+      3      C    0.0210028800   -0.0145102864    0.0127220812
+      4      H    0.0012537461   -0.0018236979    0.0051558019
+      5      C    0.0058841447    0.0085178811   -0.0051596968
+      6      H   -0.0070683379   -0.0039159672   -0.0003092930
+      7      H    0.0162737570    0.0044641180   -0.0069224461
+      8      H   -0.0039554882    0.0003761577   -0.0064511144
+      9      H   -0.0083570754    0.0033469098   -0.0021054872
+     10      O   -0.0021132117   -0.0017506503    0.0007701760
+     11      H   -0.0044832186   -0.0034745164   -0.0131283013
+     12      H   -0.0032313179   -0.0084744773    0.0070060620
+ 
+Electronic Gradients (hartree/bohr)
+  Index   Atom            d/dx            d/dy            d/dz
+      1      C   -0.0021621277   -0.0109406094   -0.0191408729
+      2      C   -0.0226574537   -0.0038024213   -0.0021371987
+      3      C    0.0261839605    0.0061336359    0.0094619108
+      4      H   -0.0161317654   -0.0599613378    0.0348832374
+      5      C    0.0042599890    0.0244031769   -0.0496099968
+      6      H   -0.0178444680   -0.0617083138    0.0235774223
+      7      H    0.0173082968    0.0587553352   -0.0242625847
+      8      H   -0.0018191109   -0.0009852523   -0.0685659261
+      9      H   -0.0453135624    0.0461422883    0.0227024341
+     10      O    0.0062540356   -0.0026308619    0.1280147011
+     11      H    0.0402112506   -0.0439194923   -0.0243426511
+     12      H    0.0117109556    0.0485138525   -0.0305804754
+ 
+Coulomb Gradients (hartree/bohr)
+  Index   Atom            d/dx            d/dy            d/dz
+      1      C    0.0000501420    0.0000993900    0.0003043140
+      2      C    0.0000584103   -0.0000062075   -0.0000317437
+      3      C   -0.0001753055   -0.0000237731   -0.0000197414
+      4      H    0.0000084088    0.0001482729   -0.0006461255
+      5      C   -0.0011870047   -0.0008507816   -0.0170859154
+      6      H    0.0000836188    0.0000776887   -0.0000286909
+      7      H   -0.0000086174   -0.0001344191    0.0001181808
+      8      H    0.0000573351    0.0000049590    0.0000873145
+      9      H    0.0001145593   -0.0000495243   -0.0000386467
+     10      O    0.0011465029    0.0006012275    0.0172717343
+     11      H   -0.0001353075    0.0001750644    0.0000887727
+     12      H   -0.0000127421   -0.0000418969   -0.0000194527
+ 
+Repulsion Gradients (hartree/bohr)
+  Index   Atom            d/dx            d/dy            d/dz
+      1      C    0.0019661823    0.0108946025    0.0185425397
+      2      C    0.0224375519    0.0040985823    0.0026298753
+      3      C   -0.0255719858   -0.0063703256   -0.0091546571
+      4      H    0.0161400695    0.0597921520   -0.0341605464
+      5      C   -0.0029945071   -0.0234246823    0.0665398060
+      6      H    0.0176496002    0.0615783843   -0.0235326509
+      7      H   -0.0169905911   -0.0585405606    0.0240329627
+      8      H    0.0017064527    0.0009966480    0.0683900872
+      9      H    0.0450750075   -0.0460226725   -0.0226756672
+     10      O   -0.0074623380    0.0019717981   -0.1453436754
+     11      H   -0.0401736750    0.0436942424    0.0240240340
+     12      H   -0.0117817671   -0.0486681687    0.0307078920
+ 
+Dispersion Gradients (hartree/bohr)
+  Index   Atom            d/dx            d/dy            d/dz
+      1      C    0.0000110763   -0.0000002280    0.0000201484
+      2      C    0.0000005114   -0.0000077558   -0.0000232760
+      3      C   -0.0000282282   -0.0000217174   -0.0000401072
+      4      H    0.0000076685   -0.0000145524    0.0000236989
+      5      C    0.0000359512    0.0000379334    0.0000557660
+      6      H   -0.0000262083   -0.0000239127   -0.0000220953
+      7      H    0.0000073858    0.0000064578   -0.0000231789
+      8      H   -0.0000215989   -0.0000090397   -0.0000369299
+      9      H   -0.0000385236   -0.0000050045   -0.0000290655
+     10      O    0.0000207040    0.0000237915    0.0000722175
+     11      H    0.0000105472   -0.0000173830   -0.0000254604
+     12      H    0.0000207146    0.0000314108    0.0000282823
+ 
+----------------
+Mulliken Charges
+----------------
+  Index   Atom          Charge      Population
+      1      C   -0.0235286987        4.023529
+      2      C   -0.0356597622        4.035660
+      3      C   -0.0757323911        4.075732
+      4      H    0.0623217770        0.937678
+      5      C    0.3501243654        3.649876
+      6      H    0.0397959868        0.960204
+      7      H    0.0358532621        0.964147
+      8      H    0.0408417877        0.959158
+      9      H    0.0405262772        0.959474
+     10      O   -0.4946388971        6.494639
+     11      H    0.0574401698        0.942560
+     12      H    0.0026561231        0.997344
+         Total    0.0000000000       29.000000
+ 
+----------------------
+Mulliken Shell Charges
+----------------------
+  Index   Atom      L          Charge      Population
+      1      C      0    0.8782070212        1.121793
+      2      C      1   -0.9017357199        2.901736
+      3      C      0    0.9716504456        1.028350
+      4      C      1   -1.0073102077        3.007310
+      5      C      0    0.9889974190        1.011003
+      6      C      1   -1.0647298101        3.064730
+      7      H      0    0.0686642765        0.931336
+      8      H      0   -0.0063424994        0.006342
+      9      C      0    0.9840329126        1.015967
+     10      C      1   -0.6339085472        2.633909
+     11      H      0    0.0495768476        0.950423
+     12      H      0   -0.0097808608        0.009781
+     13      H      0    0.0473732194        0.952627
+     14      H      0   -0.0115199572        0.011520
+     15      H      0    0.0515848303        0.948415
+     16      H      0   -0.0107430425        0.010743
+     17      H      0    0.0513490038        0.948651
+     18      H      0   -0.0108227266        0.010823
+     19      O      0    0.2641380666        1.735862
+     20      O      1   -0.7587769638        4.758777
+     21      H      0    0.0713803152        0.928620
+     22      H      0   -0.0139401454        0.013940
+     23      H      0    0.0154180258        0.984582
+     24      H      0   -0.0127619027        0.012762
+                Total    0.0000000000       29.000000
+ 
+ 
+--------
+Orbitals
+--------
+Index of HOMO                   15
+Fermi Energy (hartree)           -0.40727724
+Orbitals
+   Index  Energy (hartree)       Energy (eV)        Occupation  Degeneracy
+       1       -0.77378986      -21.05589351        2.00000000           1
+       2       -0.68786485      -18.71775486        2.00000000           1
+       3       -0.66684317      -18.14572598        2.00000000           1
+       4       -0.63948107      -17.40116527        2.00000000           1
+       5       -0.63023210      -17.14948797        2.00000000           1
+       6       -0.58962726      -16.04457409        2.00000000           1
+       7       -0.58483941      -15.91429005        2.00000000           1
+       8       -0.56679395      -15.42324802        2.00000000           1
+       9       -0.55528537      -15.11008376        2.00000000           1
+      10       -0.54477536      -14.82409185        2.00000000           1
+      11       -0.52996489      -14.42107831        2.00000000           1
+      12       -0.51210173      -13.93499716        2.00000000           1
+      13       -0.50946506      -13.86324966        2.00000000           1
+      14       -0.44040868      -11.98412996        2.00000000           1
+      15       -0.40727724      -11.08257760        1.00000000           1
+      16       -0.23799215       -6.47609604        0.00000000           1
+      17       -0.14821772       -4.03320929        0.00000000           1
+      18       -0.14121504       -3.84265680        0.00000000           1
+      19       -0.12065096       -3.28307969        0.00000000           1
+      20       -0.10312211       -2.80609533        0.00000000           1
+      21       -0.08700245       -2.36745723        0.00000000           1
+      22       -0.07725485       -2.10221152        0.00000000           1
+      23       -0.06858639       -1.86633074        0.00000000           1
+      24        0.06942959        1.88927524        0.00000000           1
+      25        0.11133926        3.02969550        0.00000000           1
+      26        0.16814097        4.57534871        0.00000000           1
+      27        0.20644480        5.61764895        0.00000000           1
+      28        0.25081592        6.82504841        0.00000000           1
+      29        0.25350706        6.89827815        0.00000000           1
+      30        0.32605637        8.87244533        0.00000000           1
+      31        0.36252573        9.86482715        0.00000000           1
+      32        0.36617210        9.96404983        0.00000000           1
+      33        0.41900271       11.40164378        0.00000000           1
+      34        0.65583661       17.84622229        0.00000000           1
+ 
+
+AMS application finished. Exiting.
+NORMAL TERMINATION
+     Total cpu time:       1.47
+  Total system time:       0.25
+ Total elapsed time:       2.02

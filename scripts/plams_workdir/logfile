@@ -1,0 +1,47 @@
+[20:13:21] Running PLAMS located in /cm/shared/package/ams2021.102/scripting/scm/plams
+[20:13:21] Using Python 3.6.9 located in /cm/shared/package/ams2021.102/bin/python3.6/bin/python
+[20:13:21] PLAMS defaults were loaded from /cm/shared/package/ams2021.102/scripting/scm/plams/plams_defaults
+[20:13:21] PLAMS environment initialized
+[20:13:21] PLAMS working folder: /scistor/tc/yhk800/MasterProject/scripts/plams_workdir
+[20:13:21] JOB Rsub_preopt STARTED
+[20:13:21] Starting Rsub_preopt.prerun()
+[20:13:21] Rsub_preopt.prerun() finished
+[20:13:21] JOB Rsub_preopt RUNNING
+[20:13:21] Executing Rsub_preopt.run
+[20:13:22] Execution of Rsub_preopt.run finished with returncode 0
+[20:13:22] JOB Rsub_preopt FINISHED
+[20:13:22] Starting Rsub_preopt.postrun()
+[20:13:22] Rsub_preopt.postrun() finished
+[20:13:22] JOB Rsub_preopt SUCCESSFUL
+[20:13:22] JOB Rrad_preopt STARTED
+[20:13:22] Starting Rrad_preopt.prerun()
+[20:13:22] Rrad_preopt.prerun() finished
+[20:13:22] JOB Rrad_preopt RUNNING
+[20:13:22] Executing Rrad_preopt.run
+[20:13:23] Execution of Rrad_preopt.run finished with returncode 0
+[20:13:23] JOB Rrad_preopt FINISHED
+[20:13:23] Starting Rrad_preopt.postrun()
+[20:13:23] Rrad_preopt.postrun() finished
+[20:13:23] JOB Rrad_preopt SUCCESSFUL
+[20:13:23] JOB TS_preopt STARTED
+[20:13:23] Starting TS_preopt.prerun()
+[20:13:23] TS_preopt.prerun() finished
+[20:13:23] JOB TS_preopt RUNNING
+[20:13:23] Executing TS_preopt.run
+[20:13:26] Execution of TS_preopt.run finished with returncode 0
+[20:13:26] JOB TS_preopt FINISHED
+[20:13:26] Starting TS_preopt.postrun()
+[20:13:26] TS_preopt.postrun() finished
+[20:13:26] JOB TS_preopt SUCCESSFUL
+[20:13:26] JOB P_preopt STARTED
+[20:13:26] Starting P_preopt.prerun()
+[20:13:26] P_preopt.prerun() finished
+[20:13:26] JOB P_preopt RUNNING
+[20:13:26] Executing P_preopt.run
+[20:13:27] Execution of P_preopt.run finished with returncode 0
+[20:13:27] JOB P_preopt FINISHED
+[20:13:27] Starting P_preopt.postrun()
+[20:13:27] P_preopt.postrun() finished
+[20:13:27] JOB P_preopt SUCCESSFUL
+[20:13:27] PLAMS environment cleaned up successfully
+[20:13:27] PLAMS run finished. Goodbye
