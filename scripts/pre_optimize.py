@@ -20,7 +20,8 @@ def pre_optimize(mol, path):
     res = job.run()
 
     if self.check_termination_succes(res):
-    molecule = res.get_main_molecule()
-    molecule.write(path)
+        molecule = res.get_main_molecule()
+        molecule.write(path)
 
-    return molecule
+        return molecule
+    return mol
