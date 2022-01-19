@@ -1,5 +1,6 @@
 import scm.plams as plams
 import os 
+import utility
 
 
 def pre_optimize(mol, path):
@@ -16,13 +17,13 @@ def pre_optimize(mol, path):
     settings.input.DFTB
     settings.input.DFTB.model = 'GFN1-xTB'
 
-    job = plams.AMSJob(molecule=plams.Molecule(mol.path), settings=settings, name=name + '_preopt')
+    m = plams.Molecule(mol.path) #make clean copy of molecule
+    m.flags = mol.flags
+    job = plams.AMSJob(molecule=m, settings=settings, name=name + '_preopt')
     res = job.run()
 
     if check_termination_succes(res):
         molecule = res.get_main_molecule()
-        molecule.write(path)
-
         return molecule
     return mol
 

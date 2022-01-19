@@ -1,13 +1,6 @@
 import scm.plams as plams
-import os, paths 
+import os, paths, utility
 
-
-def write_mol(mol, path):
-    with open(path, 'w+') as file:
-        file.write(f'{len(mol.atoms)}\n')
-        file.write(f'{", ".join(R+"="+n for R, n in mol.substituents.items())}\n')
-        for a in mol.atoms:
-            file.write(f'{a.symbol}\t{a.coords[0]: .8f}\t{a.coords[1]: .8f}\t{a.coords[2]: .8f}\n')
 
 def sub_path(name):
     return os.path.join(paths.SGT_substituents, name + '.sub')
@@ -33,7 +26,8 @@ def generate_stationary_points(template_name, substituents={}):
 
         #read from file
         name = lines[0]
-        struct = [l.split() for l in lines[1:]]
+        flags = lines[1].split()
+        struct = [l.split() for l in lines[2:]]
         elements = [s[0] for s in struct]
         coords = [[float(x) for x in s[1:4]] for s in struct]
         tags = [s[4:] for s in struct]
@@ -41,6 +35,7 @@ def generate_stationary_points(template_name, substituents={}):
         #create molecule
         mol = plams.Molecule()
         mol.name = name
+        mol.flags = flags
         atoms = [plams.Atom(symbol=s, coords=c) for s, c in zip(elements, coords)]
         
         if issub: mol.connector = [None, None]
@@ -72,8 +67,6 @@ def generate_stationary_points(template_name, substituents={}):
         with open(sub_path(p), 'r') as file:
             sub_mols[R] = parse_contents(file.readlines(), issub=True)
 
-
-
     with open(reaction_path(template_name), 'r') as reaction:
         content = reaction.read().split('\n\n')
         mols = [parse_contents(c.split('\n')) for c in content]
@@ -82,16 +75,17 @@ def generate_stationary_points(template_name, substituents={}):
             for R in m.connector:
                 if not R in sub_mols:   s = sub_mols['default'].copy()
                 else:                   s = sub_mols[R].copy()
-
-                la, lb = s.atoms[s.connector[0]], s.atoms[s.connector[1]]
-                m.substitute(m.connector[R], s, (la, lb))
+                lconn = (s.atoms[s.connector[0]], s.atoms[s.connector[1]])
+                m.substitute(m.connector[R], s, lconn)
 
             sorted_Rnames = list(sorted(m.substituents.keys()))
             sorted_R = [m.substituents[R] for R in sorted_Rnames]
             mpath = os.path.join(paths.xyz, template_name, '_'.join(sorted_R), f'{m.name}.xyz')
             m.path = mpath
             os.makedirs(os.path.dirname(mpath), exist_ok=True)
-            write_mol(m, m.path)
+            info = [R+"="+n for R, n in m.substituents.items()] + m.flags
+            comment = ", ".join(info)
+            utility.write_mol(m, m.path, comment=comment)
 
     return mols
 
