@@ -73,6 +73,8 @@ def generate_stationary_points(template_name, substituents={}):
 		with open(sub_path(p), 'r') as file:
 			sub_mols[R] = parse_contents(file.readlines(), issub=True)
 
+
+
 	with open(reaction_path(template_name), 'r') as reaction:
 		content = reaction.read().split('\n\n')
 		mols = [parse_contents(c.split('\n')) for c in content]
@@ -87,6 +89,7 @@ def generate_stationary_points(template_name, substituents={}):
 				m.substitute(m.connector[R], s, (la, lb))
 			draw_mols[m.name] = mol.Molecule(name=m.name, elements=[a.symbol for a in m.atoms], positions=[a.coords for a in m.atoms])
 			mpath = os.path.join(paths.xyz, template_name, '_'.join(list(sorted(m.substituents.values()))), f'{m.name}.xyz')
+			draw_mols[m.name].path = mpath
 			os.makedirs(os.path.dirname(mpath), exist_ok=True)
 			write_mol(m, mpath)
 
