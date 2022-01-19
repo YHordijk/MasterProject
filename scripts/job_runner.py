@@ -16,6 +16,7 @@ class ReactionRunner:
         self.R = R
 
         self.init_mols = struct_generator.generate_stationary_points(template, R)
+        print(self.init_mols)
         self.preopt_mols = [pre_optimize.pre_optimize(m, m.path) for m in self.init_mols]
         plams.finish()
 
