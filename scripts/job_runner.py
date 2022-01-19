@@ -67,7 +67,7 @@ class ReactionRunner:
         s.input.adf.basis.core = 'None'
         s.input.adf.XC.GGA = 'OLYP'
         s.input.adf.basis.type = 'TZ2P'
-        s.input.adf.NumericalQuality = 'Very Good'
+        s.input.adf.NumericalQuality = 'VeryGood'
         s.input.ams.Properties.NormalModes = 'Yes'
         s.input.ams.NormalModes.ReScanFreqRange = '-10000000.0 20.0'
         s.input.adf.SYMMETRY = 'NOSYM'
