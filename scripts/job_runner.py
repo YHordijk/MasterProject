@@ -33,12 +33,13 @@ class ReactionRunner:
             print(f'\t{m.name}: \tpath={os.path.relpath(m.path, paths.master)}, \tflags={m.flags}')
 
         print('Pre-optimizing molecules ...')
-        # mols = [pre_optimize.pre_optimize(m, m.path) for m in self.init_mols]
+        mols = [pre_optimize.pre_optimize(m, m.path) for m in self.init_mols]
 
         dft_jobs = []
         for mol in mols:
             s = self.define_settings(mol)
-            dft_jobs.append(plams.AMSJob(name=mol.name, settings=s, molecule=mol))
+            m = utility.load_mol(mol.path)
+            dft_jobs.append(plams.AMSJob(name=mol.name, settings=s, molecule=m))
 
         #starts runs and wait for finish
         dft_results = [j.run() for j in dft_jobs]
