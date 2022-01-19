@@ -17,3 +17,6 @@ class ReactionRunner:
 		self.init_mols = struct_generator.generate_stationary_points(template, R)
 		self.preopt_mols = [pre_optimize.pre_optimize(m) for m in self.init_mols]
 
+
+if __name__ == '__main__':
+    r = ReactionRunner('no_catalyst', {'R1':'H', 'R2':'H'})
