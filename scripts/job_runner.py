@@ -3,7 +3,7 @@ import struct_generator, paths, results_database, pre_optimize
 
 
 
-def ReactionRunner:
+class ReactionRunner:
     ''' 
     This class holds functions and methods to generate and run AMSJobs for a given reaction and R-groups
     - First generates coordinates
