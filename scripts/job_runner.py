@@ -1,5 +1,5 @@
 import scm.plams as plams
-import struct_generator, paths, results_database, pre_optimize
+import struct_generator, paths, results_database, pre_optimize, os
 
 
 
