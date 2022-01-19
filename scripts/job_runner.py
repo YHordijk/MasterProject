@@ -1,5 +1,5 @@
 import scm.plams as plams
-import struct_generator, paths, results_database, pre_optimize, os
+import struct_generator, paths, results_database, pre_optimize, os, multiprocessing
 
 
 
@@ -18,6 +18,10 @@ class ReactionRunner:
     def begin_calculations(self):
         plams.init()
 
+        #here we make sure PLAMS does parallelization
+        plams.config.default_jobrunner = plams.JobRunner(parallel=True, maxjobs=multiprocessing.cpu_count())
+        plams.config.job.runscript.nproc = 1
+
         sorted_Rnames = list(sorted(self.substituents.keys()))
         sorted_R = [self.substituents[R] for R in sorted_Rnames]
         reaction_name = f'{self.template}_{"_".join(sorted_R)}'
@@ -31,9 +35,16 @@ class ReactionRunner:
         print('Pre-optimizing molecules ...')
         # mols = [pre_optimize.pre_optimize(m, m.path) for m in self.init_mols]
 
-        dft_settings = []
+        dft_jobs = []
         for mol in mols:
-            dft_settings.append(self.define_settings(mol))
+            s = self.define_settings(mol)
+            dft_jobs.append(plams.AMSJob(name=mol.name, settings=s, molecule=mol))
+
+        #starts runs and wait for finish
+        dft_results = [j.run() for j in dft_jobs]
+        dft_results = [r for r in dft_results if r.ok()]
+
+        print(dft_results)
 
 
 

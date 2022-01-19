@@ -1,0 +1,4 @@
+#!/bin/sh
+
+AMS_JOBNAME="Rrad" AMS_RESULTSDIR=. $ADFBIN/ams -n 1 <"Rrad.in"
+

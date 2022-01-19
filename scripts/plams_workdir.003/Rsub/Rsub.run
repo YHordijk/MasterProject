@@ -1,0 +1,4 @@
+#!/bin/sh
+
+AMS_JOBNAME="Rsub" AMS_RESULTSDIR=. $ADFBIN/ams -n 1 <"Rsub.in"
+
