@@ -1,4 +1,0 @@
-======== SUMMARY OF CALCULATION GO_P_CH2CCHO_rad (ID = 1) ========
-==== GENERAL
-Termination status : NORMAL TERMINATION
-Task:                SINGLE POINT                                                                                                                                                    

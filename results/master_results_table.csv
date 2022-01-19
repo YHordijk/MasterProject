@@ -1,6 +1,6 @@
 "sep=,"
-id,name,directory,logfile,outfile,adfrkf,amsrkf
-1,GO_P_CH2CCHO_rad,calculations\1.GO_P_CH2CCHO_rad,GO_P.run.log,GO_P.run.out,GO_P.run.adf.rkf,GO_P.run.ams.rkf
-2,GO_R_CH2CCHO,calculations\2.GO_R_CH2CCHO,GO_R.log,GO_R.out,GO_R.adf.rkf,GO_R.ams.rkf
-3,GO_methyl_radical,calculations\3.GO_methyl_radical,GO_rad.log,GO_rad.out,GO_rad.adf.rkf,GO_rad.ams.rkf
-4,TS_TS_CH2CCHO,calculations\4.TS_TS_CH2CCHO,TSRC_TS.log,TSRC_TS.out,TSRC_TS.adf.rkf,TSRC_TS.ams.rkf
+id,status,reaction,stationary_point,directory,logfile,outfile,adfrkf,amsrkf
+5,,no_catalyst_H_H,Rsub,calculations\no_catalyst_H_H\5.no_catalyst_H_H.Rsub,,,,
+6,,no_catalyst_H_H,Rrad,calculations\no_catalyst_H_H\6.no_catalyst_H_H.Rrad,,,,
+7,,no_catalyst_H_H,TS,calculations\no_catalyst_H_H\7.no_catalyst_H_H.TS,,,,
+8,,no_catalyst_H_H,P1,calculations\no_catalyst_H_H\8.no_catalyst_H_H.P1,,,,

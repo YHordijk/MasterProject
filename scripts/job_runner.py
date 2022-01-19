@@ -13,18 +13,22 @@ class ReactionRunner:
     def __init__(self, template, substituents):
         self.template = template
         self.substituents = substituents
+
         self.begin_calculations()
 
     def begin_calculations(self):
-        plams.init()
+        sorted_Rnames = list(sorted(self.substituents.keys()))
+        sorted_R = [self.substituents[R] for R in sorted_Rnames]
+        reaction_name = f'{self.template}_{"_".join(sorted_R)}'
+        database = results_database.DatabaseManager(paths.results_table)
+
+        plams.init(path=paths.calculations, folder=reaction_name)
 
         #here we make sure PLAMS does parallelization
         plams.config.default_jobrunner = plams.JobRunner(parallel=True, maxjobs=multiprocessing.cpu_count())
         plams.config.job.runscript.nproc = 1
 
-        sorted_Rnames = list(sorted(self.substituents.keys()))
-        sorted_R = [self.substituents[R] for R in sorted_Rnames]
-        reaction_name = f'{self.template}_{"_".join(sorted_R)}'
+        
 
         print(f'Beginning Reaction {reaction_name}')
         mols = struct_generator.generate_stationary_points(self.template, self.substituents)
@@ -35,12 +39,14 @@ class ReactionRunner:
         print('Pre-optimizing molecules ...')
         # mols = [pre_optimize.pre_optimize(m, m.path) for m in mols]
 
+        ids = database.get_n_free_ids(len(mols))
         dft_jobs = []
-        for mol in mols:
+        for i, mol in zip(ids, mols):
             m = utility.load_mol(mol.path)
             s = self.define_settings(m)
-            dft_jobs.append(plams.AMSJob(name=mol.name, settings=s, molecule=m))
+            dft_jobs.append(plams.AMSJob(name=f'{i}.{reaction_name}.{mol.name}', settings=s, molecule=m))
 
+        
         #starts runs and wait for finish
         dft_results = [j.run() for j in dft_jobs]
         dft_results = [r for r in dft_results if r.ok()]
@@ -73,7 +79,6 @@ class ReactionRunner:
         s.input.adf.SYMMETRY = 'NOSYM'
         s.input.adf.SCF.Iterations = '99'
         s.input.adf.SCF.Converge = '1.0e-6'
-        print(s)
         return s
 
 
