@@ -39,10 +39,12 @@ def generate_stationary_points(template_name, substituents={}):
         atoms = [plams.Atom(symbol=s, coords=c) for s, c in zip(elements, coords)]
         
         if issub: mol.connector = [None, None]
-        else: mol.connector = {}
+        else: 
+            mol.connector = {}
+            TSRC = []
+
 
         for i, a, t in zip(range(len(atoms)), atoms, tags):
-            a.tag = t
             if not issub:
                 for f in t:
                     if f.startswith('R'):
@@ -50,15 +52,27 @@ def generate_stationary_points(template_name, substituents={}):
                         if not name in mol.connector: mol.connector[name] = [None, None]
                         if f[-1] == 'a': mol.connector[name][0] = a
                         elif f[-1] == 'b': mol.connector[name][1] = a
+                    elif f == 'TSRC':
+                        TSRC.append(a)
+
 
             if issub:
-                if t[0] == 'a':   mol.connector[0] = i
-                elif t[0] == 'b': mol.connector[1] = i
-                    
-        if issub: mol.connector = tuple(mol.connector)
-        else: mol.connector = {R: tuple(c) for R, c in mol.connector.items()}
+                if   'a' in t: mol.connector[0] = i
+                elif 'b' in t: mol.connector[1] = i
+        
 
         [mol.add_atom(a) for a in atoms]
+
+        if issub: mol.connector = tuple(mol.connector)
+        else: 
+            mol.connector = {R: tuple(c) for R, c in mol.connector.items()}
+            if len(TSRC) > 0:
+                TSRCidx = (mol.atoms.index(TSRC[0]), mol.atoms.index(TSRC[1]))
+                mol.flags.append(f'TSRC={TSRCidx[0]}_{TSRCidx[1]}')
+
+        print(mol.flags)
+
+        
         return mol
 
     #First parse substituents
@@ -83,17 +97,18 @@ def generate_stationary_points(template_name, substituents={}):
             mpath = os.path.join(paths.xyz, template_name, '_'.join(sorted_R), f'{m.name}.xyz')
             m.path = mpath
             os.makedirs(os.path.dirname(mpath), exist_ok=True)
-            info = [R+"="+n for R, n in m.substituents.items()] + m.flags
-            comment = ", ".join(info)
+            [m.flags.append(r) for r in [R+"="+n for R, n in m.substituents.items()]]
+            print(m.flags)
+            comment = ", ".join(m.flags)
             utility.write_mol(m, m.path, comment=comment)
 
     return mols
 
 
 if __name__ == '__main__':
-    mols = generate_stationary_points('no_catalyst', {'R1':'F', 'R2': 'H'})
-    for mol in mols:
-        print(type(mol))
-        print(mol.name)
-        print(mol)
-        print()
+    mols = generate_stationary_points('no_catalyst', {'R1':'F', 'R2': 'F'})
+    # for mol in mols:
+    #     print(type(mol))
+    #     print(mol.name)
+    #     print(mol)
+    #     print()

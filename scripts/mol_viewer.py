@@ -242,5 +242,5 @@ class MoleculeDrawer:
 
 
 if __name__ == '__main__':
-	moldrawer = MoleculeDrawer('water')
+	moldrawer = MoleculeDrawer(r"D:\Users\Yuman\Desktop\MasterProject\resources\xyz\no_catalyst\F_H\TS.xyz")
 	moldrawer.mainloop()

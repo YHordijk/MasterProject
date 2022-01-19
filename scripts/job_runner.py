@@ -23,14 +23,17 @@ class ReactionRunner:
         reaction_name = f'{self.template}_{"_".join(sorted_R)}'
 
         print(f'Beginning Reaction {reaction_name}')
-        self.init_mols = struct_generator.generate_stationary_points(self.template, self.substituents)
-        print(f'Found {len(self.init_mols)} molecules to calculate:')
-        for m in self.init_mols:
-            print(f'\t{m.name}: path={os.path.relpath(m.path, paths.master)}, flags=({m.flags})')
+        mols = struct_generator.generate_stationary_points(self.template, self.substituents)
+        print(f'Found {len(mols)} molecules to calculate:')
+        for m in mols:
+            print(f'\t{m.name}: \tpath={os.path.relpath(m.path, paths.master)}, \tflags={m.flags}')
 
         print('Pre-optimizing molecules ...')
-        self.preopt_mols = [pre_optimize.pre_optimize(m, m.path) for m in self.init_mols]
+        # mols = [pre_optimize.pre_optimize(m, m.path) for m in self.init_mols]
 
+        dft_settings = []
+        for mol in mols:
+            dft_settings.append(self.define_settings(mol))
 
 
 
@@ -42,15 +45,24 @@ class ReactionRunner:
             s.input.ams.task = 'GeometryOptimization'
         elif 'TSRC' in mol.flags:
             s.input.ams.task = 'TransitionStateSearch'
+            tsrc = [f for f in mol.flags if f.startswith('TSRC=')][0].split('=')[1].split('_')
+            s.input.ams.TransitionStateSearch.ReactionCoordinate = f'Distance {tsrc[0]} {tsrc[1]} -1.0'
 
         if 'radical' in mol.flags:
             s.input.adf.Unrestricted = 'Yes'
             s.input.adf.SpinPolarization = '1.0'
 
         s.input.adf.basis.core = 'None'
-        s.input.adf.xc = 'OLYP'
+        s.input.adf.XC.GGA = 'OLYP'
         s.input.adf.basis.type = 'TZ2P'
         s.input.adf.NumericalQuality = 'Very Good'
+        s.input.ams.Properties.NormalModes = 'Yes'
+        s.input.ams.NormalModes.ReScanFreqRange = '-10000000.0 20.0'
+        s.input.adf.SYMMETRY = 'NOSYM'
+        s.input.adf.SCF.Iterations = '99'
+        s.input.adf.SCF.Converge = '1.0e-6'
+
+        return s
 
 
 if __name__ == '__main__':
