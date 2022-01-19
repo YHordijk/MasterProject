@@ -1,6 +1,5 @@
 import scm.plams as plams
-import mol_viewer, os, paths
-import molviewer.molecule as mol
+import os, paths 
 
 
 def write_mol(mol, path):
@@ -78,7 +77,6 @@ def generate_stationary_points(template_name, substituents={}):
 	with open(reaction_path(template_name), 'r') as reaction:
 		content = reaction.read().split('\n\n')
 		mols = [parse_contents(c.split('\n')) for c in content]
-		draw_mols = {}
 		for m in mols:
 			m.substituents = {R: sub_mols[R].name for R in m.connector.keys()}
 			for R in m.connector:
@@ -87,14 +85,9 @@ def generate_stationary_points(template_name, substituents={}):
 
 				la, lb = s.atoms[s.connector[0]], s.atoms[s.connector[1]]
 				m.substitute(m.connector[R], s, (la, lb))
-			draw_mols[m.name] = mol.Molecule(name=m.name, elements=[a.symbol for a in m.atoms], positions=[a.coords for a in m.atoms])
 			mpath = os.path.join(paths.xyz, template_name, '_'.join(list(sorted(m.substituents.values()))), f'{m.name}.xyz')
-			draw_mols[m.name].path = mpath
+			m.path = mpath
 			os.makedirs(os.path.dirname(mpath), exist_ok=True)
 			write_mol(m, mpath)
 
-	return draw_mols
-
-
-mols = generate_stationary_points('no_catalyst', {'R1':'F', 'R2':'H'})
-mol_viewer.MoleculeDrawer(mols).mainloop()
+	return mols
