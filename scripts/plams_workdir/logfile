@@ -1,0 +1,37 @@
+[23:29:51] Running PLAMS located in /cm/shared/package/ams2021.102/scripting/scm/plams
+[23:29:51] Using Python 3.6.9 located in /cm/shared/package/ams2021.102/bin/python3.6/bin/python
+[23:29:51] PLAMS defaults were loaded from /cm/shared/package/ams2021.102/scripting/scm/plams/plams_defaults
+[23:29:51] PLAMS environment initialized
+[23:29:51] PLAMS working folder: /scistor/tc/yhk800/MasterProject/scripts/plams_workdir
+[23:29:51] JOB Rsub STARTED
+[23:29:51] JOB Rrad STARTED
+[23:29:51] Starting Rsub.prerun()
+[23:29:51] JOB TS STARTED
+[23:29:51] Starting Rrad.prerun()
+[23:29:51] Rsub.prerun() finished
+[23:29:51] JOB P1 STARTED
+[23:29:51] Starting TS.prerun()
+[23:29:51] Rrad.prerun() finished
+[23:29:51] Waiting for job Rsub to finish
+[23:29:51] Starting P1.prerun()
+[23:29:51] TS.prerun() finished
+[23:29:51] JOB Rsub RUNNING
+[23:29:51] P1.prerun() finished
+[23:29:51] JOB Rrad RUNNING
+[23:29:51] Executing Rsub.run
+[23:29:51] JOB TS RUNNING
+[23:29:51] Executing Rrad.run
+[23:29:51] Executing TS.run
+[23:29:51] JOB P1 RUNNING
+[23:29:51] Executing P1.run
+[23:46:20] Execution of Rrad.run finished with returncode 0
+[23:46:20] JOB Rrad FINISHED
+[23:46:20] Starting Rrad.postrun()
+[23:46:20] Rrad.postrun() finished
+[23:46:20] JOB Rrad SUCCESSFUL
+[00:13:23] Execution of Rsub.run finished with returncode 0
+[00:13:23] JOB Rsub FINISHED
+[00:13:23] Starting Rsub.postrun()
+[00:13:23] Rsub.postrun() finished
+[00:13:23] JOB Rsub SUCCESSFUL
+[00:13:23] Waiting for job TS to finish

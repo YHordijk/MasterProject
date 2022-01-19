@@ -1,0 +1,226 @@
+
+ *******************************************************************************
+ *                                                                             *
+ *  --------------------------------                                           *
+ *   Amsterdam Modeling Suite (AMS)              2021.102                      *
+ *  --------------------------------                                           *
+ *                                               r95042 2021-06-07             *
+ *                                                                             *
+ *                                                                             *
+ *                              =================                              *
+ *                              |               |                              *
+ *                              |     A M S     |                              *
+ *                              |               |                              *
+ *                              =================                              *
+ *                                                                             *
+ *                                                                             *
+ *   Online information and documentation:  https://www.scm.com/support/       *
+ *   E-mail:  support@scm.com   info@scm.com                                   *
+ *                                                                             *
+ *   Scientific publications using AMS results must be properly referenced     *
+ *   See the User Manuals (or the web site) for recommended citations          *
+ *   The terms and conditions of the End User License Agreement apply to       *
+ *   the use of AMS, https://www.scm.com/license-terms/                        *
+ *                                                                             *
+ **********************  x86_64_linux_intel / intelmpi  ************************
+ 
+ Licensed to: VU/FEW (+ SARA) / ALGEMEEN / Amsterdam / THE NETHERLANDS
+ SCM User ID: u7668
+  
+ AMS 2021.102  RunTime: Jan20-2022 00:27:17  ShM Nodes: 1  Procs: 1
+
+ AMS jobname: 1.no_catalyst_H_H.Rsub
+ AMS jobid  : 975328305
+
+ Start   directory: /scistor/tc/yhk800/MasterProject/calculations/no_catalyst_H_H/1.no_catalyst_H_H.Rsub/
+ Results directory: /scistor/tc/yhk800/MasterProject/calculations/no_catalyst_H_H/1.no_catalyst_H_H.Rsub/
+ Scratch directory: /scratch/3444/amstmp_1.no_catalyst_H_H.Rsub_kid0.975328305/
+
+ RNG seed: 1485721588 -221409349 -754008630 -961131180 -1207306844 1783556154 -817423861 -2009952110
+
+
+
+                      ************************************************************************
+                      *  ADF 2021.102  RunTime: Jan20-2022 00:27:17  ShM Nodes: 1  Procs: 1  *
+                      ************************************************************************
+  
+       ***************************
+       *  GEOMETRY OPTIMIZATION  *
+       ***************************
+
+Optimization Method                    Quasi Newton
+Optimization Coordinates               Delocalized Coordinates
+Optimize lattice                       F
+ 
+ ------------------------------------------------------
+ Convergence criteria (Hartree,Angstrom)
+ ------------------------------------------------------
+ Maximum gradient               0.001000000000
+ Maximum rms gradient           0.000666666667
+ Maximum step allowed           0.010000000000
+ Maximum rms step allowed       0.006666666667
+ Maximum energy change allowe   0.000080000000
+ Maximum stress energy allowe   0.000500000000
+ 
+Initial model Hessian                  Automatic Hessian
+ 
+------------------------------------
+Quasi-Newton Optimizer Parameters
+------------------------------------
+Hessian Update Method                  BFGS
+Maximum number of steps                  250
+First GDIIS cycle                          0
+Maximum GDIIS vectors                      0
+Trust radius (bohr)                        0.200000
+Trust radius varies                        T
+Constraints converged at all steps         T
+Use projector                              T
+ 
+ Rigid motions settings for: old optimizer
+ Atomic rotations (x,y,z):     T T T
+ Atomic translations (x,y,z):  T T T
+ Tolerance:                   1.000000000000000E-006
+ 
+--------
+Geometry
+--------
+Formula: C3H4O
+Atoms
+  Index Symbol   x (angstrom)   y (angstrom)   z (angstrom)
+      1      C     0.31224700     0.44519900     0.00000000
+      2      C     0.98391400    -0.71430800     0.00000000
+      3      H     0.45842300    -1.66804700     0.00000000
+      4      C    -1.16278400     0.48525400     0.00000000
+      5      H     0.82313200     1.40706500     0.00000000
+      6      O    -1.82405800     1.50729100     0.00000000
+      7      H     2.05326402    -0.75159776     0.00000000
+      8      H    -1.63550277    -0.47466108     0.00000000
+ 
+Total System Charge             0.00000
+ 
+ 
+----------------
+ADF Engine Input
+----------------
+ 
+ NumericalQuality VeryGood
+ SCF
+ Converge 1.0e-6
+ Iterations 99
+ End
+ SYMMETRY NOSYM
+ XC
+ GGA OLYP
+ End
+ basis
+ core None
+ type TZ2P
+ End
+ 
+
+ Title: *** (NO TITLE) ***
+
+Number of symmetry operators: 2
+Schoenflies symbol:           C(S)
+ Using automatic Hessian for delocalized coordinates.
+ *** GOStep1 ***
+
+ Energy gradients wrt nuclear displacements
+ ==========================================
+
+     Atom      Cartesian (a.u./angstrom)
+                 X         Y         Z
+ ----------------------------------------
+     1 C    -0.000304 -0.002018 -0.000000
+     2 C     0.020919 -0.000494 -0.000000
+     3 H     0.000349  0.000033 -0.000000
+     4 C    -0.026082 -0.041680 -0.000000
+     5 H    -0.000403  0.000098 -0.000000
+     6 O     0.002557 -0.005782  0.000000
+     7 H    -0.021907  0.000854 -0.000000
+     8 H     0.024872  0.048988 -0.000000
+ ----------------------------------------
+ Mulliken charges used for AMS results%charges...
+ 
+----------------------------------------------------------------------
+Geometry Convergence after Step   1       (Hartree/Angstrom,Angstrom)
+----------------------------------------------------------------------
+current energy                               -1.68586010 Hartree
+energy change                      -1.68586010     0.00008000    F
+constrained gradient max            0.04898820     0.00100000    F
+constrained gradient rms            0.01632863     0.00066667    F
+gradient max                        0.04898820
+gradient rms                        0.01632863
+cart. step max                      0.02097665     0.01000000    F
+cart. step rms                      0.00661062     0.00666667    T
+ 
+ 
+--------
+Geometry
+--------
+Formula: C3H4O
+Atoms
+  Index Symbol   x (angstrom)   y (angstrom)   z (angstrom)
+      1      C     0.31330824     0.44785707     0.00000000
+      2      C     0.98367535    -0.71277739     0.00000000
+      3      H     0.45590560    -1.66538373     0.00000000
+      4      C    -1.16239132     0.48908691     0.00000000
+      5      H     0.82617818     1.40873101     0.00000000
+      6      O    -1.81995701     1.51695342     0.00000000
+      7      H     2.06499636    -0.75263439     0.00000000
+      8      H    -1.65308014    -0.49563773     0.00000000
+ 
+Total System Charge             0.00000
+ 
+ *** GOStep2 ***
+
+ Energy gradients wrt nuclear displacements
+ ==========================================
+
+     Atom      Cartesian (a.u./angstrom)
+                 X         Y         Z
+ ----------------------------------------
+     1 C     0.000504  0.000598  0.000000
+     2 C     0.006130 -0.000322  0.000000
+     3 H    -0.000137 -0.000007  0.000000
+     4 C    -0.006325 -0.020959 -0.000000
+     5 H     0.000293  0.000030  0.000000
+     6 O    -0.002502  0.004863 -0.000000
+     7 H    -0.005850  0.000205  0.000000
+     8 H     0.007887  0.015592 -0.000000
+ ----------------------------------------
+ Mulliken charges used for AMS results%charges...
+
+ dE(predicted):    -0.97605E-03, dE(actual):    -0.12502E-02, Trust radius:    0.200000, all in a.u.
+ 
+----------------------------------------------------------------------
+Geometry Convergence after Step   2       (Hartree/Angstrom,Angstrom)
+----------------------------------------------------------------------
+current energy                               -1.68711032 Hartree
+energy change                      -0.00125022     0.00008000    F
+constrained gradient max            0.02096124     0.00100000    F
+constrained gradient rms            0.00607985     0.00066667    F
+gradient max                        0.02096124
+gradient rms                        0.00607985
+cart. step max                      0.00854789     0.01000000    T
+cart. step rms                      0.00262175     0.00666667    T
+ 
+ 
+--------
+Geometry
+--------
+Formula: C3H4O
+Atoms
+  Index Symbol   x (angstrom)   y (angstrom)   z (angstrom)
+      1      C     0.31365583     0.44921406     0.00000000
+      2      C     0.98269707    -0.71205549     0.00000000
+      3      H     0.45439281    -1.66430601     0.00000000
+      4      C    -1.16128136     0.49305574     0.00000000
+      5      H     0.82704300     1.40966545     0.00000000
+      6      O    -1.81720884     1.51781684     0.00000000
+      7      H     2.06893340    -0.75300979     0.00000000
+      8      H    -1.65959668    -0.50418563     0.00000000
+ 
+Total System Charge             0.00000
+ 
+ *** GOStep3 ***
