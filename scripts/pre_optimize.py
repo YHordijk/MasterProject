@@ -16,7 +16,7 @@ def pre_optimize(mol, path):
     settings.input.DFTB
     settings.input.DFTB.model = 'GFN1-xTB'
 
-    job = plams.AMSJob(molecule=plams.Molecule(m.path), settings=settings, name=name + '_preopt')
+    job = plams.AMSJob(molecule=plams.Molecule(mol.path), settings=settings, name=name + '_preopt')
     res = job.run()
 
     if self.check_termination_succes(res):
