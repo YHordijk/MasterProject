@@ -2,7 +2,7 @@ import scm.plams as plams
 import os 
 
 
-def preoptimize(mol, path):
+def pre_optimize(mol, path):
 	'''
 	Uses DFTB to preoptimize a molecule in xyz file
 	'''
@@ -22,3 +22,5 @@ def preoptimize(mol, path):
 	if self.check_termination_succes(res):
     molecule = res.get_main_molecule()
     molecule.write(path)
+
+    return molecule
