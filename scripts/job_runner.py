@@ -33,7 +33,7 @@ class ReactionRunner:
             print(f'\t{m.name}: \tpath={os.path.relpath(m.path, paths.master)}, \tflags={m.flags}')
 
         print('Pre-optimizing molecules ...')
-        mols = [pre_optimize.pre_optimize(m, m.path) for m in mols]
+        # mols = [pre_optimize.pre_optimize(m, m.path) for m in mols]
 
         dft_jobs = []
         for mol in mols:
@@ -73,7 +73,7 @@ class ReactionRunner:
         s.input.adf.SYMMETRY = 'NOSYM'
         s.input.adf.SCF.Iterations = '99'
         s.input.adf.SCF.Converge = '1.0e-6'
-
+        print(s)
         return s
 
 

@@ -11,8 +11,10 @@ def write_mol(mol, path, comment=None):
         for a in mol.atoms:
             file.write(f'{a.symbol}\t{a.coords[0]: .8f}\t{a.coords[1]: .8f}\t{a.coords[2]: .8f}\n')
 
+
 def load_mol(path):
 	mol = plams.Molecule(path)
+	mol.path = path
 	with open(path, 'r') as file:
 		lines = file.readlines()
 		flags = lines[1].split(',')
