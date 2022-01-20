@@ -17,6 +17,7 @@ def get_results(path):
     flags = _get_flags(results)
     results['flags'] = flags
     results['radical'] = 'radical' in flags
+    results['natoms'] = _get_natoms(files)
     for task in ['GO', 'SP', 'TSRC', 'LT']:
         if task in flags: results['task'] = task
     for f in flags:
@@ -54,6 +55,10 @@ def _get_status(files):
         return 'W'
 
     return 'F'
+
+def _get_natoms(files):
+    rkf = plams.KFFile(os.path.join(paths.master, files['amsrkf']))
+    return rkf.read('Molecule', 'nAtoms')
 
 
 def _get_flags(results):
