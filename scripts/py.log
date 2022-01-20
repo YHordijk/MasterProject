@@ -1,0 +1,32 @@
+[{'ID': '1', 'STATUS': 'R', 'TASK': 'GO', 'REACTION': 'no_catalyst_H_H', 'STATIONARY_POINT': 'Rsub', 'R1': 'H', 'R2': 'H', 'RADICAL': 'False', 'DIRECTORY': 'calculations\\no_catalyst_H_H\\1.no_catalyst_H_H.Rsub', 'FLAGS': "['GO', 'R2=H', 'R1=H']"}, {'ID': '2', 'STATUS': 'S', 'TASK': 'GO', 'REACTION': 'no_catalyst_H_H', 'STATIONARY_POINT': 'Rrad', 'R1': '', 'R2': '', 'RADICAL': 'True', 'DIRECTORY': 'calculations\\no_catalyst_H_H\\2.no_catalyst_H_H.Rrad', 'FLAGS': "['GO', 'radical']"}, {'ID': '3', 'STATUS': 'R', 'TASK': 'TSRC', 'REACTION': 'no_catalyst_H_H', 'STATIONARY_POINT': 'TS', 'R1': 'H', 'R2': 'H', 'RADICAL': 'True', 'DIRECTORY': 'calculations\\no_catalyst_H_H\\3.no_catalyst_H_H.TS', 'FLAGS': "['TSRC', 'radical', 'TSRC=1_2', 'R2=H', 'R1=H']"}, {'ID': '4', 'STATUS': 'R', 'TASK': 'GO', 'REACTION': 'no_catalyst_H_H', 'STATIONARY_POINT': 'P1', 'R1': 'H', 'R2': 'H', 'RADICAL': 'True', 'DIRECTORY': 'calculations\\no_catalyst_H_H\\4.no_catalyst_H_H.P1', 'FLAGS': "['GO', 'radical', 'R2=H', 'R1=H']"}]
+[02:54:59] PLAMS working folder: /scistor/tc/yhk800/MasterProject/calculations/no_catalyst_F_H
+=== Beginning Reaction no_catalyst_F_H
+== Found 4 molecules to calculate:
+	Rsub: 	path=resources/input_xyz/no_catalyst_F_H/Rsub.xyz, 	flags=['GO', 'R2=H', 'R1=F']
+	Rrad: 	path=resources/input_xyz/no_catalyst_F_H/Rrad.xyz, 	flags=['GO', 'radical']
+	TS: 	path=resources/input_xyz/no_catalyst_F_H/TS.xyz, 	flags=['TSRC', 'radical', 'TSRC=1_2', 'R2=H', 'R1=F']
+	P1: 	path=resources/input_xyz/no_catalyst_F_H/P1.xyz, 	flags=['GO', 'radical', 'R2=H', 'R1=F']
+== Skipping pre-optimization step
+[02:54:59] JOB 5.no_catalyst_F_H.Rsub STARTED
+[02:54:59] JOB 6.no_catalyst_F_H.Rrad STARTED
+[02:54:59] JOB 7.no_catalyst_F_H.TS STARTED
+[02:54:59] JOB 8.no_catalyst_F_H.P1 STARTED
+[02:54:59] Waiting for job 5.no_catalyst_F_H.Rsub to finish
+[02:54:59] JOB 5.no_catalyst_F_H.Rsub RUNNING
+[02:54:59] JOB 6.no_catalyst_F_H.Rrad RUNNING
+[02:54:59] JOB 7.no_catalyst_F_H.TS RUNNING
+[02:54:59] JOB 8.no_catalyst_F_H.P1 RUNNING
+[03:12:38] JOB 6.no_catalyst_F_H.Rrad FINISHED
+[03:12:38] JOB 6.no_catalyst_F_H.Rrad SUCCESSFUL
+[03:54:24] JOB 5.no_catalyst_F_H.Rsub FINISHED
+[03:54:24] JOB 5.no_catalyst_F_H.Rsub SUCCESSFUL
+[03:54:24] Waiting for job 7.no_catalyst_F_H.TS to finish
+[07:27:40] JOB 8.no_catalyst_F_H.P1 FINISHED
+[07:27:40] Job 8.no_catalyst_F_H.P1 reported errors. Please check the the output
+[07:27:40] JOB 8.no_catalyst_F_H.P1 FAILED
+[11:48:29] JOB 7.no_catalyst_F_H.TS FINISHED
+[11:48:29] JOB 7.no_catalyst_F_H.TS SUCCESSFUL
+[11:48:29] WARNING: Trying to obtain results of crashed or failed job 8.no_catalyst_F_H.P1
+[11:48:29] Obtaining results of 8.no_catalyst_F_H.P1 successful. However, no guarantee that they make sense
+== Calculations finished
+[11:48:29] PLAMS run finished. Goodbye

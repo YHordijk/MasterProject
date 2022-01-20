@@ -1,0 +1,50 @@
+[02:54:59] Running PLAMS located in /cm/shared/package/ams2021.102/scripting/scm/plams
+[02:54:59] Using Python 3.6.9 located in /cm/shared/package/ams2021.102/bin/python3.6/bin/python
+[02:54:59] PLAMS defaults were loaded from /cm/shared/package/ams2021.102/scripting/scm/plams/plams_defaults
+[02:54:59] PLAMS environment initialized
+[02:54:59] PLAMS working folder: /scistor/tc/yhk800/MasterProject/calculations/no_catalyst_F_H
+[02:54:59] JOB 5.no_catalyst_F_H.Rsub STARTED
+[02:54:59] JOB 6.no_catalyst_F_H.Rrad STARTED
+[02:54:59] Starting 5.no_catalyst_F_H.Rsub.prerun()
+[02:54:59] JOB 7.no_catalyst_F_H.TS STARTED
+[02:54:59] Starting 6.no_catalyst_F_H.Rrad.prerun()
+[02:54:59] 5.no_catalyst_F_H.Rsub.prerun() finished
+[02:54:59] JOB 8.no_catalyst_F_H.P1 STARTED
+[02:54:59] Starting 7.no_catalyst_F_H.TS.prerun()
+[02:54:59] 6.no_catalyst_F_H.Rrad.prerun() finished
+[02:54:59] Waiting for job 5.no_catalyst_F_H.Rsub to finish
+[02:54:59] Starting 8.no_catalyst_F_H.P1.prerun()
+[02:54:59] 7.no_catalyst_F_H.TS.prerun() finished
+[02:54:59] JOB 5.no_catalyst_F_H.Rsub RUNNING
+[02:54:59] 8.no_catalyst_F_H.P1.prerun() finished
+[02:54:59] JOB 6.no_catalyst_F_H.Rrad RUNNING
+[02:54:59] Executing 5.no_catalyst_F_H.Rsub.run
+[02:54:59] JOB 7.no_catalyst_F_H.TS RUNNING
+[02:54:59] Executing 6.no_catalyst_F_H.Rrad.run
+[02:54:59] Executing 7.no_catalyst_F_H.TS.run
+[02:54:59] JOB 8.no_catalyst_F_H.P1 RUNNING
+[02:54:59] Executing 8.no_catalyst_F_H.P1.run
+[03:12:38] Execution of 6.no_catalyst_F_H.Rrad.run finished with returncode 0
+[03:12:38] JOB 6.no_catalyst_F_H.Rrad FINISHED
+[03:12:38] Starting 6.no_catalyst_F_H.Rrad.postrun()
+[03:12:38] 6.no_catalyst_F_H.Rrad.postrun() finished
+[03:12:38] JOB 6.no_catalyst_F_H.Rrad SUCCESSFUL
+[03:54:24] Execution of 5.no_catalyst_F_H.Rsub.run finished with returncode 0
+[03:54:24] JOB 5.no_catalyst_F_H.Rsub FINISHED
+[03:54:24] Starting 5.no_catalyst_F_H.Rsub.postrun()
+[03:54:24] 5.no_catalyst_F_H.Rsub.postrun() finished
+[03:54:24] JOB 5.no_catalyst_F_H.Rsub SUCCESSFUL
+[03:54:24] Waiting for job 7.no_catalyst_F_H.TS to finish
+[07:27:40] Execution of 8.no_catalyst_F_H.P1.run finished with returncode 0
+[07:27:40] JOB 8.no_catalyst_F_H.P1 FINISHED
+[07:27:40] Job 8.no_catalyst_F_H.P1 reported errors. Please check the the output
+[07:27:40] JOB 8.no_catalyst_F_H.P1 FAILED
+[11:48:29] Execution of 7.no_catalyst_F_H.TS.run finished with returncode 0
+[11:48:29] JOB 7.no_catalyst_F_H.TS FINISHED
+[11:48:29] Starting 7.no_catalyst_F_H.TS.postrun()
+[11:48:29] 7.no_catalyst_F_H.TS.postrun() finished
+[11:48:29] JOB 7.no_catalyst_F_H.TS SUCCESSFUL
+[11:48:29] WARNING: Trying to obtain results of crashed or failed job 8.no_catalyst_F_H.P1
+[11:48:29] Obtaining results of 8.no_catalyst_F_H.P1 successful. However, no guarantee that they make sense
+[11:48:29] PLAMS environment cleaned up successfully
+[11:48:29] PLAMS run finished. Goodbye
