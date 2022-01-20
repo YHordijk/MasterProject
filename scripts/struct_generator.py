@@ -19,7 +19,6 @@ def generate_stationary_points(template_name, substituents={}):
     substituent: dictionary with substituent group as key and substituent name as value
     '''
 
-    substituents['default'] = 'H'
 
     def parse_contents(lines, issub=False):
         lines = [l.strip() for l in lines]
@@ -70,43 +69,56 @@ def generate_stationary_points(template_name, substituents={}):
                 TSRCidx = (mol.atoms.index(TSRC[0]), mol.atoms.index(TSRC[1]))
                 mol.flags.append(f'TSRC={TSRCidx[0]}_{TSRCidx[1]}')
 
-        print(mol.flags)
-
-        
         return mol
 
     #First parse substituents
     sub_mols = {}
+        
     for R, p in substituents.items():
         with open(sub_path(p), 'r') as file:
             sub_mols[R] = parse_contents(file.readlines(), issub=True)
+    with open(sub_path('H'), 'r') as file:
+        default_sub = parse_contents(file.readlines(), issub=True)
 
+
+    all_substituent_names = {}
+    substituents[R] = sub_mols[R].name if R in substituents else default_sub.name
     with open(reaction_path(template_name), 'r') as reaction:
         content = reaction.read().split('\n\n')
         mols = [parse_contents(c.split('\n')) for c in content]
         for m in mols:
-            m.substituents = {R: sub_mols[R].name for R in m.connector.keys()}
+            m.substituents = {}
+            for R in m.connector.keys():
+                m.substituents[R] = sub_mols[R].name if R in substituents else default_sub.name
+                if not R in all_substituent_names:
+                    all_substituent_names[R] = sub_mols[R].name if R in substituents else default_sub.name
+
             for R in m.connector:
-                if not R in sub_mols:   s = sub_mols['default'].copy()
+                if not R in sub_mols:   s = default_sub.copy()
                 else:                   s = sub_mols[R].copy()
                 lconn = (s.atoms[s.connector[0]], s.atoms[s.connector[1]])
                 m.substitute(m.connector[R], s, lconn)
 
-            sorted_Rnames = list(sorted(m.substituents.keys()))
-            sorted_R = [m.substituents[R] for R in sorted_Rnames]
-            mpath = os.path.join(paths.xyz, template_name, '_'.join(sorted_R), f'{m.name}.xyz')
+        sorted_Rnames = list(sorted(all_substituent_names.keys()))
+        sorted_R = [all_substituent_names[R] for R in sorted_Rnames]
+        for m in mols:
+            mpath = get_mol_path(paths.input_xyz, template_name + '_' + '_'.join(sorted_R), f'{m.name}')
             m.path = mpath
             os.makedirs(os.path.dirname(mpath), exist_ok=True)
             [m.flags.append(r) for r in [R+"="+n for R, n in m.substituents.items()]]
-            print(m.flags)
             comment = ", ".join(m.flags)
             utility.write_mol(m, m.path, comment=comment)
 
     return mols
 
 
+def get_mol_path(base, dir, name):
+    return os.path.join(base, dir, name + '.xyz')
+
+
+
 if __name__ == '__main__':
-    mols = generate_stationary_points('no_catalyst', {'R1':'F', 'R2': 'F'})
+    mols = generate_stationary_points('no_catalyst', {'R2':'F', 'R1':'F'})
     # for mol in mols:
     #     print(type(mol))
     #     print(mol.name)

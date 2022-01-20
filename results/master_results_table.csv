@@ -1,6 +1,6 @@
 "sep=,"
-id,status,reaction,stationary_point,directory,logfile,outfile,adfrkf,amsrkf
-1,,no_catalyst_H_H,Rsub,calculations\no_catalyst_H_H\1.no_catalyst_H_H.Rsub,ams.log,1.no_catalyst_H_H.Rsub.out,,
-2,,no_catalyst_H_H,Rrad,calculations\no_catalyst_H_H\2.no_catalyst_H_H.Rrad,ams.log,2.no_catalyst_H_H.Rrad.out,,
-3,,no_catalyst_H_H,TS,calculations\no_catalyst_H_H\3.no_catalyst_H_H.TS,ams.log,3.no_catalyst_H_H.TS.out,,
-4,,no_catalyst_H_H,P1,calculations\no_catalyst_H_H\4.no_catalyst_H_H.P1,ams.log,4.no_catalyst_H_H.P1.out,,
+ID,STATUS,TASK,REACTION,STATIONARY_POINT,R1,R2,RADICAL,DIRECTORY,FLAGS
+1,R,GO,no_catalyst_H_H,Rsub,H,H,False,calculations\no_catalyst_H_H\1.no_catalyst_H_H.Rsub,"['GO', 'R2=H', 'R1=H']"
+2,S,GO,no_catalyst_H_H,Rrad,,,True,calculations\no_catalyst_H_H\2.no_catalyst_H_H.Rrad,"['GO', 'radical']"
+3,R,TSRC,no_catalyst_H_H,TS,H,H,True,calculations\no_catalyst_H_H\3.no_catalyst_H_H.TS,"['TSRC', 'radical', 'TSRC=1_2', 'R2=H', 'R1=H']"
+4,R,GO,no_catalyst_H_H,P1,H,H,True,calculations\no_catalyst_H_H\4.no_catalyst_H_H.P1,"['GO', 'radical', 'R2=H', 'R1=H']"

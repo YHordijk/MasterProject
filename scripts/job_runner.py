@@ -52,8 +52,14 @@ class ReactionRunner:
         #starts runs and wait for finish
         dft_results = [j.run() for j in dft_jobs]
         dft_results = [r for r in dft_results if r.ok()]
-        for res in dft_results:
-            res.pickle()
+        handled_res = []
+        while not all([r.ok() for r in dft_results]):
+            for res in dft_results:
+                if res.ok() and not res in handled_res:
+                    res.dill()
+                    opt_mol = res.get_main_molecule()
+                    opt_mol.flags = res.job.molecule.flags
+                    utility.write_mol(opt_mol, )
 
         print('== Calculations finished')
 

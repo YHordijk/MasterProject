@@ -1,7 +1,7 @@
 import paths
 import csv
 import os
-import summary
+import summary, job_results
 
 
 # def create_database_from_calculations(calc_path=paths.calculations, out_path=paths.results_table):
@@ -49,13 +49,14 @@ import summary
 def create_database_from_calculations(calc_path=paths.calculations, out_path=paths.results_table):
 	fields = ['id',
 			  'status',
+			  'task',
 	          'reaction',
 	          'stationary_point', 
+	          'R1', 'R2',
+	          'radical',
 	          'directory',
-	          'logfile', 
-	          'outfile', 
-	          'adfrkf', 
-	          'amsrkf']
+	          'flags',
+	          ]
 
 	
 	dirs = []
@@ -69,28 +70,15 @@ def create_database_from_calculations(calc_path=paths.calculations, out_path=pat
 
 	data = []
 	for d in dirs:
-		basename = os.path.basename(d)
-		data_dict = {}
-
-		data_dict['id'] = basename.split('.')[0]
-		data_dict['reaction'] = basename.split('.')[1]
-		data_dict['stationary_point'] = basename.split('.')[2]
-		data_dict['directory'] = d
-
-		for file in os.listdir(os.path.join(paths.master, d)):
-			if file.endswith('.log'): data_dict['logfile'] = file
-			if file.endswith('.out') and not file.startswith('slurm'): data_dict['outfile'] = file
-			if file.endswith('.adf.rkf'): data_dict['adfrkf'] = file
-			if file.endswith('.ams.rkf'): data_dict['amsrkf'] = file
-
+		data_dict = job_results.get_results(os.path.join(paths.master, d))
 		data.append(data_dict)
 
 	#open csv in normal writing mode for first two lines
 	writer = csv.writer(open(out_path, 'w+', newline=''))
 	writer.writerow(['sep=,'])
-	writer.writerow(fields)
+	writer.writerow([f.upper() for f in fields])
 	#switch to dictwriter for writing data
-	writer = csv.DictWriter(open(out_path, 'a', newline=''), fields)
+	writer = csv.DictWriter(open(out_path, 'a', newline=''), fields, extrasaction='ignore')
 	for d in data:
 		writer.writerow(d)
 
