@@ -1,31 +1,26 @@
-[00:27:17] Running PLAMS located in /cm/shared/package/ams2021.102/scripting/scm/plams
-[00:27:17] Using Python 3.6.9 located in /cm/shared/package/ams2021.102/bin/python3.6/bin/python
-[00:27:17] PLAMS defaults were loaded from /cm/shared/package/ams2021.102/scripting/scm/plams/plams_defaults
-[00:27:17] PLAMS environment initialized
-[00:27:17] PLAMS working folder: /scistor/tc/yhk800/MasterProject/calculations/no_catalyst_H_H
-[00:27:17] JOB 1.no_catalyst_H_H.Rsub STARTED
-[00:27:17] JOB 2.no_catalyst_H_H.Rrad STARTED
-[00:27:17] Starting 1.no_catalyst_H_H.Rsub.prerun()
-[00:27:17] JOB 3.no_catalyst_H_H.TS STARTED
-[00:27:17] Starting 2.no_catalyst_H_H.Rrad.prerun()
-[00:27:17] 1.no_catalyst_H_H.Rsub.prerun() finished
-[00:27:17] JOB 4.no_catalyst_H_H.P1 STARTED
-[00:27:17] Starting 3.no_catalyst_H_H.TS.prerun()
-[00:27:17] 2.no_catalyst_H_H.Rrad.prerun() finished
-[00:27:17] Waiting for job 1.no_catalyst_H_H.Rsub to finish
-[00:27:17] Starting 4.no_catalyst_H_H.P1.prerun()
-[00:27:17] 3.no_catalyst_H_H.TS.prerun() finished
-[00:27:17] JOB 1.no_catalyst_H_H.Rsub RUNNING
-[00:27:17] 4.no_catalyst_H_H.P1.prerun() finished
-[00:27:17] JOB 2.no_catalyst_H_H.Rrad RUNNING
-[00:27:17] Executing 1.no_catalyst_H_H.Rsub.run
-[00:27:17] Executing 2.no_catalyst_H_H.Rrad.run
-[00:27:17] JOB 3.no_catalyst_H_H.TS RUNNING
-[00:27:17] JOB 4.no_catalyst_H_H.P1 RUNNING
-[00:27:17] Executing 3.no_catalyst_H_H.TS.run
-[00:27:17] Executing 4.no_catalyst_H_H.P1.run
-[00:44:31] Execution of 2.no_catalyst_H_H.Rrad.run finished with returncode 0
-[00:44:31] JOB 2.no_catalyst_H_H.Rrad FINISHED
-[00:44:31] Starting 2.no_catalyst_H_H.Rrad.postrun()
-[00:44:31] 2.no_catalyst_H_H.Rrad.postrun() finished
-[00:44:31] JOB 2.no_catalyst_H_H.Rrad SUCCESSFUL
+[13:33:17] Running PLAMS located in /cm/shared/package/ams2021.102/scripting/scm/plams
+[13:33:17] Using Python 3.6.9 located in /cm/shared/package/ams2021.102/bin/python3.6/bin/python
+[13:33:17] PLAMS defaults were loaded from /cm/shared/package/ams2021.102/scripting/scm/plams/plams_defaults
+[13:33:17] PLAMS environment initialized
+[13:33:17] PLAMS working folder: /scistor/tc/yhk800/MasterProject/calculations/no_catalyst_H_H
+[13:33:17] JOB 1.no_catalyst_H_H.Rsub STARTED
+[13:33:17] JOB 2.no_catalyst_H_H.Rrad STARTED
+[13:33:17] Starting 1.no_catalyst_H_H.Rsub.prerun()
+[13:33:17] JOB 3.no_catalyst_H_H.TS STARTED
+[13:33:17] Starting 2.no_catalyst_H_H.Rrad.prerun()
+[13:33:17] 1.no_catalyst_H_H.Rsub.prerun() finished
+[13:33:17] JOB 4.no_catalyst_H_H.P1 STARTED
+[13:33:17] Starting 3.no_catalyst_H_H.TS.prerun()
+[13:33:17] 2.no_catalyst_H_H.Rrad.prerun() finished
+[13:33:17] Waiting for job 1.no_catalyst_H_H.Rsub to finish
+[13:33:17] Starting 4.no_catalyst_H_H.P1.prerun()
+[13:33:17] 3.no_catalyst_H_H.TS.prerun() finished
+[13:33:17] JOB 1.no_catalyst_H_H.Rsub RUNNING
+[13:33:17] 4.no_catalyst_H_H.P1.prerun() finished
+[13:33:17] JOB 2.no_catalyst_H_H.Rrad RUNNING
+[13:33:17] Executing 1.no_catalyst_H_H.Rsub.run
+[13:33:17] Executing 2.no_catalyst_H_H.Rrad.run
+[13:33:17] JOB 3.no_catalyst_H_H.TS RUNNING
+[13:33:17] JOB 4.no_catalyst_H_H.P1 RUNNING
+[13:33:17] Executing 4.no_catalyst_H_H.P1.run
+[13:33:17] Executing 3.no_catalyst_H_H.TS.run

@@ -1,0 +1,130 @@
+
+ *******************************************************************************
+ *                                                                             *
+ *  --------------------------------                                           *
+ *   Amsterdam Modeling Suite (AMS)              2021.102                      *
+ *  --------------------------------                                           *
+ *                                               r95042 2021-06-07             *
+ *                                                                             *
+ *                                                                             *
+ *                              =================                              *
+ *                              |               |                              *
+ *                              |     A M S     |                              *
+ *                              |               |                              *
+ *                              =================                              *
+ *                                                                             *
+ *                                                                             *
+ *   Online information and documentation:  https://www.scm.com/support/       *
+ *   E-mail:  support@scm.com   info@scm.com                                   *
+ *                                                                             *
+ *   Scientific publications using AMS results must be properly referenced     *
+ *   See the User Manuals (or the web site) for recommended citations          *
+ *   The terms and conditions of the End User License Agreement apply to       *
+ *   the use of AMS, https://www.scm.com/license-terms/                        *
+ *                                                                             *
+ **********************  x86_64_linux_intel / intelmpi  ************************
+ 
+ Licensed to: VU/FEW (+ SARA) / ALGEMEEN / Amsterdam / THE NETHERLANDS
+ SCM User ID: u7668
+  
+ AMS 2021.102  RunTime: Jan20-2022 13:33:44  ShM Nodes: 1  Procs: 1
+
+ AMS jobname: 12.no_catalyst_F_F.P1
+ AMS jobid  : 827491537
+
+ Start   directory: /scistor/tc/yhk800/MasterProject/calculations/no_catalyst_F_F/12.no_catalyst_F_F.P1/
+ Results directory: /scistor/tc/yhk800/MasterProject/calculations/no_catalyst_F_F/12.no_catalyst_F_F.P1/
+ Scratch directory: /scratch/3514/amstmp_12.no_catalyst_F_F.P1_kid0.827491537/
+
+ RNG seed: -1864600610 214565117 1712393511 -778631118 -2059796415 -2134915917 687409656 -316067672
+
+
+
+                      ************************************************************************
+                      *  ADF 2021.102  RunTime: Jan20-2022 13:33:45  ShM Nodes: 1  Procs: 1  *
+                      ************************************************************************
+  
+       ***************************
+       *  GEOMETRY OPTIMIZATION  *
+       ***************************
+
+Optimization Method                    Quasi Newton
+Optimization Coordinates               Delocalized Coordinates
+Optimize lattice                       F
+ 
+ ------------------------------------------------------
+ Convergence criteria (Hartree,Angstrom)
+ ------------------------------------------------------
+ Maximum gradient               0.001000000000
+ Maximum rms gradient           0.000666666667
+ Maximum step allowed           0.010000000000
+ Maximum rms step allowed       0.006666666667
+ Maximum energy change allowe   0.000120000000
+ Maximum stress energy allowe   0.000500000000
+ 
+Initial model Hessian                  Automatic Hessian
+ 
+------------------------------------
+Quasi-Newton Optimizer Parameters
+------------------------------------
+Hessian Update Method                  BFGS
+Maximum number of steps                  250
+First GDIIS cycle                          0
+Maximum GDIIS vectors                      0
+Trust radius (bohr)                        0.200000
+Trust radius varies                        T
+Constraints converged at all steps         T
+Use projector                              T
+ 
+ Rigid motions settings for: old optimizer
+ Atomic rotations (x,y,z):     T T T
+ Atomic translations (x,y,z):  T T T
+ Tolerance:                   1.000000000000000E-006
+ 
+--------
+Geometry
+--------
+Formula: C4H5F2O
+Atoms
+  Index Symbol   x (angstrom)   y (angstrom)   z (angstrom)
+      1      C     0.07237900     0.45849000     0.14701600
+      2      C     0.88136400    -0.76962700     0.34543400
+      3      H     0.32008500    -1.64937000     0.00848400
+      4      C    -1.24453700     0.48140500    -0.41210600
+      5      H     0.49150900     1.42171500     0.44020400
+      6      O    -1.90880100     1.51397000    -0.58363800
+      7      C     1.35798400    -0.97156700     1.79839200
+      8      H     1.97578900    -1.87216200     1.87186400
+      9      H     0.50807500    -1.08370100     2.47848500
+     10      H     1.95613700    -0.12156000     2.14194000
+     11      F     2.02430961    -0.68835013    -0.47625293
+     12      F    -1.77975829    -0.77116689    -0.77638863
+ 
+Total System Charge             0.00000
+ 
+ 
+----------------
+ADF Engine Input
+----------------
+ 
+ NumericalQuality VeryGood
+ SCF
+ Converge 1.0e-6
+ Iterations 99
+ End
+ SYMMETRY NOSYM
+ SpinPolarization 1.0
+ Unrestricted Yes
+ XC
+ GGA OLYP
+ End
+ basis
+ core None
+ type TZ2P
+ End
+ 
+
+ Title: *** (NO TITLE) ***
+
+ Using automatic Hessian for delocalized coordinates.
+ *** GOStep1 ***

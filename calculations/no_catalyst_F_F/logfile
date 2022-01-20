@@ -1,42 +1,26 @@
-[02:55:07] Running PLAMS located in /cm/shared/package/ams2021.102/scripting/scm/plams
-[02:55:07] Using Python 3.6.9 located in /cm/shared/package/ams2021.102/bin/python3.6/bin/python
-[02:55:07] PLAMS defaults were loaded from /cm/shared/package/ams2021.102/scripting/scm/plams/plams_defaults
-[02:55:07] PLAMS environment initialized
-[02:55:07] PLAMS working folder: /scistor/tc/yhk800/MasterProject/calculations/no_catalyst_F_F
-[02:55:07] JOB 5.no_catalyst_F_F.Rsub STARTED
-[02:55:07] JOB 6.no_catalyst_F_F.Rrad STARTED
-[02:55:07] Starting 5.no_catalyst_F_F.Rsub.prerun()
-[02:55:07] JOB 7.no_catalyst_F_F.TS STARTED
-[02:55:07] Starting 6.no_catalyst_F_F.Rrad.prerun()
-[02:55:07] 5.no_catalyst_F_F.Rsub.prerun() finished
-[02:55:07] JOB 8.no_catalyst_F_F.P1 STARTED
-[02:55:07] Starting 7.no_catalyst_F_F.TS.prerun()
-[02:55:07] 6.no_catalyst_F_F.Rrad.prerun() finished
-[02:55:07] Waiting for job 5.no_catalyst_F_F.Rsub to finish
-[02:55:07] Starting 8.no_catalyst_F_F.P1.prerun()
-[02:55:07] 7.no_catalyst_F_F.TS.prerun() finished
-[02:55:07] JOB 5.no_catalyst_F_F.Rsub RUNNING
-[02:55:07] 8.no_catalyst_F_F.P1.prerun() finished
-[02:55:07] JOB 6.no_catalyst_F_F.Rrad RUNNING
-[02:55:07] Executing 5.no_catalyst_F_F.Rsub.run
-[02:55:07] JOB 7.no_catalyst_F_F.TS RUNNING
-[02:55:07] Executing 6.no_catalyst_F_F.Rrad.run
-[02:55:07] Executing 7.no_catalyst_F_F.TS.run
-[02:55:07] JOB 8.no_catalyst_F_F.P1 RUNNING
-[02:55:07] Executing 8.no_catalyst_F_F.P1.run
-[03:13:16] Execution of 6.no_catalyst_F_F.Rrad.run finished with returncode 0
-[03:13:16] JOB 6.no_catalyst_F_F.Rrad FINISHED
-[03:13:16] Starting 6.no_catalyst_F_F.Rrad.postrun()
-[03:13:16] 6.no_catalyst_F_F.Rrad.postrun() finished
-[03:13:16] JOB 6.no_catalyst_F_F.Rrad SUCCESSFUL
-[04:00:11] Execution of 5.no_catalyst_F_F.Rsub.run finished with returncode 0
-[04:00:11] JOB 5.no_catalyst_F_F.Rsub FINISHED
-[04:00:11] Starting 5.no_catalyst_F_F.Rsub.postrun()
-[04:00:11] 5.no_catalyst_F_F.Rsub.postrun() finished
-[04:00:11] JOB 5.no_catalyst_F_F.Rsub SUCCESSFUL
-[04:00:11] Waiting for job 7.no_catalyst_F_F.TS to finish
-[08:32:24] Execution of 8.no_catalyst_F_F.P1.run finished with returncode 0
-[08:32:24] JOB 8.no_catalyst_F_F.P1 FINISHED
-[08:32:24] Starting 8.no_catalyst_F_F.P1.postrun()
-[08:32:24] 8.no_catalyst_F_F.P1.postrun() finished
-[08:32:24] JOB 8.no_catalyst_F_F.P1 SUCCESSFUL
+[13:33:44] Running PLAMS located in /cm/shared/package/ams2021.102/scripting/scm/plams
+[13:33:44] Using Python 3.6.9 located in /cm/shared/package/ams2021.102/bin/python3.6/bin/python
+[13:33:44] PLAMS defaults were loaded from /cm/shared/package/ams2021.102/scripting/scm/plams/plams_defaults
+[13:33:44] PLAMS environment initialized
+[13:33:44] PLAMS working folder: /scistor/tc/yhk800/MasterProject/calculations/no_catalyst_F_F
+[13:33:44] JOB 9.no_catalyst_F_F.Rsub STARTED
+[13:33:44] JOB 10.no_catalyst_F_F.Rrad STARTED
+[13:33:44] Starting 9.no_catalyst_F_F.Rsub.prerun()
+[13:33:44] JOB 11.no_catalyst_F_F.TS STARTED
+[13:33:44] Starting 10.no_catalyst_F_F.Rrad.prerun()
+[13:33:44] 9.no_catalyst_F_F.Rsub.prerun() finished
+[13:33:44] JOB 12.no_catalyst_F_F.P1 STARTED
+[13:33:44] Starting 11.no_catalyst_F_F.TS.prerun()
+[13:33:44] 10.no_catalyst_F_F.Rrad.prerun() finished
+[13:33:44] Waiting for job 9.no_catalyst_F_F.Rsub to finish
+[13:33:44] Starting 12.no_catalyst_F_F.P1.prerun()
+[13:33:44] 11.no_catalyst_F_F.TS.prerun() finished
+[13:33:44] JOB 9.no_catalyst_F_F.Rsub RUNNING
+[13:33:44] 12.no_catalyst_F_F.P1.prerun() finished
+[13:33:44] JOB 10.no_catalyst_F_F.Rrad RUNNING
+[13:33:44] Executing 9.no_catalyst_F_F.Rsub.run
+[13:33:44] JOB 11.no_catalyst_F_F.TS RUNNING
+[13:33:44] Executing 10.no_catalyst_F_F.Rrad.run
+[13:33:44] JOB 12.no_catalyst_F_F.P1 RUNNING
+[13:33:44] Executing 11.no_catalyst_F_F.TS.run
+[13:33:44] Executing 12.no_catalyst_F_F.P1.run
