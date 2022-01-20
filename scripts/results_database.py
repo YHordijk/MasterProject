@@ -110,7 +110,6 @@ class DatabaseManager:
 		for i, f in enumerate(self.fieldnames):
 			self.data_dicts[f] = [d[f] for d in self.data]
 
-		print(self.data)
 		self.ids = [int(d['ID']) for d in self.data]
 
 
@@ -131,13 +130,38 @@ class DatabaseManager:
 			if not i+1 in self.ids:
 				return i+1
 
-	def get_n_free_ids(self, n):
-		ids = []
-		for i in range(len(self.ids)+n):
-			if not i+1 in self.ids and not i+1 in ids:
-				ids.append(i+1)
-			if len(ids) == n:
-				return ids
+
+def get_n_free_ids(n, write_to_list=True, list_path=paths.id_list):
+	old_ids = get_occupied_ids()
+	new_ids = []
+	for i in range(len(old_ids)+n):
+		if not i+1 in old_ids and not i+1 in new_ids:
+			new_ids.append(i+1)
+		if len(new_ids) == n:
+			break
+
+	with open(list_path, 'a') as id_list:
+		id_list.write(','+','.join([str(i) for i in new_ids]))
+
+	return new_ids
+
+
+def get_occupied_ids(path=paths.id_list):
+	with open(path, 'r') as file:
+		return [int(i) for i in file.read().strip().split(',')]
+
+
+
+def update_id_list(path=paths.id_list):
+	create_database_from_calculations()
+	with DatabaseManager() as dbm:
+		ids = dbm.ids
+
+	with open(path, 'w+') as file:
+		file.write(','.join([str(i) for i in ids]))
+
+	return ids
+
 
 
 
@@ -145,7 +169,9 @@ class DatabaseManager:
 
 
 if __name__ == '__main__':
-	create_database_from_calculations()
+	update_id_list()
+
+
 	# with DatabaseManager(paths.results_table) as dbm:
 	# 	print(dbm.get_n_free_ids(10))
 	# 	print(dbm.get_by_id(3))

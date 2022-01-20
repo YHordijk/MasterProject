@@ -23,7 +23,6 @@ def get_results(path):
         if f.startswith('R'):
             name, sub = f.split('=')
             results[name] = sub
-    print(results)
     return results
 
 

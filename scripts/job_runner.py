@@ -20,7 +20,6 @@ class ReactionRunner:
         sorted_Rnames = list(sorted(self.substituents.keys()))
         sorted_R = [self.substituents[R] for R in sorted_Rnames]
         reaction_name = f'{self.template}_{"_".join(sorted_R)}'
-        database = results_database.DatabaseManager(paths.results_table)
 
         plams.init(path=paths.calculations, folder=reaction_name)
 
@@ -41,7 +40,7 @@ class ReactionRunner:
         else:
             print('== Skipping pre-optimization step')
 
-        ids = database.get_n_free_ids(len(mols))
+        ids = results_database.get_n_free_ids(len(mols))
         dft_jobs = []
         for i, mol in zip(ids, mols):
             m = utility.load_mol(mol.path)

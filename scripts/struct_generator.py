@@ -66,7 +66,7 @@ def generate_stationary_points(template_name, substituents={}):
         else: 
             mol.connector = {R: tuple(c) for R, c in mol.connector.items()}
             if len(TSRC) > 0:
-                TSRCidx = (mol.atoms.index(TSRC[0]), mol.atoms.index(TSRC[1]))
+                TSRCidx = (mol.atoms.index(TSRC[0])+1, mol.atoms.index(TSRC[1])+1)
                 mol.flags.append(f'TSRC={TSRCidx[0]}_{TSRCidx[1]}')
 
         return mol
