@@ -24,3 +24,16 @@
 [13:33:44] JOB 12.no_catalyst_F_F.P1 RUNNING
 [13:33:44] Executing 11.no_catalyst_F_F.TS.run
 [13:33:44] Executing 12.no_catalyst_F_F.P1.run
+[13:53:28] Execution of 9.no_catalyst_F_F.Rsub.run finished with returncode 28
+[13:53:28] WARNING: Job 9.no_catalyst_F_F.Rsub finished with nonzero return code
+[13:53:28] JOB 9.no_catalyst_F_F.Rsub CRASHED
+[13:53:28] Waiting for job 11.no_catalyst_F_F.TS to finish
+[13:53:37] Execution of 11.no_catalyst_F_F.TS.run finished with returncode 28
+[13:53:37] WARNING: Job 11.no_catalyst_F_F.TS finished with nonzero return code
+[13:53:37] JOB 11.no_catalyst_F_F.TS CRASHED
+[13:53:37] Waiting for job 12.no_catalyst_F_F.P1 to finish
+[13:53:59] Execution of 12.no_catalyst_F_F.P1.run finished with returncode 28
+[13:53:59] WARNING: Job 12.no_catalyst_F_F.P1 finished with nonzero return code
+[13:53:59] JOB 12.no_catalyst_F_F.P1 CRASHED
+[13:53:59] PLAMS environment cleaned up successfully
+[13:53:59] PLAMS run finished. Goodbye

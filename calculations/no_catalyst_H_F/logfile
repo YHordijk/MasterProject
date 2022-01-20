@@ -24,3 +24,9 @@
 [13:33:50] JOB 16.no_catalyst_H_F.P1 RUNNING
 [13:33:50] Executing 15.no_catalyst_H_F.TS.run
 [13:33:50] Executing 16.no_catalyst_H_F.P1.run
+[13:53:40] Execution of 16.no_catalyst_H_F.P1.run finished with returncode 28
+[13:53:40] WARNING: Job 16.no_catalyst_H_F.P1 finished with nonzero return code
+[13:53:40] JOB 16.no_catalyst_H_F.P1 CRASHED
+[13:54:03] Execution of 15.no_catalyst_H_F.TS.run finished with returncode 28
+[13:54:03] WARNING: Job 15.no_catalyst_H_F.TS finished with nonzero return code
+[13:54:03] JOB 15.no_catalyst_H_F.TS CRASHED
