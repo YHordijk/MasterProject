@@ -52,10 +52,11 @@ class ReactionRunner:
         #starts runs and wait for finish
         dft_results = [j.run() for j in dft_jobs]
         dft_results = [r for r in dft_results if r.ok()]
+        for res in dft_results:
+            res.pickle()
 
         print('== Calculations finished')
 
-        print(dft_results)
 
 
 

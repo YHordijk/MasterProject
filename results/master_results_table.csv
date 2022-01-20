@@ -1,6 +1,6 @@
 "sep=,"
 id,status,reaction,stationary_point,directory,logfile,outfile,adfrkf,amsrkf
-5,,no_catalyst_H_H,Rsub,calculations\no_catalyst_H_H\5.no_catalyst_H_H.Rsub,,,,
-6,,no_catalyst_H_H,Rrad,calculations\no_catalyst_H_H\6.no_catalyst_H_H.Rrad,,,,
-7,,no_catalyst_H_H,TS,calculations\no_catalyst_H_H\7.no_catalyst_H_H.TS,,,,
-8,,no_catalyst_H_H,P1,calculations\no_catalyst_H_H\8.no_catalyst_H_H.P1,,,,
+1,,no_catalyst_H_H,Rsub,calculations\no_catalyst_H_H\1.no_catalyst_H_H.Rsub,ams.log,1.no_catalyst_H_H.Rsub.out,,
+2,,no_catalyst_H_H,Rrad,calculations\no_catalyst_H_H\2.no_catalyst_H_H.Rrad,ams.log,2.no_catalyst_H_H.Rrad.out,,
+3,,no_catalyst_H_H,TS,calculations\no_catalyst_H_H\3.no_catalyst_H_H.TS,ams.log,3.no_catalyst_H_H.TS.out,,
+4,,no_catalyst_H_H,P1,calculations\no_catalyst_H_H\4.no_catalyst_H_H.P1,ams.log,4.no_catalyst_H_H.P1.out,,
