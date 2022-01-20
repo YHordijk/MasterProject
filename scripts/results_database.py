@@ -110,7 +110,8 @@ class DatabaseManager:
 		for i, f in enumerate(self.fieldnames):
 			self.data_dicts[f] = [d[f] for d in self.data]
 
-		self.ids = [int(d['id']) for d in self.data]
+		print(self.data)
+		self.ids = [int(d['ID']) for d in self.data]
 
 
 	def get_by_id(self, id):

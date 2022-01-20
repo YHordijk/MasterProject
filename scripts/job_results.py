@@ -64,4 +64,4 @@ def _get_flags(results):
 
 
 
-get_results(r"D:\Users\Yuman\Desktop\MasterProject\calculations\no_catalyst_H_H\3.no_catalyst_H_H.TS")
+# get_results(r"D:\Users\Yuman\Desktop\MasterProject\calculations\no_catalyst_H_H\3.no_catalyst_H_H.TS")
