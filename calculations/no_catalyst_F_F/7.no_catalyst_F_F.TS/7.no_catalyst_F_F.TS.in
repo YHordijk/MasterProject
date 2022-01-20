@@ -1,0 +1,51 @@
+NormalModes
+  ReScanFreqRange -10000000.0 20.0
+End
+
+Properties
+  NormalModes Yes
+End
+
+TransitionStateSearch
+  ReactionCoordinate
+    Distance 2 3 -1.0
+  End
+End
+
+system
+  Atoms
+              C      0.8166800000      -0.2347190000       0.8819750000 
+              C      0.8167840000      -0.2341310000      -0.4771930000 
+              C     -1.5316000000      -0.4699800000      -1.3085760000 
+              H      0.8563620000      -1.1638670000       1.4485930000 
+              C      0.7389340000       1.0006350000       1.6601430000 
+              H     -1.7522430000      -1.4232460000      -0.8436690000 
+              H      0.8654010000       0.7014950000      -1.0287940000 
+              H     -1.2957210000      -0.4532220000      -2.3667560000 
+              H     -1.9343720000       0.4272960000      -0.8548560000 
+              O      0.7308890000       1.0562210000       2.8816490000 
+              F      1.0515719600      -1.4147129500      -1.2114959800 
+              F      0.6790742000       2.1802615300       0.8900793400 
+  End
+End
+
+task TransitionStateSearch
+
+Engine adf
+  NumericalQuality VeryGood
+  SCF
+    Converge 1.0e-6
+    Iterations 99
+  End
+  SYMMETRY NOSYM
+  SpinPolarization 1.0
+  Unrestricted Yes
+  XC
+    GGA OLYP
+  End
+  basis
+    core None
+    type TZ2P
+  End
+EndEngine
+

@@ -1,0 +1,37 @@
+[14:26:50] Running PLAMS located in /cm/shared/package/ams2021.102/scripting/scm/plams
+[14:26:50] Using Python 3.6.9 located in /cm/shared/package/ams2021.102/bin/python3.6/bin/python
+[14:26:50] PLAMS defaults were loaded from /cm/shared/package/ams2021.102/scripting/scm/plams/plams_defaults
+[14:26:50] PLAMS environment initialized
+[14:26:50] PLAMS working folder: /scistor/tc/yhk800/MasterProject/calculations/no_catalyst_F_F
+[14:26:50] JOB 5.no_catalyst_F_F.Rsub STARTED
+[14:26:50] JOB 6.no_catalyst_F_F.Rrad STARTED
+[14:26:50] Starting 5.no_catalyst_F_F.Rsub.prerun()
+[14:26:50] JOB 7.no_catalyst_F_F.TS STARTED
+[14:26:50] Starting 6.no_catalyst_F_F.Rrad.prerun()
+[14:26:50] 5.no_catalyst_F_F.Rsub.prerun() finished
+[14:26:50] JOB 8.no_catalyst_F_F.P1 STARTED
+[14:26:50] Starting 7.no_catalyst_F_F.TS.prerun()
+[14:26:50] 6.no_catalyst_F_F.Rrad.prerun() finished
+[14:26:50] Waiting for job 5.no_catalyst_F_F.Rsub to finish
+[14:26:50] Starting 8.no_catalyst_F_F.P1.prerun()
+[14:26:50] 7.no_catalyst_F_F.TS.prerun() finished
+[14:26:50] JOB 5.no_catalyst_F_F.Rsub RUNNING
+[14:26:50] 8.no_catalyst_F_F.P1.prerun() finished
+[14:26:50] JOB 6.no_catalyst_F_F.Rrad RUNNING
+[14:26:50] Executing 5.no_catalyst_F_F.Rsub.run
+[14:26:50] Executing 6.no_catalyst_F_F.Rrad.run
+[14:26:50] JOB 7.no_catalyst_F_F.TS RUNNING
+[14:26:50] Executing 7.no_catalyst_F_F.TS.run
+[14:26:50] JOB 8.no_catalyst_F_F.P1 RUNNING
+[14:26:50] Executing 8.no_catalyst_F_F.P1.run
+[14:44:06] Execution of 6.no_catalyst_F_F.Rrad.run finished with returncode 0
+[14:44:06] JOB 6.no_catalyst_F_F.Rrad FINISHED
+[14:44:06] Starting 6.no_catalyst_F_F.Rrad.postrun()
+[14:44:06] 6.no_catalyst_F_F.Rrad.postrun() finished
+[14:44:06] JOB 6.no_catalyst_F_F.Rrad SUCCESSFUL
+[15:36:12] Execution of 5.no_catalyst_F_F.Rsub.run finished with returncode 0
+[15:36:12] JOB 5.no_catalyst_F_F.Rsub FINISHED
+[15:36:12] Starting 5.no_catalyst_F_F.Rsub.postrun()
+[15:36:12] 5.no_catalyst_F_F.Rsub.postrun() finished
+[15:36:12] JOB 5.no_catalyst_F_F.Rsub SUCCESSFUL
+[15:36:12] Waiting for job 7.no_catalyst_F_F.TS to finish
