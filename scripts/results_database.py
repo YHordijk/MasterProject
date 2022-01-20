@@ -141,14 +141,15 @@ def get_n_free_ids(n, write_to_list=True, list_path=paths.id_list):
 			break
 
 	with open(list_path, 'a') as id_list:
-		id_list.write(','+','.join([str(i) for i in new_ids]))
+		w = ',' + ','.join([str(i) for i in new_ids])
+		id_list.write(w)
 
 	return new_ids
 
 
 def get_occupied_ids(path=paths.id_list):
 	with open(path, 'r') as file:
-		return [int(i) for i in file.read().strip().split(',')]
+		return [int(i) for i in file.read().strip().split(',') if i.strip() != '']
 
 
 
