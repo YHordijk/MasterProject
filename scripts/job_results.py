@@ -43,6 +43,10 @@ def _get_status(files):
     rkf = plams.KFFile(os.path.join(paths.master, files['amsrkf']))
     term = rkf.read('General', 'termination status')
     if term == 'IN PROGRESS':
+        with open(os.path.join(paths.master, files['errfile'])) as err:
+            err_cont = err.read().strip()
+            if err_cont != '':
+                return 'C'
         return 'R'
     elif term == 'NORMAL TERMINATION':
         return 'S'

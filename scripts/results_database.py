@@ -114,6 +114,7 @@ class DatabaseManager:
 		all_status = [d['STATUS'] for d in self.data]
 		self.Nrunning = all_status.count('R')
 		self.Nsucces = all_status.count('S')
+		self.Ncancel = all_status.count('C')
 		self.Nfail = all_status.count('F')
 		self.Nwarn = all_status.count('W')
 		self.Ncalcs = len(self.ids)
@@ -186,4 +187,6 @@ if __name__ == '__main__':
 		print(f'\t\t{dbm.Nsucces} success')
 		print(f'\t\t{dbm.Nfail} failed')
 		print(f'\t\t{dbm.Nwarn} with warnings')
+		print(f'\t\t{dbm.Ncancel} canceled')
 		print(f'\t{dbm.Nrunning} still running')
+		
