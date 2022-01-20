@@ -1,5 +1,0 @@
-#!/bin/sh
-
-unset AMS_SWITCH_LOGFILE_AND_STDOUT
-AMS_JOBNAME="4.no_catalyst_H_H.P1" AMS_RESULTSDIR=. $AMSBIN/ams -n 1 <"4.no_catalyst_H_H.P1.in"
-

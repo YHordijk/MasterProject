@@ -93,4 +93,4 @@ class ReactionRunner:
 
 
 if __name__ == '__main__':
-    r = ReactionRunner('no_catalyst', {'R1':'H', 'R2':'H'})
+    r = ReactionRunner('no_catalyst', {'R1':'H', 'R2':'F'})
