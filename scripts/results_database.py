@@ -111,6 +111,12 @@ class DatabaseManager:
 			self.data_dicts[f] = [d[f] for d in self.data]
 
 		self.ids = [int(d['ID']) for d in self.data]
+		all_status = [d['STATUS'] for d in self.data]
+		self.Nrunning = all_status.count('R')
+		self.Nsucces = all_status.count('S')
+		self.Nfail = all_status.count('F')
+		self.Nwarn = all_status.count('W')
+		self.Ncalcs = len(self.ids)
 
 
 	def get_by_id(self, id):
@@ -169,10 +175,15 @@ def update_id_list(path=paths.id_list):
 
 
 
+
 if __name__ == '__main__':
+	print(f'Updating database')
 	update_id_list()
-
-
-	# with DatabaseManager(paths.results_table) as dbm:
-	# 	print(dbm.get_n_free_ids(10))
-	# 	print(dbm.get_by_id(3))
+	print(f'Database updated...')
+	with DatabaseManager() as dbm:
+		print(f'Found {dbm.Ncalcs} calculations:')
+		print(f'\t{dbm.Ncalcs-dbm.Nrunning} finished')
+		print(f'\t\t{dbm.Nsucces} success')
+		print(f'\t\t{dbm.Nfail} failed')
+		print(f'\t\t{dbm.Nwarn} with warnings')
+		print(f'\t{dbm.Nrunning} still running')
