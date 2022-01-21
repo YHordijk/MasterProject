@@ -73,6 +73,11 @@ def load_molecule(arg):
 	else:
 		return _load_molecule_from_pubchem(arg)
 
+def load_plams_molecule(mol):
+	name = mol.name
+	elements = [a.symbol for a in mol.atoms]
+	positions = [a.coords for a in mol.atoms]
+	return Molecule(name=name, elements=elements, positions=positions)
 
 
 #####	====================	helper functions	====================	#####

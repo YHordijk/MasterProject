@@ -2,7 +2,7 @@ import glfw
 from OpenGL.GL import *
 from OpenGL.GLU import *
 from time import perf_counter
-import molviewer.text as text
+# import molviewer.text as text
 
 
 class Screen:

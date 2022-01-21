@@ -8,7 +8,9 @@ from OpenGL.GLUT import *
 import numpy as np
 from math import cos, sin
 import molviewer.data as data
-import molviewer.text as text
+import scm.plams as plams
+# import molviewer.text as text
+import struct_generator
 
 '''
 n  n-1 o
@@ -128,9 +130,13 @@ class MoleculeDrawer:
 				self.molecules = [molecules]
 
 		else:
-			self.molecules = molecules
-
-		print(self.molecules)
+			mols = []
+			for m in molecules:
+				if type(m) is plams.Molecule:
+					mols.append(chemmolecule.load_plams_molecule(m))
+				else:
+					mols.append(m)
+			self.molecules = mols
 
 		self.molidx = 0
 
@@ -164,7 +170,7 @@ class MoleculeDrawer:
 
 	def get_sub_objects(self):
 		objs = [atom(position=p, radius=r*self.scale, element=e, resolution=50) for p, e, r in zip(self.positions, self.elements, self.radii)]
-		for i in np.linspace(0,1,10):
+		for i in np.linspace(0,1,5):
 			objs = objs + [atom(position=p, radius=r*self.scale, orientation=[0,np.pi*i,0], element=e, resolution=50) for p, e, r in zip(self.positions, self.elements, self.radii)]
 			objs = objs + [atom(position=p, radius=r*self.scale, orientation=[0,0,np.pi*i], element=e, resolution=50) for p, e, r in zip(self.positions, self.elements, self.radii)]
 		for b in self.bonds:
@@ -174,9 +180,9 @@ class MoleculeDrawer:
 		return objs
 
 
-	def mainloop(self):
+	def mainloop(self, screen_width=1600, screen_height=900):
 		self.last_buttons = {'left':False, 'right':False, 'lmb':0, 'lmb_up':0, 'lmb_down':0}
-		self.scr = screen.Screen(screen_width=1600, screen_height=900)
+		self.scr = screen.Screen(screen_width=screen_width, screen_height=screen_height)
 		wrld = world.World()
 		self.wrld = wrld
 		wrld.add_object(self)
@@ -242,5 +248,7 @@ class MoleculeDrawer:
 
 
 if __name__ == '__main__':
-	moldrawer = MoleculeDrawer(r"D:\Users\Yuman\Desktop\MasterProject\resources\xyz\no_catalyst\F_H\TS.xyz")
-	moldrawer.mainloop()
+	xyz = struct_generator.generate_stationary_points('achiral_catalyst', {'R1':'F', 'R2':'F', 'Rcat':'I2'})
+	print(xyz)
+	moldrawer = MoleculeDrawer(xyz)
+	moldrawer.mainloop(screen_width=1280, screen_height=720)

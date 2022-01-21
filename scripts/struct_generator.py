@@ -40,6 +40,7 @@ def generate_stationary_points(template_name, substituents={}):
         if issub: mol.connector = [None, None]
         else: 
             mol.connector = {}
+            mol.atoms_to_delete = []
             TSRC = []
 
 
@@ -51,8 +52,13 @@ def generate_stationary_points(template_name, substituents={}):
                         if not name in mol.connector: mol.connector[name] = [None, None]
                         if f[-1] == 'a': mol.connector[name][0] = a
                         elif f[-1] == 'b': mol.connector[name][1] = a
+
                     elif f == 'TSRC':
                         TSRC.append(a)
+
+                    elif f == 'delete':
+                        mol.atoms_to_delete.append(a)
+
 
 
             if issub:
@@ -98,6 +104,8 @@ def generate_stationary_points(template_name, substituents={}):
                 else:                   s = sub_mols[R].copy()
                 lconn = (s.atoms[s.connector[0]], s.atoms[s.connector[1]])
                 m.substitute(m.connector[R], s, lconn)
+                for dela in m.atoms_to_delete:
+                    m.delete_atom(dela)
 
         sorted_Rnames = list(sorted(all_substituent_names.keys()))
         sorted_R = [all_substituent_names[R] for R in sorted_Rnames]
@@ -118,7 +126,7 @@ def get_mol_path(base, dir, name):
 
 
 if __name__ == '__main__':
-    mols = generate_stationary_points('no_catalyst', {'R2':'F', 'R1':'F'})
+    mols = generate_stationary_points('achiral_catalyst', {'R2':'Br', 'R1':'Cl', 'Rcat':'I2'})
     # for mol in mols:
     #     print(type(mol))
     #     print(mol.name)
