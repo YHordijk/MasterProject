@@ -27,21 +27,21 @@
  Licensed to: VU/FEW (+ SARA) / ALGEMEEN / Amsterdam / THE NETHERLANDS
  SCM User ID: u7668
   
- AMS 2021.102  RunTime: Jan20-2022 14:26:50  ShM Nodes: 1  Procs: 1
+ AMS 2021.102  RunTime: Jan21-2022 00:36:14  ShM Nodes: 1  Procs: 1
 
  AMS jobname: 6.no_catalyst_F_F.Rrad
- AMS jobid  : 2061604067
+ AMS jobid  : 1170315951
 
  Start   directory: /scistor/tc/yhk800/MasterProject/calculations/no_catalyst_F_F/6.no_catalyst_F_F.Rrad/
  Results directory: /scistor/tc/yhk800/MasterProject/calculations/no_catalyst_F_F/6.no_catalyst_F_F.Rrad/
- Scratch directory: /scratch/3543/amstmp_6.no_catalyst_F_F.Rrad_kid0.2061604067/
+ Scratch directory: /scratch/3669/amstmp_6.no_catalyst_F_F.Rrad_kid0.1170315951/
 
- RNG seed: 286004781 816985319 -1675463562 992527491 1498547227 -753075824 755709457 171970241
+ RNG seed: 1094720710 -2001319860 159309015 2090922055 304395222 -1606188215 -593579026 -1974315346
 
 
 
                       ************************************************************************
-                      *  ADF 2021.102  RunTime: Jan20-2022 14:26:50  ShM Nodes: 1  Procs: 1  *
+                      *  ADF 2021.102  RunTime: Jan21-2022 00:36:14  ShM Nodes: 1  Procs: 1  *
                       ************************************************************************
   
        ***************************
@@ -517,7 +517,7 @@ Performing a single point calculation on the final geometry ...
  A T T A C H E D   F I L E S
  ===========================
   
- Restart/scratch/3543/amstmp_6.no_catalyst_F_F.Rrad_kid0.2061604067/GOStep9.rkf
+ Restart/scratch/3669/amstmp_6.no_catalyst_F_F.Rrad_kid0.1170315951/GOStep9.rkf
  *** GOStep9 ***
 
 
@@ -990,7 +990,7 @@ Performing a single point calculation on the final geometry ...
 
  CYCLE    1
   ***********************************************************
-  ** : orbital data taken from :/scratch/3543/amstmp_6.no_catalyst_F_F.Rrad_kid0.2061604067/GOStep9.rkf
+  ** : orbital data taken from :/scratch/3669/amstmp_6.no_catalyst_F_F.Rrad_kid0.1170315951/GOStep9.rkf
   ***********************************************************
  SCF Error: norm([F,P])=      0.000000054725, max([F,P])=      0.000000009156
  ***** SPIN 1 *****
@@ -2364,6 +2364,6 @@ Final PES point is a local minimum. Geometry optimization successful!
 
 AMS application finished. Exiting.
 NORMAL TERMINATION
-     Total cpu time:    1025.75
-  Total system time:       4.58
- Total elapsed time:    1035.92
+     Total cpu time:    1005.97
+  Total system time:       5.14
+ Total elapsed time:    1016.50

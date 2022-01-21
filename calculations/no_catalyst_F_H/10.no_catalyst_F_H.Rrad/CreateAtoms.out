@@ -6,7 +6,7 @@ JSONified input:
   "Create": "H m=1.00782500000000 /cm/shared/package/ams2021.102/atomicdata/ADF/ZORA/TZ2P/H",
   "CorePotentials": {
     "_1": [],
-    "_h": "/scratch/3544/amstmp_10.no_catalyst_F_H.Rrad_kid0.1955419454/t12.rel"
+    "_h": "/scratch/3670/amstmp_10.no_catalyst_F_H.Rrad_kid0.2016681379/t12.rel"
   },
   "xc": {
     "gga": "OLYP"
@@ -28,7 +28,7 @@ JSONified input traversal:
 
 
                      **************************************************************************
-                     *  DIRAC 2021.102  RunTime: Jan20-2022 14:26:59  ShM Nodes: 1  Procs: 1  *
+                     *  DIRAC 2021.102  RunTime: Jan21-2022 00:36:22  ShM Nodes: 1  Procs: 1  *
                      **************************************************************************
   
 1
@@ -79,7 +79,7 @@ JSONified input traversal:
  CREATE - Data File:    /cm/shared/package/ams2021.102/atomicdata/ADF/ZORA/TZ2P/H
                         Hydrogen (TZ2P)
  Core Potentials:
-         file : /scratch/3544/amstmp_10.no_catalyst_F_H.Rrad_kid0.1955419454/t12.rel
+         file : /scratch/3670/amstmp_10.no_catalyst_F_H.Rrad_kid0.2016681379/t12.rel
 
 
 
@@ -520,7 +520,7 @@ JSONified input:
   "Create": "C m=12.0000000000000 /cm/shared/package/ams2021.102/atomicdata/ADF/ZORA/TZ2P/C",
   "CorePotentials": {
     "_1": [],
-    "_h": "/scratch/3544/amstmp_10.no_catalyst_F_H.Rrad_kid0.1955419454/t12.rel"
+    "_h": "/scratch/3670/amstmp_10.no_catalyst_F_H.Rrad_kid0.2016681379/t12.rel"
   },
   "xc": {
     "gga": "OLYP"
@@ -542,7 +542,7 @@ JSONified input traversal:
 
 
                      **************************************************************************
-                     *  DIRAC 2021.102  RunTime: Jan20-2022 14:27:00  ShM Nodes: 1  Procs: 1  *
+                     *  DIRAC 2021.102  RunTime: Jan21-2022 00:36:22  ShM Nodes: 1  Procs: 1  *
                      **************************************************************************
   
 1
@@ -599,7 +599,7 @@ JSONified input traversal:
  CREATE - Data File:    /cm/shared/package/ams2021.102/atomicdata/ADF/ZORA/TZ2P/C
                         Carbon (TZ2P)
  Core Potentials:
-         file : /scratch/3544/amstmp_10.no_catalyst_F_H.Rrad_kid0.1955419454/t12.rel
+         file : /scratch/3670/amstmp_10.no_catalyst_F_H.Rrad_kid0.2016681379/t12.rel
 
 
 
@@ -1166,7 +1166,7 @@ JSONified input:
   "Create": "H m=1.00782500000000 /cm/shared/package/ams2021.102/atomicdata/ADF/ZORA/TZ2P/H",
   "CorePotentials": {
     "_1": [],
-    "_h": "/scratch/3544/amstmp_10.no_catalyst_F_H.Rrad_kid0.1955419454/t12.rel"
+    "_h": "/scratch/3670/amstmp_10.no_catalyst_F_H.Rrad_kid0.2016681379/t12.rel"
   },
   "xc": {
     "gga": "OLYP"
@@ -1193,7 +1193,7 @@ JSONified input:
   "Create": "C m=12.0000000000000 /cm/shared/package/ams2021.102/atomicdata/ADF/ZORA/TZ2P/C",
   "CorePotentials": {
     "_1": [],
-    "_h": "/scratch/3544/amstmp_10.no_catalyst_F_H.Rrad_kid0.1955419454/t12.rel"
+    "_h": "/scratch/3670/amstmp_10.no_catalyst_F_H.Rrad_kid0.2016681379/t12.rel"
   },
   "xc": {
     "gga": "OLYP"
@@ -1220,7 +1220,7 @@ JSONified input:
   "Create": "H m=1.00782500000000 /cm/shared/package/ams2021.102/atomicdata/ADF/ZORA/TZ2P/H",
   "CorePotentials": {
     "_1": [],
-    "_h": "/scratch/3544/amstmp_10.no_catalyst_F_H.Rrad_kid0.1955419454/t12.rel"
+    "_h": "/scratch/3670/amstmp_10.no_catalyst_F_H.Rrad_kid0.2016681379/t12.rel"
   },
   "xc": {
     "gga": "OLYP"
@@ -1247,7 +1247,7 @@ JSONified input:
   "Create": "C m=12.0000000000000 /cm/shared/package/ams2021.102/atomicdata/ADF/ZORA/TZ2P/C",
   "CorePotentials": {
     "_1": [],
-    "_h": "/scratch/3544/amstmp_10.no_catalyst_F_H.Rrad_kid0.1955419454/t12.rel"
+    "_h": "/scratch/3670/amstmp_10.no_catalyst_F_H.Rrad_kid0.2016681379/t12.rel"
   },
   "xc": {
     "gga": "OLYP"
@@ -1274,7 +1274,7 @@ JSONified input:
   "Create": "H m=1.00782500000000 /cm/shared/package/ams2021.102/atomicdata/ADF/ZORA/TZ2P/H",
   "CorePotentials": {
     "_1": [],
-    "_h": "/scratch/3544/amstmp_10.no_catalyst_F_H.Rrad_kid0.1955419454/t12.rel"
+    "_h": "/scratch/3670/amstmp_10.no_catalyst_F_H.Rrad_kid0.2016681379/t12.rel"
   },
   "xc": {
     "gga": "OLYP"
@@ -1301,7 +1301,7 @@ JSONified input:
   "Create": "C m=12.0000000000000 /cm/shared/package/ams2021.102/atomicdata/ADF/ZORA/TZ2P/C",
   "CorePotentials": {
     "_1": [],
-    "_h": "/scratch/3544/amstmp_10.no_catalyst_F_H.Rrad_kid0.1955419454/t12.rel"
+    "_h": "/scratch/3670/amstmp_10.no_catalyst_F_H.Rrad_kid0.2016681379/t12.rel"
   },
   "xc": {
     "gga": "OLYP"
@@ -1328,7 +1328,7 @@ JSONified input:
   "Create": "H m=1.00782500000000 /cm/shared/package/ams2021.102/atomicdata/ADF/ZORA/TZ2P/H",
   "CorePotentials": {
     "_1": [],
-    "_h": "/scratch/3544/amstmp_10.no_catalyst_F_H.Rrad_kid0.1955419454/t12.rel"
+    "_h": "/scratch/3670/amstmp_10.no_catalyst_F_H.Rrad_kid0.2016681379/t12.rel"
   },
   "xc": {
     "gga": "OLYP"
@@ -1355,7 +1355,7 @@ JSONified input:
   "Create": "C m=12.0000000000000 /cm/shared/package/ams2021.102/atomicdata/ADF/ZORA/TZ2P/C",
   "CorePotentials": {
     "_1": [],
-    "_h": "/scratch/3544/amstmp_10.no_catalyst_F_H.Rrad_kid0.1955419454/t12.rel"
+    "_h": "/scratch/3670/amstmp_10.no_catalyst_F_H.Rrad_kid0.2016681379/t12.rel"
   },
   "xc": {
     "gga": "OLYP"
@@ -1382,7 +1382,7 @@ JSONified input:
   "Create": "H m=1.00782500000000 /cm/shared/package/ams2021.102/atomicdata/ADF/ZORA/TZ2P/H",
   "CorePotentials": {
     "_1": [],
-    "_h": "/scratch/3544/amstmp_10.no_catalyst_F_H.Rrad_kid0.1955419454/t12.rel"
+    "_h": "/scratch/3670/amstmp_10.no_catalyst_F_H.Rrad_kid0.2016681379/t12.rel"
   },
   "xc": {
     "gga": "OLYP"
@@ -1409,7 +1409,7 @@ JSONified input:
   "Create": "C m=12.0000000000000 /cm/shared/package/ams2021.102/atomicdata/ADF/ZORA/TZ2P/C",
   "CorePotentials": {
     "_1": [],
-    "_h": "/scratch/3544/amstmp_10.no_catalyst_F_H.Rrad_kid0.1955419454/t12.rel"
+    "_h": "/scratch/3670/amstmp_10.no_catalyst_F_H.Rrad_kid0.2016681379/t12.rel"
   },
   "xc": {
     "gga": "OLYP"
@@ -1436,7 +1436,7 @@ JSONified input:
   "Create": "H m=1.00782500000000 /cm/shared/package/ams2021.102/atomicdata/ADF/ZORA/TZ2P/H",
   "CorePotentials": {
     "_1": [],
-    "_h": "/scratch/3544/amstmp_10.no_catalyst_F_H.Rrad_kid0.1955419454/t12.rel"
+    "_h": "/scratch/3670/amstmp_10.no_catalyst_F_H.Rrad_kid0.2016681379/t12.rel"
   },
   "xc": {
     "gga": "OLYP"
@@ -1463,7 +1463,7 @@ JSONified input:
   "Create": "C m=12.0000000000000 /cm/shared/package/ams2021.102/atomicdata/ADF/ZORA/TZ2P/C",
   "CorePotentials": {
     "_1": [],
-    "_h": "/scratch/3544/amstmp_10.no_catalyst_F_H.Rrad_kid0.1955419454/t12.rel"
+    "_h": "/scratch/3670/amstmp_10.no_catalyst_F_H.Rrad_kid0.2016681379/t12.rel"
   },
   "xc": {
     "gga": "OLYP"
@@ -1490,7 +1490,7 @@ JSONified input:
   "Create": "H m=1.00782500000000 /cm/shared/package/ams2021.102/atomicdata/ADF/ZORA/TZ2P/H",
   "CorePotentials": {
     "_1": [],
-    "_h": "/scratch/3544/amstmp_10.no_catalyst_F_H.Rrad_kid0.1955419454/t12.rel"
+    "_h": "/scratch/3670/amstmp_10.no_catalyst_F_H.Rrad_kid0.2016681379/t12.rel"
   },
   "xc": {
     "gga": "OLYP"
@@ -1517,7 +1517,7 @@ JSONified input:
   "Create": "C m=12.0000000000000 /cm/shared/package/ams2021.102/atomicdata/ADF/ZORA/TZ2P/C",
   "CorePotentials": {
     "_1": [],
-    "_h": "/scratch/3544/amstmp_10.no_catalyst_F_H.Rrad_kid0.1955419454/t12.rel"
+    "_h": "/scratch/3670/amstmp_10.no_catalyst_F_H.Rrad_kid0.2016681379/t12.rel"
   },
   "xc": {
     "gga": "OLYP"
@@ -1544,7 +1544,7 @@ JSONified input:
   "Create": "H m=1.00782500000000 /cm/shared/package/ams2021.102/atomicdata/ADF/ZORA/TZ2P/H",
   "CorePotentials": {
     "_1": [],
-    "_h": "/scratch/3544/amstmp_10.no_catalyst_F_H.Rrad_kid0.1955419454/t12.rel"
+    "_h": "/scratch/3670/amstmp_10.no_catalyst_F_H.Rrad_kid0.2016681379/t12.rel"
   },
   "xc": {
     "gga": "OLYP"
@@ -1571,7 +1571,7 @@ JSONified input:
   "Create": "C m=12.0000000000000 /cm/shared/package/ams2021.102/atomicdata/ADF/ZORA/TZ2P/C",
   "CorePotentials": {
     "_1": [],
-    "_h": "/scratch/3544/amstmp_10.no_catalyst_F_H.Rrad_kid0.1955419454/t12.rel"
+    "_h": "/scratch/3670/amstmp_10.no_catalyst_F_H.Rrad_kid0.2016681379/t12.rel"
   },
   "xc": {
     "gga": "OLYP"
@@ -1598,7 +1598,7 @@ JSONified input:
   "Create": "H m=1.00782500000000 /cm/shared/package/ams2021.102/atomicdata/ADF/ZORA/TZ2P/H",
   "CorePotentials": {
     "_1": [],
-    "_h": "/scratch/3544/amstmp_10.no_catalyst_F_H.Rrad_kid0.1955419454/t12.rel"
+    "_h": "/scratch/3670/amstmp_10.no_catalyst_F_H.Rrad_kid0.2016681379/t12.rel"
   },
   "xc": {
     "gga": "OLYP"
@@ -1625,7 +1625,7 @@ JSONified input:
   "Create": "C m=12.0000000000000 /cm/shared/package/ams2021.102/atomicdata/ADF/ZORA/TZ2P/C",
   "CorePotentials": {
     "_1": [],
-    "_h": "/scratch/3544/amstmp_10.no_catalyst_F_H.Rrad_kid0.1955419454/t12.rel"
+    "_h": "/scratch/3670/amstmp_10.no_catalyst_F_H.Rrad_kid0.2016681379/t12.rel"
   },
   "xc": {
     "gga": "OLYP"
