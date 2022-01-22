@@ -1,5 +1,5 @@
 import scm.plams as plams
-import struct_generator, paths, results_database, pre_optimize, os, multiprocessing, utility
+import struct_generator, paths, results_database, pre_optimize, os, multiprocessing, utility, hashlib
 
 
 class ReactionRunner:
@@ -13,24 +13,42 @@ class ReactionRunner:
         self.template = template
         self.substituents = substituents
 
+        results_database.update_id_list()
         self.begin_calculations(pre_optimize=pre_optimize)
 
     def begin_calculations(self, pre_optimize):
+        mols = struct_generator.generate_stationary_points(self.template, self.substituents)
+
+
         sorted_Rnames = list(sorted(self.substituents.keys()))
         sorted_R = [self.substituents[R] for R in sorted_Rnames]
         reaction_name = f'{self.template}_{"_".join(sorted_R)}'
 
-
         plams.init(path=paths.calculations, folder=reaction_name)
-
-        #here we make sure PLAMS does parallelization
         plams.config.default_jobrunner = plams.JobRunner(parallel=True, maxjobs=2)
 
+        workdir = plams.config.default_jobmanager.workdir
+        with open(os.path.join(workdir, 'meta.info'), 'w+') as meta:
+            meta.write(f'reaction={self.template}\n')
+            for R, s in self.substituents.items():
+                meta.write(f'{R}={s}\n')
+
+        #here we make sure PLAMS does parallelization
+        
+
         print(f'=== Beginning Reaction {reaction_name}')
-        mols = struct_generator.generate_stationary_points(self.template, self.substituents)
         print(f'== Found {len(mols)} molecules to calculate:')
         for m in mols:
             print(f'\t{m.name}: \tpath={os.path.relpath(m.path, paths.master)}, \tflags={m.flags}')
+
+        print('== Checking for hash collisions ...')
+        collisions = []
+        for m in mols:
+            hashstr = self.template + m.name + ' '.join(m.flags)
+            hash = hashlib.sha256(hashstr.encode('utf-8')).hexdigest()
+            if results_database.get_hash_collision(hash):
+                print(f'\t{m.name}')
+                collisions.append(m.name)
 
         
         if pre_optimize: 
@@ -42,18 +60,11 @@ class ReactionRunner:
         ids = results_database.get_n_free_ids(len(mols))
         dft_jobs = []
         for i, mol in zip(ids, mols):
-            m = utility.load_mol(mol.path)
-            s = self.define_settings(m)
-            m.substituents = {}
-            for f in m.flags:
-                if f.startswith('R'):
-                    m.substituents[f.split('=')[0]] = f.split('=')[1]
+            if not mol.name in collisions:
+                m = utility.load_mol(mol.path)
+                s = self.define_settings(m)
 
-
-            sorted_Rnames = list(sorted(m.substituents.keys()))
-            sorted_R = [m.substituents[R] for R in sorted_Rnames]
-            dft_jobs.append(plams.AMSJob(name=f'{i}.{self.template}.{"_".join(sorted_R)}.{mol.name}', settings=s, molecule=m))
-            print(f'{i}.{reaction_name}.{mol.name}')
+                dft_jobs.append(plams.AMSJob(name=f'{i}.{self.template}.{"_".join(sorted_R)}.{mol.name}', settings=s, molecule=m))
 
         
         #starts runs and wait for finish
@@ -98,4 +109,4 @@ class ReactionRunner:
 
 
 if __name__ == '__main__':
-    r = ReactionRunner('achiral_catalyst', {'R1':'H', 'R2':'F'})
+    r = ReactionRunner('achiral_catalyst', {'R1':'Cl', 'R2':'Br', 'Rcat':'ZnCl2'})

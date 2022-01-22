@@ -51,7 +51,7 @@ def create_database_from_calculations(calc_path=paths.calculations, out_path=pat
 			  'status',
 			  'task',
 	          'reaction',
-	          'R1', 'R2',
+	          'R1', 'R2', 'Rcat',
 	          'stationary_point',
 	          'directory',
 	          'flags',
@@ -108,12 +108,12 @@ class DatabaseManager:
 
 		self.results = {d['ID']: job_results.get_results(os.path.join(paths.master,d['DIRECTORY'])) for d in self.data}
 
-
 		self.data_dicts = {}
 		for i, f in enumerate(self.fieldnames):
 			self.data_dicts[f] = [d[f] for d in self.data]
 
 		self.ids = [int(d['ID']) for d in self.data]
+		self.hashes = [d['HASH'] for d in self.data]
 		all_status = [d['STATUS'] for d in self.data]
 		self.Nrunning = all_status.count('R')
 		self.Nsucces = all_status.count('S')
@@ -167,6 +167,10 @@ class DatabaseManager:
 				statuses[res['id']]['freq_eta'] = 0
 
 		return statuses
+
+def get_hash_collision(hash):
+	with DatabaseManager() as dbm:
+		return hash in dbm.hashes
 
 
 def get_n_free_ids(n, write_to_list=True, list_path=paths.id_list):

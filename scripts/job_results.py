@@ -8,8 +8,17 @@ def get_results(path):
     files = {n:os.path.relpath(f, paths.master) for n, f in files.items()}
     name = os.path.basename(path)
     results['id'] = name.split('.')[0]
-    results['reaction'] = name.split('.')[1]
-    results['stationary_point'] = name.split('.')[2]
+    results['metainfo'] = os.path.join(os.path.dirname(path), 'meta.info')
+    results['substituents'] = {}
+    with open(results['metainfo']) as meta:
+        lines = meta.readlines()
+        for line in lines:
+            if line.startswith('reaction='):
+                results['reaction'] = line.split('=')[1].strip()
+            if line.startswith('R'):
+                results['substituents'][line.split('=')[0]] = line.split('=')[1].strip()
+
+    results['stationary_point'] = name.split('.')[3]
     results['directory'] = os.path.relpath(path, paths.master)
     results['files'] = files
     for n, f in files.items():
@@ -17,6 +26,8 @@ def get_results(path):
     results['status'] = _get_status(files)
     flags = _get_flags(results)
     results['flags'] = ' '.join(flags)
+    # print(results)
+
     results['radical'] = 'radical' in flags
     results['COSMO'] = 'COSMO' in flags
     results['natoms'] = _get_natoms(files)
@@ -27,7 +38,7 @@ def get_results(path):
             name, sub = f.split('=')
             results[name] = sub
 
-    hashstr = results['stationary_point'] + results['flags']
+    hashstr = results['reaction'] + results['stationary_point'] + results['flags']
     results['hash'] = hashlib.sha256(hashstr.encode('utf-8')).hexdigest()
     return results
 
@@ -65,12 +76,18 @@ def _get_status(files):
         return 'C'
 
 def _get_natoms(files):
-    rkf = plams.KFFile(os.path.join(paths.master, files['amsrkf']))
-    return rkf.read('Molecule', 'nAtoms')
+    if 'amsrkf' in files:
+        rkf = plams.KFFile(os.path.join(paths.master, files['amsrkf']))
+        return rkf.read('Molecule', 'nAtoms')
+    else:
+        return 0
 
 
 def _get_flags(results):
-    input_file = struct_generator.get_mol_path(paths.input_xyz, results['reaction'], results['stationary_point'])
+    sorted_Rnames = list(sorted(results['substituents'].keys()))
+    sorted_R = [results['substituents'][R] for R in sorted_Rnames]
+    input_file = struct_generator.get_mol_path(paths.input_xyz, results['reaction']+'_'+'_'.join(sorted_R), results['stationary_point'])
+    if not os.path.exists(input_file): return []
     with open(input_file) as file:
         lines = file.readlines()
         return [f.strip() for f in lines[1].split(',')]
