@@ -30,7 +30,6 @@ def generate_stationary_points(template_name, substituents={}):
         elements = [s[0] for s in struct]
         coords = [[float(x) for x in s[1:4]] for s in struct]
         tags = [s[4:] for s in struct]
-        
         #create molecule
         mol = plams.Molecule()
         mol.name = name
@@ -58,6 +57,13 @@ def generate_stationary_points(template_name, substituents={}):
 
                     elif f == 'delete':
                         mol.atoms_to_delete.append(a)
+
+                    elif f.startswith('dist='):
+                        #find Rgroup
+                        for x in t:
+                            if f.startswith('R'):
+                                name = f[0:-1]
+                        mol.connector_distance = (name, float(f.split('=')[-1]))
 
 
 
@@ -103,7 +109,13 @@ def generate_stationary_points(template_name, substituents={}):
                 if not R in sub_mols:   s = default_sub.copy()
                 else:                   s = sub_mols[R].copy()
                 lconn = (s.atoms[s.connector[0]], s.atoms[s.connector[1]])
-                m.substitute(m.connector[R], s, lconn)
+
+                bond_length = None
+                if hasattr(m, 'connector_distance'):
+                    if m.connector_distance[0] == R:
+                        bond_length = m.connector_distance[1]
+                    
+                m.substitute(m.connector[R], s, lconn, bond_length=bond_length)
                 for dela in m.atoms_to_delete:
                     m.delete_atom(dela)
 
