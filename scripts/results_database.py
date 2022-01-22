@@ -1,50 +1,8 @@
 import paths
 import csv
 import os
-import summary, job_results
+import summary, job_results, utility
 
-
-# def create_database_from_calculations(calc_path=paths.calculations, out_path=paths.results_table):
-# 	fields = ['id', 
-# 	          'name', 
-# 	          'directory', 
-# 	          'logfile', 
-# 	          'outfile', 
-# 	          'adfrkf', 
-# 	          'amsrkf']
-
-# 	data = []
-# 	dirs = []
-# 	for file in os.listdir(calc_path):
-# 		p = os.path.join(calc_path, file)
-# 		if os.path.isdir(p):
-# 			dirs.append(os.path.relpath(p, paths.master))
-
-# 	for d in dirs:
-# 		data_dict = {}
-
-# 		data_dict['id'] = os.path.basename(d).split('.')[0]
-# 		data_dict['name'] = '.'.join(os.path.basename(d).split('.')[1:])
-# 		data_dict['directory'] = d
-
-
-
-# 		for file in os.listdir(os.path.join(paths.master, d)):
-# 			if file.endswith('.log'): data_dict['logfile'] = file
-# 			if file.endswith('.out') and not file.startswith('slurm'): data_dict['outfile'] = file
-# 			if file.endswith('.adf.rkf'): data_dict['adfrkf'] = file
-# 			if file.endswith('.ams.rkf'): data_dict['amsrkf'] = file
-
-# 		# summary.summarize_calculation(data_dict)
-
-# 		data.append(data_dict)
-
-# 	writer = csv.writer(open(out_path, 'w+', newline=''))
-# 	writer.writerow(['sep=,'])
-# 	writer.writerow(fields)
-# 	for d in data:
-# 		l = [i[1] for i in sorted(d.items(), key=lambda p: fields.index(p[0]))]
-# 		writer.writerow(l)
 
 def create_database_from_calculations(calc_path=paths.calculations, out_path=paths.results_table):
 	fields = ['id',
@@ -204,10 +162,6 @@ def update_id_list(path=paths.id_list):
 		file.write(','.join([str(i) for i in ids]))
 
 	return ids
-
-
-
-
 
 
 

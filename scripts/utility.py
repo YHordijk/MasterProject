@@ -1,4 +1,4 @@
-import paths
+import paths, hashlib
 import scm.plams as plams
 
 
@@ -21,3 +21,8 @@ def load_mol(path):
 		mol.flags = [f.strip() for f in flags]
 
 	return mol
+
+
+def hash(reaction, stationary_point, flags):
+	hashstr = reaction + stationary_point + ' '.join(list(sorted(flags)))
+	return hashlib.sha256(hashstr.encode('utf-8')).hexdigest()

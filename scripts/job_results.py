@@ -1,5 +1,5 @@
 import scm.plams as plams
-import paths, os, struct_generator, hashlib
+import paths, os, struct_generator, utility
 
 
 def get_results(path):
@@ -38,8 +38,7 @@ def get_results(path):
             name, sub = f.split('=')
             results[name] = sub
 
-    hashstr = results['reaction'] + results['stationary_point'] + results['flags']
-    results['hash'] = hashlib.sha256(hashstr.encode('utf-8')).hexdigest()
+    results['hash'] = utility.hash(results['reaction'], results['stationary_point'], results['flags'].split())
     return results
 
 

@@ -1,5 +1,5 @@
 import scm.plams as plams
-import struct_generator, paths, results_database, pre_optimize, os, multiprocessing, utility, hashlib
+import struct_generator, paths, results_database, pre_optimize, os, multiprocessing, utility
 
 
 class ReactionRunner:
@@ -44,10 +44,9 @@ class ReactionRunner:
         print('== Checking for hash collisions ...')
         collisions = []
         for m in mols:
-            hashstr = self.template + m.name + ' '.join(m.flags)
-            hash = hashlib.sha256(hashstr.encode('utf-8')).hexdigest()
+            hash = utility.hash(self.template, m.name, m.flags)
             if results_database.get_hash_collision(hash):
-                print(f'\t{m.name}')
+                print(f'\t{m.name}\t{hash}')
                 collisions.append(m.name)
 
         
