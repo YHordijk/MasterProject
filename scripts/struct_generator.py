@@ -138,9 +138,5 @@ def get_mol_path(base, dir, name):
 
 
 if __name__ == '__main__':
-    mols = generate_stationary_points('achiral_catalyst', {'R2':'Br', 'R1':'Cl', 'Rcat':'I2'})
-    # for mol in mols:
-    #     print(type(mol))
-    #     print(mol.name)
-    #     print(mol)
-    #     print()
+    for Rcat in ['TiCl4', 'SnCl4', 'I2', 'ZnCl2', 'AlF3', 'BF3']:
+        mols = generate_stationary_points('achiral_catalyst', {'R2':'Br', 'R1':'Cl', 'Rcat':Rcat})

@@ -51,11 +51,11 @@ def create_database_from_calculations(calc_path=paths.calculations, out_path=pat
 			  'status',
 			  'task',
 	          'reaction',
-	          'stationary_point', 
 	          'R1', 'R2',
-	          'radical',
+	          'stationary_point',
 	          'directory',
 	          'flags',
+	          'hash',
 	          ]
 
 	
@@ -228,3 +228,8 @@ if __name__ == '__main__':
 			else:
 				s = 'GEO'
 			print(f'\t\tCALC: {id :<4} {res["reaction"]}.{res["stationary_point"]}: {s}')		
+
+	try:
+		import excel
+	except:
+		pass

@@ -1,18 +1,18 @@
 "sep=,"
-ID,STATUS,TASK,REACTION,STATIONARY_POINT,R1,R2,RADICAL,DIRECTORY,FLAGS
-5,S,GO,no_catalyst_F_F,Rsub,F,F,False,calculations\no_catalyst_F_F\5.no_catalyst_F_F.Rsub,"['GO', 'R2=F', 'R1=F']"
-6,S,GO,no_catalyst_F_F,Rrad,,,True,calculations\no_catalyst_F_F\6.no_catalyst_F_F.Rrad,"['GO', 'radical']"
-7,S,TSRC,no_catalyst_F_F,TS,F,F,True,calculations\no_catalyst_F_F\7.no_catalyst_F_F.TS,"['TSRC', 'radical', 'TSRC=2_3', 'R2=F', 'R1=F']"
-8,S,GO,no_catalyst_F_F,P1,F,F,True,calculations\no_catalyst_F_F\8.no_catalyst_F_F.P1,"['GO', 'radical', 'R2=F', 'R1=F']"
-10,S,GO,no_catalyst_F_H,Rrad,,,True,calculations\no_catalyst_F_H\10.no_catalyst_F_H.Rrad,"['GO', 'radical']"
-11,S,TSRC,no_catalyst_F_H,TS,F,H,True,calculations\no_catalyst_F_H\11.no_catalyst_F_H.TS,"['TSRC', 'radical', 'TSRC=2_3', 'R2=H', 'R1=F']"
-12,W,GO,no_catalyst_F_H,P1,F,H,True,calculations\no_catalyst_F_H\12.no_catalyst_F_H.P1,"['GO', 'radical', 'R2=H', 'R1=F']"
-9,S,GO,no_catalyst_F_H,Rsub,F,H,False,calculations\no_catalyst_F_H\9.no_catalyst_F_H.Rsub,"['GO', 'R2=H', 'R1=F']"
-1,S,GO,no_catalyst_H_F,Rsub,H,F,False,calculations\no_catalyst_H_F\1.no_catalyst_H_F.Rsub,"['GO', 'R2=F', 'R1=H']"
-2,S,GO,no_catalyst_H_F,Rrad,,,True,calculations\no_catalyst_H_F\2.no_catalyst_H_F.Rrad,"['GO', 'radical']"
-3,R,TSRC,no_catalyst_H_F,TS,H,F,True,calculations\no_catalyst_H_F\3.no_catalyst_H_F.TS,"['TSRC', 'radical', 'TSRC=2_3', 'R2=F', 'R1=H']"
-4,S,GO,no_catalyst_H_F,P1,H,F,True,calculations\no_catalyst_H_F\4.no_catalyst_H_F.P1,"['GO', 'radical', 'R2=F', 'R1=H']"
-13,S,GO,no_catalyst_H_H,Rsub,H,H,False,calculations\no_catalyst_H_H\13.no_catalyst_H_H.Rsub,"['GO', 'R2=H', 'R1=H']"
-14,S,GO,no_catalyst_H_H,Rrad,,,True,calculations\no_catalyst_H_H\14.no_catalyst_H_H.Rrad,"['GO', 'radical']"
-15,S,TSRC,no_catalyst_H_H,TS,H,H,True,calculations\no_catalyst_H_H\15.no_catalyst_H_H.TS,"['TSRC', 'radical', 'TSRC=2_3', 'R2=H', 'R1=H']"
-16,S,GO,no_catalyst_H_H,P1,H,H,True,calculations\no_catalyst_H_H\16.no_catalyst_H_H.P1,"['GO', 'radical', 'R2=H', 'R1=H']"
+ID,STATUS,TASK,REACTION,R1,R2,STATIONARY_POINT,DIRECTORY,FLAGS,HASH
+5,S,GO,no_catalyst_F_F,F,F,Rsub,calculations\no_catalyst_F_F\5.no_catalyst_F_F.Rsub,GO R2=F R1=F,84e12ecf8a59d7990a005f4ee2b382d4625ae058c6b9836f8d3a0337e07fc81c
+6,S,GO,no_catalyst_F_F,,,Rrad,calculations\no_catalyst_F_F\6.no_catalyst_F_F.Rrad,GO radical,bac51f8b6fab4adde82cc0f50f278dd95a3e0bef553f7303e48eb05a333faf5a
+7,S,TSRC,no_catalyst_F_F,F,F,TS,calculations\no_catalyst_F_F\7.no_catalyst_F_F.TS,TSRC radical TSRC=2_3 R2=F R1=F,d728db03ff787eba7c5df0288b6368fccdd3b9a6838150b4558bccbb0621ee38
+8,S,GO,no_catalyst_F_F,F,F,P1,calculations\no_catalyst_F_F\8.no_catalyst_F_F.P1,GO radical R2=F R1=F,9c053c063088f5517a2b67164e5928d6ac20035e72485290e63617e91cf407de
+10,S,GO,no_catalyst_F_H,,,Rrad,calculations\no_catalyst_F_H\10.no_catalyst_F_H.Rrad,GO radical,bac51f8b6fab4adde82cc0f50f278dd95a3e0bef553f7303e48eb05a333faf5a
+11,S,TSRC,no_catalyst_F_H,F,H,TS,calculations\no_catalyst_F_H\11.no_catalyst_F_H.TS,TSRC radical TSRC=2_3 R2=H R1=F,3ee732659186ddceb0270dd79b6874f1d632205ea877a66c58b966fd9b97c24b
+12,W,GO,no_catalyst_F_H,F,H,P1,calculations\no_catalyst_F_H\12.no_catalyst_F_H.P1,GO radical R2=H R1=F,8e237d43e555b264144c012514c619f5cbbb983d5e12dbc7adabe86ffd4136a0
+9,S,GO,no_catalyst_F_H,F,H,Rsub,calculations\no_catalyst_F_H\9.no_catalyst_F_H.Rsub,GO R2=H R1=F,96891aa9d0b0bf5d1f92dc1a352916f4ec870d5b19280f243e1db2d91c007c82
+1,S,GO,no_catalyst_H_F,H,F,Rsub,calculations\no_catalyst_H_F\1.no_catalyst_H_F.Rsub,GO R2=F R1=H,ded1ea9e1303e0cbd5a96b764d50835c3b388cfcef299bc13fa0678714e82227
+2,S,GO,no_catalyst_H_F,,,Rrad,calculations\no_catalyst_H_F\2.no_catalyst_H_F.Rrad,GO radical,bac51f8b6fab4adde82cc0f50f278dd95a3e0bef553f7303e48eb05a333faf5a
+3,R,TSRC,no_catalyst_H_F,H,F,TS,calculations\no_catalyst_H_F\3.no_catalyst_H_F.TS,TSRC radical TSRC=2_3 R2=F R1=H,63ce814fc4fd1903ff35eaf80f46a4fde653b4841f41c1c8b0416e898023044e
+4,S,GO,no_catalyst_H_F,H,F,P1,calculations\no_catalyst_H_F\4.no_catalyst_H_F.P1,GO radical R2=F R1=H,f2f7bcb621d978212234fa7db89494e5cf371f665580c07b9b49fa35d3ca26bd
+13,S,GO,no_catalyst_H_H,H,H,Rsub,calculations\no_catalyst_H_H\13.no_catalyst_H_H.Rsub,GO R2=H R1=H,e3462ede0cc5924f6663ca11aeb7050218b9315a638627f5cf7ba5260ade872c
+14,S,GO,no_catalyst_H_H,,,Rrad,calculations\no_catalyst_H_H\14.no_catalyst_H_H.Rrad,GO radical,bac51f8b6fab4adde82cc0f50f278dd95a3e0bef553f7303e48eb05a333faf5a
+15,S,TSRC,no_catalyst_H_H,H,H,TS,calculations\no_catalyst_H_H\15.no_catalyst_H_H.TS,TSRC radical TSRC=2_3 R2=H R1=H,fb0e93b95cb8dc277e892aa91e80770ed93458ffc0e7dedc92be0f8779eda952
+16,S,GO,no_catalyst_H_H,H,H,P1,calculations\no_catalyst_H_H\16.no_catalyst_H_H.P1,GO radical R2=H R1=H,699a2155d9660590405a2c6f6c6cf738be7394f7a5804dbee79d6eda8bdd8ae6

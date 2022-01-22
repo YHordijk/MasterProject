@@ -2,7 +2,6 @@ import scm.plams as plams
 import struct_generator, paths, results_database, pre_optimize, os, multiprocessing, utility
 
 
-
 class ReactionRunner:
     ''' 
     This class holds functions and methods to generate and run AMSJobs for a given reaction and R-groups
@@ -21,11 +20,11 @@ class ReactionRunner:
         sorted_R = [self.substituents[R] for R in sorted_Rnames]
         reaction_name = f'{self.template}_{"_".join(sorted_R)}'
 
+
         plams.init(path=paths.calculations, folder=reaction_name)
 
         #here we make sure PLAMS does parallelization
-        plams.config.default_jobrunner = plams.JobRunner(parallel=True, maxjobs=multiprocessing.cpu_count())
-        plams.config.job.runscript.nproc = 1
+        plams.config.default_jobrunner = plams.JobRunner(parallel=True, maxjobs=2)
 
         print(f'=== Beginning Reaction {reaction_name}')
         mols = struct_generator.generate_stationary_points(self.template, self.substituents)
@@ -45,7 +44,16 @@ class ReactionRunner:
         for i, mol in zip(ids, mols):
             m = utility.load_mol(mol.path)
             s = self.define_settings(m)
-            dft_jobs.append(plams.AMSJob(name=f'{i}.{reaction_name}.{mol.name}', settings=s, molecule=m))
+            m.substituents = {}
+            for f in m.flags:
+                if f.startswith('R'):
+                    m.substituents[f.split('=')[0]] = f.split('=')[1]
+
+
+            sorted_Rnames = list(sorted(m.substituents.keys()))
+            sorted_R = [m.substituents[R] for R in sorted_Rnames]
+            dft_jobs.append(plams.AMSJob(name=f'{i}.{self.template}.{"_".join(sorted_R)}.{mol.name}', settings=s, molecule=m))
+            print(f'{i}.{reaction_name}.{mol.name}')
 
         
         #starts runs and wait for finish
@@ -61,9 +69,6 @@ class ReactionRunner:
                     utility.write_mol(opt_mol, )
 
         print('== Calculations finished')
-
-
-
 
         plams.finish()
 
@@ -93,4 +98,4 @@ class ReactionRunner:
 
 
 if __name__ == '__main__':
-    r = ReactionRunner('no_catalyst', {'R1':'H', 'R2':'F'})
+    r = ReactionRunner('achiral_catalyst', {'R1':'H', 'R2':'F'})

@@ -1,5 +1,6 @@
 import scm.plams as plams
-import paths, os, struct_generator
+import paths, os, struct_generator, hashlib
+
 
 def get_results(path):
     results = {}
@@ -15,8 +16,9 @@ def get_results(path):
         results[n] = f
     results['status'] = _get_status(files)
     flags = _get_flags(results)
-    results['flags'] = flags
+    results['flags'] = ' '.join(flags)
     results['radical'] = 'radical' in flags
+    results['COSMO'] = 'COSMO' in flags
     results['natoms'] = _get_natoms(files)
     for task in ['GO', 'SP', 'TSRC', 'LT']:
         if task in flags: results['task'] = task
@@ -24,6 +26,9 @@ def get_results(path):
         if f.startswith('R'):
             name, sub = f.split('=')
             results[name] = sub
+
+    hashstr = results['stationary_point'] + results['flags']
+    results['hash'] = hashlib.sha256(hashstr.encode('utf-8')).hexdigest()
     return results
 
 
@@ -41,20 +46,23 @@ def _get_job_files(path):
 
 
 def _get_status(files):
-    rkf = plams.KFFile(os.path.join(paths.master, files['amsrkf']))
-    term = rkf.read('General', 'termination status')
-    if term == 'IN PROGRESS':
-        with open(os.path.join(paths.master, files['errfile'])) as err:
-            err_cont = err.read().strip()
-            if err_cont != '':
-                return 'C'
-        return 'R'
-    elif term == 'NORMAL TERMINATION':
-        return 'S'
-    elif 'NORMAL TERMINATION' in term:
-        return 'W'
+    if 'amsrkf' in files:
+        rkf = plams.KFFile(os.path.join(paths.master, files['amsrkf']))
+        term = rkf.read('General', 'termination status')
+        if term == 'IN PROGRESS':
+            with open(os.path.join(paths.master, files['errfile'])) as err:
+                err_cont = err.read().strip()
+                if err_cont != '':
+                    return 'C'
+            return 'R'
+        elif term == 'NORMAL TERMINATION':
+            return 'S'
+        elif 'NORMAL TERMINATION' in term:
+            return 'W'
 
-    return 'F'
+        return 'F'
+    else:
+        return 'C'
 
 def _get_natoms(files):
     rkf = plams.KFFile(os.path.join(paths.master, files['amsrkf']))

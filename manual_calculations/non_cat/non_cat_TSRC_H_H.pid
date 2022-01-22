@@ -1,5 +1,5 @@
-# status: queued
-# pid: 
+# status: ready
+# pid: 18012
 # hostname: localhost
 # username: 
 # jobscript: 
@@ -8,7 +8,7 @@
 # jobdir: $HOME/jobs
 # fakejob: 0
 # comparewithtarget: ok
-# error: -1
+# error: 0
 # warning: 0
 # runcmd: sh "$job" "NSCM=$options ; export NSCM"
 # batch: yes
@@ -25,12 +25,9 @@
 # paused: 0
 # remoteprefix: 
 # jobtype: .adf
-# mtime: 1642880585
+# mtime: 1642881676
 # cloudinit: 
 # cloudid: 
 # copyback: 
 # privatesshkeypath: 
 # comments: 
-# status: running
-# pid: 18012
-# status: running

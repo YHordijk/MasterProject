@@ -1,23 +1,23 @@
 # status: new
 # pid: 
-# hostname: 
+# hostname: localhost
 # username: 
 # jobscript: 
 # prolog: 
 # epilog: 
-# jobdir: $HOME/jobs-gui
+# jobdir: $HOME/jobs
 # fakejob: 0
-# comparewithtarget: not found
+# comparewithtarget: ok
 # error: -1
 # warning: 0
-# runcmd: "$job"
-# batch: 
+# runcmd: sh "$job" "NSCM=$options ; export NSCM"
+# batch: yes
 # options: 
 # killcmd: killall $pid
-# jobstatuscmd: ps -p $pid | grep $pid
+# jobstatuscmd: ps -e | grep -w $pid | grep -v grep
 # sysstatuscmd: uptime
 # pidfile: no
-# label: 
+# label: Sequential
 # logfile: logfile
 # backup: 
 # whenready: 
@@ -25,7 +25,7 @@
 # paused: 0
 # remoteprefix: 
 # jobtype: .adf
-# mtime: 
+# mtime: 1642880428
 # cloudinit: 
 # cloudid: 
 # copyback: 
