@@ -8,6 +8,8 @@ def show(mols, simple=False):
 	scr = screen.Screen(size=(1600,900))
 	if simple:
 		scr.draw_mode = 'simple'
+
+	[mol.center() for mol in mols]
 	scr.draw_molecules(mols)
 
 
