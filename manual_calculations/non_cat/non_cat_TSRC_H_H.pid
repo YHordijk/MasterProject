@@ -1,0 +1,36 @@
+# status: queued
+# pid: 
+# hostname: localhost
+# username: 
+# jobscript: 
+# prolog: 
+# epilog: 
+# jobdir: $HOME/jobs
+# fakejob: 0
+# comparewithtarget: ok
+# error: -1
+# warning: 0
+# runcmd: sh "$job" "NSCM=$options ; export NSCM"
+# batch: yes
+# options: 
+# killcmd: killall $pid
+# jobstatuscmd: ps -e | grep -w $pid | grep -v grep
+# sysstatuscmd: uptime
+# pidfile: no
+# label: Sequential
+# logfile: logfile
+# backup: 
+# whenready: 
+# scmjobid: 1642880442406-42400
+# paused: 0
+# remoteprefix: 
+# jobtype: .adf
+# mtime: 1642880585
+# cloudinit: 
+# cloudid: 
+# copyback: 
+# privatesshkeypath: 
+# comments: 
+# status: running
+# pid: 18012
+# status: running

@@ -451,13 +451,13 @@ class Screen:
 		self.camera_z += state['zoom']
 
 		move = pg.mouse.get_rel()
-		if state['keys'][pg.K_LCTRL] or state['keys'][pg.K_RCTRL]:
-			if pg.mouse.get_pressed()[2]:
-				self.camera_position[0] += move[0]/100
-				self.camera_position[1] += move[1]/100
+		# if state['keys'][pg.K_LCTRL] or state['keys'][pg.K_RCTRL]:
+		if pg.mouse.get_pressed()[2]:
+			self.camera_position[0] += move[0]/100
+			self.camera_position[1] += move[1]/100
 
-			if pg.mouse.get_pressed()[0]:
-				state['rot'] = np.array([move[1]/150, -move[0]/150])
+		if pg.mouse.get_pressed()[0]:
+			state['rot'] = np.array([move[1]/150, -move[0]/150])
 
 		if state['keys'][pg.K_LEFT] and not state['prev_keys'][pg.K_LEFT]:
 			state['molidx'] += 1

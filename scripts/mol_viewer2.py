@@ -14,5 +14,5 @@ def show(mols, simple=False):
 
 
 if __name__ == '__main__':
-	xyz = struct_generator.generate_stationary_points('achiral_catalyst', {'R1':'Cl', 'R2':'Br', 'Rcat':'SnCl4'})
+	xyz = struct_generator.generate_stationary_points('no_catalyst', {'R1':'Cl', 'R2':'Br', 'Rcat':'SnCl4'})
 	show(xyz, simple=False)
