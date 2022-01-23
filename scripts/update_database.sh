@@ -1,3 +1,3 @@
-module load ams/2021.102
+module load ams
 
-amspython results_database.py
+amspython ~/MasterProject/scripts/results_database.py
