@@ -26,17 +26,28 @@ def get_results(path):
     results['status'] = _get_status(files)
     flags = _get_flags(results)
     results['flags'] = ' '.join(flags)
-    # print(results)
 
     results['radical'] = 'radical' in flags
     results['COSMO'] = 'COSMO' in flags
     results['natoms'] = _get_natoms(files)
+
+    if 'outxyz' in files:
+        results['geometry'] = os.path.relpath(files['outxyz'], results['directory'])
+        results['molview2_start'] = os.path.join(paths.master, path, 'molview2_start.bat')
+        with open(os.path.join(paths.master, path, 'molview2_start.bat'), 'w+') as mvs:
+            mvs.write('ECHO ON\n')
+            mvs.write(f'cd {paths.scripts}\n')
+            mvs.write(f'{paths.driveletter}\n')
+            mvs.write(f'python mol_viewer2.py {os.path.join(paths.master, files["outxyz"])}')
+
     for task in ['GO', 'SP', 'TSRC', 'LT']:
         if task in flags: results['task'] = task
     for f in flags:
         if f.startswith('R'):
             name, sub = f.split('=')
             results[name] = sub
+
+
 
     results['hash'] = utility.hash(results['reaction'], results['stationary_point'], results['flags'].split())
     return results
@@ -47,6 +58,7 @@ def _get_job_files(path):
     for file in os.listdir(path):
         if file == 'ams.rkf': files['amsrkf'] = os.path.join(path, file)
         if file == 'adf.rkf': files['adfrkf'] = os.path.join(path, file)
+        if file == 'output.xyz': files['outxyz'] = os.path.join(path, file)
         if file.endswith('.log'): files['logfile'] = os.path.join(path, file)
         if file.endswith('.err'): files['errfile'] = os.path.join(path, file)
         if file.endswith('.in'): files['infile'] = os.path.join(path, file)

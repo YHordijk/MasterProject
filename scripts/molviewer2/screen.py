@@ -204,7 +204,7 @@ class Screen:
 		state = {}
 		state['run'] = True
 		# state['main_mol'] = mol
-		state['molidx'] = 1
+		state['molidx'] = 0
 		state['mols'] = mols
 		self.mols = mols
 

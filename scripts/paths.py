@@ -2,6 +2,7 @@ import os, sys
 
 
 master = 				os.path.dirname(os.path.dirname(__file__))
+driveletter =			master.split(':')[0] + ':'
 
 scripts = 				os.path.join(master, 'scripts')
 results = 				os.path.join(master, 'results')

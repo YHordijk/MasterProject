@@ -1,9 +1,9 @@
 "sep=,"
-ID,STATUS,TASK,REACTION,R1,R2,RCAT,STATIONARY_POINT,DIRECTORY,FLAGS,HASH
-1,C,GO,achiral_catalyst,Cl,Br,,Rsub,calculations\achiral_catalyst_Cl_Br_ZnCl2\1.achiral_catalyst.Cl_Br_ZnCl2.Rsub,GO R2=Br R1=Cl,1b962d1743668d385c13ad4396082534c8cbd0d04bd43bb91a4b23893134d0ac
-2,C,GO,achiral_catalyst,,,,Rrad,calculations\achiral_catalyst_Cl_Br_ZnCl2\2.achiral_catalyst.Cl_Br_ZnCl2.Rrad,GO radical,08fba8608791072397dd60e4fb75c6e912314dd0dd533f9b3b0e13a505ff3f51
-3,C,GO,achiral_catalyst,,,ZnCl2,Rcat,calculations\achiral_catalyst_Cl_Br_ZnCl2\3.achiral_catalyst.Cl_Br_ZnCl2.Rcat,GO Rcat=ZnCl2,ebb568b4f698b5736b1af496c81569623796e1a6889795223b427f76f3d36e2f
-4,C,GO,achiral_catalyst,Cl,Br,ZnCl2,Rsub_cat_complex,calculations\achiral_catalyst_Cl_Br_ZnCl2\4.achiral_catalyst.Cl_Br_ZnCl2.Rsub_cat_complex,GO R2=Br R1=Cl Rcat=ZnCl2,663b22395aad2cc9df8e90353306f288b067f306f701f41801afc2610f521dcb
-5,C,TSRC,achiral_catalyst,Cl,Br,ZnCl2,TS,calculations\achiral_catalyst_Cl_Br_ZnCl2\5.achiral_catalyst.Cl_Br_ZnCl2.TS,TSRC radical TSRC=2_10 R2=Br R1=Cl Rcat=ZnCl2,8b76f718118c233334705d3590c5a8eea2cf9b7a0bc6161905836bd905f6f045
-6,C,GO,achiral_catalyst,Cl,Br,ZnCl2,P1,calculations\achiral_catalyst_Cl_Br_ZnCl2\6.achiral_catalyst.Cl_Br_ZnCl2.P1,GO radical R2=Br R1=Cl Rcat=ZnCl2,c86ba910299a0686ac87544a813d7647897ccead1ef51625fdb2898e9ca69351
-7,C,GO,achiral_catalyst,Cl,Br,ZnCl2,P2,calculations\achiral_catalyst_Cl_Br_ZnCl2\7.achiral_catalyst.Cl_Br_ZnCl2.P2,GO R2=Br R1=Cl Rcat=ZnCl2,33cbe882b5288e1a0a33dc017eebab74057b0bc6cec40fd82c8eccdb69e6691d
+ID,STATUS,TASK,REACTION,R1,R2,RCAT,STATIONARY_POINT,DIRECTORY,FLAGS,GEOMETRY,HASH
+1,C,GO,achiral_catalyst,Cl,Br,,Rsub,calculations\achiral_catalyst_Cl_Br_ZnCl2\1.achiral_catalyst.Cl_Br_ZnCl2.Rsub,GO R2=Br R1=Cl,,1b962d1743668d385c13ad4396082534c8cbd0d04bd43bb91a4b23893134d0ac
+2,C,GO,achiral_catalyst,,,,Rrad,calculations\achiral_catalyst_Cl_Br_ZnCl2\2.achiral_catalyst.Cl_Br_ZnCl2.Rrad,GO radical,,08fba8608791072397dd60e4fb75c6e912314dd0dd533f9b3b0e13a505ff3f51
+3,C,GO,achiral_catalyst,,,ZnCl2,Rcat,calculations\achiral_catalyst_Cl_Br_ZnCl2\3.achiral_catalyst.Cl_Br_ZnCl2.Rcat,GO Rcat=ZnCl2,output.xyz,ebb568b4f698b5736b1af496c81569623796e1a6889795223b427f76f3d36e2f
+4,C,GO,achiral_catalyst,Cl,Br,ZnCl2,Rsub_cat_complex,calculations\achiral_catalyst_Cl_Br_ZnCl2\4.achiral_catalyst.Cl_Br_ZnCl2.Rsub_cat_complex,GO R2=Br R1=Cl Rcat=ZnCl2,,663b22395aad2cc9df8e90353306f288b067f306f701f41801afc2610f521dcb
+5,C,TSRC,achiral_catalyst,Cl,Br,ZnCl2,TS,calculations\achiral_catalyst_Cl_Br_ZnCl2\5.achiral_catalyst.Cl_Br_ZnCl2.TS,TSRC radical TSRC=2_10 R2=Br R1=Cl Rcat=ZnCl2,,8b76f718118c233334705d3590c5a8eea2cf9b7a0bc6161905836bd905f6f045
+6,C,GO,achiral_catalyst,Cl,Br,ZnCl2,P1,calculations\achiral_catalyst_Cl_Br_ZnCl2\6.achiral_catalyst.Cl_Br_ZnCl2.P1,GO radical R2=Br R1=Cl Rcat=ZnCl2,,c86ba910299a0686ac87544a813d7647897ccead1ef51625fdb2898e9ca69351
+7,C,GO,achiral_catalyst,Cl,Br,ZnCl2,P2,calculations\achiral_catalyst_Cl_Br_ZnCl2\7.achiral_catalyst.Cl_Br_ZnCl2.P2,GO R2=Br R1=Cl Rcat=ZnCl2,,33cbe882b5288e1a0a33dc017eebab74057b0bc6cec40fd82c8eccdb69e6691d

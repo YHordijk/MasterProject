@@ -13,6 +13,7 @@ def create_database_from_calculations(calc_path=paths.calculations, out_path=pat
 	          'stationary_point',
 	          'directory',
 	          'flags',
+	          'geometry',
 	          'hash',
 	          ]
 
@@ -189,5 +190,6 @@ if __name__ == '__main__':
 
 	try:
 		import excel
-	except:
+	except Exception as e:
+		print(e)
 		pass

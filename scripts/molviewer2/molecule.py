@@ -68,6 +68,7 @@ def load_molecule(arg):
 	else:
 		return _load_molecule_from_pubchem(arg)
 
+
 def load_plams_molecule(mol):
 	if type(mol) is not list:
 		mol = [mol]
