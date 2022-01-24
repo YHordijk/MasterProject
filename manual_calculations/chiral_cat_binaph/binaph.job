@@ -1,0 +1,379 @@
+#!/bin/sh
+
+#======
+ready() 
+#======
+{
+
+if test ! -z "$SCM_RESULTDIR" -a ! -z "$JOBNAME"
+then
+
+#  special case to make sure results from chained jobs are copied back, sub jobs have path in JOBNAME
+   AAA=`dirname "$JOBNAME"`
+   JOBNAME=`basename "$JOBNAME"`
+   if [ "$AAA" != "." ]; then
+      SCM_RESULTDIR=$SCM_RESULTDIR/$AAA
+   fi
+
+    # -------------------------------------------
+    # copy any files produced to result directory
+    # -------------------------------------------
+
+    for n in 13 21 41 10 11 15
+    do
+        cp -f -p "TAPE$n" "$SCM_RESULTDIR/$JOBNAME.t$n" 2>/dev/null
+        rm -f "TAPE$n"
+    done
+
+    cp -f -p RUNKF "$SCM_RESULTDIR/$JOBNAME.runkf" 2>/dev/null
+    cp -f -p COSKF "$SCM_RESULTDIR/$JOBNAME.coskf" 2>/dev/null
+    cp -f -p CRSKF "$SCM_RESULTDIR/$JOBNAME.crskf" 2>/dev/null
+    cp -f -p QUILDKF "$SCM_RESULTDIR/$JOBNAME.qkf" 2>/dev/null
+    cp -f -p quildjob.qkf "$SCM_RESULTDIR/$JOBNAME.qkf" 2>/dev/null
+    rm -f  QUILDKF quildjob.qkf COSKF CRSKF RUNKF
+
+    if test ! -d "$SCM_RESULTDIR/$JOBNAME.results"
+    then
+        mkdir "$SCM_RESULTDIR/$JOBNAME.results"
+    fi
+    if test -d "$SCM_RESULTDIR/$JOBNAME.results"
+    then
+        for n in 13 21 41 10 11 15
+        do
+            cp -f -p "TAPE$n" "$SCM_RESULTDIR/$JOBNAME.t$n" 2>/dev/null
+            rm -f "TAPE$n"
+        done
+        touch thisfileshouldbeignored
+        cp -rf -p * "$SCM_RESULTDIR/$JOBNAME.results"
+    else
+        echo Problem copying result files to \"$SCM_RESULTDIR/$JOBNAME.results\"
+    fi
+
+    for f in "$SCM_RESULTDIR/$JOBNAME.results"/* thisfiledoesnotexist
+    do
+        if test -L "$f"; then
+            rm -f "$f"
+        fi
+    done
+    rm -f "$SCM_RESULTDIR/$JOBNAME.results"/thisfileshouldbeignored
+
+    if test -z "$1"
+    then
+        echo "Job $JOBNAME has finished" >> "$SCM_RESULTDIR/$JOBNAME.logfile"
+    else
+        echo "Job $JOBNAME: $1" >> "$SCM_RESULTDIR/$JOBNAME.logfile"
+    fi
+    cd "$OWD" 2>/dev/null
+    rm -rf "$SCM_JOBDIR"
+    if test -z "$SCM_NOREADY"; then
+        echo "# status: ready" >> "$SCM_RESULTDIR/$JOBNAME.pid"
+#       densf runs from AMSview remove the line above, for that reason an extra NOP line is needed
+        DUMMY=blurb
+    fi
+fi
+}
+
+
+#-----------------------------------------
+# keep track of original working directory
+#-----------------------------------------
+
+OWD="`pwd`"
+export OWD
+
+# -------------------------------------------------
+# insert prolog command as defined in AMSjobs queue
+# -------------------------------------------------
+
+# <<PROLOG>>
+
+# ---------------------------------------------------
+# execute arguments (possibly to set environment etc)
+# ---------------------------------------------------
+
+if test ! -z "$1"
+then
+    if test "$1" != "export NSCM=" -a "$1" != "NSCM= ; export NSCM"; then
+       eval $1
+    fi
+fi
+
+# ---------------
+# name of the job
+# ---------------
+
+JOBNAME=`basename "$0" .job`
+export JOBNAME
+
+# -----------------------------------------------------------------------------------
+# on a batch system, the start.cmd will replace the next line to set JOBNAME properly
+# since the batch system may make a copy of the job script
+# -----------------------------------------------------------------------------------
+
+JOBNAME="binaph"
+export JOBNAME
+
+
+# -------------------------------------------------
+# determine DIRN: full path of the script directory
+# -------------------------------------------------
+
+DN="`dirname "$0"`"
+case "$DN" in
+/*)
+DIRN="$DN"
+;;
+?:*)
+DIRN="$DN"
+;;
+*)
+DIRN="`pwd`/$DN"
+;;
+esac
+
+# --------------------------------------------------------------------------------
+# on a batch system, the start.cmd will replace the next line to set DIRN properly
+# since the batch system may make a copy of the job script
+# --------------------------------------------------------------------------------
+
+DIRN="D:/Users/Yuman/Desktop/MasterProject/manual_calculations/chiral_cat_binaph"
+
+
+# ------------------------------------------------------------------------------------
+# set SCM_RESULTDIR to DIRN, so results end up in the full path as required by ADFJOBS
+# ------------------------------------------------------------------------------------
+
+SCM_RESULTDIR="$DIRN"
+export SCM_RESULTDIR
+
+#----------------------------
+# for AMS, set AMS_RESULTSDIR
+#----------------------------
+
+AMS_RESULTSDIR="$SCM_RESULTDIR/$JOBNAME.results"
+export AMS_RESULTSDIR
+rm -rf "$AMS_RESULTSDIR"
+mkdir -p "$AMS_RESULTSDIR"
+unset AMS_SWITCH_LOGFILE_AND_STDOUT
+
+# ----------------------------------
+# pass the location of the info file
+# ----------------------------------
+
+SCM_INFOFILE="$SCM_RESULTDIR/$JOBNAME.info"
+export SCM_INFOFILE
+
+# ---------------------------------
+# update the status in the pid file
+# ---------------------------------
+
+echo "# pid: $$" >> "$SCM_RESULTDIR/$JOBNAME.pid"
+echo "# status: running" >> "$SCM_RESULTDIR/$JOBNAME.pid"
+
+
+# ---------------
+# prepare logfile
+# ---------------
+
+if test -s "$SCM_RESULTDIR/$JOBNAME.logfile"
+then
+    cp "$SCM_RESULTDIR/$JOBNAME.logfile" "$SCM_RESULTDIR/$JOBNAME.logfile~"
+fi
+cat /dev/null > "$SCM_RESULTDIR/$JOBNAME.logfile"
+
+SCM_LOGFILE="$SCM_RESULTDIR/$JOBNAME.logfile"
+export SCM_LOGFILE
+
+
+
+
+
+# ------------------------------------------------------------------
+# within SCM_RESULTDIR, make a new empty directory just for this job
+# ------------------------------------------------------------------
+
+XX=0
+SCM_JOBDIR="$SCM_RESULTDIR/tmp.$USER.$$.$XX.noindex"
+while test -d "$SCM_JOBDIR" 
+do
+   XX=`expr $XX + 1`
+   SCM_JOBDIR="$SCM_RESULTDIR/tmp.$USER.$$.$XX.noindex"
+done
+export SCM_JOBDIR
+mkdir "$SCM_JOBDIR"
+echo "# jobdir: localhost:$SCM_JOBDIR" >> "$SCM_INFOFILE"
+
+if test ! -d "$SCM_JOBDIR"
+then
+    echo "Could not create temporary directory $SCM_JOBDIR" >> "$SCM_RESULTDIR/$JOBNAME.logfile"
+    echo "# status: killed" >> "$SCM_RESULTDIR/$JOBNAME.pid"
+    exit
+fi
+
+# -----------------------------------------------------
+# nodeinfo may be needed, and keep backup of old output
+# -----------------------------------------------------
+
+if test -f nodeinfo 
+then
+    cp nodeinfo "$SCM_JOBDIR/nodeinfo"
+fi
+cd "$SCM_JOBDIR"
+
+if test -s "$SCM_RESULTDIR/$JOBNAME.out"
+then
+    mv "$SCM_RESULTDIR/$JOBNAME.out" "$SCM_RESULTDIR/$JOBNAME.out~"
+fi
+
+
+
+# -------------------------------------------------------
+# on normal or abnormal exits, clean up and update status
+# -------------------------------------------------------
+
+trap "ready \"abnormal exit (signal 1)\"; exit"  1 
+trap "ready \"abnormal exit (signal 2)\"; exit"  2 
+trap "ready \"abnormal exit (signal 3)\"; exit"  3
+trap "ready \"abnormal exit (signal 15)\"; exit" 15
+
+# -------------------------------------
+# define easy vars for output and error
+# -------------------------------------
+
+SCM_OUT="$SCM_RESULTDIR/$JOBNAME.out"
+export SCM_OUT
+SCM_ERR="$SCM_RESULTDIR/$JOBNAME.err"
+export SCM_ERR
+
+
+# ----------------------
+# execute the run script
+# ----------------------
+
+cat << \EORTHEJOB > job
+#!/bin/sh
+
+"$AMSBIN/ams" << eor
+
+Task GeometryOptimization
+System
+    Atoms
+        C -2.871601665706466 1.123266151410787 1.378942347212304 
+        C -3.860240325493862 1.103528235812447 2.346225049231768 
+        C -4.252127233250082 -0.09898620102580309 2.96921773218286 
+        C -3.66619935575414 -1.280915574299433 2.604724556717815 
+        C -1.11638913958147 -2.545095859080142 0.2093780172899561 
+        C -0.7256588953500583 -1.345590634169294 -0.4140671771839204 
+        C -1.286593486994354 -0.1531860691561817 -0.04094186617567312 
+        C -2.268062555030049 -0.1000935912720182 0.9782037675490003 
+        C -2.671546096787645 -1.315357152573725 1.598559944674723 
+        C -2.070250796828799 -2.529579807451398 1.192281150873535 
+        O -4.49784455737629 2.239017399498012 2.739116624887679 
+        H -5.016351002279412 -0.05764127911036265 3.736023326318425 
+        H -3.961577029505806 -2.208007818704979 3.084578269165404 
+        H -0.6600330719244444 -3.479490088347488 -0.09772314371950562 
+        H 0.0241357000789486 -1.373399636718869 -1.197003465619403 
+        H -0.5835086065564371 1.3780218433803 2.475013761460322 
+        H -2.381685289337432 -3.451578126669608 1.672531214949068 
+        C -2.443560687391543 2.427678889988402 0.8025959240771767 
+        C -3.281757928901996 3.129094709121113 -0.04924378954146783 
+        C -2.900823173148131 4.391711297263802 -0.5590259502648831 
+        C -1.691140563027656 4.934332013576078 -0.2313611384735306 
+        C 1.29710595253629 4.130315141862038 1.833649449216772 
+        C 0.9135244350757888 2.889570248060997 2.373915637346152 
+        C -0.2947768564024776 2.331986284885989 2.048328410453701 
+        C -1.183027152838542 2.985781618257991 1.159580148154004 
+        C -0.800271625447496 4.249244135848124 0.6297236401619994 
+        C 0.4548791785563485 4.796438485276473 0.9827594150835061 
+        O -4.491363134523743 2.664348805839293 -0.4331495704544082 
+        H -3.591240623605013 4.904270044985628 -1.218066415806036 
+        H -1.39831436316057 5.900339243287506 -0.6286200566332422 
+        H 2.258351443760128 4.555285883382192 2.099973434594034 
+        H 1.583084663948652 2.375858326244592 3.05499679298046 
+        H -0.9874072610204939 0.7673886151522586 -0.5295071428237879 
+        H 0.7388812885908131 5.758039571639821 0.5678426345773471 
+        H -4.168182589192568 2.997267916524068 2.231920607962904 
+        H -4.591921137457448 1.698143721229534 -0.2898465349172286 
+        H -7.704846431266124 -0.6342368389499435 1.820344485995353 
+        C -7.158651215364464 1.351787746650125 1.353739341782766 
+        C -7.037793177702905 0.0259579754110963 1.276405043548613 
+        C -5.998362169543077 -0.6163838681448998 0.4611904680303314 
+        O -5.187269288620428 -0.02400342328154001 -0.2148384640410394 
+        H -6.49102069066034 2.014915930853458 0.8193609825254469 
+        H -6.002901175308488 -1.723730388684367 0.5039357053992228 
+        H -7.918451748304528 1.82642165789665 1.9586873523101 
+    End
+    BondOrders
+         1 2 1.5
+         1 8 1.5
+         1 18 1.0
+         2 3 1.5
+         2 11 1.0
+         3 4 1.5
+         3 12 1.0
+         4 9 1.5
+         4 13 1.0
+         5 6 1.5
+         5 10 1.5
+         5 14 1.0
+         6 7 1.5
+         6 15 1.0
+         7 8 1.5
+         7 33 1.0
+         8 9 1.5
+         9 10 1.5
+         10 17 1.0
+         11 35 1.0
+         16 24 1.0
+         18 19 1.5
+         18 25 1.5
+         19 20 1.5
+         19 28 1.0
+         20 21 1.5
+         20 29 1.0
+         21 26 1.5
+         21 30 1.0
+         22 23 1.5
+         22 27 1.5
+         22 31 1.0
+         23 24 1.5
+         23 32 1.0
+         24 25 1.5
+         25 26 1.5
+         26 27 1.5
+         27 34 1.0
+         28 36 1.0
+         37 39 1.0
+         38 39 2.0
+         38 42 1.0
+         38 44 1.0
+         39 40 1.0
+         40 41 2.0
+         40 43 1.0
+    End
+End
+
+Engine ADF
+    Basis
+        Type TZ2P
+        Core None
+    End
+    XC
+        GGA OLYP
+    End
+EndEngine
+eor
+
+
+
+EORTHEJOB
+
+chmod u+x job
+./job >>"$SCM_RESULTDIR/$JOBNAME.out" 2>> "$SCM_RESULTDIR/$JOBNAME.err"
+rm job
+
+# <<EPILOG>>
+
+ready
+
+

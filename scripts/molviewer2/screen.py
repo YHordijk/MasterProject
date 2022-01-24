@@ -379,6 +379,7 @@ class Screen:
 
 
 	def init_loop(self, state):
+		pg.font.init()
 		state['rot'] = np.array([0,0])
 		state['rotation'] = np.array([0,0])
 		state['zoom'] = 0
@@ -410,6 +411,22 @@ class Screen:
 
 		[mol.rotate(x=state['rot'][0], y=state['rot'][1]) for mol in state['mols']]
 		self._prepare_molecule_surf(state['molidx'])
+
+		#draw some text
+		try:
+			font = pg.font.SysFont(None, 50)
+			text = font.render(f"{state['mols'][state['molidx']].name} <== {state['mols'][state['molidx']].reaction}", True, (255,255,255,255))
+			self.molecule_surf.blit(text, (20,20))
+
+			font = pg.font.SysFont(None, 24)
+			i = 0
+			for R, s in state['mols'][state['molidx']].substituents.items():
+				text = font.render(f'{R} = {s}', True, (255,255,255,255))
+				self.molecule_surf.blit(text, (20,70+i*30))
+				i += 1
+		except:
+			pass
+
 
 
 	def post_update(self, state):

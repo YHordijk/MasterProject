@@ -18,7 +18,18 @@ def show(mols, simple=False):
 
 if __name__ == '__main__':
 	if len(sys.argv) > 1:
-		show(molecule.load_molecule(sys.argv[1]), simple=False)
+		mol = molecule.load_molecule(sys.argv[1])
+		mol.substituents = {}
+		for a in sys.argv[2:]:
+			f, arg = a.split('=')
+			if f == 'n':
+				mol.name = arg
+			if f.startswith('R'):
+				mol.substituents[f] = arg
+			if f == 'reaction':
+				mol.reaction = arg
+				
+		show(mol, simple=False)
 	else:
 		# xyz = molecule.load_molecule(r"D:\Users\Yuman\Desktop\MasterProject\calculations\achiral_catalyst_Cl_Br_ZnCl2\3.achiral_catalyst.Cl_Br_ZnCl2.Rcat\output.xyz")
 		xyz = struct_generator.generate_stationary_points('no_catalyst', {'R1':'Cl', 'R2':'Br', 'Rcat':'SnCl4'})

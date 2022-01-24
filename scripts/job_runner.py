@@ -108,4 +108,4 @@ class ReactionRunner:
 
 
 if __name__ == '__main__':
-    r = ReactionRunner('achiral_catalyst', {'R1':'Cl', 'R2':'Br', 'Rcat':'ZnCl2'})
+    r = ReactionRunner('achiral_catalyst', {'R1':'Cl', 'R2':'F', 'Rcat':'ZnCl2'})

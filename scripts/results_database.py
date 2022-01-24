@@ -13,7 +13,9 @@ def create_database_from_calculations(calc_path=paths.calculations, out_path=pat
 	          'stationary_point',
 	          'directory',
 	          'flags',
-	          'geometry',
+	          'inxyz',
+	          'outxyz',
+	          'runtime',
 	          'hash',
 	          ]
 
@@ -186,10 +188,12 @@ if __name__ == '__main__':
 				s = f'FREQ ({status["freq_progress"]}/{natoms})'
 			else:
 				s = 'GEO'
-			print(f'\t\tCALC: {id :<4} {res["reaction"]}.{res["stationary_point"]}: {s}')		
+			print(f'\t\tCALC: {id :<4} {res["reaction"]}.{res["substituents"]}.{res["stationary_point"]}: {s}')		
 
 	try:
 		import excel
 	except Exception as e:
 		print(e)
+		raise
 		pass
+
