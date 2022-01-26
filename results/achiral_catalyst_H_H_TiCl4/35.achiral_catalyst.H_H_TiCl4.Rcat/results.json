@@ -1,0 +1,132 @@
+{
+	"COSMO": false,
+	"Rcat": "TiCl4",
+	"all_substituents": {
+		"R1": "H",
+		"R2": "H",
+		"Rcat": "TiCl4"
+	},
+	"database_data": [
+		"35",
+		"S",
+		"GO",
+		"achiral_catalyst",
+		null,
+		null,
+		"TiCl4",
+		"Rcat",
+		"calculations\\achiral_catalyst_H_H_TiCl4\\35.achiral_catalyst.H_H_TiCl4.Rcat",
+		"D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst_H_H_TiCl4\\35.achiral_catalyst.H_H_TiCl4.Rcat",
+		"GO Rcat=TiCl4",
+		"resources\\input_xyz\\achiral_catalyst_H_H_TiCl4\\Rcat.xyz",
+		"calculations\\achiral_catalyst_H_H_TiCl4\\35.achiral_catalyst.H_H_TiCl4.Rcat\\output.xyz",
+		"0:20:14",
+		"815275c6df4842385f7a79c7e5e1f1744fc7a4605ab67383ed91bfc97b78f3ed"
+	],
+	"database_fields": [
+		"id",
+		"status",
+		"task",
+		"reaction",
+		"R1",
+		"R2",
+		"Rcat",
+		"stationary_point",
+		"calc_directory",
+		"result_directory",
+		"flags",
+		"inxyz",
+		"outxyz",
+		"runtime",
+		"hash"
+	],
+	"directory": "calculations\\achiral_catalyst_H_H_TiCl4\\35.achiral_catalyst.H_H_TiCl4.Rcat",
+	"energies": {
+		"bond_energy": -0.7706472872328841,
+		"eda_elstat": -0.6828423213475346,
+		"eda_orbit_int": -1.720215443997,
+		"eda_pauli": 1.6324105218967633,
+		"gibbs_energy": -0.7994914995714919
+	},
+	"files": {
+		"adfrkf": "calculations\\achiral_catalyst_H_H_TiCl4\\35.achiral_catalyst.H_H_TiCl4.Rcat\\adf.rkf",
+		"amsrkf": "calculations\\achiral_catalyst_H_H_TiCl4\\35.achiral_catalyst.H_H_TiCl4.Rcat\\ams.rkf",
+		"dillfile": "calculations\\achiral_catalyst_H_H_TiCl4\\35.achiral_catalyst.H_H_TiCl4.Rcat\\35.achiral_catalyst.H_H_TiCl4.Rcat.dill",
+		"errfile": "calculations\\achiral_catalyst_H_H_TiCl4\\35.achiral_catalyst.H_H_TiCl4.Rcat\\35.achiral_catalyst.H_H_TiCl4.Rcat.err",
+		"infile": "calculations\\achiral_catalyst_H_H_TiCl4\\35.achiral_catalyst.H_H_TiCl4.Rcat\\35.achiral_catalyst.H_H_TiCl4.Rcat.in",
+		"inxyz": "resources\\input_xyz\\achiral_catalyst_H_H_TiCl4\\Rcat.xyz",
+		"logfile": "calculations\\achiral_catalyst_H_H_TiCl4\\35.achiral_catalyst.H_H_TiCl4.Rcat\\ams.log",
+		"metainfo": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst_H_H_TiCl4\\meta.info",
+		"molview2_start_in": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst_H_H_TiCl4\\35.achiral_catalyst.H_H_TiCl4.Rcat\\molview2_start_in.bat",
+		"molview2_start_out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst_H_H_TiCl4\\35.achiral_catalyst.H_H_TiCl4.Rcat\\molview2_start_out.bat",
+		"outfile": "calculations\\achiral_catalyst_H_H_TiCl4\\35.achiral_catalyst.H_H_TiCl4.Rcat\\CreateAtoms.out",
+		"outxyz": "calculations\\achiral_catalyst_H_H_TiCl4\\35.achiral_catalyst.H_H_TiCl4.Rcat\\output.xyz"
+	},
+	"flags": "GO Rcat=TiCl4",
+	"flags_list": [
+		"GO",
+		"Rcat=TiCl4"
+	],
+	"hash": "815275c6df4842385f7a79c7e5e1f1744fc7a4605ab67383ed91bfc97b78f3ed",
+	"id": "35",
+	"in_geometry": [
+		"5\n",
+		"GO, Rcat=TiCl4\n",
+		"Ti\t 3.41934693\t-0.05999265\t-0.05790763\n",
+		"Cl\t 1.29000000\t 0.00000000\t 0.00000000\n",
+		"Cl\t 4.12181292\t-1.60367667\t 1.23230628\n",
+		"Cl\t 4.20057232\t 1.81488691\t 0.58675066\n",
+		"Cl\t 4.06500249\t-0.45118083\t-2.05068747\n"
+	],
+	"natoms": 5,
+	"out_geometry": [
+		"5\n",
+		"Cl4Ti optimized with ADF in AMS.\n",
+		"Ti       3.41931020023668      -0.06006351581952      -0.05783738647294\n",
+		"Cl       1.23629946115017       0.00107939478129       0.00125819345321\n",
+		"Cl       4.13934123427040      -1.64240135071026       1.26521044622622\n",
+		"Cl       4.22072786824147       1.86194034320268       0.60279902543299\n",
+		"Cl       4.08105589610128      -0.46051811145419      -2.10096843863949\n"
+	],
+	"path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst_H_H_TiCl4\\35.achiral_catalyst.H_H_TiCl4.Rcat",
+	"radical": false,
+	"reaction": "achiral_catalyst",
+	"results_dir": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst_H_H_TiCl4\\35.achiral_catalyst.H_H_TiCl4.Rcat",
+	"results_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst_H_H_TiCl4\\35.achiral_catalyst.H_H_TiCl4.Rcat\\results.json",
+	"runtime": "0:20:14",
+	"stationary_point": "Rcat",
+	"status": "S",
+	"substituents": {
+		"Rcat": "TiCl4"
+	},
+	"task": "GO",
+	"vibrations": {
+		"freq_imag_displ": [],
+		"freq_nimag": 0,
+		"frequencies": [
+			111.55201493915756,
+			111.63638911101314,
+			133.22917494086164,
+			133.30975888949746,
+			133.32605772002043,
+			368.12356014666585,
+			478.42175731920725,
+			478.50064670164573,
+			478.5247416319117
+		],
+		"intensities": [
+			1.1292755314009892e-06,
+			5.018197881292569e-07,
+			0.5148704625438707,
+			0.5129730424012113,
+			0.5131695764396977,
+			1.8384202492478532e-06,
+			132.43458459398795,
+			132.59205921936095,
+			132.6042466810478
+		]
+	},
+	"warnings": [
+		"WARNING: total elapsed time is much higher than the (CPU+system) time."
+	]
+}

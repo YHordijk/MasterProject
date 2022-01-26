@@ -78,7 +78,9 @@ def load_plams_molecule(mol):
 		name = m.name
 		elements = [a.symbol for a in m.atoms]
 		positions = np.array([a.coords for a in m.atoms])
-		molobjs.append(Molecule(name=name, elements=elements, positions=positions))
+		newm = Molecule(name=name, elements=elements, positions=positions)
+		newm.reaction = m.reaction
+		molobjs.append(newm)
 	return molobjs
 
 
@@ -111,10 +113,31 @@ class Molecule:
 
 	def update_molecule(self):
 		#this should be run anytime changes are made to the molecules positions and elements
-		self.atom_numbers = np.asarray([pt.elements.symbol(e).number for e in self.elements])
-		self.masses = np.asarray([pt.elements[n].mass for n in self.atom_numbers])
-		self.radii = np.asarray([pt.elements[n].covalent_radius for n in self.atom_numbers])
-		self.colours = np.asarray([data.ATOM_COLOURS[n] for n in self.atom_numbers])
+		self.atom_numbers = []
+		for e in self.elements:
+			if e == 'Xx': 
+				self.atom_numbers.append(0)
+			else:
+				self.atom_numbers.append(pt.elements.symbol(e).number)
+
+		self.masses = []
+		self.radii = []
+		self.colours = []
+		for n in self.atom_numbers:
+			if n > 0:
+				self.masses.append(pt.elements[n].mass)
+				self.radii.append(pt.elements[n].covalent_radius)
+			else:
+				self.masses.append(pt.elements[1].mass)
+				self.radii.append(pt.elements[1].covalent_radius)
+
+			self.colours.append(data.ATOM_COLOURS[n])
+
+		self.masses = np.array(self.masses)
+		self.radii = np.array(self.radii)
+		self.colours = np.array(self.colours)
+		self.atom_numbers = np.array(self.atom_numbers)
+
 		self.guess_bond_matrix()		
 		self.get_graph_representation()
 		self.get_distance_matrix()
@@ -283,11 +306,15 @@ class Molecule:
 			p = self.center_of_mass
 
 		self.positions = self.positions - p
+		self.original_pos = self.original_pos - p
 
 
 	def rotate(self, x=None, y=None, z=None):
 		R = self.get_rotation_matrix(x=x,y=y,z=z)
 		self.positions = (R @ self.positions.T).T
+		self.original_pos = (R @ self.original_pos.T).T
+		if hasattr(self, 'normalmode'):
+			self.normalmode = (R @ self.normalmode.T).T
 
 
 	def guess_bond_matrix(self, **params):
@@ -299,7 +326,6 @@ class Molecule:
 
 		#max valences for each element in mol
 		max_valences = np.asarray([int(data.MAX_VALENCE[e][0]) for e in self.atom_numbers])
-
 		#covalent radii
 		atom_radii = np.asarray([pt.elements[n].covalent_radius for n in self.atom_numbers])
 
@@ -412,7 +438,6 @@ class Molecule:
 
 if __name__ == '__main__':
 	mol = load_molecule('benzene')
-	print(mol)
 	scr = screen.Screen(size=(1600,900))
 	# scr.draw_mode = 'simple'
 	mol.center()

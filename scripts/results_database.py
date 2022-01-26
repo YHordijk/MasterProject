@@ -5,45 +5,13 @@ import summary, job_results, utility
 
 
 def create_database_from_calculations(calc_path=paths.calculations, out_path=paths.results_table):
-	fields = ['id',
-			  'status',
-			  'task',
-	          'reaction',
-	          'R1', 'R2', 'Rcat',
-	          'stationary_point',
-	          'directory',
-	          'flags',
-	          'inxyz',
-	          'outxyz',
-	          'runtime',
-	          'hash',
-	          ]
-
-	
-	dirs = []
-	for reaction_dir in os.listdir(calc_path):
-		p = os.path.join(calc_path, reaction_dir)
-		if not os.path.isdir(p): continue
-		for calc_dir in os.listdir(p):
-			calc_dir = os.path.join(p, calc_dir)
-			if os.path.isdir(calc_dir):
-				dirs.append(os.path.relpath(calc_dir, paths.master))
-
-	data = []
-	for d in dirs:
-		data_dict = job_results.get_results(os.path.join(paths.master, d))
-		data.append(data_dict)
-
-	#open csv in normal writing mode for first two lines
+	results = job_results.get_all_results(calc_path)
+	fields = results[0]['database_fields']
 	writer = csv.writer(open(out_path, 'w+', newline=''))
 	writer.writerow(['sep=,'])
 	writer.writerow([f.upper() for f in fields])
-	#switch to dictwriter for writing data
-	writer = csv.DictWriter(open(out_path, 'a', newline=''), fields, extrasaction='ignore')
-	for d in data:
-		writer.writerow(d)
-
-
+	for res in results:
+		writer.writerow(res['database_data'])
 
 
 class DatabaseManager:
@@ -56,8 +24,10 @@ class DatabaseManager:
 	def __enter__(self):
 		return self
 
+
 	def __exit__(self, *args):
 		return None
+
 
 	#database management code
 	def read_data(self):
@@ -66,13 +36,10 @@ class DatabaseManager:
 		self.data = []	
 		for d in self.database_reader:
 			self.data.append({f:d[i] for i, f in enumerate(self.fieldnames)})
-
-		self.results = {d['ID']: job_results.get_results(os.path.join(paths.master,d['DIRECTORY'])) for d in self.data}
-
+		self.results = {d['ID']: job_results.get_results(os.path.join(paths.master,d['CALC_DIRECTORY'])) for d in self.data}
 		self.data_dicts = {}
 		for i, f in enumerate(self.fieldnames):
 			self.data_dicts[f] = [d[f] for d in self.data]
-
 		self.ids = [int(d['ID']) for d in self.data]
 		self.hashes = [d['HASH'] for d in self.data]
 		all_status = [d['STATUS'] for d in self.data]
@@ -82,7 +49,6 @@ class DatabaseManager:
 		self.Nfail = all_status.count('F')
 		self.Nwarn = all_status.count('W')
 		self.Ncalcs = len(self.ids)
-
 		self.running_status = self.get_running_status()
 
 
@@ -96,16 +62,18 @@ class DatabaseManager:
 
 		return self.results[id]
 
-	def get_free_id(self):
-		for i in self.ids:
-			if not i+1 in self.ids:
-				return i+1
+
+	def get_id_by_hash(self, hash):
+		for d in self.data:
+			if hash == d['HASH']:
+				return d['ID']
+		return None
+
 
 	def get_running_status(self):
 		statuses = {}
 		running_results = [job_results.get_results(os.path.join(paths.master,d['DIRECTORY'])) for d in self.data if d['STATUS'] == 'R']
-		outfiles = [os.path.join(paths.master, r['logfile']) for r in running_results]
-
+		outfiles = [os.path.join(paths.master, r['files']['logfile']) for r in running_results]
 		for res, outfile in zip(running_results, outfiles):
 			statuses[res['id']] = {}
 			#check geom
@@ -126,8 +94,8 @@ class DatabaseManager:
 				statuses[res['id']]['geo_done'] = geo_done
 				statuses[res['id']]['freq_progress'] = freq_progress
 				statuses[res['id']]['freq_eta'] = 0
-
 		return statuses
+
 
 def get_hash_collision(hash):
 	with DatabaseManager() as dbm:
@@ -142,11 +110,9 @@ def get_n_free_ids(n, write_to_list=True, list_path=paths.id_list):
 			new_ids.append(i+1)
 		if len(new_ids) == n:
 			break
-
 	with open(list_path, 'a') as id_list:
 		w = ',' + ','.join([str(i) for i in new_ids])
 		id_list.write(w)
-
 	return new_ids
 
 
@@ -155,18 +121,13 @@ def get_occupied_ids(path=paths.id_list):
 		return [int(i) for i in file.read().strip().split(',') if i.strip() != '']
 
 
-
 def update_id_list(path=paths.id_list):
 	create_database_from_calculations()
 	with DatabaseManager() as dbm:
 		ids = dbm.ids
-
 	with open(path, 'w+') as file:
 		file.write(','.join([str(i) for i in ids]))
-
 	return ids
-
-
 
 
 if __name__ == '__main__':
@@ -196,4 +157,3 @@ if __name__ == '__main__':
 		print(e)
 		raise
 		pass
-

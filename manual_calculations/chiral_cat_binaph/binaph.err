@@ -1,0 +1,6 @@
+      0 [main] sh 17936 fork: child -1 - forked process 11756 died unexpectedly, retry 0, exit code 0xC000026B, errno 11
+Z:/AMS2021.106/bin/ams: fork: retry: Resource temporarily unavailable
+1298070 [main] sh 17936 fork: child -1 - forked process 776 died unexpectedly, retry 0, exit code 0xC000026B, errno 11
+Z:/AMS2021.106/bin/ams: fork: retry: Resource temporarily unavailable
+3449221 [main] sh 17936 fork: child -1 - forked process 13048 died unexpectedly, retry 0, exit code 0xC000026B, errno 11
+Z:/AMS2021.106/bin/ams: fork: retry: Resource temporarily unavailable

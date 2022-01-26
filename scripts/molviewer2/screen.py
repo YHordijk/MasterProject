@@ -228,14 +228,10 @@ class Screen:
 		def rotate_image(image, pos, originPos, angle):
 			image_rect = image.get_rect(topleft = (pos[0]-originPos[0], pos[1]-originPos[1]))
 			offset_center_to_pivot = pg.math.Vector2(list(pos)) - image_rect.center
-
 			rotated_offset = offset_center_to_pivot.rotate(-angle)
-
 			rotated_image_center = (pos[0] - rotated_offset.x, pos[1] - rotated_offset.y)
-
 			rotated_image = pg.transform.rotate(image, angle)
 			rotated_image_rect = rotated_image.get_rect(center = rotated_image_center)
-
 			return rotated_image, rotated_image_rect
 
 		if self.draw_mode.lower() == 'normal':
@@ -389,6 +385,9 @@ class Screen:
 		state['show_fps'] = True
 		state['time'] = 0
 		state['prev_keys'] = pg.key.get_pressed()
+		state['normalmode_animation'] = False
+		state['normalmode_displacement'] = 0
+		state['normalmode_animation_start_time'] = 0
 
 
 	def pre_update(self, state):
@@ -397,6 +396,12 @@ class Screen:
 		state['events'] = pg.event.get()
 		self.molecule_surf.fill(self.background_color)
 		self.handle_events(state)
+		
+		if state['normalmode_animation']:
+			state['normalmode_displacement'] = np.sin(7*(state['normalmode_animation_start_time'] - state['time']))
+			currmol = self.mols[state['molidx']]
+			currmol.positions = currmol.original_pos + state['normalmode_displacement']*currmol.normalmode
+
 		# state['main_mol'].shake(0.1)
 		# state['main_mol'].center()
 
@@ -415,18 +420,23 @@ class Screen:
 		#draw some text
 		try:
 			font = pg.font.SysFont(None, 50)
-			text = font.render(f"{state['mols'][state['molidx']].name} <== {state['mols'][state['molidx']].reaction}", True, (255,255,255,255))
+			text = font.render(f"{state['mols'][state['molidx']].name} - {state['mols'][state['molidx']].reaction}", True, (255,255,255,255))
 			self.molecule_surf.blit(text, (20,20))
-
+		except: pass
+		try:
 			font = pg.font.SysFont(None, 24)
 			i = 0
 			for R, s in state['mols'][state['molidx']].substituents.items():
 				text = font.render(f'{R} = {s}', True, (255,255,255,255))
 				self.molecule_surf.blit(text, (20,70+i*30))
 				i += 1
-		except:
-			pass
-
+		except: pass
+		try:
+			if hasattr(self.mols[state['molidx']], 'normalmode'):
+				text = font.render(f'Press [SPACE] to visualize imaginary mode',True,(255,255,255,255))
+				self.molecule_surf.blit(text, (self.size[0]-400, self.size[1]-40))
+		except: pass
+			
 
 
 	def post_update(self, state):
@@ -449,8 +459,8 @@ class Screen:
 	def handle_events(self, state):
 		if state['keys'][pg.K_ESCAPE]:
 			state['run'] = False
-		if state['keys'][pg.K_SPACE]:
-			self.show_fig = True
+		# if state['keys'][pg.K_SPACE]:
+		# 	self.show_fig = True
 		else:
 			self.show_fig = False
 
@@ -483,6 +493,14 @@ class Screen:
 		if state['keys'][pg.K_RIGHT] and not state['prev_keys'][pg.K_RIGHT]:
 			state['molidx'] -= 1
 			state['molidx'] = state['molidx'] % len(self.mols)
+
+		if state['keys'][pg.K_SPACE] and not state['prev_keys'][pg.K_SPACE] and hasattr(self.mols[state['molidx']], 'normalmode'):
+			state['normalmode_animation'] = not state['normalmode_animation']
+			if state['normalmode_animation']:
+				state['normalmode_animation_start_time'] = state['time']
+			else:
+				state['normalmode_displacement'] = 0
+				self.mols[state['molidx']].positions = self.mols[state['molidx']].original_pos
 
 	
 	def draw_axes(self, surf):

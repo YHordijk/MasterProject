@@ -1,0 +1,124 @@
+{
+	"COSMO": false,
+	"Rcat": "BF3",
+	"all_substituents": {
+		"R1": "H",
+		"R2": "H",
+		"Rcat": "BF3"
+	},
+	"database_data": [
+		"25",
+		"S",
+		"GO",
+		"achiral_catalyst",
+		null,
+		null,
+		"BF3",
+		"Rcat",
+		"calculations\\achiral_catalyst_H_H_BF3\\25.achiral_catalyst.H_H_BF3.Rcat",
+		"D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst_H_H_BF3\\25.achiral_catalyst.H_H_BF3.Rcat",
+		"GO Rcat=BF3",
+		"resources\\input_xyz\\achiral_catalyst_H_H_BF3\\Rcat.xyz",
+		"calculations\\achiral_catalyst_H_H_BF3\\25.achiral_catalyst.H_H_BF3.Rcat\\output.xyz",
+		"0:05:28",
+		"beff522a0719b63a020967b66e38eb3344696f2316ee8daf106f92e0b223453c"
+	],
+	"database_fields": [
+		"id",
+		"status",
+		"task",
+		"reaction",
+		"R1",
+		"R2",
+		"Rcat",
+		"stationary_point",
+		"calc_directory",
+		"result_directory",
+		"flags",
+		"inxyz",
+		"outxyz",
+		"runtime",
+		"hash"
+	],
+	"directory": "calculations\\achiral_catalyst_H_H_BF3\\25.achiral_catalyst.H_H_BF3.Rcat",
+	"energies": {
+		"bond_energy": -0.8320917169219456,
+		"eda_elstat": -0.7316852578967683,
+		"eda_orbit_int": -3.2268936553461405,
+		"eda_pauli": 3.126487244455994,
+		"gibbs_energy": -0.8453412465216443
+	},
+	"files": {
+		"adfrkf": "calculations\\achiral_catalyst_H_H_BF3\\25.achiral_catalyst.H_H_BF3.Rcat\\adf.rkf",
+		"amsrkf": "calculations\\achiral_catalyst_H_H_BF3\\25.achiral_catalyst.H_H_BF3.Rcat\\ams.rkf",
+		"dillfile": "calculations\\achiral_catalyst_H_H_BF3\\25.achiral_catalyst.H_H_BF3.Rcat\\25.achiral_catalyst.H_H_BF3.Rcat.dill",
+		"errfile": "calculations\\achiral_catalyst_H_H_BF3\\25.achiral_catalyst.H_H_BF3.Rcat\\25.achiral_catalyst.H_H_BF3.Rcat.err",
+		"infile": "calculations\\achiral_catalyst_H_H_BF3\\25.achiral_catalyst.H_H_BF3.Rcat\\25.achiral_catalyst.H_H_BF3.Rcat.in",
+		"inxyz": "resources\\input_xyz\\achiral_catalyst_H_H_BF3\\Rcat.xyz",
+		"logfile": "calculations\\achiral_catalyst_H_H_BF3\\25.achiral_catalyst.H_H_BF3.Rcat\\ams.log",
+		"metainfo": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst_H_H_BF3\\meta.info",
+		"molview2_start_in": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst_H_H_BF3\\25.achiral_catalyst.H_H_BF3.Rcat\\molview2_start_in.bat",
+		"molview2_start_out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst_H_H_BF3\\25.achiral_catalyst.H_H_BF3.Rcat\\molview2_start_out.bat",
+		"outfile": "calculations\\achiral_catalyst_H_H_BF3\\25.achiral_catalyst.H_H_BF3.Rcat\\CreateAtoms.out",
+		"outxyz": "calculations\\achiral_catalyst_H_H_BF3\\25.achiral_catalyst.H_H_BF3.Rcat\\output.xyz"
+	},
+	"flags": "GO Rcat=BF3",
+	"flags_list": [
+		"GO",
+		"Rcat=BF3"
+	],
+	"hash": "beff522a0719b63a020967b66e38eb3344696f2316ee8daf106f92e0b223453c",
+	"id": "25",
+	"in_geometry": [
+		"4\n",
+		"GO, Rcat=BF3\n",
+		"B\t 1.18000000\t 0.00000000\t 0.00000000\n",
+		"F\t 1.18000000\t 1.13570357\t-0.65569876\n",
+		"F\t 1.18000000\t-1.13570357\t-0.65569876\n",
+		"F\t 1.18000000\t 0.00000000\t 1.31139752\n"
+	],
+	"natoms": 4,
+	"out_geometry": [
+		"4\n",
+		"BF3 optimized with ADF in AMS.\n",
+		"B        1.17999994227553      -0.00000000000000       0.00000000000000\n",
+		"F        1.18000001924149       1.14685310005619      -0.66213594417928\n",
+		"F        1.18000001924149      -1.14685310005619      -0.66213594417928\n",
+		"F        1.18000001924149       0.00000000000000       1.32427188835856\n"
+	],
+	"path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst_H_H_BF3\\25.achiral_catalyst.H_H_BF3.Rcat",
+	"radical": false,
+	"reaction": "achiral_catalyst",
+	"results_dir": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst_H_H_BF3\\25.achiral_catalyst.H_H_BF3.Rcat",
+	"results_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst_H_H_BF3\\25.achiral_catalyst.H_H_BF3.Rcat\\results.json",
+	"runtime": "0:05:28",
+	"stationary_point": "Rcat",
+	"status": "S",
+	"substituents": {
+		"Rcat": "BF3"
+	},
+	"task": "GO",
+	"vibrations": {
+		"freq_imag_displ": [],
+		"freq_nimag": 0,
+		"frequencies": [
+			459.573729718368,
+			459.5809642223449,
+			664.6597285516453,
+			852.5239402675106,
+			1396.4933949907968,
+			1396.4950440583025
+		],
+		"intensities": [
+			10.820816168538247,
+			10.81912037074541,
+			86.00215746760016,
+			8.775491286899239e-08,
+			427.78078229165476,
+			427.7816837119819
+		]
+	},
+	"warnings": [
+		"WARNING: total elapsed time is much higher than the (CPU+system) time."
+	]
+}

@@ -1,0 +1,119 @@
+{
+	"COSMO": false,
+	"all_substituents": {
+		"R1": "H",
+		"R2": "H",
+		"Rcat": "I2"
+	},
+	"database_data": [
+		"2",
+		"S",
+		"GO",
+		"achiral_catalyst",
+		null,
+		null,
+		null,
+		"Rrad",
+		"calculations\\achiral_catalyst_H_H_I2.002\\2.achiral_catalyst.H_H_I2.Rrad",
+		"D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst_H_H_I2.002\\2.achiral_catalyst.H_H_I2.Rrad",
+		"GO radical",
+		"resources\\input_xyz\\achiral_catalyst_H_H_I2\\Rrad.xyz",
+		"calculations\\achiral_catalyst_H_H_I2.002\\2.achiral_catalyst.H_H_I2.Rrad\\output.xyz",
+		"0:03:56",
+		"08fba8608791072397dd60e4fb75c6e912314dd0dd533f9b3b0e13a505ff3f51"
+	],
+	"database_fields": [
+		"id",
+		"status",
+		"task",
+		"reaction",
+		"R1",
+		"R2",
+		"Rcat",
+		"stationary_point",
+		"calc_directory",
+		"result_directory",
+		"flags",
+		"inxyz",
+		"outxyz",
+		"runtime",
+		"hash"
+	],
+	"directory": "calculations\\achiral_catalyst_H_H_I2.002\\2.achiral_catalyst.H_H_I2.Rrad",
+	"energies": {
+		"bond_energy": -0.6477825297596697,
+		"eda_elstat": -0.2541949964244457,
+		"eda_orbit_int": -2.259943422314928,
+		"eda_pauli": 1.8663559945527006,
+		"gibbs_energy": -0.6376940690057704
+	},
+	"files": {
+		"adfrkf": "calculations\\achiral_catalyst_H_H_I2.002\\2.achiral_catalyst.H_H_I2.Rrad\\adf.rkf",
+		"amsrkf": "calculations\\achiral_catalyst_H_H_I2.002\\2.achiral_catalyst.H_H_I2.Rrad\\ams.rkf",
+		"dillfile": "calculations\\achiral_catalyst_H_H_I2.002\\2.achiral_catalyst.H_H_I2.Rrad\\2.achiral_catalyst.H_H_I2.Rrad.dill",
+		"errfile": "calculations\\achiral_catalyst_H_H_I2.002\\2.achiral_catalyst.H_H_I2.Rrad\\2.achiral_catalyst.H_H_I2.Rrad.err",
+		"infile": "calculations\\achiral_catalyst_H_H_I2.002\\2.achiral_catalyst.H_H_I2.Rrad\\2.achiral_catalyst.H_H_I2.Rrad.in",
+		"inxyz": "resources\\input_xyz\\achiral_catalyst_H_H_I2\\Rrad.xyz",
+		"logfile": "calculations\\achiral_catalyst_H_H_I2.002\\2.achiral_catalyst.H_H_I2.Rrad\\ams.log",
+		"metainfo": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst_H_H_I2.002\\meta.info",
+		"molview2_start_in": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst_H_H_I2.002\\2.achiral_catalyst.H_H_I2.Rrad\\molview2_start_in.bat",
+		"molview2_start_out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst_H_H_I2.002\\2.achiral_catalyst.H_H_I2.Rrad\\molview2_start_out.bat",
+		"outfile": "calculations\\achiral_catalyst_H_H_I2.002\\2.achiral_catalyst.H_H_I2.Rrad\\CreateAtoms.out",
+		"outxyz": "calculations\\achiral_catalyst_H_H_I2.002\\2.achiral_catalyst.H_H_I2.Rrad\\output.xyz"
+	},
+	"flags": "GO radical",
+	"flags_list": [
+		"GO",
+		"radical"
+	],
+	"hash": "08fba8608791072397dd60e4fb75c6e912314dd0dd533f9b3b0e13a505ff3f51",
+	"id": "2",
+	"in_geometry": [
+		"4\n",
+		"GO, radical\n",
+		"H\t 2.05357037\t-0.80344073\t 0.00000000\n",
+		"C\t 0.97293718\t-0.69574113\t 0.00000000\n",
+		"H\t 0.66346652\t-0.15035116\t 0.88661716\n",
+		"H\t 0.66346652\t 0.15035116\t-0.88661716\n"
+	],
+	"natoms": 4,
+	"out_geometry": [
+		"4\n",
+		"CH3 optimized with ADF in AMS.\n",
+		"H        2.03414860969726      -0.90031737157494      -0.04176236828101\n",
+		"C        1.08848070219207      -0.37474301381568       0.00006494411583\n",
+		"H        0.58520701720724      -0.24011154751255       0.94931253507637\n",
+		"H        0.64560426090343       0.01599007290317      -0.90761511091119\n"
+	],
+	"path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst_H_H_I2.002\\2.achiral_catalyst.H_H_I2.Rrad",
+	"radical": true,
+	"reaction": "achiral_catalyst",
+	"results_dir": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst_H_H_I2.002\\2.achiral_catalyst.H_H_I2.Rrad",
+	"results_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst_H_H_I2.002\\2.achiral_catalyst.H_H_I2.Rrad\\results.json",
+	"runtime": "0:03:56",
+	"stationary_point": "Rrad",
+	"status": "S",
+	"substituents": {},
+	"task": "GO",
+	"vibrations": {
+		"freq_imag_displ": [],
+		"freq_nimag": 0,
+		"frequencies": [
+			519.6983928116491,
+			1369.5238266220026,
+			1369.8619044712755,
+			3068.1105450183954,
+			3250.8705288895776,
+			3252.067337256637
+		],
+		"intensities": [
+			48.49541067240353,
+			2.764634372568717,
+			2.7702181988381858,
+			8.975445370747653e-05,
+			4.5139577984187484,
+			4.49509820948295
+		]
+	},
+	"warnings": []
+}

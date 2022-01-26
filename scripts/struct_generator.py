@@ -9,7 +9,7 @@ def reaction_path(name):
     return os.path.join(paths.SGT, name + '.tmplt')
 
 
-def generate_stationary_points(template_name, substituents={}):
+def generate_stationary_points(template_name, substituents={}, keep_dummy=False):
     '''
     This function generates stationary points according to a given template
     It will split the file up into the different molecules
@@ -18,7 +18,6 @@ def generate_stationary_points(template_name, substituents={}):
     template_name: name of template file
     substituent: dictionary with substituent group as key and substituent name as value
     '''
-
 
     def parse_contents(lines, issub=False):
         lines = [l.strip() for l in lines]
@@ -33,6 +32,7 @@ def generate_stationary_points(template_name, substituents={}):
         #create molecule
         mol = plams.Molecule()
         mol.name = name
+        mol.reaction = template_name
         mol.flags = flags
         atoms = [plams.Atom(symbol=s, coords=c) for s, c in zip(elements, coords)]
         
@@ -41,7 +41,6 @@ def generate_stationary_points(template_name, substituents={}):
             mol.connector = {}
             mol.atoms_to_delete = []
             TSRC = []
-
 
         for i, a, t in zip(range(len(atoms)), atoms, tags):
             if not issub:
@@ -65,13 +64,10 @@ def generate_stationary_points(template_name, substituents={}):
                                 name = f[0:-1]
                         mol.connector_distance = (name, float(f.split('=')[-1]))
 
-
-
             if issub:
                 if   'a' in t: mol.connector[0] = i
                 elif 'b' in t: mol.connector[1] = i
         
-
         [mol.add_atom(a) for a in atoms]
 
         if issub: mol.connector = tuple(mol.connector)
@@ -85,39 +81,44 @@ def generate_stationary_points(template_name, substituents={}):
 
     #First parse substituents
     sub_mols = {}
-        
     for R, p in substituents.items():
         with open(sub_path(p), 'r') as file:
             sub_mols[R] = parse_contents(file.readlines(), issub=True)
     with open(sub_path('H'), 'r') as file:
         default_sub = parse_contents(file.readlines(), issub=True)
 
-
     all_substituent_names = {}
-    substituents[R] = sub_mols[R].name if R in substituents else default_sub.name
+    # if R 
+    # substituents[R] = sub_mols[R].name if R in substituents else default_sub.name
     with open(reaction_path(template_name), 'r') as reaction:
         content = reaction.read().split('\n\n')
         mols = [parse_contents(c.split('\n')) for c in content]
         for m in mols:
             m.substituents = {}
             for R in m.connector.keys():
-                m.substituents[R] = sub_mols[R].name if R in substituents else default_sub.name
+                if R in substituents:
+                    m.substituents[R] = sub_mols[R].name
+                elif not keep_dummy: 
+                    default_sub.name
+
                 if not R in all_substituent_names:
                     all_substituent_names[R] = sub_mols[R].name if R in substituents else default_sub.name
 
             for R in m.connector:
                 if not R in sub_mols:   s = default_sub.copy()
                 else:                   s = sub_mols[R].copy()
-                lconn = (s.atoms[s.connector[0]], s.atoms[s.connector[1]])
 
-                bond_length = None
-                if hasattr(m, 'connector_distance'):
-                    if m.connector_distance[0] == R:
-                        bond_length = m.connector_distance[1]
-                    
-                m.substitute(m.connector[R], s, lconn, bond_length=bond_length)
-                for dela in m.atoms_to_delete:
-                    m.delete_atom(dela)
+                if not keep_dummy:
+                    lconn = (s.atoms[s.connector[0]], s.atoms[s.connector[1]])
+
+                    bond_length = None
+                    if hasattr(m, 'connector_distance'):
+                        if m.connector_distance[0] == R:
+                            bond_length = m.connector_distance[1]
+                        
+                    m.substitute(m.connector[R], s, lconn, bond_length=bond_length)
+                    for dela in m.atoms_to_delete:
+                        m.delete_atom(dela)
 
         sorted_Rnames = list(sorted(all_substituent_names.keys()))
         sorted_R = [all_substituent_names[R] for R in sorted_Rnames]
@@ -135,6 +136,13 @@ def generate_stationary_points(template_name, substituents={}):
 def get_mol_path(base, dir, name):
     return os.path.join(base, dir, name + '.xyz')
 
+
+def get_hashes_for_calc(template, substituents):
+    mols = generate_stationary_points(template, substituents)
+    hashes = {}
+    for mol in mols:
+        hashes[mol.name] = utility.hash(template, mol.name, mol.flags)
+    return hashes
 
 
 if __name__ == '__main__':

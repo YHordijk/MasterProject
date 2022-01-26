@@ -30,14 +30,11 @@ with open(paths.results_table) as csv:
 		ws.cell(column=col, row=row, value=n)
 		ws.cell(column=col, row=row).font = pxl.styles.Font(bold=True)
 		ws.cell(column=col, row=row).border = bHeader
+		if n == 'RESULT_DIRECTORY':
+			directory_idx = i
 		if n == 'STATUS':
 			status_idx = i
-		if n == 'DIRECTORY':
-			directory_idx = i
-		if n == 'OUTXYZ':
-			outxyz_idx = i
-		if n == 'INXYZ':
-			inxyz_idx = i
+
 
 	directories = [d[directory_idx] for d in data]
 	statuses = [d[status_idx] for d in data]
@@ -62,6 +59,9 @@ with open(paths.results_table) as csv:
 				if not x == '':
 					cell.value = f'=HYPERLINK("{os.path.join(paths.master,directories[i])}/molview2_start_in.bat", "input.xyz")'
 					cell.style = 'Hyperlink'
+			elif n == 'RUNTIME':
+				cell.value = x
+				cell.alignment = pxl.styles.Alignment(horizontal='right')
 			else:
 				cell.value = x
 

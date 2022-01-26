@@ -19,7 +19,7 @@ H 	0.6634665160798301 	0.1503511572353624 	-0.8866171636564089
 Rcat
 GO
 H 0 0 0 Rcata delete
-Xx 1 0 0 Rcatb
+Xx .5 0 0 Rcatb
 
 Rsub_cat_complex
 GO

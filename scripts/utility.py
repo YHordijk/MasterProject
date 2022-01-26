@@ -26,3 +26,7 @@ def load_mol(path):
 def hash(reaction, stationary_point, flags):
 	hashstr = reaction + stationary_point + ' '.join(list(sorted(flags)))
 	return hashlib.sha256(hashstr.encode('utf-8')).hexdigest()
+
+
+def hartree2kcalmol(v):
+	return plams.Units.convert(v, 'Hartree', 'kcal/mol')
