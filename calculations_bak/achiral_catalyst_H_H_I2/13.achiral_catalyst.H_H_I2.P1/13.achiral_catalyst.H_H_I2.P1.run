@@ -1,0 +1,5 @@
+#!/bin/sh
+
+unset AMS_SWITCH_LOGFILE_AND_STDOUT
+AMS_JOBNAME="13.achiral_catalyst.H_H_I2.P1" AMS_RESULTSDIR=. $AMSBIN/ams <"13.achiral_catalyst.H_H_I2.P1.in"
+

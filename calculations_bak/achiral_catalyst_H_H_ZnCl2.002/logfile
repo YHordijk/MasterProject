@@ -1,0 +1,7 @@
+[13:37:03] Running PLAMS located in /cm/shared/package/ams2021.102/scripting/scm/plams
+[13:37:03] Using Python 3.6.9 located in /cm/shared/package/ams2021.102/bin/python3.6/bin/python
+[13:37:03] PLAMS defaults were loaded from /cm/shared/package/ams2021.102/scripting/scm/plams/plams_defaults
+[13:37:03] PLAMS environment initialized
+[13:37:03] PLAMS working folder: /scistor/tc/yhk800/MasterProject/calculations/achiral_catalyst_H_H_ZnCl2.002
+[13:37:08] PLAMS environment cleaned up successfully
+[13:37:08] PLAMS run finished. Goodbye

@@ -1,0 +1,62 @@
+[23:26:32] Running PLAMS located in /cm/shared/package/ams2021.102/scripting/scm/plams
+[23:26:32] Using Python 3.6.9 located in /cm/shared/package/ams2021.102/bin/python3.6/bin/python
+[23:26:32] PLAMS defaults were loaded from /cm/shared/package/ams2021.102/scripting/scm/plams/plams_defaults
+[23:26:32] PLAMS environment initialized
+[23:26:32] PLAMS working folder: /scistor/tc/yhk800/MasterProject/calculations/achiral_catalyst_H_H_SnCl4
+[23:26:32] JOB 30.achiral_catalyst.H_H_SnCl4.Rcat STARTED
+[23:26:32] JOB 31.achiral_catalyst.H_H_SnCl4.Rsub_cat_complex STARTED
+[23:26:32] Starting 30.achiral_catalyst.H_H_SnCl4.Rcat.prerun()
+[23:26:32] JOB 32.achiral_catalyst.H_H_SnCl4.TS STARTED
+[23:26:32] Starting 31.achiral_catalyst.H_H_SnCl4.Rsub_cat_complex.prerun()
+[23:26:32] 30.achiral_catalyst.H_H_SnCl4.Rcat.prerun() finished
+[23:26:32] JOB 33.achiral_catalyst.H_H_SnCl4.P1 STARTED
+[23:26:32] Starting 32.achiral_catalyst.H_H_SnCl4.TS.prerun()
+[23:26:32] 31.achiral_catalyst.H_H_SnCl4.Rsub_cat_complex.prerun() finished
+[23:26:32] JOB 34.achiral_catalyst.H_H_SnCl4.P2 STARTED
+[23:26:32] Starting 33.achiral_catalyst.H_H_SnCl4.P1.prerun()
+[23:26:32] 32.achiral_catalyst.H_H_SnCl4.TS.prerun() finished
+[23:26:32] JOB 30.achiral_catalyst.H_H_SnCl4.Rcat RUNNING
+[23:26:32] Waiting for job 30.achiral_catalyst.H_H_SnCl4.Rcat to finish
+[23:26:32] Starting 34.achiral_catalyst.H_H_SnCl4.P2.prerun()
+[23:26:32] 33.achiral_catalyst.H_H_SnCl4.P1.prerun() finished
+[23:26:32] JOB 31.achiral_catalyst.H_H_SnCl4.Rsub_cat_complex RUNNING
+[23:26:32] Executing 30.achiral_catalyst.H_H_SnCl4.Rcat.run
+[23:26:32] JOB 32.achiral_catalyst.H_H_SnCl4.TS RUNNING
+[23:26:32] 34.achiral_catalyst.H_H_SnCl4.P2.prerun() finished
+[23:26:32] Executing 31.achiral_catalyst.H_H_SnCl4.Rsub_cat_complex.run
+[23:26:32] JOB 33.achiral_catalyst.H_H_SnCl4.P1 RUNNING
+[23:26:32] JOB 34.achiral_catalyst.H_H_SnCl4.P2 RUNNING
+[23:50:51] Execution of 30.achiral_catalyst.H_H_SnCl4.Rcat.run finished with returncode 0
+[23:50:51] Executing 32.achiral_catalyst.H_H_SnCl4.TS.run
+[23:50:51] JOB 30.achiral_catalyst.H_H_SnCl4.Rcat FINISHED
+[23:50:51] Job 30.achiral_catalyst.H_H_SnCl4.Rcat reported errors. Please check the the output
+[23:50:51] JOB 30.achiral_catalyst.H_H_SnCl4.Rcat FAILED
+[23:50:51] Waiting for job 31.achiral_catalyst.H_H_SnCl4.Rsub_cat_complex to finish
+[10:09:01] Execution of 31.achiral_catalyst.H_H_SnCl4.Rsub_cat_complex.run finished with returncode 0
+[10:09:01] Executing 33.achiral_catalyst.H_H_SnCl4.P1.run
+[10:09:01] JOB 31.achiral_catalyst.H_H_SnCl4.Rsub_cat_complex FINISHED
+[10:09:01] Job 31.achiral_catalyst.H_H_SnCl4.Rsub_cat_complex reported warnings. Please check the the output
+[10:09:01] Starting 31.achiral_catalyst.H_H_SnCl4.Rsub_cat_complex.postrun()
+[10:09:01] 31.achiral_catalyst.H_H_SnCl4.Rsub_cat_complex.postrun() finished
+[10:09:01] JOB 31.achiral_catalyst.H_H_SnCl4.Rsub_cat_complex SUCCESSFUL
+[10:09:01] Waiting for job 32.achiral_catalyst.H_H_SnCl4.TS to finish
+[15:02:55] Execution of 33.achiral_catalyst.H_H_SnCl4.P1.run finished with returncode 0
+[15:02:55] Executing 34.achiral_catalyst.H_H_SnCl4.P2.run
+[15:02:55] JOB 33.achiral_catalyst.H_H_SnCl4.P1 FINISHED
+[15:02:55] Job 33.achiral_catalyst.H_H_SnCl4.P1 reported errors. Please check the the output
+[15:02:55] JOB 33.achiral_catalyst.H_H_SnCl4.P1 FAILED
+[08:04:15] Execution of 32.achiral_catalyst.H_H_SnCl4.TS.run finished with returncode 0
+[08:04:15] JOB 32.achiral_catalyst.H_H_SnCl4.TS FINISHED
+[08:04:15] Job 32.achiral_catalyst.H_H_SnCl4.TS reported warnings. Please check the the output
+[08:04:15] Starting 32.achiral_catalyst.H_H_SnCl4.TS.postrun()
+[08:04:15] 32.achiral_catalyst.H_H_SnCl4.TS.postrun() finished
+[08:04:15] JOB 32.achiral_catalyst.H_H_SnCl4.TS SUCCESSFUL
+[08:04:15] WARNING: Trying to obtain results of crashed or failed job 33.achiral_catalyst.H_H_SnCl4.P1
+[08:04:15] Obtaining results of 33.achiral_catalyst.H_H_SnCl4.P1 successful. However, no guarantee that they make sense
+[08:04:15] Waiting for job 34.achiral_catalyst.H_H_SnCl4.P2 to finish
+[08:22:38] Execution of 34.achiral_catalyst.H_H_SnCl4.P2.run finished with returncode 0
+[08:22:38] JOB 34.achiral_catalyst.H_H_SnCl4.P2 FINISHED
+[08:22:38] Job 34.achiral_catalyst.H_H_SnCl4.P2 reported errors. Please check the the output
+[08:22:38] JOB 34.achiral_catalyst.H_H_SnCl4.P2 FAILED
+[08:22:38] PLAMS environment cleaned up successfully
+[08:22:38] PLAMS run finished. Goodbye

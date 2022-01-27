@@ -1,0 +1,63 @@
+[23:26:21] Running PLAMS located in /cm/shared/package/ams2021.102/scripting/scm/plams
+[23:26:21] Using Python 3.6.9 located in /cm/shared/package/ams2021.102/bin/python3.6/bin/python
+[23:26:21] PLAMS defaults were loaded from /cm/shared/package/ams2021.102/scripting/scm/plams/plams_defaults
+[23:26:21] PLAMS environment initialized
+[23:26:21] PLAMS working folder: /scistor/tc/yhk800/MasterProject/calculations/achiral_catalyst_H_H_BF3
+[23:26:21] JOB 25.achiral_catalyst.H_H_BF3.Rcat STARTED
+[23:26:21] JOB 26.achiral_catalyst.H_H_BF3.Rsub_cat_complex STARTED
+[23:26:21] Starting 25.achiral_catalyst.H_H_BF3.Rcat.prerun()
+[23:26:21] JOB 27.achiral_catalyst.H_H_BF3.TS STARTED
+[23:26:21] Starting 26.achiral_catalyst.H_H_BF3.Rsub_cat_complex.prerun()
+[23:26:21] 25.achiral_catalyst.H_H_BF3.Rcat.prerun() finished
+[23:26:21] JOB 28.achiral_catalyst.H_H_BF3.P1 STARTED
+[23:26:21] Starting 27.achiral_catalyst.H_H_BF3.TS.prerun()
+[23:26:21] 26.achiral_catalyst.H_H_BF3.Rsub_cat_complex.prerun() finished
+[23:26:21] JOB 29.achiral_catalyst.H_H_BF3.P2 STARTED
+[23:26:21] Starting 28.achiral_catalyst.H_H_BF3.P1.prerun()
+[23:26:21] 27.achiral_catalyst.H_H_BF3.TS.prerun() finished
+[23:26:21] JOB 25.achiral_catalyst.H_H_BF3.Rcat RUNNING
+[23:26:21] Waiting for job 25.achiral_catalyst.H_H_BF3.Rcat to finish
+[23:26:21] Starting 29.achiral_catalyst.H_H_BF3.P2.prerun()
+[23:26:21] 28.achiral_catalyst.H_H_BF3.P1.prerun() finished
+[23:26:21] JOB 26.achiral_catalyst.H_H_BF3.Rsub_cat_complex RUNNING
+[23:26:21] Executing 25.achiral_catalyst.H_H_BF3.Rcat.run
+[23:26:21] JOB 27.achiral_catalyst.H_H_BF3.TS RUNNING
+[23:26:21] 29.achiral_catalyst.H_H_BF3.P2.prerun() finished
+[23:26:21] Executing 26.achiral_catalyst.H_H_BF3.Rsub_cat_complex.run
+[23:26:21] JOB 28.achiral_catalyst.H_H_BF3.P1 RUNNING
+[23:26:21] JOB 29.achiral_catalyst.H_H_BF3.P2 RUNNING
+[23:31:50] Execution of 25.achiral_catalyst.H_H_BF3.Rcat.run finished with returncode 0
+[23:31:50] Executing 27.achiral_catalyst.H_H_BF3.TS.run
+[23:31:50] JOB 25.achiral_catalyst.H_H_BF3.Rcat FINISHED
+[23:31:50] Job 25.achiral_catalyst.H_H_BF3.Rcat reported warnings. Please check the the output
+[23:31:50] Starting 25.achiral_catalyst.H_H_BF3.Rcat.postrun()
+[23:31:50] 25.achiral_catalyst.H_H_BF3.Rcat.postrun() finished
+[23:31:50] JOB 25.achiral_catalyst.H_H_BF3.Rcat SUCCESSFUL
+[23:31:50] Waiting for job 26.achiral_catalyst.H_H_BF3.Rsub_cat_complex to finish
+[02:11:14] Execution of 26.achiral_catalyst.H_H_BF3.Rsub_cat_complex.run finished with returncode 0
+[02:11:14] Executing 28.achiral_catalyst.H_H_BF3.P1.run
+[02:11:14] JOB 26.achiral_catalyst.H_H_BF3.Rsub_cat_complex FINISHED
+[02:11:14] Job 26.achiral_catalyst.H_H_BF3.Rsub_cat_complex reported warnings. Please check the the output
+[02:11:14] Starting 26.achiral_catalyst.H_H_BF3.Rsub_cat_complex.postrun()
+[02:11:14] 26.achiral_catalyst.H_H_BF3.Rsub_cat_complex.postrun() finished
+[02:11:14] JOB 26.achiral_catalyst.H_H_BF3.Rsub_cat_complex SUCCESSFUL
+[02:11:14] Waiting for job 27.achiral_catalyst.H_H_BF3.TS to finish
+[13:24:04] Execution of 28.achiral_catalyst.H_H_BF3.P1.run finished with returncode 0
+[13:24:04] Executing 29.achiral_catalyst.H_H_BF3.P2.run
+[13:24:04] JOB 28.achiral_catalyst.H_H_BF3.P1 FINISHED
+[13:24:04] Job 28.achiral_catalyst.H_H_BF3.P1 reported warnings. Please check the the output
+[13:24:04] Starting 28.achiral_catalyst.H_H_BF3.P1.postrun()
+[13:24:04] 28.achiral_catalyst.H_H_BF3.P1.postrun() finished
+[13:24:04] JOB 28.achiral_catalyst.H_H_BF3.P1 SUCCESSFUL
+[21:42:44] Execution of 29.achiral_catalyst.H_H_BF3.P2.run finished with returncode 0
+[21:42:44] JOB 29.achiral_catalyst.H_H_BF3.P2 FINISHED
+[21:42:44] Job 29.achiral_catalyst.H_H_BF3.P2 reported warnings. Please check the the output
+[21:42:44] Starting 29.achiral_catalyst.H_H_BF3.P2.postrun()
+[21:42:44] 29.achiral_catalyst.H_H_BF3.P2.postrun() finished
+[21:42:44] JOB 29.achiral_catalyst.H_H_BF3.P2 SUCCESSFUL
+[21:57:51] Execution of 27.achiral_catalyst.H_H_BF3.TS.run finished with returncode 0
+[21:57:51] JOB 27.achiral_catalyst.H_H_BF3.TS FINISHED
+[21:57:51] Job 27.achiral_catalyst.H_H_BF3.TS reported errors. Please check the the output
+[21:57:51] JOB 27.achiral_catalyst.H_H_BF3.TS FAILED
+[21:57:51] PLAMS environment cleaned up successfully
+[21:57:51] PLAMS run finished. Goodbye

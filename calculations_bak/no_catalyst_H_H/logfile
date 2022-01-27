@@ -1,0 +1,64 @@
+[23:27:02] Running PLAMS located in /cm/shared/package/ams2021.102/scripting/scm/plams
+[23:27:02] Using Python 3.6.9 located in /cm/shared/package/ams2021.102/bin/python3.6/bin/python
+[23:27:02] PLAMS defaults were loaded from /cm/shared/package/ams2021.102/scripting/scm/plams/plams_defaults
+[23:27:02] PLAMS environment initialized
+[23:27:02] PLAMS working folder: /scistor/tc/yhk800/MasterProject/calculations/no_catalyst_H_H
+[23:27:03] JOB 9.no_catalyst.H_H.Rsub STARTED
+[23:27:03] JOB 15.no_catalyst.H_H.Rrad STARTED
+[23:27:03] Starting 9.no_catalyst.H_H.Rsub.prerun()
+[23:27:03] JOB 40.no_catalyst.H_H.TS STARTED
+[23:27:03] Starting 15.no_catalyst.H_H.Rrad.prerun()
+[23:27:03] 9.no_catalyst.H_H.Rsub.prerun() finished
+[23:27:03] JOB 41.no_catalyst.H_H.P1 STARTED
+[23:27:03] Starting 40.no_catalyst.H_H.TS.prerun()
+[23:27:03] 15.no_catalyst.H_H.Rrad.prerun() finished
+[23:27:03] JOB 42.no_catalyst.H_H.P2 STARTED
+[23:27:03] Starting 41.no_catalyst.H_H.P1.prerun()
+[23:27:03] 40.no_catalyst.H_H.TS.prerun() finished
+[23:27:03] JOB 9.no_catalyst.H_H.Rsub RUNNING
+[23:27:03] Waiting for job 9.no_catalyst.H_H.Rsub to finish
+[23:27:03] Starting 42.no_catalyst.H_H.P2.prerun()
+[23:27:03] 41.no_catalyst.H_H.P1.prerun() finished
+[23:27:03] JOB 15.no_catalyst.H_H.Rrad RUNNING
+[23:27:03] Executing 9.no_catalyst.H_H.Rsub.run
+[23:27:03] 42.no_catalyst.H_H.P2.prerun() finished
+[23:27:03] JOB 40.no_catalyst.H_H.TS RUNNING
+[23:27:03] Executing 15.no_catalyst.H_H.Rrad.run
+[23:27:03] JOB 41.no_catalyst.H_H.P1 RUNNING
+[23:27:03] JOB 42.no_catalyst.H_H.P2 RUNNING
+[23:36:42] Execution of 15.no_catalyst.H_H.Rrad.run finished with returncode 0
+[23:36:42] Executing 40.no_catalyst.H_H.TS.run
+[23:36:42] JOB 15.no_catalyst.H_H.Rrad FINISHED
+[23:36:42] Job 15.no_catalyst.H_H.Rrad reported warnings. Please check the the output
+[23:36:42] Starting 15.no_catalyst.H_H.Rrad.postrun()
+[23:36:42] 15.no_catalyst.H_H.Rrad.postrun() finished
+[23:36:42] JOB 15.no_catalyst.H_H.Rrad SUCCESSFUL
+[00:09:18] Execution of 9.no_catalyst.H_H.Rsub.run finished with returncode 0
+[00:09:18] Executing 41.no_catalyst.H_H.P1.run
+[00:09:18] JOB 9.no_catalyst.H_H.Rsub FINISHED
+[00:09:18] Job 9.no_catalyst.H_H.Rsub reported warnings. Please check the the output
+[00:09:18] Starting 9.no_catalyst.H_H.Rsub.postrun()
+[00:09:18] 9.no_catalyst.H_H.Rsub.postrun() finished
+[00:09:18] JOB 9.no_catalyst.H_H.Rsub SUCCESSFUL
+[00:09:18] Waiting for job 40.no_catalyst.H_H.TS to finish
+[03:22:41] Execution of 41.no_catalyst.H_H.P1.run finished with returncode 0
+[03:22:41] Executing 42.no_catalyst.H_H.P2.run
+[03:22:41] JOB 41.no_catalyst.H_H.P1 FINISHED
+[03:22:41] Job 41.no_catalyst.H_H.P1 reported warnings. Please check the the output
+[03:22:41] Starting 41.no_catalyst.H_H.P1.postrun()
+[03:22:41] 41.no_catalyst.H_H.P1.postrun() finished
+[03:22:41] JOB 41.no_catalyst.H_H.P1 SUCCESSFUL
+[04:32:20] Execution of 40.no_catalyst.H_H.TS.run finished with returncode 0
+[04:32:20] JOB 40.no_catalyst.H_H.TS FINISHED
+[04:32:20] Job 40.no_catalyst.H_H.TS reported warnings. Please check the the output
+[04:32:20] Starting 40.no_catalyst.H_H.TS.postrun()
+[04:32:20] 40.no_catalyst.H_H.TS.postrun() finished
+[04:32:20] JOB 40.no_catalyst.H_H.TS SUCCESSFUL
+[04:32:20] Waiting for job 42.no_catalyst.H_H.P2 to finish
+[05:06:25] Execution of 42.no_catalyst.H_H.P2.run finished with returncode 0
+[05:06:25] JOB 42.no_catalyst.H_H.P2 FINISHED
+[05:06:25] Starting 42.no_catalyst.H_H.P2.postrun()
+[05:06:25] 42.no_catalyst.H_H.P2.postrun() finished
+[05:06:25] JOB 42.no_catalyst.H_H.P2 SUCCESSFUL
+[05:06:25] PLAMS environment cleaned up successfully
+[05:06:25] PLAMS run finished. Goodbye

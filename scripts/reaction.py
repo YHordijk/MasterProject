@@ -23,15 +23,12 @@ def print_energies(results):
 		print(f'{SP:5}: ΔG = {h2k(res["energies"]["gibbs_energy"]):.2f} kcal/mol')
 
 
-def show_reaction(template, substituents=None):
+def show_reaction(template, substituents=None, simple=True):
 	if substituents is None:
-		keep_dummy = True
 		substituents = {}
-	else:
-		keep_dummy = False
-	mols = struct_generator.generate_stationary_points(template, substituents, keep_dummy)
+	mols = struct_generator.generate_stationary_points(template, substituents, keep_dummy=False)
 	print(mols[-1])
-	mol_viewer2.show(mols)
+	mol_viewer2.show(mols, simple=simple)
 
 # results = get_reaction_calculations('no_catalyst', {'R1':'H', 'R2':'H'})
 # print_energies(results)
@@ -39,4 +36,4 @@ def show_reaction(template, substituents=None):
 # results = get_reaction_calculations('achiral_catalyst', {'R1':'H', 'R2':'H', 'Rcat':'I2'})
 # print_energies(results)
 
-show_reaction('achiral_catalyst')
+show_reaction('achiral_catalyst', substituents={'R2':'Ph'})

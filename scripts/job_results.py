@@ -78,20 +78,23 @@ def _get_job_files(results):
 
 def _get_status(results):
     if 'amsrkf' in results['files']:
-        rkf = plams.KFFile(os.path.join(paths.master, results['files']['amsrkf']))
-        term = rkf.read('General', 'termination status')
-        if term == 'IN PROGRESS':
-            with open(os.path.join(paths.master, results['files']['errfile'])) as err:
-                err_cont = err.read().strip()
-                if err_cont != '':
-                    results['status'] = 'C'; return
-            results['status'] = 'R'; return
-        elif term == 'NORMAL TERMINATION':
-            results['status'] = 'S'; return
-        elif 'NORMAL TERMINATION' in term:
-            results['status'] = 'W'; return
+        try:
+            rkf = plams.KFFile(os.path.join(paths.master, results['files']['amsrkf']))
+            term = rkf.read('General', 'termination status')
+            if term == 'IN PROGRESS':
+                with open(os.path.join(paths.master, results['files']['errfile'])) as err:
+                    err_cont = err.read().strip()
+                    if err_cont != '':
+                        results['status'] = 'C'; return
+                results['status'] = 'R'; return
+            elif term == 'NORMAL TERMINATION':
+                results['status'] = 'S'; return
+            elif 'NORMAL TERMINATION' in term:
+                results['status'] = 'W'; return
 
-        results['status'] = 'F'; return
+            results['status'] = 'F'; return
+        except:
+            results['status'] = 'C'; return
     else:
         results['status'] = 'C'; return
 

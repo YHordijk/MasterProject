@@ -6,19 +6,25 @@ import summary, job_results, utility
 
 def create_database_from_calculations(calc_path=paths.calculations, out_path=paths.results_table):
 	results = job_results.get_all_results(calc_path)
-	fields = results[0]['database_fields']
-	writer = csv.writer(open(out_path, 'w+', newline=''))
-	writer.writerow(['sep=,'])
-	writer.writerow([f.upper() for f in fields])
-	for res in results:
-		writer.writerow(res['database_data'])
+	if len(results) > 0:
+		fields = results[0]['database_fields']
+		writer = csv.writer(open(out_path, 'w+', newline=''))
+		writer.writerow(['sep=,'])
+		writer.writerow([f.upper() for f in fields])
+		for res in results:
+			writer.writerow(res['database_data'])
 
 
 class DatabaseManager:
 	def __init__(self, master_table_path=paths.results_table):
 		self.master_table_path = master_table_path
-		self.database_reader = csv.reader(open(self.master_table_path, newline=''))
-		self.read_data()
+		if os.path.exists(master_table_path):
+			self.database_reader = csv.reader(open(self.master_table_path, newline=''))
+			self.read_data()
+		else:
+			self.ids = []
+			self.hashes = []
+
 
 
 	def __enter__(self):
@@ -72,7 +78,7 @@ class DatabaseManager:
 
 	def get_running_status(self):
 		statuses = {}
-		running_results = [job_results.get_results(os.path.join(paths.master,d['DIRECTORY'])) for d in self.data if d['STATUS'] == 'R']
+		running_results = [job_results.get_results(os.path.join(paths.master,d['CALC_DIRECTORY'])) for d in self.data if d['STATUS'] == 'R']
 		outfiles = [os.path.join(paths.master, r['files']['logfile']) for r in running_results]
 		for res, outfile in zip(running_results, outfiles):
 			statuses[res['id']] = {}
@@ -155,5 +161,4 @@ if __name__ == '__main__':
 		import excel
 	except Exception as e:
 		print(e)
-		raise
 		pass

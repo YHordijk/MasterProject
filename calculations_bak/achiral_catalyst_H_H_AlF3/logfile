@@ -1,0 +1,61 @@
+[23:26:11] Running PLAMS located in /cm/shared/package/ams2021.102/scripting/scm/plams
+[23:26:11] Using Python 3.6.9 located in /cm/shared/package/ams2021.102/bin/python3.6/bin/python
+[23:26:11] PLAMS defaults were loaded from /cm/shared/package/ams2021.102/scripting/scm/plams/plams_defaults
+[23:26:11] PLAMS environment initialized
+[23:26:11] PLAMS working folder: /scistor/tc/yhk800/MasterProject/calculations/achiral_catalyst_H_H_AlF3
+[23:26:11] JOB 16.achiral_catalyst.H_H_AlF3.Rcat STARTED
+[23:26:11] JOB 21.achiral_catalyst.H_H_AlF3.Rsub_cat_complex STARTED
+[23:26:11] Starting 16.achiral_catalyst.H_H_AlF3.Rcat.prerun()
+[23:26:11] JOB 22.achiral_catalyst.H_H_AlF3.TS STARTED
+[23:26:11] Starting 21.achiral_catalyst.H_H_AlF3.Rsub_cat_complex.prerun()
+[23:26:11] 16.achiral_catalyst.H_H_AlF3.Rcat.prerun() finished
+[23:26:11] JOB 23.achiral_catalyst.H_H_AlF3.P1 STARTED
+[23:26:11] Starting 22.achiral_catalyst.H_H_AlF3.TS.prerun()
+[23:26:11] 21.achiral_catalyst.H_H_AlF3.Rsub_cat_complex.prerun() finished
+[23:26:11] JOB 24.achiral_catalyst.H_H_AlF3.P2 STARTED
+[23:26:11] Starting 23.achiral_catalyst.H_H_AlF3.P1.prerun()
+[23:26:11] 22.achiral_catalyst.H_H_AlF3.TS.prerun() finished
+[23:26:11] JOB 16.achiral_catalyst.H_H_AlF3.Rcat RUNNING
+[23:26:11] Waiting for job 16.achiral_catalyst.H_H_AlF3.Rcat to finish
+[23:26:11] Starting 24.achiral_catalyst.H_H_AlF3.P2.prerun()
+[23:26:11] 23.achiral_catalyst.H_H_AlF3.P1.prerun() finished
+[23:26:11] JOB 21.achiral_catalyst.H_H_AlF3.Rsub_cat_complex RUNNING
+[23:26:11] Executing 16.achiral_catalyst.H_H_AlF3.Rcat.run
+[23:26:11] 24.achiral_catalyst.H_H_AlF3.P2.prerun() finished
+[23:26:11] JOB 22.achiral_catalyst.H_H_AlF3.TS RUNNING
+[23:26:11] Executing 21.achiral_catalyst.H_H_AlF3.Rsub_cat_complex.run
+[23:26:11] JOB 23.achiral_catalyst.H_H_AlF3.P1 RUNNING
+[23:26:11] JOB 24.achiral_catalyst.H_H_AlF3.P2 RUNNING
+[23:33:30] Execution of 16.achiral_catalyst.H_H_AlF3.Rcat.run finished with returncode 0
+[23:33:30] Executing 22.achiral_catalyst.H_H_AlF3.TS.run
+[23:33:30] JOB 16.achiral_catalyst.H_H_AlF3.Rcat FINISHED
+[23:33:30] Job 16.achiral_catalyst.H_H_AlF3.Rcat reported warnings. Please check the the output
+[23:33:30] Starting 16.achiral_catalyst.H_H_AlF3.Rcat.postrun()
+[23:33:30] 16.achiral_catalyst.H_H_AlF3.Rcat.postrun() finished
+[23:33:30] JOB 16.achiral_catalyst.H_H_AlF3.Rcat SUCCESSFUL
+[23:33:30] Waiting for job 21.achiral_catalyst.H_H_AlF3.Rsub_cat_complex to finish
+[04:24:38] Execution of 21.achiral_catalyst.H_H_AlF3.Rsub_cat_complex.run finished with returncode 0
+[04:24:38] Executing 23.achiral_catalyst.H_H_AlF3.P1.run
+[04:24:38] JOB 21.achiral_catalyst.H_H_AlF3.Rsub_cat_complex FINISHED
+[04:24:38] Job 21.achiral_catalyst.H_H_AlF3.Rsub_cat_complex reported errors. Please check the the output
+[04:24:38] JOB 21.achiral_catalyst.H_H_AlF3.Rsub_cat_complex FAILED
+[04:24:38] Waiting for job 22.achiral_catalyst.H_H_AlF3.TS to finish
+[22:49:52] Execution of 23.achiral_catalyst.H_H_AlF3.P1.run finished with returncode 0
+[22:49:52] Executing 24.achiral_catalyst.H_H_AlF3.P2.run
+[22:49:52] JOB 23.achiral_catalyst.H_H_AlF3.P1 FINISHED
+[22:49:52] Job 23.achiral_catalyst.H_H_AlF3.P1 reported errors. Please check the the output
+[22:49:52] JOB 23.achiral_catalyst.H_H_AlF3.P1 FAILED
+[00:52:01] Execution of 22.achiral_catalyst.H_H_AlF3.TS.run finished with returncode 0
+[00:52:01] JOB 22.achiral_catalyst.H_H_AlF3.TS FINISHED
+[00:52:01] Job 22.achiral_catalyst.H_H_AlF3.TS reported errors. Please check the the output
+[00:52:01] JOB 22.achiral_catalyst.H_H_AlF3.TS FAILED
+[00:52:01] WARNING: Trying to obtain results of crashed or failed job 23.achiral_catalyst.H_H_AlF3.P1
+[00:52:01] Obtaining results of 23.achiral_catalyst.H_H_AlF3.P1 successful. However, no guarantee that they make sense
+[00:52:01] Waiting for job 24.achiral_catalyst.H_H_AlF3.P2 to finish
+[04:13:55] Execution of 24.achiral_catalyst.H_H_AlF3.P2.run finished with returncode 0
+[04:13:55] JOB 24.achiral_catalyst.H_H_AlF3.P2 FINISHED
+[04:13:55] Starting 24.achiral_catalyst.H_H_AlF3.P2.postrun()
+[04:13:55] 24.achiral_catalyst.H_H_AlF3.P2.postrun() finished
+[04:13:55] JOB 24.achiral_catalyst.H_H_AlF3.P2 SUCCESSFUL
+[04:13:55] PLAMS environment cleaned up successfully
+[04:13:55] PLAMS run finished. Goodbye

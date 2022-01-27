@@ -1,0 +1,75 @@
+[23:24:51] Running PLAMS located in /cm/shared/package/ams2021.102/scripting/scm/plams
+[23:24:51] Using Python 3.6.9 located in /cm/shared/package/ams2021.102/bin/python3.6/bin/python
+[23:24:51] PLAMS defaults were loaded from /cm/shared/package/ams2021.102/scripting/scm/plams/plams_defaults
+[23:24:51] PLAMS environment initialized
+[23:24:51] PLAMS working folder: /scistor/tc/yhk800/MasterProject/calculations/achiral_catalyst_H_H_I2
+[23:24:51] JOB 8.achiral_catalyst.H_H_I2.Rsub STARTED
+[23:24:51] JOB 10.achiral_catalyst.H_H_I2.Rcat STARTED
+[23:24:51] Starting 8.achiral_catalyst.H_H_I2.Rsub.prerun()
+[23:24:51] JOB 11.achiral_catalyst.H_H_I2.Rsub_cat_complex STARTED
+[23:24:51] Starting 10.achiral_catalyst.H_H_I2.Rcat.prerun()
+[23:24:51] 8.achiral_catalyst.H_H_I2.Rsub.prerun() finished
+[23:24:51] JOB 12.achiral_catalyst.H_H_I2.TS STARTED
+[23:24:51] Starting 11.achiral_catalyst.H_H_I2.Rsub_cat_complex.prerun()
+[23:24:51] 10.achiral_catalyst.H_H_I2.Rcat.prerun() finished
+[23:24:51] JOB 13.achiral_catalyst.H_H_I2.P1 STARTED
+[23:24:51] Starting 12.achiral_catalyst.H_H_I2.TS.prerun()
+[23:24:51] 11.achiral_catalyst.H_H_I2.Rsub_cat_complex.prerun() finished
+[23:24:51] JOB 8.achiral_catalyst.H_H_I2.Rsub RUNNING
+[23:24:51] JOB 14.achiral_catalyst.H_H_I2.P2 STARTED
+[23:24:51] Starting 13.achiral_catalyst.H_H_I2.P1.prerun()
+[23:24:51] 12.achiral_catalyst.H_H_I2.TS.prerun() finished
+[23:24:51] JOB 10.achiral_catalyst.H_H_I2.Rcat RUNNING
+[23:24:51] Executing 8.achiral_catalyst.H_H_I2.Rsub.run
+[23:24:51] Waiting for job 8.achiral_catalyst.H_H_I2.Rsub to finish
+[23:24:51] Starting 14.achiral_catalyst.H_H_I2.P2.prerun()
+[23:24:51] 13.achiral_catalyst.H_H_I2.P1.prerun() finished
+[23:24:51] JOB 11.achiral_catalyst.H_H_I2.Rsub_cat_complex RUNNING
+[23:24:51] Executing 10.achiral_catalyst.H_H_I2.Rcat.run
+[23:24:51] JOB 12.achiral_catalyst.H_H_I2.TS RUNNING
+[23:24:51] 14.achiral_catalyst.H_H_I2.P2.prerun() finished
+[23:24:51] JOB 13.achiral_catalyst.H_H_I2.P1 RUNNING
+[23:24:51] JOB 14.achiral_catalyst.H_H_I2.P2 RUNNING
+[23:29:47] Execution of 10.achiral_catalyst.H_H_I2.Rcat.run finished with returncode 0
+[23:29:47] Executing 11.achiral_catalyst.H_H_I2.Rsub_cat_complex.run
+[23:29:47] JOB 10.achiral_catalyst.H_H_I2.Rcat FINISHED
+[23:29:47] Starting 10.achiral_catalyst.H_H_I2.Rcat.postrun()
+[23:29:47] 10.achiral_catalyst.H_H_I2.Rcat.postrun() finished
+[23:29:47] JOB 10.achiral_catalyst.H_H_I2.Rcat SUCCESSFUL
+[00:07:34] Execution of 8.achiral_catalyst.H_H_I2.Rsub.run finished with returncode 0
+[00:07:34] Executing 12.achiral_catalyst.H_H_I2.TS.run
+[00:07:34] JOB 8.achiral_catalyst.H_H_I2.Rsub FINISHED
+[00:07:34] Job 8.achiral_catalyst.H_H_I2.Rsub reported warnings. Please check the the output
+[00:07:34] Starting 8.achiral_catalyst.H_H_I2.Rsub.postrun()
+[00:07:34] 8.achiral_catalyst.H_H_I2.Rsub.postrun() finished
+[00:07:34] JOB 8.achiral_catalyst.H_H_I2.Rsub SUCCESSFUL
+[00:07:34] Waiting for job 11.achiral_catalyst.H_H_I2.Rsub_cat_complex to finish
+[02:41:51] Execution of 11.achiral_catalyst.H_H_I2.Rsub_cat_complex.run finished with returncode 0
+[02:41:51] Executing 13.achiral_catalyst.H_H_I2.P1.run
+[02:41:51] JOB 11.achiral_catalyst.H_H_I2.Rsub_cat_complex FINISHED
+[02:41:51] Job 11.achiral_catalyst.H_H_I2.Rsub_cat_complex reported warnings. Please check the the output
+[02:41:51] Starting 11.achiral_catalyst.H_H_I2.Rsub_cat_complex.postrun()
+[02:41:51] 11.achiral_catalyst.H_H_I2.Rsub_cat_complex.postrun() finished
+[02:41:51] JOB 11.achiral_catalyst.H_H_I2.Rsub_cat_complex SUCCESSFUL
+[02:41:51] Waiting for job 12.achiral_catalyst.H_H_I2.TS to finish
+[14:14:57] Execution of 13.achiral_catalyst.H_H_I2.P1.run finished with returncode 0
+[14:14:57] Executing 14.achiral_catalyst.H_H_I2.P2.run
+[14:14:57] JOB 13.achiral_catalyst.H_H_I2.P1 FINISHED
+[14:14:57] Job 13.achiral_catalyst.H_H_I2.P1 reported warnings. Please check the the output
+[14:14:57] Starting 13.achiral_catalyst.H_H_I2.P1.postrun()
+[14:14:57] 13.achiral_catalyst.H_H_I2.P1.postrun() finished
+[14:14:57] JOB 13.achiral_catalyst.H_H_I2.P1 SUCCESSFUL
+[16:35:46] Execution of 12.achiral_catalyst.H_H_I2.TS.run finished with returncode 0
+[16:35:46] JOB 12.achiral_catalyst.H_H_I2.TS FINISHED
+[16:35:46] Job 12.achiral_catalyst.H_H_I2.TS reported warnings. Please check the the output
+[16:35:46] Starting 12.achiral_catalyst.H_H_I2.TS.postrun()
+[16:35:46] 12.achiral_catalyst.H_H_I2.TS.postrun() finished
+[16:35:46] JOB 12.achiral_catalyst.H_H_I2.TS SUCCESSFUL
+[16:35:46] Waiting for job 14.achiral_catalyst.H_H_I2.P2 to finish
+[19:43:45] Execution of 14.achiral_catalyst.H_H_I2.P2.run finished with returncode 0
+[19:43:45] JOB 14.achiral_catalyst.H_H_I2.P2 FINISHED
+[19:43:45] Starting 14.achiral_catalyst.H_H_I2.P2.postrun()
+[19:43:45] 14.achiral_catalyst.H_H_I2.P2.postrun() finished
+[19:43:45] JOB 14.achiral_catalyst.H_H_I2.P2 SUCCESSFUL
+[19:43:45] PLAMS environment cleaned up successfully
+[19:43:45] PLAMS run finished. Goodbye

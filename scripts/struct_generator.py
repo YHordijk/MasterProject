@@ -105,10 +105,11 @@ def generate_stationary_points(template_name, substituents={}, keep_dummy=False)
                     all_substituent_names[R] = sub_mols[R].name if R in substituents else default_sub.name
 
             for R in m.connector:
-                if not R in sub_mols:   s = default_sub.copy()
-                else:                   s = sub_mols[R].copy()
+                use_default = not R in sub_mols
+                if use_default:   s = default_sub.copy()
+                else:             s = sub_mols[R].copy()
 
-                if not keep_dummy:
+                if not (use_default and keep_dummy):
                     lconn = (s.atoms[s.connector[0]], s.atoms[s.connector[1]])
 
                     bond_length = None

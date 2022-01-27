@@ -1,0 +1,33 @@
+NormalModes
+  ReScanFreqRange -10000000.0 20.0
+End
+
+Properties
+  NormalModes Yes
+End
+
+system
+  Atoms
+              I      1.6300000000       0.0000000000       0.0000000000 
+              I      4.3990000000       0.0000000000       0.0000000000 
+  End
+End
+
+task GeometryOptimization
+
+Engine adf
+  NumericalQuality VeryGood
+  SCF
+    Converge 1.0e-6
+    Iterations 99
+  End
+  SYMMETRY NOSYM
+  XC
+    GGA OLYP
+  End
+  basis
+    core None
+    type TZ2P
+  End
+EndEngine
+
