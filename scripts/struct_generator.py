@@ -5,6 +5,7 @@ import os, paths, utility
 def sub_path(name):
     return os.path.join(paths.SGT_substituents, name + '.sub')
 
+
 def reaction_path(name):
     return os.path.join(paths.SGT, name + '.tmplt')
 
@@ -146,8 +147,62 @@ def get_hashes_for_calc(template, substituents):
     return hashes
 
 
-if __name__ == '__main__':
-    for Rcat in ['TiCl4', 'SnCl4', 'I2', 'ZnCl2', 'AlF3', 'BF3']:
-        generate_stationary_points('achiral_catalyst', {'R2':'H', 'R1':'H', 'Rcat':Rcat})
+def get_subs_used_for_sp(template, sp):
+    with open(reaction_path(template)) as tmplt:
+        text = tmplt.read()
+        mols = text.split('\n\n')
+        sp_names = [s.split()[0] for s in mols]
+        mol = mols[sp_names.index(sp)]
+        substituents = set()
+        for line in mol.split('\n')[2:]:
+            tags = line.split()[4:]
+            for tag in tags:
+                if tag.startswith('R'):
+                    substituents.add(tag[:-1])
+    return substituents
 
-    generate_stationary_points('no_catalyst', {'R2':'H', 'R1':'H'})
+def get_flags_for_sp(template, sp):
+    subs = get_subs_used_for_sp(template, sp)
+    with open(reaction_path(template)) as tmplt:
+        text = tmplt.read()
+        mols = text.split('\n\n')
+        sp_names = [s.split()[0] for s in mols]
+        mol = mols[sp_names.index(sp)]
+        flags = mol.split('\n')[1].split()
+        return flags
+
+
+def get_hash_for_sp(template, substituents, sp):
+    return get_hashes_for_calc(template, substituents)[sp]
+
+# def _get_flags(results):
+#     sorted_Rnames = list(sorted(results['all_substituents'].keys()))
+#     sorted_R = [results['all_substituents'][R] for R in sorted_Rnames]
+#     input_file = struct_generator.get_mol_path(paths.input_xyz, results['reaction']+'_'+'_'.join(sorted_R), results['stationary_point'])
+#     if not os.path.exists(input_file):
+#         results['flags'] = []
+#     with open(input_file) as file:
+#         lines = file.readlines()
+#         results['flags'] = [f.strip() for f in lines[1].split(',')]
+
+#     results['substituents'] = {}
+#     for f in results['flags']:
+#         if f.startswith('R'):
+#             results['substituents'][f.split('=')[0]] = f.split('=')[1].strip()
+#             results[f.split('=')[0]] = f.split('=')[1].strip()
+
+#     results['radical'] = 'radical' in results['flags']
+#     results['COSMO'] = 'COSMO' in results['flags']
+
+#     for task in ['GO', 'SP', 'TSRC', 'LT']:
+#         if task in results['flags']: 
+#             results['task'] = task
+
+
+
+
+if __name__ == '__main__':
+    # for Rcat in ['TiCl4', 'SnCl4', 'I2', 'ZnCl2', 'AlF3', 'BF3']:
+    #     generate_stationary_points('achiral_catalyst', {'R2':'Ph', 'R1':'H', 'Rcat':Rcat})
+
+    generate_stationary_points('urea_tBu_Ph', {'R2':'H', 'R1':'H'})

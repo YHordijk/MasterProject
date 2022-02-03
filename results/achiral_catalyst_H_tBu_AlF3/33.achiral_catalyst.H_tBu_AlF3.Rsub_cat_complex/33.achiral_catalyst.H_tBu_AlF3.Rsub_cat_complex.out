@@ -1,0 +1,238 @@
+
+
+ Parallel Execution: Process Information
+ ==============================================================================
+ Rank   Node Name                              NodeID   MyNodeRank  NodeMaster
+    0   node120                                   0          0          0
+    1   node120                                   0          1         -1
+    2   node120                                   0          2         -1
+    3   node120                                   0          3         -1
+ ==============================================================================
+
+
+May use up to 122928MB of RAM as shared memory on node 0
+
+ *******************************************************************************
+ *                                                                             *
+ *  --------------------------------                                           *
+ *   Amsterdam Modeling Suite (AMS)              2021.102                      *
+ *  --------------------------------                                           *
+ *                                               r95042 2021-06-07             *
+ *                                                                             *
+ *                                                                             *
+ *                              =================                              *
+ *                              |               |                              *
+ *                              |     A M S     |                              *
+ *                              |               |                              *
+ *                              =================                              *
+ *                                                                             *
+ *                                                                             *
+ *   Online information and documentation:  https://www.scm.com/support/       *
+ *   E-mail:  support@scm.com   info@scm.com                                   *
+ *                                                                             *
+ *   Scientific publications using AMS results must be properly referenced     *
+ *   See the User Manuals (or the web site) for recommended citations          *
+ *   The terms and conditions of the End User License Agreement apply to       *
+ *   the use of AMS, https://www.scm.com/license-terms/                        *
+ *                                                                             *
+ **********************  x86_64_linux_intel / intelmpi  ************************
+ 
+ Licensed to: VU/FEW (+ SARA) / ALGEMEEN / Amsterdam / THE NETHERLANDS
+ SCM User ID: u7668
+  
+ AMS 2021.102  RunTime: Jan28-2022 10:52:13  ShM Nodes: 1  Procs: 4
+
+ AMS jobname: 33.achiral_catalyst.H_tBu_AlF3.Rsub_cat_complex
+ AMS jobid  : 393685737
+
+ Start   directory: /scistor/tc/yhk800/MasterProject/calculations/achiral_catalyst_H_tBu_AlF3/33.achiral_catalyst.H_tBu_AlF3.Rsub_cat_complex/
+ Results directory: /scistor/tc/yhk800/MasterProject/calculations/achiral_catalyst_H_tBu_AlF3/33.achiral_catalyst.H_tBu_AlF3.Rsub_cat_complex/
+ Scratch directory: /scratch/5502/amstmp_33.achiral_catalyst.H_tBu_AlF3.Rsub_cat_complex_kid0.393685737/
+
+
+ Communication costs MPI_COMM_WORLD:      0.897 usec per message,   0.0054 usec per 8-byte item
+ Communication costs for intra-node:      0.887 usec per message,   0.0036 usec per 8-byte item
+
+ RNG seed: 1104579465 884472190 231777070 405355052 688101990 -209430002 -306606892 -209887095
+
+
+
+                      ************************************************************************
+                      *  ADF 2021.102  RunTime: Jan28-2022 10:52:14  ShM Nodes: 1  Procs: 4  *
+                      ************************************************************************
+  
+       ***************************
+       *  GEOMETRY OPTIMIZATION  *
+       ***************************
+
+Optimization Method                    Quasi Newton
+Optimization Coordinates               Delocalized Coordinates
+Optimize lattice                       F
+ 
+ ------------------------------------------------------
+ Convergence criteria (Hartree,Angstrom)
+ ------------------------------------------------------
+ Maximum gradient               0.001000000000
+ Maximum rms gradient           0.000666666667
+ Maximum step allowed           0.010000000000
+ Maximum rms step allowed       0.006666666667
+ Maximum energy change allowe   0.000240000000
+ Maximum stress energy allowe   0.000500000000
+ 
+Initial model Hessian                  Automatic Hessian
+ 
+------------------------------------
+Quasi-Newton Optimizer Parameters
+------------------------------------
+Hessian Update Method                  BFGS
+Maximum number of steps                  250
+First GDIIS cycle                          0
+Maximum GDIIS vectors                      0
+Trust radius (bohr)                        0.200000
+Trust radius varies                        T
+Constraints converged at all steps         T
+Use projector                              T
+ 
+ Rigid motions settings for: old optimizer
+ Atomic rotations (x,y,z):     T T T
+ Atomic translations (x,y,z):  T T T
+ Tolerance:                   1.000000000000000E-006
+ 
+--------
+Geometry
+--------
+Formula: C7H12AlF3O
+Atoms
+  Index Symbol   x (angstrom)   y (angstrom)   z (angstrom)
+      1      H    -0.62056146    -0.03764738    -0.08023722
+      2      C    -0.09659473    -2.02948020    -0.54883449
+      3      C     0.18266548    -0.75219647    -0.26512258
+      4      C     1.55928918    -0.22013974    -0.18291419
+      5      O     1.86635738     0.93365884     0.07180470
+      6      H     0.69695300    -2.74612423    -0.73626627
+      7      C    -1.53512390    -3.98169459    -1.12156823
+      8      C    -1.54987465    -2.53359044    -0.62266085
+      9      C    -2.32371837    -1.63885453    -1.59566924
+     10      C    -2.16108997    -2.45555144     0.77964353
+     11      H    -2.14765732    -1.42687928     1.14159999
+     12      H    -2.55099094    -4.37493076    -1.18722103
+     13      H    -0.96277866    -4.61120054    -0.43929077
+     14      H    -1.07715113    -4.03683810    -2.10978859
+     15      H    -3.36175531    -1.96622602    -1.67465053
+     16      H    -1.87118027    -1.67785219    -2.58715690
+     17      H    -2.31140649    -0.60455404    -1.25008242
+     18      H    -3.19455491    -2.80588288     0.76743983
+     19      H    -1.59305862    -3.07453987     1.47502332
+     20      H     2.32514145    -0.94333367    -0.37095895
+     21     Al     1.85103070     2.46611042     0.80757453
+     22      F     1.06246720     1.84844950     2.07760404
+     23      F     1.02232412     3.06059473    -0.44787207
+     24      F     3.46830079     2.48928704     0.79299163
+ 
+Total System Charge             0.00000
+ 
+ 
+----------------
+ADF Engine Input
+----------------
+ 
+ NumericalQuality VeryGood
+ SCF
+ Converge 1.0e-6
+ Iterations 99
+ End
+ SYMMETRY NOSYM
+ XC
+ GGA OLYP
+ End
+ basis
+ core None
+ type TZ2P
+ End
+ 
+
+ Title: *** (NO TITLE) ***
+
+ Using automatic Hessian for delocalized coordinates.
+ *** GOStep1 ***
+
+ Energy gradients wrt nuclear displacements
+ ==========================================
+
+     Atom      Cartesian (a.u./angstrom)
+                 X         Y         Z
+ ----------------------------------------
+     1 H    -0.007880  0.000407 -0.000388
+     2 C     0.029812  0.006687  0.000365
+     3 C    -0.033794 -0.046715 -0.010919
+     4 C     0.067298  0.019336  0.004373
+     5 O    -0.002538  0.152136  0.067507
+     6 H    -0.006645  0.002681 -0.000131
+     7 C     0.002246 -0.001746 -0.000643
+     8 C    -0.029145  0.003808  0.005890
+     9 C     0.002140 -0.003124  0.001909
+    10 C    -0.000677 -0.002279 -0.005491
+    11 H     0.002852 -0.000430 -0.005375
+    12 H     0.001750  0.003551  0.001131
+    13 H    -0.001109  0.006402 -0.001399
+    14 H    -0.000638  0.004245  0.005045
+    15 H     0.003631  0.000884  0.000315
+    16 H     0.001280 -0.002346  0.005274
+    17 H     0.005783 -0.002327  0.004655
+    18 H     0.003610  0.001803  0.000181
+    19 H     0.000537  0.001456 -0.006272
+    20 H    -0.037716  0.025736  0.009567
+    21 Al   -0.004879 -0.029577 -0.005647
+    22 F     0.041366 -0.011649 -0.089522
+    23 F     0.043472 -0.077944  0.043924
+    24 F    -0.080755 -0.050993 -0.024350
+ ----------------------------------------
+ Mulliken charges used for AMS results%charges...
+ 
+----------------------------------------------------------------------
+Geometry Convergence after Step   1       (Hartree/Angstrom,Angstrom)
+----------------------------------------------------------------------
+current energy                               -4.76245793 Hartree
+energy change                      -4.76245793     0.00024000    F
+constrained gradient max            0.15215179     0.00100000    F
+constrained gradient rms            0.03139570     0.00066667    F
+gradient max                        0.15215179
+gradient rms                        0.03139570
+cart. step max                      0.15619526     0.01000000    F
+cart. step rms                      0.03944597     0.00666667    F
+ 
+ 
+--------
+Geometry
+--------
+Formula: C7H12AlF3O
+Atoms
+  Index Symbol   x (angstrom)   y (angstrom)   z (angstrom)
+      1      H    -0.60390480    -0.02188898    -0.08506078
+      2      C    -0.11845077    -2.03236155    -0.55431534
+      3      C     0.18094748    -0.75357598    -0.27309272
+      4      C     1.56291816    -0.25819441    -0.20115980
+      5      O     1.89293664     0.89464564     0.05031709
+      6      H     0.67527439    -2.75135132    -0.74140420
+      7      C    -1.53690974    -4.00103123    -1.12595199
+      8      C    -1.56623787    -2.54924400    -0.62854062
+      9      C    -2.35422756    -1.66516061    -1.60698507
+     10      C    -2.18058098    -2.47506326     0.77743808
+     11      H    -2.18131582    -1.44662343     1.14189661
+     12      H    -2.54900908    -4.40590460    -1.19129083
+     13      H    -0.95852178    -4.62686968    -0.44337645
+     14      H    -1.07878971    -4.05650404    -2.11545610
+     15      H    -3.38849984    -2.00787329    -1.68293610
+     16      H    -1.90429242    -1.70067880    -2.60091564
+     17      H    -2.35944648    -0.62777301    -1.27005259
+     18      H    -3.21085716    -2.83757329     0.76336179
+     19      H    -1.60836142    -3.08677477     1.47755800
+     20      H     2.32336029    -1.00232949    -0.39368792
+     21     Al     1.90968579     2.46907050     0.79915861
+     22      F     1.10816867     1.99832294     2.14696248
+     23      F     1.08408256     3.21678999    -0.40048175
+     24      F     3.53906402     2.60853085     0.85140247
+ 
+Total System Charge             0.00000
+ 
+ *** GOStep2 ***

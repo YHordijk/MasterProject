@@ -4,12 +4,13 @@ import paths, os
 
 
 #colors
-cRed = 		pxl.styles.PatternFill(start_color='FFFF0000', end_color='FFFF0000', fill_type='solid')
-cPurple = 	pxl.styles.PatternFill(start_color='FFA313FF', end_color='FFA313FF', fill_type='solid')
-cGreen = 	pxl.styles.PatternFill(start_color='FF67FF86', end_color='FF67FF86', fill_type='solid')
-cOrange = 	pxl.styles.PatternFill(start_color='FFFFBF65', end_color='FFFFBF65', fill_type='solid')
-cGrey = 	pxl.styles.PatternFill(start_color='FFBBBBBB', end_color='FFBBBBBB', fill_type='solid')
-status_cols = {'S': cGreen, 'F':cRed, 'R':cPurple, 'W':cOrange, 'C':cGrey}
+fillRed = 		pxl.styles.PatternFill(start_color='FFFFD3D3', end_color='FFFFD3D3', fill_type='solid')
+fillPurple = 	pxl.styles.PatternFill(start_color='FFE9C5FF', end_color='FFE9C5FF', fill_type='solid')
+fillGreen = 	pxl.styles.PatternFill(start_color='FFE2EFDA', end_color='FFE2EFDA', fill_type='solid')
+fillYellow = 	pxl.styles.PatternFill(start_color='FFFFF2CC', end_color='FFFFF2CC', fill_type='solid')
+fillGrey = 		pxl.styles.PatternFill(start_color='FFD6DCE4', end_color='FFD6DCE4', fill_type='solid')
+status_fills = {'Success': fillGreen, 'Failed':fillRed, 'Running':fillPurple, 'Warning':fillYellow, 'Queued':fillGrey}
+text_colors = {'Success': 'FF375623', 'Failed':'FFC00000', 'Running':'FF7030A2', 'Warning':'FF80600B', 'Queued':'FF222B35'}
 
 #border
 bSides = pxl.styles.borders.Border(left=pxl.styles.borders.Side(style='thin'), right=pxl.styles.borders.Side(style='thin'))
@@ -30,7 +31,7 @@ with open(paths.results_table) as csv:
 		ws.cell(column=col, row=row, value=n)
 		ws.cell(column=col, row=row).font = pxl.styles.Font(bold=True)
 		ws.cell(column=col, row=row).border = bHeader
-		if n == 'RESULT_DIRECTORY':
+		if n == 'DIRECTORY':
 			directory_idx = i
 		if n == 'STATUS':
 			status_idx = i
@@ -42,14 +43,15 @@ with open(paths.results_table) as csv:
 	Ncols = len(data[0])
 	for i, d in zip(range(Nrows), data):
 		row = i + 2
-		status_col = status_cols[statuses[i]]
+		status_fill = status_fills[statuses[i]]
+		status_text_col = text_colors[statuses[i]]
 		for j, n, x in zip(range(Ncols), fieldnames, d):
 			col = j+1
 			cell = ws.cell(column=col, row=row)
 			if j == 0:
 				cell.font = pxl.styles.Font(bold=True)
 			if n == 'DIRECTORY':
-				cell.value = f'=HYPERLINK("{os.path.join(paths.master, x)}", "{x}")'
+				cell.value = f'=HYPERLINK("{os.path.join(paths.results, x)}", "{x}")'
 				cell.style = 'Hyperlink'
 			elif n == 'OUTXYZ':
 				if not x == '':
@@ -66,7 +68,8 @@ with open(paths.results_table) as csv:
 				cell.value = x
 
 			if n in ['ID', 'STATUS']:
-				cell.fill = status_col
+				cell.fill = status_fill
+				cell.font = pxl.styles.Font(color=status_text_col, bold=True)
 			cell.border = bSides
 
 

@@ -3,7 +3,7 @@ import os
 import utility
 
 
-def pre_optimize(mol, path):
+def pre_optimize(mol, path, task='GeometryOptimization'):
     '''
     Uses DFTB to preoptimize a molecule in xyz file
     '''

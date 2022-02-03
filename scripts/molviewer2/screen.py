@@ -265,7 +265,7 @@ class Screen:
 		rad = np.zeros((len(mol.radii),3))
 		rad[:,0] = 1
 		rad = rad * mol.radii.reshape(-1,1) * atom_radius_factor
-		offset_pos = rad + pos		
+		offset_pos = rad + pos
 		
 		mapped_positions = self.project(pos)
 		mapped_radii = self.project(offset_pos)
@@ -275,7 +275,6 @@ class Screen:
 			n = atn[i]
 			a = mapped_positions[i]
 
-			
 			if simple_atoms: 
 				pg.draw.circle(self.molecule_surf, atcolours[i], a, r[i])
 			else:
@@ -350,7 +349,6 @@ class Screen:
 						pg.draw.rect(self.molecule_surf, (0,255,0), p, width=2)
 
 					if self.show_fig:
-
 						plt.imshow(pg.PixelArray(im).transpose())
 						plt.show()
 

@@ -1,0 +1,9 @@
+Run Command failed
+
+argv: D:/Users/Yuman/Desktop/MasterProject/manual_calculations/urea/catalyst_cheap_O runcmd
+
+cmd: sh "D:/Users/Yuman/Desktop/MasterProject/manual_calculations/urea/catalyst_cheap_O.job" "NSCM= ; export NSCM"
+
+err: child process exited abnormally
+
+result: 

@@ -1,5 +1,5 @@
 import paths
-import results_database
+import results_database2 as results_database
 from utility import hartree2kcalmol as h2k
 import struct_generator, mol_viewer2
 
@@ -20,14 +20,13 @@ def get_reaction_calculations(template, substituents):
 
 def print_energies(results):
 	for SP, res in results.items():
-		print(f'{SP:5}: ΔG = {h2k(res["energies"]["gibbs_energy"]):.2f} kcal/mol')
+		print(f'{SP:5}: ΔG = {h2k(res.energies["gibbs_energy"]):.2f} kcal/mol')
 
 
-def show_reaction(template, substituents=None, simple=True):
+def show_reaction(template, substituents=None, simple=False):
 	if substituents is None:
 		substituents = {}
-	mols = struct_generator.generate_stationary_points(template, substituents, keep_dummy=False)
-	print(mols[-1])
+	mols = struct_generator.generate_stationary_points(template, substituents, keep_dummy=True)
 	mol_viewer2.show(mols, simple=simple)
 
 # results = get_reaction_calculations('no_catalyst', {'R1':'H', 'R2':'H'})
@@ -36,4 +35,4 @@ def show_reaction(template, substituents=None, simple=True):
 # results = get_reaction_calculations('achiral_catalyst', {'R1':'H', 'R2':'H', 'Rcat':'I2'})
 # print_energies(results)
 
-show_reaction('achiral_catalyst', substituents={'R2':'Ph'})
+show_reaction('urea_tBu_Ph', {'R1':'H', 'R2':'Ph', 'Rch':'O'}, simple=True)
