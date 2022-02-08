@@ -1,0 +1,16 @@
+{
+  "files": {
+    "calc_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst_H_Ph_AlF3\\27.achiral_catalyst.H_Ph_AlF3.Rcat",
+    "res_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst_H_Ph_AlF3\\27.achiral_catalyst.H_Ph_AlF3.Rcat",
+    "opt out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst_H_Ph_AlF3\\27.achiral_catalyst.H_Ph_AlF3.Rcat\\27.achiral_catalyst.H_Ph_AlF3.Rcat.out",
+    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst_H_Ph_AlF3\\27.achiral_catalyst.H_Ph_AlF3.Rcat\\input.xyz"
+  },
+  "info": {
+    "substituents": []
+  },
+  "pre opt": {},
+  "opt": {},
+  "freq": {},
+  "thermo": {},
+  "misc": {}
+}
