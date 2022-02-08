@@ -12,6 +12,7 @@ results_table_pretty = 	os.path.join(results, 'results_formatted.xlsx')
 
 id_list = 				os.path.join(scripts, 'id_list')
 resources = 			os.path.join(master, 'resources')
+JR_templates =			os.path.join(resources, 'job_runner_templates')
 SGT = 					os.path.join(resources, 'struct_generator_templates')
 SGT_substituents = 		os.path.join(SGT, 'substituents')
 input_xyz = 			os.path.join(resources, 'input_xyz')

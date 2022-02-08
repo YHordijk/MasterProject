@@ -1,0 +1,39 @@
+{
+  "files": {
+    "calc_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\urea_tBu_Ph.H_Ph_O.vacuum\\sub_cat_complex",
+    "res_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\urea_tBu_Ph.H_Ph_O.vacuum\\sub_cat_complex",
+    "run script": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\urea_tBu_Ph.H_Ph_O.vacuum\\sub_cat_complex\\GO.urea_tBu_Ph.H_Ph_O.sub_cat_complex",
+    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\urea_tBu_Ph.H_Ph_O.vacuum\\sub_cat_complex\\input.xyz",
+    "run info": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\urea_tBu_Ph.H_Ph_O.vacuum\\sub_cat_complex\\run.info"
+  },
+  "info": {
+    "substituents": [
+      [
+        "R2",
+        "Ph"
+      ],
+      [
+        "R1",
+        "H"
+      ],
+      [
+        "Rch",
+        "O"
+      ]
+    ],
+    "unique": "urea_tBu_Ph.vacuum.GO.sub_cat_complex.['H', 'Ph', 'O'].[].False.N/A",
+    "reaction": "urea_tBu_Ph",
+    "stationary point": "sub_cat_complex",
+    "task": "GO",
+    "TSRC": "N\\A",
+    "radical": "False",
+    "phase": "vacuum",
+    "enantiomer": "N/A",
+    "hash": "34149c4d9f34bf84857c3659209f0d409157db958fce6e8cb44481504eff37a5"
+  },
+  "pre opt": {},
+  "opt": {},
+  "freq": {},
+  "thermo": {},
+  "misc": {}
+}

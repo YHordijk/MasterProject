@@ -1,7 +1,9 @@
-import paths, hashlib
+import paths, hashlib, os
 import scm.plams as plams
 import numpy as np
 
+
+join = os.path.join
 
 def write_mol(mol, path, comment=None):
     with open(path, 'w+') as file:
@@ -37,6 +39,37 @@ def hash(reaction, stationary_point, flags):
     hashstr = reaction + stationary_point + ' '.join(list(sorted(flags)))
     # print(hashstr)
     return hashlib.sha256(hashstr.encode('utf-8')).hexdigest()
+
+
+def hash_from_info(info_path):
+    with open(info_path, 'r') as info:
+        lines = info.readlines()
+        for line in lines:
+            if line.startswith('unique='):
+                hashstr = line.strip().split('=')[1]
+                break
+    return hashlib.sha256(hashstr.encode('utf-8')).hexdigest()
+
+
+def hash2(hashstr):
+    return hashlib.sha256(hashstr.encode('utf-8')).hexdigest()
+
+
+def get_all_run_dirs(calc_dir):
+    dirs = []
+    for system in os.listdir(calc_dir):
+        if not os.path.isdir(join(calc_dir, system)): continue
+
+        for dir in os.listdir(join(calc_dir, system)):
+            p = join(calc_dir,system,dir)
+            dirs.append(p)
+    return dirs
+
+
+def hash_collision(h, calc_dir=paths.calculations):
+    dirs = get_all_run_dirs(calc_dir)
+    hashes = [hash_from_info(join(d, 'run.info')) for d in dirs]
+    return h in hashes
 
 
 def get_sorted_dict_values(d):

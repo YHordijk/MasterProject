@@ -1,0 +1,115 @@
+#!/bin/bash
+#SBATCH -N 1
+#SBATCH -t 240:00:00
+#SBATCH --ntasks-per-node=32
+#SBATCH --partition=tc
+
+echo "== Starting run at $(date)"
+echo "== Job ID: ${SLURM_JOBID}"
+echo "== Node list: ${SLURM_NODELIST}"
+echo "== Submit dir. : ${SLURM_SUBMIT_DIR}"
+echo "== Scratch dir. : ${TMPDIR}"
+
+
+module load ams
+module list
+
+
+
+echo "========= PREOPTIMIZING ========="
+# This is the pre-optimization step
+# First use low level of theory (DZP, numerical quality normal)
+# Extract the structure using amsreport and save it to a file
+# Read in the structure skipping the first row and inputting it in the next run
+$AMSBIN/ams <<eor>$SLURM_SUBMIT_DIR/${SLURM_JOB_NAME}_preopt.out
+
+Task GeometryOptimization
+
+System
+  Atoms
+     [ATOMS]
+  End
+End
+
+Engine ADF
+  
+  BASIS
+     type TZ2P
+     core none
+  END
+  
+  SYMMETRY NOSYM
+  
+  SCF
+     ITERATIONS 99
+     Converge 1.0e-6 
+  END
+  
+  XC
+    GGA OLYP
+  END
+  
+  NumericalQuality NORMAL
+  [RADICAL]
+ENDEngine
+
+eor
+
+cp ams.results/ams.rkf $SLURM_SUBMIT_DIR/${SLURM_JOB_NAME}_preopt.ams.rkf
+cp ams.results/adf.rkf $SLURM_SUBMIT_DIR/${SLURM_JOB_NAME}_preopt.adf.rkf
+cp ams.results/ams.log $SLURM_SUBMIT_DIR/${SLURM_JOB_NAME}_preopt.log
+rm -r ams.results
+
+amsreport $SLURM_SUBMIT_DIR/${SLURM_JOB_NAME}_preopt.adf.rkf geometry-a* > $SLURM_SUBMIT_DIR/preopt.xyz
+PREOPT_ATOMS=$(awk -v c=1 'i++ < c {next};1' $SLURM_SUBMIT_DIR/preopt.xyz)
+
+
+echo "========= OPTIMIZING ========="
+# HIGH QUALITY OPTIMIZATION
+$AMSBIN/ams <<eor>$SLURM_SUBMIT_DIR/$SLURM_JOB_NAME.out
+
+Task GeometryOptimization
+
+System
+  Atoms
+     ${PREOPT_ATOMS}
+  End
+End
+
+Properties
+  NormalModes Yes
+End
+NormalModes
+  ReScanFreqRange -10000000.0 20.0 
+End
+
+Engine ADF
+  
+  BASIS
+     type TZ2P
+     core none
+  END
+  
+  SYMMETRY NOSYM
+  
+  SCF
+     ITERATIONS 99
+     Converge 1.0e-6 
+  END
+  
+  XC
+    GGA OLYP
+  END
+  
+  NumericalQuality VERYGOOD
+  [RADICAL]
+ENDEngine
+
+eor
+
+cp ams.results/ams.rkf $SLURM_SUBMIT_DIR/${SLURM_JOB_NAME}.ams.rkf
+cp ams.results/adf.rkf $SLURM_SUBMIT_DIR/${SLURM_JOB_NAME}.adf.rkf
+cp ams.results/ams.log $SLURM_SUBMIT_DIR/${SLURM_JOB_NAME}.log
+rm -r ams.results
+
+amsreport $SLURM_SUBMIT_DIR/${SLURM_JOB_NAME}.adf.rkf geometry-a* > $SLURM_SUBMIT_DIR/output.xyz

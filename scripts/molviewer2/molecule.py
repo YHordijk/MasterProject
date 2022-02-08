@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 from math import cos, sin, pi
 import molviewer2.screen
 import itertools as it
+import scm.plams as plams
 
 
 #####	====================	molecule loading	====================	#####
@@ -61,6 +62,7 @@ def _load_molecule_from_pubchem(name):
 
 def load_molecule(arg):
 	#test if its a path
+	print(os.path.exists(arg))
 	if os.path.exists(arg):
 		return _load_molecule_from_path(arg, name=arg)
 	elif os.path.exists(xyz_path + arg + '.xyz'):
@@ -75,12 +77,15 @@ def load_plams_molecule(mol):
 
 	molobjs = []
 	for m in mol:
-		name = m.name
-		elements = [a.symbol for a in m.atoms]
-		positions = np.array([a.coords for a in m.atoms])
-		newm = Molecule(name=name, elements=elements, positions=positions)
-		newm.reaction = m.reaction
-		molobjs.append(newm)
+		if type(m) is not plams.Molecule:
+			molobjs.append(m)
+		else:
+			name = m.name
+			elements = [a.symbol for a in m.atoms]
+			positions = np.array([a.coords for a in m.atoms])
+			newm = Molecule(name=name, elements=elements, positions=positions)
+			newm.reaction = m.reaction
+			molobjs.append(newm)
 	return molobjs
 
 

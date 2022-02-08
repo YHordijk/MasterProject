@@ -27,6 +27,7 @@ def show_reaction(template, substituents=None, simple=False):
 	if substituents is None:
 		substituents = {}
 	mols = struct_generator.generate_stationary_points(template, substituents, keep_dummy=True)
+	[print(m.name, m.flags) for m in mols]
 	mol_viewer2.show(mols, simple=simple)
 
 # results = get_reaction_calculations('no_catalyst', {'R1':'H', 'R2':'H'})
@@ -35,4 +36,4 @@ def show_reaction(template, substituents=None, simple=False):
 # results = get_reaction_calculations('achiral_catalyst', {'R1':'H', 'R2':'H', 'Rcat':'I2'})
 # print_energies(results)
 
-show_reaction('urea_tBu_Ph', {'R1':'H', 'R2':'Ph', 'Rch':'O'}, simple=True)
+show_reaction('urea_tBu_Ph', {'Rch':'S', 'R2':'Ph'}, simple=False)

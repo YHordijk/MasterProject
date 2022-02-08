@@ -1,0 +1,39 @@
+{
+  "files": {
+    "calc_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\urea_tBu_Ph.H_Ph_S.vacuum\\P2S_cat_complex",
+    "res_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\urea_tBu_Ph.H_Ph_S.vacuum\\P2S_cat_complex",
+    "run script": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\urea_tBu_Ph.H_Ph_S.vacuum\\P2S_cat_complex\\GO.urea_tBu_Ph.H_Ph_S.P2S_cat_complex",
+    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\urea_tBu_Ph.H_Ph_S.vacuum\\P2S_cat_complex\\input.xyz",
+    "run info": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\urea_tBu_Ph.H_Ph_S.vacuum\\P2S_cat_complex\\run.info"
+  },
+  "info": {
+    "substituents": [
+      [
+        "R2",
+        "Ph"
+      ],
+      [
+        "R1",
+        "H"
+      ],
+      [
+        "Rch",
+        "S"
+      ]
+    ],
+    "unique": "urea_tBu_Ph.vacuum.GO.P2S_cat_complex.['H', 'Ph', 'S'].[].False.S",
+    "reaction": "urea_tBu_Ph",
+    "stationary point": "P2S_cat_complex",
+    "task": "GO",
+    "TSRC": "N\\A",
+    "radical": "False",
+    "phase": "vacuum",
+    "enantiomer": "S",
+    "hash": "eb2f05b88bf2d0681a6b15bd33a365f2a70fb76545549991169a290107e5f8ea"
+  },
+  "pre opt": {},
+  "opt": {},
+  "freq": {},
+  "thermo": {},
+  "misc": {}
+}

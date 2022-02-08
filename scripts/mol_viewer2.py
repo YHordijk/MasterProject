@@ -50,6 +50,6 @@ if __name__ == '__main__':
 				
 		show(mol, simple=False)
 	else:
-		# xyz = molecule.load_molecule(r"D:\Users\Yuman\Desktop\MasterProject\calculations\achiral_catalyst_Cl_Br_ZnCl2\3.achiral_catalyst.Cl_Br_ZnCl2.Rcat\output.xyz")
-		xyz = struct_generator.generate_stationary_points('no_catalyst', {'R1':'Cl', 'R2':'Br', 'Rcat':'SnCl4'})
-		show(xyz, simple=False)
+		xyz = molecule.load_molecule(r"D:\Users\Yuman\Desktop\MasterProject\resources\struct_generator_templates\urea_tBu_Ph\cat.xyz")
+		# xyz = struct_generator.generate_stationary_points('no_catalyst', {'R1':'Cl', 'R2':'Br', 'Rcat':'SnCl4'})
+		show(xyz, simple=True)
