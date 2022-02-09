@@ -50,12 +50,12 @@ def make_database(res, out_file=paths.results_table):
 
     fields = get_fields()
 
+    #write sep specifier and header
     writer = csv.writer(open(out_file, 'w+', newline=''))
     writer.writerow(['sep=,'])
     writer.writerow([f.upper() for f in fields])
 
     writer = csv.DictWriter(open(out_file, 'a', newline=''), fields, extrasaction='ignore')
-
     for d in data:
         writer.writerow(d)
 

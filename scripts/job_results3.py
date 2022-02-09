@@ -263,9 +263,11 @@ def get_all_results(calc_dir=paths.calculations, res_dir=paths.results, regenera
             r = Result(res_path)
             #check status
             if r.status in ['Running', 'Queued']:
-                r = generate_result(calc_path, calc_dir=calc_dir, res_dir=res_dir)
+                if os.path.exists(calc_path):
+                    r = generate_result(calc_path, calc_dir=calc_dir, res_dir=res_dir)
             elif regenerate_all:
-                r = generate_result(calc_path, calc_dir=calc_dir, res_dir=res_dir)
+                if os.path.exists(calc_path):
+                    r = generate_result(calc_path, calc_dir=calc_dir, res_dir=res_dir)
 
         res.append(r)
     return res
@@ -362,9 +364,9 @@ class Result:
                 self.status = 'Canceled'
 
 
-        with open(self.data['files']['opt log']) as log:
-            if '=== NUCLEUS' in log.read():
-                self.step = 'FREQ'
+        # with open(self.data['files']['opt log']) as log:
+        #     if '=== NUCLEUS' in log.read():
+        #         self.step = 'FREQ'
 
 
 def summarize_calculations(res, tabs=0):
@@ -408,7 +410,7 @@ def summarize_calculations(res, tabs=0):
 
 
 if __name__ == '__main__':
-    res = get_all_results(calc_dir=join(paths.master, 'calculations_test'), regenerate_all=True)
+    res = get_all_results(calc_dir=join(paths.master, 'calculations_test'), regenerate_all=False)
     summarize_calculations(res)
 
     now = datetime.datetime.now()

@@ -37,7 +37,7 @@
     "phase": "vacuum",
     "enantiomer": "S",
     "hash": "1d05fa7c4170fed4d1e730d6a758699748b45993146d071df4316fb129a063db",
-    "time silent": 4699
+    "time silent": 10015
   },
   "pre opt": {
     "runtime": 762.3210520744324,

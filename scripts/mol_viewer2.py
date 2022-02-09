@@ -1,6 +1,9 @@
+import os
+os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
+
 import molviewer2.molecule as molecule
 import molviewer2.screen as screen
-import struct_generator, sys, json
+import sys, json
 import numpy as np
 
 def show(mols, simple=False):
@@ -51,5 +54,4 @@ if __name__ == '__main__':
 		show(mol, simple=False)
 	else:
 		xyz = molecule.load_molecule(r"D:\Users\Yuman\Desktop\MasterProject\resources\struct_generator_templates\urea_tBu_Ph\cat.xyz")
-		# xyz = struct_generator.generate_stationary_points('no_catalyst', {'R1':'Cl', 'R2':'Br', 'Rcat':'SnCl4'})
 		show(xyz, simple=True)

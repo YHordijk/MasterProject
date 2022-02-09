@@ -6,7 +6,7 @@ join = os.path.join
 
 
 
-def generate_stationary_points(template, substituents=None):
+def generate_stationary_points(template, substituents=None, keep_dummy=False):
     template_dir = join(paths.SGT, template)
     template_meta = join(template_dir, 'meta.info')
 
@@ -125,6 +125,8 @@ def generate_stationary_points(template, substituents=None):
 
         #now do the substitutions
         for sub_name, atoms in main_conns.items():
+            if not sub_name in substituent_files:
+                continue
             sub_file = substituent_files[sub_name]
             #load the substituent molecule from file
             #also get the connector atoms
@@ -149,8 +151,11 @@ def generate_stationary_points(template, substituents=None):
     #get a list of all substituents first
     all_substituents = get_all_subs(template_mols)
     #read in default substituents from meta.info
-    _substituents = get_default_subs(all_substituents)
-    _substituents.update(substituents) #update with provided subs
+    if not keep_dummy:
+        _substituents = get_default_subs(all_substituents)
+        _substituents.update(substituents) #update with provided subs
+    else:
+        _substituents = substituents
     #finally get the correct files
     substituent_files = get_sub_files(_substituents)
 
