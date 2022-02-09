@@ -37,10 +37,10 @@
     "phase": "vacuum",
     "enantiomer": "R",
     "hash": "24b8aabce8f736356e1624f9901f8ca2bcc9d93c3063a32b9bea69b5f5445fa0",
-    "time silent": 9343
+    "time silent": 4392
   },
   "pre opt": {
-    "runtime": 15492.320890903473,
+    "runtime": 15492,
     "natoms": 65,
     "elements": [
       "C",
@@ -770,7 +770,7 @@
     "status": "NORMAL TERMINATION with errors"
   },
   "opt": {
-    "runtime": 0,
+    "runtime": 18372,
     "natoms": 65,
     "elements": [
       "C",

@@ -2,6 +2,8 @@ import paths, os
 import results_database3 as results_database
 from utility import hartree2kcalmol as h2k
 import struct_generator2, mol_viewer2, job_results3
+import matplotlib.pyplot as plt
+
 
 join = os.path.join
 
@@ -45,6 +47,36 @@ def get_reaction_results(template, substituents):
 	return results
 
 
+def get_reaction_profile(res):
+	def plot_path(order, label=None):
+		print([resdict[o].energy for o in order])
+		plt.plot(range(len(order)), [resdict[o].energy for o in order], label=label)
+
+
+	reaction = res[0].reaction
+	resdict = {r.stationary_point: r for r in res}
+
+	if reaction == 'urea_tBu_Ph':
+		Rres = {r.stationary_point: r for r in res if r.enantiomer in ['R', 'N/A']}
+		Sres = {r.stationary_point: r for r in res if r.enantiomer in ['S', 'N/A']}
+
+		Rorder = ['sub_cat_complex', 'TSR', 'P1R_cat_complex', 'P2R_cat_complex']
+		Sorder = ['sub_cat_complex', 'TSS', 'P1S_cat_complex', 'P2S_cat_complex']
+		labels = ['RC', 'TS', 'P1C', 'P2C']
+
+
+		fig, ax = plt.subplots(1,1) 
+
+		plot_path(Rorder, '(R)')
+		plot_path(Sorder, '(S)')
+
+		ax.set_xticks(range(len(labels)))
+		ax.set_xticklabels(labels)
+		plt.legend()
+		plt.show()
+
+
+
 # results = get_reaction_calculations('no_catalyst', {'R1':'H', 'R2':'H'})
 # print_energies(results)
 
@@ -52,4 +84,5 @@ def get_reaction_results(template, substituents):
 # print_energies(results)
 
 # show_reaction('urea_tBu_Ph', {'Rch':'S', 'R2':'Ph'}, simple=False)
-get_reaction_results('urea_tBu_Ph', {'R1':'H', 'R2':'Ph', 'Rch':'O'})
+res = get_reaction_results('urea_tBu_Ph', {'R1':'H', 'R2':'tBu', 'Rch':'O'})
+get_reaction_profile(res)

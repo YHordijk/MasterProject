@@ -9,8 +9,8 @@ fillPurple = 	pxl.styles.PatternFill(start_color='FFE9C5FF', end_color='FFE9C5FF
 fillGreen = 	pxl.styles.PatternFill(start_color='FFE2EFDA', end_color='FFE2EFDA', fill_type='solid')
 fillYellow = 	pxl.styles.PatternFill(start_color='FFFFF2CC', end_color='FFFFF2CC', fill_type='solid')
 fillGrey = 		pxl.styles.PatternFill(start_color='FFD6DCE4', end_color='FFD6DCE4', fill_type='solid')
-status_fills = {'Success': fillGreen, 'Failed':fillRed, 'Running':fillPurple, 'Warning':fillYellow, 'Queued':fillGrey}
-text_colors = {'Success': 'FF375623', 'Failed':'FFC00000', 'Running':'FF7030A2', 'Warning':'FF80600B', 'Queued':'FF222B35'}
+status_fills = {'Success': fillGreen, 'Failed':fillRed, 'Running':fillPurple, 'Warning':fillYellow, 'Queued':fillGrey, 'Canceled':fillRed}
+text_colors = {'Success': 'FF375623', 'Failed':'FFC00000', 'Running':'FF7030A2', 'Warning':'FF80600B', 'Queued':'FF222B35', 'Canceled':'FFC00000'}
 
 #border
 bSides = pxl.styles.borders.Border(left=pxl.styles.borders.Side(style='thin'), right=pxl.styles.borders.Side(style='thin'))

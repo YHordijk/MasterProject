@@ -14,7 +14,6 @@ def get_all_run_dirs(calc_dir=paths.calculations):
     dirs = []
     for system in os.listdir(calc_dir):
         if not os.path.isdir(join(calc_dir, system)): continue
-
         for dir in os.listdir(join(calc_dir, system)):
             p = join(calc_dir,system,dir)
             dirs.append(p)
@@ -55,7 +54,6 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
 
         files['calc_path'] = calc_path
         files['res_path'] = res_path
-
         for file in os.listdir(calc_path):
             #input files
             if file == 'input.xyz':
@@ -136,6 +134,7 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
         else:
             return general
 
+
         with open(logfile) as log:
             lines = log.readlines()
             last = lines[-1]
@@ -155,22 +154,30 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
                 for e, c in zip(elements, coords):
                     xyz.write(f'{e:2}\t{c[0]:11.9f}\t{c[1]:11.9f}\t{c[2]:11.9f}\n')
 
+        def get_runtime(file):
+            with open(file) as log:
+                lines = log.readlines()
+                first = datetime.datetime.strptime(' '.join(lines[0].split()[0:2]),  '<%b%d-%Y> <%H:%M:%S>')
+                last  = datetime.datetime.strptime(' '.join(lines[-1].split()[0:2]), '<%b%d-%Y> <%H:%M:%S>')
+            return (last-first).seconds
+
+
         opt = {}
         files = data['files'] 
         amsrkf = 'opt amsrkf'
-
         input_xyz = join(res_path, 'input.xyz')
         output_xyz = join(res_path, 'output.xyz')
+        log = 'opt log'
         # xyz_comment =
         if preopt:
             amsrkf = 'preopt amsrkf'
             input_xyz = join(res_path, 'input_preopt.xyz')
             output_xyz = join(res_path, 'output_preopt.xyz')
+            log = 'preopt log'
 
         if amsrkf in files:
             ams = plams.KFFile(files[amsrkf])
-            try:    opt['runtime'] = ams.read('General', 'ElapsedTime')
-            except: opt['runtime'] = 0
+            opt['runtime'] = get_runtime(files[log])
 
             opt['natoms'] = ams.read('InputMolecule', 'nAtoms')
             opt['elements'] = ams.read('InputMolecule', 'AtomSymbols').split()
@@ -214,7 +221,7 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
     def get_thermo_data():
         thermo = {}
         files = data['files']
-        adfrkf = 'adfrkf'
+        adfrkf = 'opt adfrkf'
 
         if adfrkf in files:
             adf = plams.KFFile(files[adfrkf])
@@ -249,25 +256,26 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
     return Result(join(res_path))
 
 
-def get_all_results(calc_dir=paths.calculations, res_dir=paths.results, regenerate_all=False):
+def get_all_results(calc_dir=paths.calculations, res_dir=paths.results, regenerate_all=True):
     calc_paths = get_all_run_dirs(calc_dir) #get all calc directories
     res = []
     for calc_path in calc_paths:
-        #get res_path
-        res_path = join(res_dir, os.path.relpath(calc_path, calc_dir))
-        #check if it exists first
-        if not os.path.exists(res_path):
-            #if not, generate the results
+
+        if regenerate_all:
             r = generate_result(calc_path, calc_dir=calc_dir, res_dir=res_dir)
         else:
-            r = Result(res_path)
-            #check status
-            if r.status in ['Running', 'Queued']:
-                if os.path.exists(calc_path):
-                    r = generate_result(calc_path, calc_dir=calc_dir, res_dir=res_dir)
-            elif regenerate_all:
-                if os.path.exists(calc_path):
-                    r = generate_result(calc_path, calc_dir=calc_dir, res_dir=res_dir)
+            #get res_path
+            res_path = join(res_dir, os.path.relpath(calc_path, calc_dir))
+            #check if it exists first
+            if not os.path.exists(res_path):
+                #if not, generate the results
+                r = generate_result(calc_path, calc_dir=calc_dir, res_dir=res_dir)
+            else:
+                r = Result(res_path)
+                #check status
+                if r.status in ['Running', 'Queued']:
+                    if os.path.exists(calc_path):
+                        r = generate_result(calc_path, calc_dir=calc_dir, res_dir=res_dir)
 
         res.append(r)
     return res
@@ -287,6 +295,13 @@ class Result:
     @property
     def gibbs(self):
         return self.data['thermo'].get('gibbs', None)
+
+    @property
+    def energy(self):
+        if 'opt' in self.data:
+            return self.data['opt'].get('output energy')
+        return self
+    
 
     @property
     def hash(self):
@@ -363,10 +378,9 @@ class Result:
             if time/3600 >= 2:
                 self.status = 'Canceled'
 
-
-        # with open(self.data['files']['opt log']) as log:
-        #     if '=== NUCLEUS' in log.read():
-        #         self.step = 'FREQ'
+        with open(self.data['files']['opt log']) as log:
+            if '=== NUCLEUS' in log.read():
+                self.step = 'FREQ'
 
 
 def summarize_calculations(res, tabs=0):
@@ -410,8 +424,7 @@ def summarize_calculations(res, tabs=0):
 
 
 if __name__ == '__main__':
-    res = get_all_results(calc_dir=join(paths.master, 'calculations_test'), regenerate_all=False)
+    res = get_all_results(calc_dir=join(paths.master, 'calculations_test'), regenerate_all=True)
     summarize_calculations(res)
 
-    now = datetime.datetime.now()
  

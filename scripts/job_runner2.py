@@ -47,7 +47,17 @@ def run_jobs(template, substituents={}, calc_dir=paths.calculations, phase='vacu
             TSRC = f'    Distance {mol.TSRC_idx[0]} {mol.TSRC_idx[1]} -1\n'
         SLURM_SUBMIT_DIR = runscript_path(mol)
 
-        blocks = {'[RADICAL]': RADICAL, '[ATOMS]': ATOMS, '[TSRC]': TSRC, '[SLURM_SUBMIT_DIR]': SLURM_SUBMIT_DIR}
+        CORES = 32
+        if mol.radical:
+            CORES = 64
+
+        blocks = {
+                '[RADICAL]':          RADICAL, 
+                '[ATOMS]':            ATOMS, 
+                '[TSRC]':             TSRC, 
+                '[SLURM_SUBMIT_DIR]': SLURM_SUBMIT_DIR,
+                '[CORES]':            CORES,
+                }
 
         with open(JR_template) as temp:
             temp_lines = temp.readlines()
