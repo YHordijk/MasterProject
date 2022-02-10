@@ -142,7 +142,7 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
 
             now = datetime.datetime.now()
             then = datetime.datetime.strptime(last, '<%b%d-%Y> <%H:%M:%S>')
-            general['time silent'] = (now-then).seconds
+            general['time silent'] = int((now-then).total_seconds())
 
         return general
 
@@ -154,20 +154,13 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
                 for e, c in zip(elements, coords):
                     xyz.write(f'{e:2}\t{c[0]:11.9f}\t{c[1]:11.9f}\t{c[2]:11.9f}\n')
 
-        def get_runtime(file):
-            with open(file) as log:
-                lines = log.readlines()
-                first = datetime.datetime.strptime(' '.join(lines[0].split()[0:2]),  '<%b%d-%Y> <%H:%M:%S>')
-                last  = datetime.datetime.strptime(' '.join(lines[-1].split()[0:2]), '<%b%d-%Y> <%H:%M:%S>')
-            return (last-first).seconds
-
-
         opt = {}
         files = data['files'] 
         amsrkf = 'opt amsrkf'
         input_xyz = join(res_path, 'input.xyz')
         output_xyz = join(res_path, 'output.xyz')
         log = 'opt log'
+        opt['runtime'] = 0
         # xyz_comment =
         if preopt:
             amsrkf = 'preopt amsrkf'
@@ -177,7 +170,7 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
 
         if amsrkf in files:
             ams = plams.KFFile(files[amsrkf])
-            opt['runtime'] = get_runtime(files[log])
+            
 
             opt['natoms'] = ams.read('InputMolecule', 'nAtoms')
             opt['elements'] = ams.read('InputMolecule', 'AtomSymbols').split()
@@ -198,6 +191,18 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
                 opt['steps'] = 0
             
             opt['status'] = ams.read('General', 'termination status')
+
+        if log in files:
+            with open(files[log]) as log:
+                lines = log.readlines()
+                first = datetime.datetime.strptime(' '.join(lines[0].split()[0:2]),  '<%b%d-%Y> <%H:%M:%S>')
+                last  = datetime.datetime.strptime(' '.join(lines[-1].split()[0:2]), '<%b%d-%Y> <%H:%M:%S>')
+                opt['runtime'] = int((last-first).total_seconds())
+                opt['step'] = 'GO'
+                if any('=== NUCLEUS' in line for line in lines):
+                    opt['step'] = 'FREQ'
+                if any('NORMAL TERMINATION' in line for line in lines):
+                    opt['step'] = 'END'
 
         return opt
 
@@ -222,7 +227,6 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
         thermo = {}
         files = data['files']
         adfrkf = 'opt adfrkf'
-
         if adfrkf in files:
             adf = plams.KFFile(files[adfrkf])
             thermo['gibbs'] = adf.read('Thermodynamics', 'Gibbs free Energy')
@@ -234,9 +238,6 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
         misc = {}
         files = data['files']
         adfrkf = 'opt adfrkf'
-
-        # if adfrkf in files:
-        #     adf = plams.KFFile(files[adfrkf])
 
         return misc
 
@@ -257,27 +258,38 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
 
 
 def get_all_results(calc_dir=paths.calculations, res_dir=paths.results, regenerate_all=True):
-    calc_paths = get_all_run_dirs(calc_dir) #get all calc directories
+    def check_regenerate(calc_path, res_path):
+        check = False
+        reason = 'None'
+        if regenerate_all: 
+            check = True
+            reason = 'regenerate_all'
+        #if the path does not exist then in all cases do not regenerate
+        if not os.path.exists(calc_path):
+            check = False
+            reason = 'calc_path not found'
+
+        #if it does exist check the status
+        try:
+            r = Result(res_path)
+            if r.status in ['Running', 'Queued', 'Canceled']:
+                reason = 'calc still running'
+                check = True
+        except:
+            pass
+        return check
+
+
+    for calc_path in get_all_run_dirs(calc_dir):
+        res_path = join(res_dir, os.path.relpath(calc_path, calc_dir))
+        if check_regenerate(calc_path, res_path):
+            generate_result(calc_path, calc_dir=calc_dir, res_dir=res_dir)
+    
     res = []
-    for calc_path in calc_paths:
-
-        if regenerate_all:
-            r = generate_result(calc_path, calc_dir=calc_dir, res_dir=res_dir)
-        else:
-            #get res_path
-            res_path = join(res_dir, os.path.relpath(calc_path, calc_dir))
-            #check if it exists first
-            if not os.path.exists(res_path):
-                #if not, generate the results
-                r = generate_result(calc_path, calc_dir=calc_dir, res_dir=res_dir)
-            else:
-                r = Result(res_path)
-                #check status
-                if r.status in ['Running', 'Queued']:
-                    if os.path.exists(calc_path):
-                        r = generate_result(calc_path, calc_dir=calc_dir, res_dir=res_dir)
-
+    for res_path in get_all_result_dirs(res_dir):
+        r = Result(res_path)
         res.append(r)
+
     return res
 
 
@@ -302,7 +314,6 @@ class Result:
             return self.data['opt'].get('output energy')
         return self
     
-
     @property
     def hash(self):
         return self.data['info'].get('hash', None)
@@ -332,6 +343,7 @@ class Result:
         for sub in s:
             if sub[0] == R:
                 return sub[1]
+        return ''
 
     @property
     def stationary_point(self):
@@ -339,37 +351,35 @@ class Result:
 
     @property
     def runtime(self):
-        return self.data['pre opt'].get('runtime', 0) + self.data['opt'].get('runtime', 0)
+        return self.data['pre opt']['runtime'] + self.data['opt']['runtime']
+
+    @property
+    def formatted_runtime(self):
+        t = self.runtime
+        return f'{t//3600:0>2}:{(t//60)%60:0>2}:{t%60:0>2}'
 
     def _set_status(self):
         preopt_status = self.data['pre opt'].get('status', None)
         opt_status    = self.data['opt'].get('status', None)
+        self.step     = self.data['pre opt'].get('step', '')
+        self.step     = self.data['opt'].get('step', self.step)
 
         self.status = 'Queued'
-        self.step = ''
 
         if preopt_status in ['IN PROGRESS', 'NORMAL TERMINATION']:
             self.status = 'Running'
-            self.step = 'PreOpt'
 
         if opt_status is None:
             return 
 
-        self.step = 'GO'
         if opt_status == 'IN PROGRESS':
             self.status = 'Running'
         elif opt_status == 'NORMAL TERMINATION':
             self.status = 'Success'
-            self.step = ''
         elif 'WARNING' in opt_status:
             self.status = 'Warning'
-            self.step = ''
         else:
             self.status = 'Failed'
-            self.step = ''
-
-        if self.status in ['Success', 'Warning']:
-            self.step = ''
 
         #if the job is still running check the time since the last message
         #if the job has not sent a message for 2 hours we consider it cancelled
@@ -378,9 +388,7 @@ class Result:
             if time/3600 >= 2:
                 self.status = 'Canceled'
 
-        with open(self.data['files']['opt log']) as log:
-            if '=== NUCLEUS' in log.read():
-                self.step = 'FREQ'
+        
 
 
 def summarize_calculations(res, tabs=0):
@@ -400,25 +408,25 @@ def summarize_calculations(res, tabs=0):
     print('\t'*tabs + f'\tQueued         = {nQueued}')
     print('\t'*tabs + f'\tRunning        = {nRunning}')
 
-    reaction_len = max(len(r.reaction) for r in res)
-    point_len = max(len(r.stationary_point) for r in res)
+    reaction_len = max(max(len(r.reaction) for r in res), len('Reaction'))
+    point_len = max(max(len(r.stationary_point) for r in res), len('Point'))
     sub_names = list(sorted(set( s[0] for r in res for s in r.substituents )))
     subs = [[r.get_substituent(R) for R in sub_names] for r in res]
     subs = [[(s, '')[s is None] for s in sub] for sub in subs]
     sub_len = max([max(len(s) for s in sub) for sub in subs])
-    step_len = max(len(r.step) for r in res)
+    step_len = max(max(len(r.step) for r in res), len('Step'))
 
     print()
     header = '\t'*tabs +  f'\t{"Reaction".ljust(reaction_len)} | {"Point".ljust(point_len)} | '
     header += (' | ').join([s.ljust(sub_len) for s in sub_names])
-    header += f' | {"Step".ljust(step_len)}'
+    header += f' | {"Step".ljust(step_len)} | Runtime  '
     print(header)
     print('\t'*(tabs+1) + '-'*(len(header)))
     for r in res:
         if r.status != 'Running': continue
         l = '\t'*tabs + f'\t{r.reaction:{reaction_len}} | {r.stationary_point:{point_len}} | '
         l += (' | ').join([r.get_substituent(R).ljust(sub_len) for R in sub_names])
-        l += f' | {r.step.ljust(step_len)}'
+        l += f' | {r.step.ljust(step_len)} | {r.formatted_runtime}'
         print(l)
     print()
 

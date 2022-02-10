@@ -36,7 +36,7 @@
     "phase": "vacuum",
     "enantiomer": "S",
     "hash": "d5bd7f7f3a8a4925ee56ac66041fea0e2ffa6a5001bcf18ecf535ed2ca6da602",
-    "time silent": 5514
+    "time silent": 711
   },
   "pre opt": {
     "runtime": 3650,
@@ -777,10 +777,11 @@
     ],
     "output energy": -13.392783950541146,
     "output xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\urea_tBu_Ph.H_tBu_O.vacuum\\TSS\\output_preopt.xyz",
-    "status": "NORMAL TERMINATION"
+    "status": "NORMAL TERMINATION",
+    "step": "END"
   },
   "opt": {
-    "runtime": 54026,
+    "runtime": 281377,
     "natoms": 66,
     "elements": [
       "C",
@@ -1518,7 +1519,8 @@
     ],
     "output energy": -13.434139961360799,
     "output xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\urea_tBu_Ph.H_tBu_O.vacuum\\TSS\\output.xyz",
-    "status": "IN PROGRESS"
+    "status": "IN PROGRESS",
+    "step": "FREQ"
   },
   "freq": {},
   "thermo": {},
