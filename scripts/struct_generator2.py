@@ -25,29 +25,22 @@ def generate_stationary_points(template, substituents=None, keep_dummy=False):
             task = 'GO'
             radical = False
             enant = 'N/A'
+            TSRC_idx = []
+            substituent_idx = {}
             for flag in flags:
-                if flag in ['GO', 'TSRC']:
+                if flag in ['GO']:
                     task = flag
                 if flag == 'radical':
                     radical = True
                 if flag.startswith('enant='):
                     enant = flag.split('=')[1]
-
-            #read the rest of the lines
-            #get TSRC indices and substituent indices
-            TSRC_idx = []
-            substituent_idx = {}
-            for i, line in enumerate(lines[2:], start=1):
-                tags = line.split()[4:]
-                for tag in tags:
-                    if tag.startswith('R'): #all substituent tags start with R
-                        if tag in substituent_idx:
-                            substituent_idx[tag].append(i)
-                        else:
-                            substituent_idx[tag] = [i]
-
-                    if tag == 'TSRC':
-                        TSRC_idx.append(i)
+                if flag.startswith('R'):
+                    n, idx = flag.split('=')
+                    substituent_idx[n] = [int(i) for i in idx.split('_')]
+                if flag.startswith('TSRC'):
+                    task = 'TSRC'
+                    idx = flag.split('=')[1]
+                    TSRC_idx = [int(i) for i in idx.split('_')]
 
             #construct our molecule object
             mol = plams.Molecule(file)
@@ -103,7 +96,6 @@ def generate_stationary_points(template, substituents=None, keep_dummy=False):
             mol = plams.Molecule(file)
             mol.substituent_idx = substituent_idx
             return mol
-
 
         def get_connector(mol, idx):
             atoms = mol.atoms[idx[0]-1], mol.atoms[idx[1]-1]

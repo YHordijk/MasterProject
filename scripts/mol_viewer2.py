@@ -6,6 +6,7 @@ import molviewer2.screen as screen
 import sys, json
 import numpy as np
 
+
 def show(mols, simple=False):
 	if not type(mols) is list:
 		mols = [mols]
@@ -35,10 +36,8 @@ if __name__ == '__main__':
 			if f == 'normalmode':
 				d = np.array([float(x) for x in arg.split(',')])
 				mol.normalmode = d.reshape(d.size//3,3)
-
 			if f == 'stage':
 				stage = arg
-
 			if f == 'res':
 				with open(arg, 'r') as j:
 					res = json.load(j)

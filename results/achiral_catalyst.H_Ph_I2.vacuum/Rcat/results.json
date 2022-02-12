@@ -1,0 +1,77 @@
+{
+  "files": {
+    "calc_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\achiral_catalyst.H_Ph_I2.vacuum\\Rcat",
+    "res_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_Ph_I2.vacuum\\Rcat",
+    "opt adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\achiral_catalyst.H_Ph_I2.vacuum\\Rcat\\GO.achiral_catalyst.H_Ph_I2.Rcat.adf.rkf",
+    "opt amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\achiral_catalyst.H_Ph_I2.vacuum\\Rcat\\GO.achiral_catalyst.H_Ph_I2.Rcat.ams.rkf",
+    "opt log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\achiral_catalyst.H_Ph_I2.vacuum\\Rcat\\GO.achiral_catalyst.H_Ph_I2.Rcat.log",
+    "opt out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\achiral_catalyst.H_Ph_I2.vacuum\\Rcat\\GO.achiral_catalyst.H_Ph_I2.Rcat.out",
+    "run info": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\achiral_catalyst.H_Ph_I2.vacuum\\Rcat\\run.info"
+  },
+  "info": {
+    "substituents": [
+      [
+        "Rcat",
+        "I2"
+      ]
+    ],
+    "reaction": "achiral_catalyst",
+    "stationary point": "Rcat",
+    "task": "GO",
+    "TSRC": "N\\A",
+    "unique": "achiral_catalyst.vacuum.GO.Rcat.['I2'].[].False.N/A",
+    "radical": "False",
+    "phase": "vacuum",
+    "enantiomer": "N/A",
+    "hash": "5e4d2bc701fbc2ff4c8006503c5f6c3d52aaeec4afea3e3c71868b592c12f67a",
+    "time silent": 1424956
+  },
+  "pre opt": {
+    "runtime": 0
+  },
+  "opt": {
+    "runtime": 343,
+    "natoms": 2,
+    "elements": [
+      "I",
+      "I"
+    ],
+    "input coords": [
+      [
+        3.080253583140005,
+        0.0,
+        0.0
+      ],
+      [
+        8.312905222228762,
+        0.0,
+        0.0
+      ]
+    ],
+    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_Ph_I2.vacuum\\Rcat\\input.xyz",
+    "steps": 5,
+    "output coords": [
+      [
+        3.157970259519912,
+        0.0,
+        0.0
+      ],
+      [
+        8.235188545848857,
+        0.0,
+        0.0
+      ]
+    ],
+    "output energy": -0.08611938474860692,
+    "output xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_Ph_I2.vacuum\\Rcat\\output.xyz",
+    "status": "NORMAL TERMINATION with warnings",
+    "bond energy": -0.08611938475593905,
+    "step": "END"
+  },
+  "freq": {},
+  "thermo": {
+    "gibbs": -0.11139567398713673,
+    "enthalpy": -0.08179100528617163
+  },
+  "misc": {}
+}

@@ -1,0 +1,55 @@
+{
+  "files": {
+    "calc_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\squaramide.H_Ph_Ph_H_O_O.vacuum\\P2S_cat_complex",
+    "res_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\squaramide.H_Ph_Ph_H_O_O.vacuum\\P2S_cat_complex",
+    "run script": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\squaramide.H_Ph_Ph_H_O_O.vacuum\\P2S_cat_complex\\GO.squaramide.H_Ph_Ph_H_O_O.P2S_cat_complex",
+    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\squaramide.H_Ph_Ph_H_O_O.vacuum\\P2S_cat_complex\\input.xyz",
+    "run info": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\squaramide.H_Ph_Ph_H_O_O.vacuum\\P2S_cat_complex\\run.info"
+  },
+  "info": {
+    "substituents": [
+      [
+        "R1",
+        "H"
+      ],
+      [
+        "R2",
+        "Ph"
+      ],
+      [
+        "Rc1",
+        "Ph"
+      ],
+      [
+        "Rc2",
+        "H"
+      ],
+      [
+        "Rch",
+        "O"
+      ],
+      [
+        "Rch2",
+        "O"
+      ]
+    ],
+    "unique": "squaramide.vacuum.GO.P2S_cat_complex.['H', 'Ph', 'Ph', 'H', 'O', 'O'].[].False.S",
+    "reaction": "squaramide",
+    "stationary point": "P2S_cat_complex",
+    "task": "GO",
+    "TSRC": "N\\A",
+    "radical": "False",
+    "phase": "vacuum",
+    "enantiomer": "S",
+    "hash": "8ab09c2b5eb8247f3d71834d760f368858f22c6402fcbec062b98d8ebedde63d"
+  },
+  "pre opt": {
+    "runtime": 0
+  },
+  "opt": {
+    "runtime": 0
+  },
+  "freq": {},
+  "thermo": {},
+  "misc": {}
+}

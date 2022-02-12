@@ -1,0 +1,54 @@
+{
+  "files": {
+    "calc_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\urea_tBu_Ph.H_tBu_O.vacuum\\H",
+    "res_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\urea_tBu_Ph.H_tBu_O.vacuum\\H",
+    "run script": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\urea_tBu_Ph.H_tBu_O.vacuum\\H\\H",
+    "opt adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\urea_tBu_Ph.H_tBu_O.vacuum\\H\\H.adf.rkf",
+    "opt amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\urea_tBu_Ph.H_tBu_O.vacuum\\H\\H.ams.rkf",
+    "opt log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\urea_tBu_Ph.H_tBu_O.vacuum\\H\\H.log",
+    "opt out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\urea_tBu_Ph.H_tBu_O.vacuum\\H\\H.out",
+    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\urea_tBu_Ph.H_tBu_O.vacuum\\H\\input.xyz",
+    "run info": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\urea_tBu_Ph.H_tBu_O.vacuum\\H\\run.info"
+  },
+  "info": {
+    "substituents": [],
+    "unique": "urea_tBu_Ph.vacuum.GO.H.[].[].True.N/A",
+    "reaction": "urea_tBu_Ph",
+    "stationary point": "H",
+    "task": "GO",
+    "TSRC": "N\\A",
+    "radical": "True",
+    "phase": "vacuum",
+    "enantiomer": "N/A",
+    "hash": "68084fb96e1d55515672a0a7d9f9e88261f01815b6b6566334c85b8c7afe25b8",
+    "time silent": 124151
+  },
+  "pre opt": {
+    "runtime": 0
+  },
+  "opt": {
+    "runtime": 7,
+    "natoms": 1,
+    "elements": [
+      "H"
+    ],
+    "input coords": [
+      [
+        0.781916896991696,
+        8.672169221180635,
+        -6.685771776804315e-15
+      ]
+    ],
+    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\urea_tBu_Ph.H_tBu_O.vacuum\\H\\input.xyz",
+    "steps": 0,
+    "status": "NORMAL TERMINATION with warnings",
+    "bond energy": -0.034054310965628345,
+    "step": "END"
+  },
+  "freq": {},
+  "thermo": {
+    "gibbs": -0.04405401244227595,
+    "enthalpy": -0.03169384593191387
+  },
+  "misc": {}
+}

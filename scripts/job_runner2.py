@@ -1,6 +1,6 @@
 import scm.plams as plams
-import struct_generator2, paths, pre_optimize, os, multiprocessing, utility, shutil
-import results_database2 as results_database
+import struct_generator2, paths, os, utility
+
 
 join = os.path.join
 
@@ -47,9 +47,11 @@ def run_jobs(template, substituents={}, calc_dir=paths.calculations, phase='vacu
             TSRC = f'    Distance {mol.TSRC_idx[0]} {mol.TSRC_idx[1]} -1\n'
         SLURM_SUBMIT_DIR = runscript_path(mol)
 
-        CORES = 32
+        CORES = '64'
+        NODES = '1'
         if mol.radical:
-            CORES = 64
+            CORES = '64'
+            NODES = '2'
 
         blocks = {
                 '[RADICAL]':          RADICAL, 
@@ -57,6 +59,7 @@ def run_jobs(template, substituents={}, calc_dir=paths.calculations, phase='vacu
                 '[TSRC]':             TSRC, 
                 '[SLURM_SUBMIT_DIR]': SLURM_SUBMIT_DIR,
                 '[CORES]':            CORES,
+                '[NODES]':            NODES,
                 }
 
         with open(JR_template) as temp:
@@ -106,14 +109,15 @@ sbatch {os.path.basename(file)}
 """     
         os.system(start_script)
 
-
     mols = get_mols()
+    i = 0
     for mol_name, mol in mols.items():
+        i += 1
         # if mol_name != 'P2': continue
         mol.phase = phase
 
         if utility.hash_collision(hash(mol), calc_dir):
-            print(f'Hash collision detected {mol_name}')
+            print(f'Hash collision detected {i} {mol_name}')
             continue
 
         JR_template = get_job_runner_template(mol)
@@ -127,13 +131,8 @@ sbatch {os.path.basename(file)}
         write_info(mol)
         #run the job we just made
         print(f'Running job {os.path.relpath(runscript_path(mol), calc_dir)}')
-        # run_job(runscript_path(mol))
+        run_job(runscript_path(mol))
 
         
-        
-
-        
-
-
 if __name__ == '__main__':
-    run_jobs('urea_tBu_Ph', {'R1': 'H', 'R2':'tBu', 'Rch': 'O'}, phase='vacuum', calc_dir=join(paths.master, 'calculations_test'))
+    run_jobs('no_catalyst', {'R1':'H', 'R2':'H'}, phase='vacuum', calc_dir=join(paths.master, 'calculations_test'))

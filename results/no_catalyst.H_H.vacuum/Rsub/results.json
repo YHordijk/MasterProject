@@ -1,0 +1,147 @@
+{
+  "files": {
+    "calc_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\no_catalyst.H_H.vacuum\\Rsub",
+    "res_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\no_catalyst.H_H.vacuum\\Rsub",
+    "opt adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\no_catalyst.H_H.vacuum\\Rsub\\GO.no_catalyst.H_H.Rsub.adf.rkf",
+    "opt amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\no_catalyst.H_H.vacuum\\Rsub\\GO.no_catalyst.H_H.Rsub.ams.rkf",
+    "opt log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\no_catalyst.H_H.vacuum\\Rsub\\GO.no_catalyst.H_H.Rsub.log",
+    "opt out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\no_catalyst.H_H.vacuum\\Rsub\\GO.no_catalyst.H_H.Rsub.out",
+    "run info": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\no_catalyst.H_H.vacuum\\Rsub\\run.info"
+  },
+  "info": {
+    "substituents": [
+      [
+        "R1",
+        "H"
+      ],
+      [
+        "R2",
+        "H"
+      ]
+    ],
+    "reaction": "no_catalyst",
+    "stationary point": "Rsub",
+    "task": "GO",
+    "TSRC": "N\\A",
+    "unique": "no_catalyst.vacuum.GO.Rsub.['H', 'H'].[].False.N/A",
+    "radical": "False",
+    "phase": "vacuum",
+    "enantiomer": "N/A",
+    "hash": "ddac071bf5085a782b9380d1fb15ecc2b7d4318c085c76457ec1e86fe56289dc",
+    "time silent": 1815456
+  },
+  "pre opt": {
+    "runtime": 0
+  },
+  "opt": {
+    "runtime": 2535,
+    "natoms": 8,
+    "elements": [
+      "H",
+      "C",
+      "C",
+      "C",
+      "O",
+      "H",
+      "H",
+      "H"
+    ],
+    "input coords": [
+      [
+        0.17081948756967447,
+        -3.420186305664169,
+        -0.9742644229146588
+      ],
+      [
+        -1.7155282413822737,
+        -0.01457513634579738,
+        -0.09341768500507389
+      ],
+      [
+        0.3451877296233061,
+        -1.4214453202102844,
+        -0.5010090656541857
+      ],
+      [
+        2.946629499292295,
+        -0.41600381774632467,
+        -0.3456577234077618
+      ],
+      [
+        3.526904298874106,
+        1.764359501435792,
+        0.13569121746091603
+      ],
+      [
+        -1.5577318391949802,
+        1.9745992806775197,
+        0.3825295871199287
+      ],
+      [
+        -3.571254640340912,
+        -0.8071792987289024,
+        -0.22214339086788057
+      ],
+      [
+        4.3938805415152435,
+        -1.7826422804381052,
+        -0.7010108189787448
+      ]
+    ],
+    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\no_catalyst.H_H.vacuum\\Rsub\\input.xyz",
+    "steps": 8,
+    "output coords": [
+      [
+        0.17286734369281898,
+        -3.419781109655465,
+        -0.9642421252869133
+      ],
+      [
+        -1.725648754521125,
+        -0.009804732591126582,
+        -0.09359272194896923
+      ],
+      [
+        0.3381259997599917,
+        -1.4203121286515035,
+        -0.49666012898881606
+      ],
+      [
+        2.9525923028365164,
+        -0.4019762627896964,
+        -0.34282317927348654
+      ],
+      [
+        3.5071763739679978,
+        1.7749073368820278,
+        0.15062057484251812
+      ],
+      [
+        -1.5558601833698777,
+        1.9825509223564433,
+        0.3787977179246134
+      ],
+      [
+        -3.6138733008686255,
+        -0.806252009358526,
+        -0.22380558746691082
+      ],
+      [
+        4.463527054458761,
+        -1.8224053932124258,
+        -0.727576852049496
+      ]
+    ],
+    "output energy": -1.6835619067074996,
+    "output xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\no_catalyst.H_H.vacuum\\Rsub\\output.xyz",
+    "status": "NORMAL TERMINATION with warnings",
+    "bond energy": -1.6835619067080716,
+    "step": "END"
+  },
+  "freq": {},
+  "thermo": {
+    "gibbs": -1.6504427579866083,
+    "enthalpy": -1.6183624573868476
+  },
+  "misc": {}
+}

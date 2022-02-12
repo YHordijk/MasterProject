@@ -1,0 +1,39 @@
+{
+  "files": {
+    "calc_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\urea_tBu_Ph.H_tBu_S.vacuum\\P2",
+    "res_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\urea_tBu_Ph.H_tBu_S.vacuum\\P2",
+    "run script": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\urea_tBu_Ph.H_tBu_S.vacuum\\P2\\GO.urea_tBu_Ph.H_tBu_S.P2",
+    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\urea_tBu_Ph.H_tBu_S.vacuum\\P2\\input.xyz",
+    "run info": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\urea_tBu_Ph.H_tBu_S.vacuum\\P2\\run.info"
+  },
+  "info": {
+    "substituents": [
+      [
+        "R2",
+        "tBu"
+      ],
+      [
+        "R1",
+        "H"
+      ]
+    ],
+    "unique": "urea_tBu_Ph.vacuum.GO.P2.['H', 'tBu'].[].False.N/A",
+    "reaction": "urea_tBu_Ph",
+    "stationary point": "P2",
+    "task": "GO",
+    "TSRC": "N\\A",
+    "radical": "False",
+    "phase": "vacuum",
+    "enantiomer": "N/A",
+    "hash": "09c16c2cea11ada970257b14275bd17b2415f1f5d88c8d0ba5c18d94ebfee162"
+  },
+  "pre opt": {
+    "runtime": 0
+  },
+  "opt": {
+    "runtime": 0
+  },
+  "freq": {},
+  "thermo": {},
+  "misc": {}
+}

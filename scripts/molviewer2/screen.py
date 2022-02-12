@@ -18,7 +18,7 @@ l2_norm = lambda u, v: np.linalg.norm(u-v)
 class Screen:
 	def __init__(self, *args, **kwargs):
 		self.size = kwargs.get('size', (500,300))
-		self.background_color = kwargs.get('background_color', (100,100,100))
+		self.background_color = kwargs.get('background_color', (25,25,25))
 		self.main_display = pg.display.set_mode(self.size, pg.locals.HWSURFACE | pg.locals.DOUBLEBUF | pg.locals.RESIZABLE)
 		self.molecule_surf = pg.surface.Surface(self.size, pg.locals.HWSURFACE | pg.locals.DOUBLEBUF | pg.locals.RESIZABLE | pg.locals.SRCALPHA)
 		self.camera_position = [0,0]
@@ -284,87 +284,88 @@ class Screen:
 
 		#moving on to bonds
 		tuples = np.asarray(mol.bond_tuples)
-		ra = mapped_positions[tuples[:,0]]
-		rb = mapped_positions[tuples[:,1]]
-		rabn = (rb-ra)
-		rabn2 = np.clip(rabn**2, 0, 2**16)
-		rabn2sum = np.sum(rabn2, axis=1)
-		bond_dist = np.sqrt(rabn2sum).astype(int)
-		B = mol.B
+		if len(tuples) > 0:
+			ra = mapped_positions[tuples[:,0]]
+			rb = mapped_positions[tuples[:,1]]
+			rabn = (rb-ra)
+			rabn2 = np.clip(rabn**2, 0, 2**16)
+			rabn2sum = np.sum(rabn2, axis=1)
+			bond_dist = np.sqrt(rabn2sum).astype(int)
+			B = mol.B
 
-		atom_indices_in_blits = [i for i in idx]
-		for i, bond in enumerate(mol.bond_tuples):
-			try:
-				a,b = bond
+			atom_indices_in_blits = [i for i in idx]
+			for i, bond in enumerate(mol.bond_tuples):
+				try:
+					a,b = bond
 
-				n1 = atn[a]
-				n2 = atn[b]
+					n1 = atn[a]
+					n2 = atn[b]
 
-				radius = int((r[b]+r[a])/5)
+					radius = int((r[b]+r[a])/5)
 
-				pab = (pos[b] - pos[a])
-				npab = pab/np.linalg.norm(pab)
-				X = pos[a] + npab * mol.radii[a] * atom_radius_factor
-				mapped_on_sphere1 = self.project(X)[0]
-				X = pos[b] - npab * mol.radii[b] * atom_radius_factor
-				mapped_on_sphere2 = self.project(X)[0]
+					pab = (pos[b] - pos[a])
+					npab = pab/np.linalg.norm(pab)
+					X = pos[a] + npab * mol.radii[a] * atom_radius_factor
+					mapped_on_sphere1 = self.project(X)[0]
+					X = pos[b] - npab * mol.radii[b] * atom_radius_factor
+					mapped_on_sphere2 = self.project(X)[0]
 
 
 
-				# new_scale = (radius * B[a,b], np.clip(bond_dist[i], 0, self.size[0]))
-				# new_scale = (radius * B[a,b], np.clip(int(np.linalg.norm(mapped_on_sphere2 - mapped_on_sphere1)), 0, self.size[0]))
-				mapped_bond_dist = np.linalg.norm(mapped_on_sphere1 - mapped_on_sphere2)
-				# Rab = (mapped_positions[a] - mapped_positions[b])
-				# mapped_bond_dist = np.linalg.norm(Rab)
-				bond_len = max(0, mapped_bond_dist)
+					# new_scale = (radius * B[a,b], np.clip(bond_dist[i], 0, self.size[0]))
+					# new_scale = (radius * B[a,b], np.clip(int(np.linalg.norm(mapped_on_sphere2 - mapped_on_sphere1)), 0, self.size[0]))
+					mapped_bond_dist = np.linalg.norm(mapped_on_sphere1 - mapped_on_sphere2)
+					# Rab = (mapped_positions[a] - mapped_positions[b])
+					# mapped_bond_dist = np.linalg.norm(Rab)
+					bond_len = max(0, mapped_bond_dist)
 
-				if bond_len > 0:
-					bond_dir = (mapped_on_sphere1 - mapped_on_sphere2)/bond_len
-					bond_center = mapped_positions[a] + (mapped_positions[b] - mapped_positions[a])/2
-					new_scale = (radius * B[a,b], int(bond_len))
-					bond_pos = mapped_positions[a] + bond_dir * r[a]
+					if bond_len > 0:
+						bond_dir = (mapped_on_sphere1 - mapped_on_sphere2)/bond_len
+						bond_center = mapped_positions[a] + (mapped_positions[b] - mapped_positions[a])/2
+						new_scale = (radius * B[a,b], int(bond_len))
+						bond_pos = mapped_positions[a] + bond_dir * r[a]
 
-					if B[a,b] == 1:
-						bond_img = self.single_bond_imgs[molidx][(n1,n2)].copy()
-					if B[a,b] == 2:
-						bond_img = self.double_bond_imgs[molidx][(n1,n2)].copy()
-					if B[a,b] == 3:
-						bond_img = self.triple_bond_imgs[molidx][(n1,n2)].copy()
+						if B[a,b] == 1:
+							bond_img = self.single_bond_imgs[molidx][(n1,n2)].copy()
+						if B[a,b] == 2:
+							bond_img = self.double_bond_imgs[molidx][(n1,n2)].copy()
+						if B[a,b] == 3:
+							bond_img = self.triple_bond_imgs[molidx][(n1,n2)].copy()
 
-					new_scale = (max(1,new_scale[0]), max(1,new_scale[1]))
-					if smooth_bonds: 	
-						bond_img = pg.transform.smoothscale(bond_img, new_scale)
-					else: 				
-						bond_img = pg.transform.scale(bond_img, new_scale)
+						new_scale = (max(1,new_scale[0]), max(1,new_scale[1]))
+						if smooth_bonds: 	
+							bond_img = pg.transform.smoothscale(bond_img, new_scale)
+						else: 				
+							bond_img = pg.transform.scale(bond_img, new_scale)
 
-					#insert the bond_img in the right place (after furthest atom)
-					ai = atom_indices_in_blits.index(a)
-					bi = atom_indices_in_blits.index(b)
-					index = ai if ai < bi else bi
-					atom_indices_in_blits.insert(index, None)
+						#insert the bond_img in the right place (after furthest atom)
+						ai = atom_indices_in_blits.index(a)
+						bi = atom_indices_in_blits.index(b)
+						index = ai if ai < bi else bi
+						atom_indices_in_blits.insert(index, None)
 
-					angle = pg.math.Vector2([0,1]).angle_to(rabn[i])
-					im, p = rotate_image(bond_img, mapped_on_sphere1, (bond_img.get_width()/2, 0), -angle)
-					if draw_bond_rect:
-						pg.draw.rect(self.molecule_surf, (0,255,0), p, width=2)
+						angle = pg.math.Vector2([0,1]).angle_to(rabn[i])
+						im, p = rotate_image(bond_img, mapped_on_sphere1, (bond_img.get_width()/2, 0), -angle)
+						if draw_bond_rect:
+							pg.draw.rect(self.molecule_surf, (0,255,0), p, width=2)
 
-					if self.show_fig:
-						plt.imshow(pg.PixelArray(im).transpose())
-						plt.show()
+						if self.show_fig:
+							plt.imshow(pg.PixelArray(im).transpose())
+							plt.show()
 
-					if not simple_bonds: 
-						blits.insert(index+1, (im, p.topleft))
-					else: 
-						pg.draw.line(self.molecule_surf, (255,255,255), ra[i], rb[i], width=2)
+						if not simple_bonds: 
+							blits.insert(index+1, (im, p.topleft))
+						else: 
+							pg.draw.line(self.molecule_surf, (255,255,255), ra[i], rb[i], width=2)
 
-				if draw_bond_through_atom: 
-					pg.draw.line(self.molecule_surf, (255,0,255), ra[i], mapped_on_sphere1, width=5)
-					pg.draw.line(self.molecule_surf, (255,0,255), rb[i], mapped_on_sphere2, width=5)
-				if draw_bond_center:
-					pg.draw.circle(self.molecule_surf, (255,255,255), bond_center, 10)
+					if draw_bond_through_atom: 
+						pg.draw.line(self.molecule_surf, (255,0,255), ra[i], mapped_on_sphere1, width=5)
+						pg.draw.line(self.molecule_surf, (255,0,255), rb[i], mapped_on_sphere2, width=5)
+					if draw_bond_center:
+						pg.draw.circle(self.molecule_surf, (255,255,255), bond_center, 10)
 
-			except:
-				raise
+				except:
+					raise
 
 		self.molecule_surf.blits(blits)
 

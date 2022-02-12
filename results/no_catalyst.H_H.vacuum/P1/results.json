@@ -1,0 +1,191 @@
+{
+  "files": {
+    "calc_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\no_catalyst.H_H.vacuum\\P1",
+    "res_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\no_catalyst.H_H.vacuum\\P1",
+    "opt adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\no_catalyst.H_H.vacuum\\P1\\GO.no_catalyst.H_H.P1.adf.rkf",
+    "opt amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\no_catalyst.H_H.vacuum\\P1\\GO.no_catalyst.H_H.P1.ams.rkf",
+    "opt log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\no_catalyst.H_H.vacuum\\P1\\GO.no_catalyst.H_H.P1.log",
+    "opt out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\no_catalyst.H_H.vacuum\\P1\\GO.no_catalyst.H_H.P1.out",
+    "run info": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\no_catalyst.H_H.vacuum\\P1\\run.info"
+  },
+  "info": {
+    "substituents": [
+      [
+        "R1",
+        "H"
+      ],
+      [
+        "R2",
+        "H"
+      ]
+    ],
+    "reaction": "no_catalyst",
+    "stationary point": "P1",
+    "task": "GO",
+    "TSRC": "N\\A",
+    "unique": "no_catalyst.vacuum.GO.P1.['H', 'H'].[].True.N/A",
+    "radical": "True",
+    "phase": "vacuum",
+    "enantiomer": "N/A",
+    "hash": "8b4b1294e9a7be3782cdfcb2fc7d8c05f6c1da2fb321d4a776b78cd404509297",
+    "time silent": 1803853
+  },
+  "pre opt": {
+    "runtime": 0
+  },
+  "opt": {
+    "runtime": 11602,
+    "natoms": 12,
+    "elements": [
+      "C",
+      "C",
+      "H",
+      "C",
+      "H",
+      "O",
+      "C",
+      "H",
+      "H",
+      "H",
+      "H",
+      "H"
+    ],
+    "input coords": [
+      [
+        0.1367764871742886,
+        0.8664205308796694,
+        0.27781997593798224
+      ],
+      [
+        1.6655365761046674,
+        -1.4543842481173574,
+        0.6527756541339783
+      ],
+      [
+        0.6048729866008397,
+        -3.1168575781740064,
+        0.016032436441325036
+      ],
+      [
+        -2.351834081963382,
+        0.9097236050254689,
+        -0.7787674743150276
+      ],
+      [
+        0.9288173977886877,
+        2.686651977272327,
+        0.8318649989647625
+      ],
+      [
+        -3.2269648896747665,
+        -1.1383343567877462,
+        -1.374399511193835
+      ],
+      [
+        2.566217841623802,
+        -1.8359955417242855,
+        3.398468344717988
+      ],
+      [
+        3.733700090048226,
+        -3.5378734409316315,
+        3.5373103025464925
+      ],
+      [
+        0.9601226007692383,
+        -2.0478980909830717,
+        4.683657853993102
+      ],
+      [
+        3.6965631922470803,
+        -0.22971510770950862,
+        4.047679975380922
+      ],
+      [
+        3.3045748455719943,
+        -1.3378293611547256,
+        -0.5255624094722771
+      ],
+      [
+        -3.435277299447466,
+        2.593881617951243,
+        -1.0585435624563937
+      ]
+    ],
+    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\no_catalyst.H_H.vacuum\\P1\\input.xyz",
+    "steps": 7,
+    "output coords": [
+      [
+        0.11828515156764358,
+        0.8138085024763086,
+        0.2768221323940353
+      ],
+      [
+        1.6861650221174447,
+        -1.4763318823040494,
+        0.6660125154136664
+      ],
+      [
+        0.6378696703067065,
+        -3.1401405353249703,
+        0.03080257586495176
+      ],
+      [
+        -2.3694377738694197,
+        0.8096109256499392,
+        -0.8034239737035833
+      ],
+      [
+        0.8860309969119665,
+        2.642961839944237,
+        0.8407728629010007
+      ],
+      [
+        -3.507141777625338,
+        -1.108924833170916,
+        -1.5176289483049235
+      ],
+      [
+        2.5861208833285865,
+        -1.8173447430358873,
+        3.415926270793375
+      ],
+      [
+        3.7889089665539735,
+        -3.4934050868978797,
+        3.566357370513757
+      ],
+      [
+        0.9792057860420108,
+        -2.0643875479603078,
+        4.693812153470028
+      ],
+      [
+        3.680266764654278,
+        -0.1862024051124135,
+        4.067880500318748
+      ],
+      [
+        3.372713710954385,
+        -1.3202252724939698,
+        -0.5486153464006956
+      ],
+      [
+        -3.2758816540990248,
+        2.698371043776285,
+        -0.9803815285813414
+      ]
+    ],
+    "output energy": -2.3841349511416596,
+    "output xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\no_catalyst.H_H.vacuum\\P1\\output.xyz",
+    "status": "NORMAL TERMINATION with warnings",
+    "bond energy": -2.3841349511349406,
+    "step": "END"
+  },
+  "freq": {},
+  "thermo": {
+    "gibbs": -2.3164263893341603,
+    "enthalpy": -2.2792350649212167
+  },
+  "misc": {}
+}

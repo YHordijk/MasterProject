@@ -48,27 +48,35 @@ def get_reaction_results(template, substituents):
 
 
 def get_reaction_profile(res):
-	def plot_path(order, label=None):
-		print([resdict[o].energy for o in order])
-		plt.plot(range(len(order)), [resdict[o].energy for o in order], label=label)
+	def plot_path(energies, label=None):
+		plt.plot(range(len(energies)), energies, label=label)
 
 
 	reaction = res[0].reaction
-	resdict = {r.stationary_point: r for r in res}
+	res = {r.stationary_point: r for r in res}
 
 	if reaction == 'urea_tBu_Ph':
-		Rres = {r.stationary_point: r for r in res if r.enantiomer in ['R', 'N/A']}
-		Sres = {r.stationary_point: r for r in res if r.enantiomer in ['S', 'N/A']}
-
-		Rorder = ['sub_cat_complex', 'TSR', 'P1R_cat_complex', 'P2R_cat_complex']
-		Sorder = ['sub_cat_complex', 'TSS', 'P1S_cat_complex', 'P2S_cat_complex']
-		labels = ['RC', 'TS', 'P1C', 'P2C']
+		Renergies = [res['sub'].gibbs + res['cat'].gibbs + res['H'].gibbs + res['rad'].gibbs,
+					 res['sub_cat_complex'].gibbs + res['H'].gibbs + res['rad'].gibbs,
+					 res['TSR'].gibbs + res['H'].gibbs,
+					 res['P1R_cat_complex'].gibbs + res['H'].gibbs,
+					 res['P2R_cat_complex'].gibbs,
+					 res['P2'].gibbs + res['cat'].gibbs]
+		Renergies = [h2k(R - Renergies[0]) for R in Renergies]
+		Senergies = [res['sub'].gibbs + res['cat'].gibbs + res['H'].gibbs + res['rad'].gibbs,
+					 res['sub_cat_complex'].gibbs + res['H'].gibbs + res['rad'].gibbs,
+					 res['TSS'].gibbs + res['H'].gibbs,
+					 res['P1S_cat_complex'].gibbs + res['H'].gibbs,
+					 res['P2S_cat_complex'].gibbs,
+					 res['P2'].gibbs + res['cat'].gibbs]
+		Senergies = [h2k(R - Senergies[0]) for R in Senergies]
+		labels = ['R', 'RC', 'TS', 'P1C', 'P2C', 'P']
 
 
 		fig, ax = plt.subplots(1,1) 
 
-		plot_path(Rorder, '(R)')
-		plot_path(Sorder, '(S)')
+		plot_path(Renergies, '(R)')
+		plot_path(Senergies, '(S)')
 
 		ax.set_xticks(range(len(labels)))
 		ax.set_xticklabels(labels)
@@ -76,13 +84,40 @@ def get_reaction_profile(res):
 		plt.show()
 
 
+def get_all_reactions(res_dir=paths.results):
+	...
 
-# results = get_reaction_calculations('no_catalyst', {'R1':'H', 'R2':'H'})
-# print_energies(results)
 
-# results = get_reaction_calculations('achiral_catalyst', {'R1':'H', 'R2':'H', 'Rcat':'I2'})
-# print_energies(results)
+class Reaction:
+	def __init__(self, reaction, substituents):
+		self.reaction = reaction 
+		self.substituents = substituents
+		self.results = get_reaction_results(self.reaction, self.substituents)
 
-# show_reaction('urea_tBu_Ph', {'Rch':'S', 'R2':'Ph'}, simple=False)
-res = get_reaction_results('urea_tBu_Ph', {'R1':'H', 'R2':'tBu', 'Rch':'O'})
-get_reaction_profile(res)
+	def print_reaction(self):
+		print(f'Reaction: {self.reaction}')
+		print(f'')
+
+
+	@property
+	def asymmetric(self):
+		return len(self.enantiomers) > 0
+
+	@property
+	def enantiomers(self):
+		return {r.enantiomer for r in self.results if r.enantiomer != 'N/A'}
+
+	@property
+	def complete(self):
+		return all(r.status in ['Success', 'Warning', 'Failed'] for r in self.results)
+
+	
+
+
+
+# show_reaction('squaramide', {'Rch':'S', 'Rch2':'O', 'R1':'H', 'R2':'Ph', 'Rc1':'Ph', 'Rc2':'H'}, simple=False)
+show_reaction('no_catalyst')
+# res = get_reaction_results('urea_tBu_Ph', {'R1':'H', 'R2':'tBu', 'Rch':'O'})
+# get_reaction_profile(res)
+
+# reaction = Reaction('urea_tBu_Ph', {'R1':'H', 'R2':'tBu', 'Rch':'O'})

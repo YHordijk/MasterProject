@@ -1,0 +1,110 @@
+{
+  "files": {
+    "calc_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\achiral_catalyst.H_Ph_TiCl4.vacuum\\Rcat",
+    "res_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_Ph_TiCl4.vacuum\\Rcat",
+    "opt adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\achiral_catalyst.H_Ph_TiCl4.vacuum\\Rcat\\GO.achiral_catalyst.H_Ph_TiCl4.Rcat.adf.rkf",
+    "opt amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\achiral_catalyst.H_Ph_TiCl4.vacuum\\Rcat\\GO.achiral_catalyst.H_Ph_TiCl4.Rcat.ams.rkf",
+    "opt log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\achiral_catalyst.H_Ph_TiCl4.vacuum\\Rcat\\GO.achiral_catalyst.H_Ph_TiCl4.Rcat.log",
+    "opt out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\achiral_catalyst.H_Ph_TiCl4.vacuum\\Rcat\\GO.achiral_catalyst.H_Ph_TiCl4.Rcat.out",
+    "run info": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\achiral_catalyst.H_Ph_TiCl4.vacuum\\Rcat\\run.info"
+  },
+  "info": {
+    "substituents": [
+      [
+        "Rcat",
+        "TiCl4"
+      ]
+    ],
+    "reaction": "achiral_catalyst",
+    "stationary point": "Rcat",
+    "task": "GO",
+    "TSRC": "N\\A",
+    "unique": "achiral_catalyst.vacuum.GO.Rcat.['TiCl4'].[].False.N/A",
+    "radical": "False",
+    "phase": "vacuum",
+    "enantiomer": "N/A",
+    "hash": "d368b4ec88ebf9fb33f7ceece9241361f99b31c8fdb815374ba60314770ad0b1",
+    "time silent": 1423940
+  },
+  "pre opt": {
+    "runtime": 0
+  },
+  "opt": {
+    "runtime": 1387,
+    "natoms": 5,
+    "elements": [
+      "Ti",
+      "Cl",
+      "Cl",
+      "Cl",
+      "Cl"
+    ],
+    "input coords": [
+      [
+        6.461629222779925,
+        -0.11336967799053022,
+        -0.10942956122616299
+      ],
+      [
+        2.4377467007672435,
+        0.0,
+        0.0
+      ],
+      [
+        7.789097555744029,
+        -3.0305096987518603,
+        2.328721370856399
+      ],
+      [
+        7.937931251483881,
+        3.429639207068339,
+        1.1087980508434128
+      ],
+      [
+        7.681741402021807,
+        -0.8526082013813384,
+        -3.875237685501726
+      ]
+    ],
+    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_Ph_TiCl4.vacuum\\Rcat\\input.xyz",
+    "steps": 4,
+    "output coords": [
+      [
+        6.46155981358443,
+        -0.11350359498264787,
+        -0.10929682020071323
+      ],
+      [
+        2.3362673895908164,
+        0.0020397605028995964,
+        0.0023776410357312654
+      ],
+      [
+        7.822221269136114,
+        -3.1036887395482915,
+        2.3909012333978774
+      ],
+      [
+        7.976019717568151,
+        3.518557309036518,
+        1.1391250662582024
+      ],
+      [
+        7.712077942917375,
+        -0.8702531060638691,
+        -3.9702549455191747
+      ]
+    ],
+    "output energy": -0.7706472878325428,
+    "output xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_Ph_TiCl4.vacuum\\Rcat\\output.xyz",
+    "status": "NORMAL TERMINATION with warnings",
+    "bond energy": -0.7706472877965432,
+    "step": "END"
+  },
+  "freq": {},
+  "thermo": {
+    "gibbs": -0.7994914764811311,
+    "enthalpy": -0.7568351364585525
+  },
+  "misc": {}
+}

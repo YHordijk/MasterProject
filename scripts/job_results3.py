@@ -157,6 +157,7 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
         opt = {}
         files = data['files'] 
         amsrkf = 'opt amsrkf'
+        adfrkf = 'opt adfrkf'
         input_xyz = join(res_path, 'input.xyz')
         output_xyz = join(res_path, 'output.xyz')
         log = 'opt log'
@@ -164,6 +165,7 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
         # xyz_comment =
         if preopt:
             amsrkf = 'preopt amsrkf'
+            adfrkf = 'preopt adfrkf'
             input_xyz = join(res_path, 'input_preopt.xyz')
             output_xyz = join(res_path, 'output_preopt.xyz')
             log = 'preopt log'
@@ -171,14 +173,12 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
         if amsrkf in files:
             ams = plams.KFFile(files[amsrkf])
             
-
             opt['natoms'] = ams.read('InputMolecule', 'nAtoms')
             opt['elements'] = ams.read('InputMolecule', 'AtomSymbols').split()
             c = ams.read('InputMolecule', 'Coords')
             opt['input coords'] = [c[i:i+3] for i in range(0, len(c), 3)]
             write_xyz(input_xyz, opt['elements'], opt['input coords'])
             opt['input xyz'] = input_xyz
-
 
             try:
                 opt['steps'] = ams.read('History', 'nEntries')
@@ -189,8 +189,12 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
                 opt['output xyz'] = output_xyz
             except: 
                 opt['steps'] = 0
-            
+
             opt['status'] = ams.read('General', 'termination status')
+
+        if adfrkf in files:
+            adf = plams.KFFile(files[adfrkf])
+            opt['bond energy'] = adf.read('Energy', 'Bond Energy')
 
         if log in files:
             with open(files[log]) as log:
@@ -229,8 +233,9 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
         adfrkf = 'opt adfrkf'
         if adfrkf in files:
             adf = plams.KFFile(files[adfrkf])
-            thermo['gibbs'] = adf.read('Thermodynamics', 'Gibbs free Energy')
-            thermo['enthalpy'] = adf.read('Thermodynamics', 'Enthalpy')
+            if 'Thermodynamics' in adf.sections():
+                thermo['gibbs'] = adf.read('Thermodynamics', 'Gibbs free Energy')
+                thermo['enthalpy'] = adf.read('Thermodynamics', 'Enthalpy')
 
         return thermo
 
@@ -310,9 +315,14 @@ class Result:
 
     @property
     def energy(self):
-        if 'opt' in self.data:
-            return self.data['opt'].get('output energy')
-        return self
+        if 'bond energy' in self.data['opt']:
+            return self.data['opt'].get('bond energy')
+
+        return self.data['opt'].get('output energy')
+
+    @property
+    def phase(self):
+        return self.data['info'].get('phase', 'vacuum')
     
     @property
     def hash(self):
@@ -324,7 +334,12 @@ class Result:
 
     @property
     def substituents(self):
-        return self.data['info'].get('substituents', [])
+        s = self.data['info'].get('substituents', [])
+        return {x[0]:x[1] for x in s}
+
+    @property
+    def sorted_substituents(self):
+        return utility.get_sorted_dict_values(self.substituents)
 
     @property
     def radical(self):
@@ -358,6 +373,10 @@ class Result:
         t = self.runtime
         return f'{t//3600:0>2}:{(t//60)%60:0>2}:{t%60:0>2}'
 
+    @property
+    def calc_path(self):
+        return join(paths.master, 'calculations_test', f'{self.reaction}.{"_".join(self.sorted_substituents)}.{self.phase}', self.stationary_point)
+
     def _set_status(self):
         preopt_status = self.data['pre opt'].get('status', None)
         opt_status    = self.data['opt'].get('status', None)
@@ -371,12 +390,11 @@ class Result:
 
         if opt_status is None:
             return 
-
         if opt_status == 'IN PROGRESS':
             self.status = 'Running'
         elif opt_status == 'NORMAL TERMINATION':
             self.status = 'Success'
-        elif 'WARNING' in opt_status:
+        elif 'warnings' in opt_status:
             self.status = 'Warning'
         else:
             self.status = 'Failed'
@@ -402,7 +420,7 @@ def summarize_calculations(res, tabs=0):
     nCanceled = statuses.count('Canceled')
 
     print('\t'*tabs + f'Found {njobs} jobs!')
-    print('\t'*tabs + f'\tSuccessful     = {nSuccess} ({nWarn} warnings)')
+    print('\t'*tabs + f'\tSuccessful     = {nSuccess+nWarn} ({nWarn} warnings)')
     print('\t'*tabs + f'\tFailed         = {nFailed}')
     print('\t'*tabs + f'\tCanceled       = {nCanceled}')
     print('\t'*tabs + f'\tQueued         = {nQueued}')
@@ -410,22 +428,21 @@ def summarize_calculations(res, tabs=0):
 
     reaction_len = max(max(len(r.reaction) for r in res), len('Reaction'))
     point_len = max(max(len(r.stationary_point) for r in res), len('Point'))
-    sub_names = list(sorted(set( s[0] for r in res for s in r.substituents )))
-    subs = [[r.get_substituent(R) for R in sub_names] for r in res]
-    subs = [[(s, '')[s is None] for s in sub] for sub in subs]
-    sub_len = max([max(len(s) for s in sub) for sub in subs])
+    sub_names = list(sorted(set( s for r in res for s in r.substituents if r.status == 'Running' )))
+    subs = [[r.substituents.get(R, '') for r in res if r.status == 'Running'] for R in sub_names]
+    sub_lens = [max(max(len(s) for s in sub), len(R)) for sub, R in zip(subs, sub_names)]
     step_len = max(max(len(r.step) for r in res), len('Step'))
 
-    print()
     header = '\t'*tabs +  f'\t{"Reaction".ljust(reaction_len)} | {"Point".ljust(point_len)} | '
-    header += (' | ').join([s.ljust(sub_len) for s in sub_names])
+    header += (' | ').join([R.ljust(l) for R, l in zip(sub_names, sub_lens)])
     header += f' | {"Step".ljust(step_len)} | Runtime  '
+    print()
     print(header)
     print('\t'*(tabs+1) + '-'*(len(header)))
     for r in res:
         if r.status != 'Running': continue
         l = '\t'*tabs + f'\t{r.reaction:{reaction_len}} | {r.stationary_point:{point_len}} | '
-        l += (' | ').join([r.get_substituent(R).ljust(sub_len) for R in sub_names])
+        l += (' | ').join([r.substituents[R].ljust(l) for R, l in zip(sub_names, sub_lens)])
         l += f' | {r.step.ljust(step_len)} | {r.formatted_runtime}'
         print(l)
     print()

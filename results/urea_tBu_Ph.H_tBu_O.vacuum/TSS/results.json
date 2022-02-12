@@ -36,7 +36,7 @@
     "phase": "vacuum",
     "enantiomer": "S",
     "hash": "d5bd7f7f3a8a4925ee56ac66041fea0e2ffa6a5001bcf18ecf535ed2ca6da602",
-    "time silent": 711
+    "time silent": 221800
   },
   "pre opt": {
     "runtime": 3650,
@@ -778,6 +778,7 @@
     "output energy": -13.392783950541146,
     "output xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\urea_tBu_Ph.H_tBu_O.vacuum\\TSS\\output_preopt.xyz",
     "status": "NORMAL TERMINATION",
+    "bond energy": -13.39278394931444,
     "step": "END"
   },
   "opt": {

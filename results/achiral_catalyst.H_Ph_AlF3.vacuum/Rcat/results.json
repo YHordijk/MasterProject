@@ -1,0 +1,99 @@
+{
+  "files": {
+    "calc_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\achiral_catalyst.H_Ph_AlF3.vacuum\\Rcat",
+    "res_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_Ph_AlF3.vacuum\\Rcat",
+    "opt adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\achiral_catalyst.H_Ph_AlF3.vacuum\\Rcat\\GO.achiral_catalyst.H_Ph_AlF3.Rcat.adf.rkf",
+    "opt amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\achiral_catalyst.H_Ph_AlF3.vacuum\\Rcat\\GO.achiral_catalyst.H_Ph_AlF3.Rcat.ams.rkf",
+    "opt log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\achiral_catalyst.H_Ph_AlF3.vacuum\\Rcat\\GO.achiral_catalyst.H_Ph_AlF3.Rcat.log",
+    "opt out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\achiral_catalyst.H_Ph_AlF3.vacuum\\Rcat\\GO.achiral_catalyst.H_Ph_AlF3.Rcat.out",
+    "run info": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\achiral_catalyst.H_Ph_AlF3.vacuum\\Rcat\\run.info"
+  },
+  "info": {
+    "substituents": [
+      [
+        "Rcat",
+        "AlF3"
+      ]
+    ],
+    "reaction": "achiral_catalyst",
+    "stationary point": "Rcat",
+    "task": "GO",
+    "TSRC": "N\\A",
+    "unique": "achiral_catalyst.vacuum.GO.Rcat.['AlF3'].[].False.N/A",
+    "radical": "False",
+    "phase": "vacuum",
+    "enantiomer": "N/A",
+    "hash": "81e83d5dc7d4016cdddedb02119c24677c6e20b777843e63860816c575b05aa5",
+    "time silent": 1424798
+  },
+  "pre opt": {
+    "runtime": 0
+  },
+  "opt": {
+    "runtime": 461,
+    "natoms": 4,
+    "elements": [
+      "Al",
+      "F",
+      "F",
+      "F"
+    ],
+    "input coords": [
+      [
+        3.2692261956025823,
+        0.0,
+        0.0
+      ],
+      [
+        3.2692261956025823,
+        -2.647124065697476,
+        1.528317779633649
+      ],
+      [
+        3.2692261956025823,
+        2.647124065697476,
+        1.528317779633649
+      ],
+      [
+        3.2692261956025823,
+        0.0,
+        -3.056635578164559
+      ]
+    ],
+    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_Ph_AlF3.vacuum\\Rcat\\input.xyz",
+    "steps": 4,
+    "output coords": [
+      [
+        3.269226296291494,
+        3.351823051184542e-26,
+        -3.351823044201629e-26
+      ],
+      [
+        3.2692261620396112,
+        -2.6983421989716176,
+        1.5578885826668645
+      ],
+      [
+        3.2692261620396112,
+        2.6983421989716176,
+        1.5578885826668643
+      ],
+      [
+        3.2692261620396112,
+        -6.38013852449214e-18,
+        -3.1157771842309896
+      ]
+    ],
+    "output energy": -0.7532245514372098,
+    "output xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_Ph_AlF3.vacuum\\Rcat\\output.xyz",
+    "status": "NORMAL TERMINATION with warnings",
+    "bond energy": -0.7532245514415379,
+    "step": "END"
+  },
+  "freq": {},
+  "thermo": {
+    "gibbs": -0.7736463947203169,
+    "enthalpy": -0.7403314058293613
+  },
+  "misc": {}
+}

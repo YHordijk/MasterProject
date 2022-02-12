@@ -13,9 +13,10 @@ def make_database(res, out_file=paths.results_table):
         d['task'] = r.task
         d['reaction'] = r.reaction
         d['enantiomer'] = r.enantiomer
-        for R, g in r.substituents:
+        for R, g in r.substituents.items():
             d[R] = g
-        d['directory'] = r.path
+        d['res_dir'] = r.path
+        d['calc_dir'] = r.calc_path
         d['stationary_point'] = r.stationary_point
         d['radical'] = r.radical
         d['inxyz'] = r.data['files'].get('input xyz', None)
@@ -31,11 +32,10 @@ def make_database(res, out_file=paths.results_table):
           'status',
           'task',
           'reaction',
-          'enantiomer',
-          'R1', 'R2', 'Rcat', 'Rch',
+          'enantiomer',] + list(sorted(all_subs)) + [
           'stationary_point',
-          'directory',
-          'flags',
+          'res_dir',
+          'calc_dir',
           'inxyz',
           'outxyz',
           'runtime',
@@ -45,6 +45,7 @@ def make_database(res, out_file=paths.results_table):
 
 
     data = []
+    all_subs = {s for r in res for s in r.substituents.keys()}
     for r in res:
         data.append(get_data(r))
 

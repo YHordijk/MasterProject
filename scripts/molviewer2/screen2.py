@@ -18,7 +18,8 @@ l2_norm = lambda u, v: np.linalg.norm(u-v)
 class Screen:
 	def __init__(self, *args, **kwargs):
 		self.size = kwargs.get('size', (500,300))
-		self.background_color = kwargs.get('background_color', (25,25,25))
+		self.background_color = kwargs.get('background_color', (0,0,0))
+		print(self.background_color)
 		self.main_display = pg.display.set_mode(self.size, pg.locals.HWSURFACE | pg.locals.DOUBLEBUF | pg.locals.RESIZABLE)
 		self.molecule_surf = pg.surface.Surface(self.size, pg.locals.HWSURFACE | pg.locals.DOUBLEBUF | pg.locals.RESIZABLE | pg.locals.SRCALPHA)
 		self.camera_position = [0,0]

@@ -1,0 +1,95 @@
+{
+  "files": {
+    "calc_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\urea_tBu_Ph.H_tBu_O.vacuum\\rad",
+    "res_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\urea_tBu_Ph.H_tBu_O.vacuum\\rad",
+    "run script": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\urea_tBu_Ph.H_tBu_O.vacuum\\rad\\rad",
+    "opt adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\urea_tBu_Ph.H_tBu_O.vacuum\\rad\\rad.adf.rkf",
+    "opt amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\urea_tBu_Ph.H_tBu_O.vacuum\\rad\\rad.ams.rkf",
+    "opt log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\urea_tBu_Ph.H_tBu_O.vacuum\\rad\\rad.log",
+    "opt out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\urea_tBu_Ph.H_tBu_O.vacuum\\rad\\rad.out",
+    "run info": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\urea_tBu_Ph.H_tBu_O.vacuum\\rad\\run.info"
+  },
+  "info": {
+    "substituents": [],
+    "unique": "urea_tBu_Ph.vacuum.GO.rad.[].[].True.N/A",
+    "reaction": "urea_tBu_Ph",
+    "stationary point": "rad",
+    "task": "GO",
+    "TSRC": "N\\A",
+    "radical": "True",
+    "phase": "vacuum",
+    "enantiomer": "N/A",
+    "hash": "7e362655bd79dd4011a71f5f53316d92cb7d0d27257acb1fb9bc188efc85f4f5",
+    "time silent": 120733
+  },
+  "pre opt": {
+    "runtime": 0
+  },
+  "opt": {
+    "runtime": 196,
+    "natoms": 4,
+    "elements": [
+      "C",
+      "H",
+      "H",
+      "H"
+    ],
+    "input coords": [
+      [
+        -5.117949248047674,
+        0.7464170045530728,
+        -0.02173821861874936
+      ],
+      [
+        -3.62994143202445,
+        -0.32620138079076905,
+        0.8730313338533887
+      ],
+      [
+        -6.754455470980213,
+        0.7872877491917222,
+        1.197059130283352
+      ],
+      [
+        -5.61395185338875,
+        -0.1286239464129627,
+        -1.7975689433170106
+      ]
+    ],
+    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\urea_tBu_Ph.H_tBu_O.vacuum\\rad\\input.xyz",
+    "steps": 7,
+    "output coords": [
+      [
+        -5.27776000493802,
+        0.2735628319049727,
+        0.0620054331734605
+      ],
+      [
+        -3.4697148144543757,
+        -0.1960294152806605,
+        0.8942548569285196
+      ],
+      [
+        -6.7904678672715475,
+        0.987388323196542,
+        1.238608638862232
+      ],
+      [
+        -5.578355317777149,
+        0.013957686720208487,
+        -1.9440856267632307
+      ]
+    ],
+    "output energy": -0.6477828312166475,
+    "output xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\urea_tBu_Ph.H_tBu_O.vacuum\\rad\\output.xyz",
+    "status": "NORMAL TERMINATION",
+    "bond energy": -0.6477828312164811,
+    "step": "END"
+  },
+  "freq": {},
+  "thermo": {
+    "gibbs": -0.6376718629029756,
+    "enthalpy": -0.6145237377215763
+  },
+  "misc": {}
+}

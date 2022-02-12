@@ -31,7 +31,7 @@ with open(paths.results_table) as csv:
 		ws.cell(column=col, row=row, value=n)
 		ws.cell(column=col, row=row).font = pxl.styles.Font(bold=True)
 		ws.cell(column=col, row=row).border = bHeader
-		if n == 'DIRECTORY':
+		if n == 'RES_DIR':
 			directory_idx = i
 		if n == 'STATUS':
 			status_idx = i
@@ -50,8 +50,11 @@ with open(paths.results_table) as csv:
 			cell = ws.cell(column=col, row=row)
 			if j == 0:
 				cell.font = pxl.styles.Font(bold=True)
-			if n == 'DIRECTORY':
-				cell.value = f'=HYPERLINK("{os.path.join(paths.results, x)}", "{x}")'
+			if n == 'RES_DIR':
+				cell.value = f'=HYPERLINK("{os.path.join(paths.results, x)}", "Directory")'
+				cell.style = 'Hyperlink'
+			elif n == 'CALC_DIR':
+				cell.value = f'=HYPERLINK("{x}", "Directory")'
 				cell.style = 'Hyperlink'
 			elif n == 'OUTXYZ':
 				if not x == '':

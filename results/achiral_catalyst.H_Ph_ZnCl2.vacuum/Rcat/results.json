@@ -1,0 +1,88 @@
+{
+  "files": {
+    "calc_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\achiral_catalyst.H_Ph_ZnCl2.vacuum\\Rcat",
+    "res_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_Ph_ZnCl2.vacuum\\Rcat",
+    "opt adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\achiral_catalyst.H_Ph_ZnCl2.vacuum\\Rcat\\GO.achiral_catalyst.H_Ph_ZnCl2.Rcat.adf.rkf",
+    "opt amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\achiral_catalyst.H_Ph_ZnCl2.vacuum\\Rcat\\GO.achiral_catalyst.H_Ph_ZnCl2.Rcat.ams.rkf",
+    "opt log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\achiral_catalyst.H_Ph_ZnCl2.vacuum\\Rcat\\GO.achiral_catalyst.H_Ph_ZnCl2.Rcat.log",
+    "opt out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\achiral_catalyst.H_Ph_ZnCl2.vacuum\\Rcat\\GO.achiral_catalyst.H_Ph_ZnCl2.Rcat.out",
+    "run info": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\achiral_catalyst.H_Ph_ZnCl2.vacuum\\Rcat\\run.info"
+  },
+  "info": {
+    "substituents": [
+      [
+        "Rcat",
+        "ZnCl2"
+      ]
+    ],
+    "reaction": "achiral_catalyst",
+    "stationary point": "Rcat",
+    "task": "GO",
+    "TSRC": "N\\A",
+    "unique": "achiral_catalyst.vacuum.GO.Rcat.['ZnCl2'].[].False.N/A",
+    "radical": "False",
+    "phase": "vacuum",
+    "enantiomer": "N/A",
+    "hash": "4281377fa73831b9cb1bb5b304f9189599d36c87e79966cf87a558118efb3fe8",
+    "time silent": 1424197
+  },
+  "pre opt": {
+    "runtime": 0
+  },
+  "opt": {
+    "runtime": 519,
+    "natoms": 3,
+    "elements": [
+      "Sn",
+      "Cl",
+      "Cl"
+    ],
+    "input coords": [
+      [
+        3.6282741592814785,
+        0.0,
+        0.0
+      ],
+      [
+        6.270309494881517,
+        3.5302765151435005,
+        -0.9008165699096577
+      ],
+      [
+        6.6987949725782565,
+        -3.0092965781398733,
+        1.3306115522217177
+      ]
+    ],
+    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_Ph_ZnCl2.vacuum\\Rcat\\input.xyz",
+    "steps": 4,
+    "output coords": [
+      [
+        3.6064218915218476,
+        -0.001957666386676268,
+        -0.0016558774079419873
+      ],
+      [
+        6.280622998586477,
+        3.5403690076551526,
+        -0.9031000242567176
+      ],
+      [
+        6.7103337366329265,
+        -3.0174314042648493,
+        1.3345508839767197
+      ]
+    ],
+    "output energy": -0.3381287472980556,
+    "output xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_Ph_ZnCl2.vacuum\\Rcat\\output.xyz",
+    "status": "NORMAL TERMINATION with warnings",
+    "bond energy": -0.33812874729200426,
+    "step": "END"
+  },
+  "freq": {},
+  "thermo": {
+    "gibbs": -0.3666887858127486,
+    "enthalpy": -0.33112241484929694
+  },
+  "misc": {}
+}

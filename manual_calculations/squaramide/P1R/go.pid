@@ -1,5 +1,5 @@
-# status: queued
-# pid: 
+# status: ready
+# pid: 12196
 # hostname: localhost
 # username: 
 # jobscript: 
@@ -8,7 +8,7 @@
 # jobdir: $HOME/jobs
 # fakejob: 0
 # comparewithtarget: ok
-# error: -1
+# error: 0
 # warning: 0
 # runcmd: sh "$job" "NSCM=$options ; export NSCM"
 # plamscmd: local:*,1
@@ -32,7 +32,3 @@
 # copyback: 
 # privatesshkeypath: 
 # comments: <energy#-12.6f: N/A>
-# status: running
-# pid: 12196
-# status: running
-# status: ready
