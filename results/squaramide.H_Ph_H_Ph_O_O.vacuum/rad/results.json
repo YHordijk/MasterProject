@@ -1,0 +1,30 @@
+{
+  "files": {
+    "calc_path": "/scistor/tc/yhk800/MasterProject/calculations_test/squaramide.H_Ph_H_Ph_O_O.vacuum/rad",
+    "res_path": "/scistor/tc/yhk800/MasterProject/results/squaramide.H_Ph_H_Ph_O_O.vacuum/rad",
+    "run script": "/scistor/tc/yhk800/MasterProject/calculations_test/squaramide.H_Ph_H_Ph_O_O.vacuum/rad/GO.squaramide.H_Ph_H_Ph_O_O.rad",
+    "input xyz": "/scistor/tc/yhk800/MasterProject/calculations_test/squaramide.H_Ph_H_Ph_O_O.vacuum/rad/input.xyz",
+    "run info": "/scistor/tc/yhk800/MasterProject/calculations_test/squaramide.H_Ph_H_Ph_O_O.vacuum/rad/run.info"
+  },
+  "info": {
+    "substituents": [],
+    "unique": "squaramide.vacuum.GO.rad.[].[].True.N/A",
+    "reaction": "squaramide",
+    "stationary point": "rad",
+    "task": "GO",
+    "TSRC": "N\\A",
+    "radical": "True",
+    "phase": "vacuum",
+    "enantiomer": "N/A",
+    "hash": "6a73e9445413704bcac2e175a2d32ab51c697dba6a2e591009af5099e79a527f"
+  },
+  "pre opt": {
+    "runtime": 0
+  },
+  "opt": {
+    "runtime": 0
+  },
+  "freq": {},
+  "thermo": {},
+  "misc": {}
+}

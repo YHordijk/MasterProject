@@ -1,0 +1,43 @@
+{
+  "files": {
+    "calc_path": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_Ph_AlF3.vacuum/P1_cat_complex",
+    "res_path": "/scistor/tc/yhk800/MasterProject/results/achiral_catalyst.H_Ph_AlF3.vacuum/P1_cat_complex",
+    "run info": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_Ph_AlF3.vacuum/P1_cat_complex/run.info",
+    "run script": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_Ph_AlF3.vacuum/P1_cat_complex/GO.achiral_catalyst.H_Ph_AlF3.P1_cat_complex",
+    "input xyz": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_Ph_AlF3.vacuum/P1_cat_complex/input.xyz"
+  },
+  "info": {
+    "substituents": [
+      [
+        "R1",
+        "H"
+      ],
+      [
+        "R2",
+        "Ph"
+      ],
+      [
+        "Rcat",
+        "AlF3"
+      ]
+    ],
+    "unique": "achiral_catalyst.vacuum.GO.P1_cat_complex.['H', 'Ph', 'AlF3'].[].True.N/A",
+    "reaction": "achiral_catalyst",
+    "stationary point": "P1_cat_complex",
+    "task": "GO",
+    "TSRC": "N\\A",
+    "radical": "True",
+    "phase": "vacuum",
+    "enantiomer": "N/A",
+    "hash": "6829f081f13bbe987873d66eb6f082b99c8ce689fb32fdf46f9b3fdbf7157fdb"
+  },
+  "pre opt": {
+    "runtime": 0
+  },
+  "opt": {
+    "runtime": 0
+  },
+  "freq": {},
+  "thermo": {},
+  "misc": {}
+}

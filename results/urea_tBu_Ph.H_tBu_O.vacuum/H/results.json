@@ -1,14 +1,13 @@
 {
   "files": {
-    "calc_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\urea_tBu_Ph.H_tBu_O.vacuum\\H",
-    "res_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\urea_tBu_Ph.H_tBu_O.vacuum\\H",
-    "run script": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\urea_tBu_Ph.H_tBu_O.vacuum\\H\\H",
-    "opt adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\urea_tBu_Ph.H_tBu_O.vacuum\\H\\H.adf.rkf",
-    "opt amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\urea_tBu_Ph.H_tBu_O.vacuum\\H\\H.ams.rkf",
-    "opt log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\urea_tBu_Ph.H_tBu_O.vacuum\\H\\H.log",
-    "opt out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\urea_tBu_Ph.H_tBu_O.vacuum\\H\\H.out",
-    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\urea_tBu_Ph.H_tBu_O.vacuum\\H\\input.xyz",
-    "run info": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\urea_tBu_Ph.H_tBu_O.vacuum\\H\\run.info"
+    "calc_path": "/scistor/tc/yhk800/MasterProject/calculations_test/urea_tBu_Ph.H_tBu_O.vacuum/H",
+    "res_path": "/scistor/tc/yhk800/MasterProject/results/urea_tBu_Ph.H_tBu_O.vacuum/H",
+    "opt log": "/scistor/tc/yhk800/MasterProject/calculations_test/urea_tBu_Ph.H_tBu_O.vacuum/H/H.log",
+    "opt adfrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/urea_tBu_Ph.H_tBu_O.vacuum/H/H.adf.rkf",
+    "opt out": "/scistor/tc/yhk800/MasterProject/calculations_test/urea_tBu_Ph.H_tBu_O.vacuum/H/H.out",
+    "run info": "/scistor/tc/yhk800/MasterProject/calculations_test/urea_tBu_Ph.H_tBu_O.vacuum/H/run.info",
+    "input xyz": "/scistor/tc/yhk800/MasterProject/calculations_test/urea_tBu_Ph.H_tBu_O.vacuum/H/input.xyz",
+    "opt amsrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/urea_tBu_Ph.H_tBu_O.vacuum/H/H.ams.rkf"
   },
   "info": {
     "substituents": [],
@@ -21,7 +20,7 @@
     "phase": "vacuum",
     "enantiomer": "N/A",
     "hash": "68084fb96e1d55515672a0a7d9f9e88261f01815b6b6566334c85b8c7afe25b8",
-    "time silent": 124151
+    "time silent": 247692
   },
   "pre opt": {
     "runtime": 0
@@ -39,11 +38,12 @@
         -6.685771776804315e-15
       ]
     ],
-    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\urea_tBu_Ph.H_tBu_O.vacuum\\H\\input.xyz",
+    "input xyz": "/scistor/tc/yhk800/MasterProject/results/urea_tBu_Ph.H_tBu_O.vacuum/H/input.xyz",
     "steps": 0,
     "status": "NORMAL TERMINATION with warnings",
     "bond energy": -0.034054310965628345,
-    "step": "END"
+    "step": "END",
+    "freq progress": 1
   },
   "freq": {},
   "thermo": {

@@ -1,0 +1,75 @@
+{
+  "files": {
+    "calc_path": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_tBu_I2.vacuum/H",
+    "res_path": "/scistor/tc/yhk800/MasterProject/results/achiral_catalyst.H_tBu_I2.vacuum/H",
+    "preopt log": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_tBu_I2.vacuum/H/GO.achiral_catalyst.H_tBu_I2.H_preopt.log",
+    "run script": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_tBu_I2.vacuum/H/GO.achiral_catalyst.H_tBu_I2.H",
+    "opt log": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_tBu_I2.vacuum/H/GO.achiral_catalyst.H_tBu_I2.H.log",
+    "preopt adfrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_tBu_I2.vacuum/H/GO.achiral_catalyst.H_tBu_I2.H_preopt.adf.rkf",
+    "opt adfrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_tBu_I2.vacuum/H/GO.achiral_catalyst.H_tBu_I2.H.adf.rkf",
+    "opt out": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_tBu_I2.vacuum/H/GO.achiral_catalyst.H_tBu_I2.H.out",
+    "run info": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_tBu_I2.vacuum/H/run.info",
+    "opt amsrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_tBu_I2.vacuum/H/GO.achiral_catalyst.H_tBu_I2.H.ams.rkf",
+    "preopt out": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_tBu_I2.vacuum/H/GO.achiral_catalyst.H_tBu_I2.H_preopt.out",
+    "preopt amsrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_tBu_I2.vacuum/H/GO.achiral_catalyst.H_tBu_I2.H_preopt.ams.rkf",
+    "input xyz": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_tBu_I2.vacuum/H/input.xyz"
+  },
+  "info": {
+    "substituents": [],
+    "unique": "achiral_catalyst.vacuum.GO.H.[].[].True.N/A",
+    "reaction": "achiral_catalyst",
+    "stationary point": "H",
+    "task": "GO",
+    "TSRC": "N\\A",
+    "radical": "True",
+    "phase": "vacuum",
+    "enantiomer": "N/A",
+    "hash": "4cd9f7ec9c0e3dc73802e857448b11112388345e723ab6e5a692b1228e930aad",
+    "time silent": 28207
+  },
+  "pre opt": {
+    "runtime": 2,
+    "natoms": 1,
+    "elements": [
+      "H"
+    ],
+    "input coords": [
+      [
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    "input xyz": "/scistor/tc/yhk800/MasterProject/results/achiral_catalyst.H_tBu_I2.vacuum/H/input_preopt.xyz",
+    "steps": 0,
+    "status": "NORMAL TERMINATION",
+    "bond energy": -0.03405426125832218,
+    "step": "END"
+  },
+  "opt": {
+    "runtime": 5,
+    "natoms": 1,
+    "elements": [
+      "H"
+    ],
+    "input coords": [
+      [
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    "input xyz": "/scistor/tc/yhk800/MasterProject/results/achiral_catalyst.H_tBu_I2.vacuum/H/input.xyz",
+    "steps": 0,
+    "status": "NORMAL TERMINATION with warnings",
+    "bond energy": -0.03405431096562917,
+    "step": "END",
+    "freq progress": 1
+  },
+  "freq": {},
+  "thermo": {
+    "gibbs": -0.044054012442276774,
+    "enthalpy": -0.031693845931914696
+  },
+  "misc": {}
+}

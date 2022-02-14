@@ -1,0 +1,30 @@
+{
+  "files": {
+    "calc_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\achiral_catalyst.H_Ph_I2.vacuum\\rad",
+    "res_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_Ph_I2.vacuum\\rad",
+    "run script": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\achiral_catalyst.H_Ph_I2.vacuum\\rad\\GO.achiral_catalyst.H_Ph_I2.rad",
+    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\achiral_catalyst.H_Ph_I2.vacuum\\rad\\input.xyz",
+    "run info": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\achiral_catalyst.H_Ph_I2.vacuum\\rad\\run.info"
+  },
+  "info": {
+    "substituents": [],
+    "unique": "achiral_catalyst.vacuum.GO.rad.[].[].True.N/A",
+    "reaction": "achiral_catalyst",
+    "stationary point": "rad",
+    "task": "GO",
+    "TSRC": "N\\A",
+    "radical": "True",
+    "phase": "vacuum",
+    "enantiomer": "N/A",
+    "hash": "a75f6731723af880b7637aed21ded2dc99a78499ccf76627a25d71ca5b550f6d"
+  },
+  "pre opt": {
+    "runtime": 0
+  },
+  "opt": {
+    "runtime": 0
+  },
+  "freq": {},
+  "thermo": {},
+  "misc": {}
+}

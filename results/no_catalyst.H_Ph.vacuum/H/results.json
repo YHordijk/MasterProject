@@ -1,0 +1,30 @@
+{
+  "files": {
+    "calc_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\no_catalyst.H_Ph.vacuum\\H",
+    "res_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\no_catalyst.H_Ph.vacuum\\H",
+    "run script": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\no_catalyst.H_Ph.vacuum\\H\\GO.no_catalyst.H_Ph.H",
+    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\no_catalyst.H_Ph.vacuum\\H\\input.xyz",
+    "run info": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\no_catalyst.H_Ph.vacuum\\H\\run.info"
+  },
+  "info": {
+    "substituents": [],
+    "unique": "no_catalyst.vacuum.GO.H.[].[].True.N/A",
+    "reaction": "no_catalyst",
+    "stationary point": "H",
+    "task": "GO",
+    "TSRC": "N\\A",
+    "radical": "True",
+    "phase": "vacuum",
+    "enantiomer": "N/A",
+    "hash": "4e3fa31720be9a8d28047aafa24df6b41ca3607a74e9053271885b14318742cf"
+  },
+  "pre opt": {
+    "runtime": 0
+  },
+  "opt": {
+    "runtime": 0
+  },
+  "freq": {},
+  "thermo": {},
+  "misc": {}
+}

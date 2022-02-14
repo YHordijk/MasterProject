@@ -27,6 +27,8 @@ def generate_stationary_points(template, substituents=None, keep_dummy=False):
             enant = 'N/A'
             TSRC_idx = []
             substituent_idx = {}
+            substituent_dist = {}
+            delete_idx = []
             for flag in flags:
                 if flag in ['GO']:
                     task = flag
@@ -36,11 +38,18 @@ def generate_stationary_points(template, substituents=None, keep_dummy=False):
                     enant = flag.split('=')[1]
                 if flag.startswith('R'):
                     n, idx = flag.split('=')
-                    substituent_idx[n] = [int(i) for i in idx.split('_')]
+                    if len(idx.split('_')) == 2:
+                        substituent_idx[n] = [int(i) for i in idx.split('_')]
+                        substituent_dist[n] = None
+                    elif len(idx.split('_')) == 3:
+                        substituent_idx[n] = [int(i) for i in idx.split('_')[0:2]]
+                        substituent_dist[n] = float(idx.split('_')[2])
                 if flag.startswith('TSRC'):
                     task = 'TSRC'
                     idx = flag.split('=')[1]
                     TSRC_idx = [int(i) for i in idx.split('_')]
+                if flag.startswith('delete'):
+                    delete_idx = [int(i) for i in flag.split('=')[1].split('_')]
 
             #construct our molecule object
             mol = plams.Molecule(file)
@@ -52,6 +61,8 @@ def generate_stationary_points(template, substituents=None, keep_dummy=False):
             mol.TSRC_idx = TSRC_idx
             mol.substituent_idx = substituent_idx
             mol.substituents = substituent_idx.keys()
+            mol.substituent_dist = substituent_dist
+            mol.delete_atoms = [mol.atoms[i-1] for i in delete_idx]
         return mol
 
 
@@ -127,7 +138,9 @@ def generate_stationary_points(template, substituents=None, keep_dummy=False):
 
             #substitute the molecule
             main_conn = main_conns[sub_name]
-            mol.substitute(main_conn, sub_mol, sub_conn)
+            mol.substitute(main_conn, sub_mol, sub_conn, bond_length=mol.substituent_dist[sub_name])
+
+        [mol.delete_atom(a) for a in mol.delete_atoms]
 
         #atom indices have changed so update the TSRC indices
         mol.TSRC_idx = [mol.atoms.index(a) + 1 for a in TSRC_atoms]
@@ -171,5 +184,5 @@ def print_mols(mols, tabs=0):
 
 
 if __name__ == '__main__':
-    mols = generate_stationary_points('urea_tBu_Ph', {'R1':'H', 'Rch': 'S'})
+    mols = generate_stationary_points('achiral_catalyst', {'Rcat':'AlF3'})
     print_mols(mols)

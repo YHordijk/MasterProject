@@ -1,0 +1,78 @@
+{
+  "files": {
+    "calc_path": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_Ph_I2.vacuum/cat",
+    "res_path": "/scistor/tc/yhk800/MasterProject/results/achiral_catalyst.H_Ph_I2.vacuum/cat",
+    "opt log": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_Ph_I2.vacuum/cat/GO.achiral_catalyst.H_Ph_I2.cat.log",
+    "opt adfrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_Ph_I2.vacuum/cat/GO.achiral_catalyst.H_Ph_I2.cat.adf.rkf",
+    "opt amsrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_Ph_I2.vacuum/cat/GO.achiral_catalyst.H_Ph_I2.cat.ams.rkf",
+    "opt out": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_Ph_I2.vacuum/cat/GO.achiral_catalyst.H_Ph_I2.cat.out",
+    "run info": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_Ph_I2.vacuum/cat/run.info"
+  },
+  "info": {
+    "substituents": [
+      [
+        "Rcat",
+        "I2"
+      ]
+    ],
+    "reaction": "achiral_catalyst",
+    "stationary point": "cat",
+    "task": "GO",
+    "TSRC": "N\\A",
+    "unique": "achiral_catalyst.vacuum.GO.cat.['I2'].[].False.N/A",
+    "radical": "False",
+    "phase": "vacuum",
+    "enantiomer": "N/A",
+    "hash": "685cd5c744ecc879bba9ff575403e1b3a614da9595eb369c9198a0380c36b2cc",
+    "time silent": 1548497
+  },
+  "pre opt": {
+    "runtime": 0
+  },
+  "opt": {
+    "runtime": 343,
+    "natoms": 2,
+    "elements": [
+      "I",
+      "I"
+    ],
+    "input coords": [
+      [
+        3.080253583140005,
+        0.0,
+        0.0
+      ],
+      [
+        8.312905222228762,
+        0.0,
+        0.0
+      ]
+    ],
+    "input xyz": "/scistor/tc/yhk800/MasterProject/results/achiral_catalyst.H_Ph_I2.vacuum/cat/input.xyz",
+    "steps": 5,
+    "output coords": [
+      [
+        3.157970259519912,
+        0.0,
+        0.0
+      ],
+      [
+        8.235188545848857,
+        0.0,
+        0.0
+      ]
+    ],
+    "output energy": -0.08611938474860692,
+    "output xyz": "/scistor/tc/yhk800/MasterProject/results/achiral_catalyst.H_Ph_I2.vacuum/cat/output.xyz",
+    "status": "NORMAL TERMINATION with warnings",
+    "bond energy": -0.08611938475593905,
+    "step": "END",
+    "freq progress": 2
+  },
+  "freq": {},
+  "thermo": {
+    "gibbs": -0.11139567398713673,
+    "enthalpy": -0.08179100528617163
+  },
+  "misc": {}
+}

@@ -2,16 +2,16 @@
   "files": {
     "calc_path": "/scistor/tc/yhk800/MasterProject/calculations_test/urea_tBu_Ph.H_Ph_S.vacuum/P1S_cat_complex",
     "res_path": "/scistor/tc/yhk800/MasterProject/results/urea_tBu_Ph.H_Ph_S.vacuum/P1S_cat_complex",
+    "opt amsrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/urea_tBu_Ph.H_Ph_S.vacuum/P1S_cat_complex/GO.urea_tBu_Ph.H_Ph_S.P1S_cat_complex.ams.rkf",
     "preopt adfrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/urea_tBu_Ph.H_Ph_S.vacuum/P1S_cat_complex/GO.urea_tBu_Ph.H_Ph_S.P1S_cat_complex_preopt.adf.rkf",
     "preopt log": "/scistor/tc/yhk800/MasterProject/calculations_test/urea_tBu_Ph.H_Ph_S.vacuum/P1S_cat_complex/GO.urea_tBu_Ph.H_Ph_S.P1S_cat_complex_preopt.log",
     "preopt amsrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/urea_tBu_Ph.H_Ph_S.vacuum/P1S_cat_complex/GO.urea_tBu_Ph.H_Ph_S.P1S_cat_complex_preopt.ams.rkf",
-    "ams.results": "/scistor/tc/yhk800/MasterProject/calculations_test/urea_tBu_Ph.H_Ph_S.vacuum/P1S_cat_complex/ams.results",
+    "opt log": "/scistor/tc/yhk800/MasterProject/calculations_test/urea_tBu_Ph.H_Ph_S.vacuum/P1S_cat_complex/GO.urea_tBu_Ph.H_Ph_S.P1S_cat_complex.log",
+    "opt adfrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/urea_tBu_Ph.H_Ph_S.vacuum/P1S_cat_complex/GO.urea_tBu_Ph.H_Ph_S.P1S_cat_complex.adf.rkf",
     "opt out": "/scistor/tc/yhk800/MasterProject/calculations_test/urea_tBu_Ph.H_Ph_S.vacuum/P1S_cat_complex/GO.urea_tBu_Ph.H_Ph_S.P1S_cat_complex.out",
     "input xyz": "/scistor/tc/yhk800/MasterProject/calculations_test/urea_tBu_Ph.H_Ph_S.vacuum/P1S_cat_complex/input.xyz",
     "run script": "/scistor/tc/yhk800/MasterProject/calculations_test/urea_tBu_Ph.H_Ph_S.vacuum/P1S_cat_complex/GO.urea_tBu_Ph.H_Ph_S.P1S_cat_complex",
-    "run info": "/scistor/tc/yhk800/MasterProject/calculations_test/urea_tBu_Ph.H_Ph_S.vacuum/P1S_cat_complex/run.info",
-    "opt amsrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/urea_tBu_Ph.H_Ph_S.vacuum/P1S_cat_complex/ams.results/ams.rkf",
-    "opt log": "/scistor/tc/yhk800/MasterProject/calculations_test/urea_tBu_Ph.H_Ph_S.vacuum/P1S_cat_complex/ams.results/ams.log"
+    "run info": "/scistor/tc/yhk800/MasterProject/calculations_test/urea_tBu_Ph.H_Ph_S.vacuum/P1S_cat_complex/run.info"
   },
   "info": {
     "substituents": [
@@ -37,7 +37,7 @@
     "phase": "vacuum",
     "enantiomer": "S",
     "hash": "a967783774fda84fcccdb74a1f55f890ad78492b19313d397792225473555f49",
-    "time silent": 395
+    "time silent": 95155
   },
   "pre opt": {
     "runtime": 1872,
@@ -761,7 +761,7 @@
     "step": "END"
   },
   "opt": {
-    "runtime": 206634,
+    "runtime": 243205,
     "natoms": 64,
     "elements": [
       "C",
@@ -1477,10 +1477,15 @@
     ],
     "output energy": -13.44858260162797,
     "output xyz": "/scistor/tc/yhk800/MasterProject/results/urea_tBu_Ph.H_Ph_S.vacuum/P1S_cat_complex/output.xyz",
-    "status": "IN PROGRESS",
-    "step": "FREQ"
+    "status": "NORMAL TERMINATION",
+    "bond energy": -13.44858260176856,
+    "step": "END",
+    "freq progress": 64
   },
   "freq": {},
-  "thermo": {},
+  "thermo": {
+    "gibbs": -12.973029988156798,
+    "enthalpy": -12.879227618140416
+  },
   "misc": {}
 }

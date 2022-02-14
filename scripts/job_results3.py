@@ -203,8 +203,12 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
                 last  = datetime.datetime.strptime(' '.join(lines[-1].split()[0:2]), '<%b%d-%Y> <%H:%M:%S>')
                 opt['runtime'] = int((last-first).total_seconds())
                 opt['step'] = 'GO'
+                if preopt:
+                    opt['step'] = 'PREOPT'
+
                 if any('=== NUCLEUS' in line for line in lines):
                     opt['step'] = 'FREQ'
+                    opt['freq progress'] = max(int(line.split()[4]) for line in lines if '=== NUCLEUS' in line)
                 if any('NORMAL TERMINATION' in line for line in lines):
                     opt['step'] = 'END'
 
@@ -375,7 +379,8 @@ class Result:
 
     @property
     def calc_path(self):
-        return join(paths.master, 'calculations_test', f'{self.reaction}.{"_".join(self.sorted_substituents)}.{self.phase}', self.stationary_point)
+        rel = os.path.relpath(self.path, paths.results)
+        return join(paths.master, 'calculations_test', rel)  
 
     def _set_status(self):
         preopt_status = self.data['pre opt'].get('status', None)
@@ -406,6 +411,15 @@ class Result:
             if time/3600 >= 2:
                 self.status = 'Canceled'
 
+        # if self.status == 'Warning':
+        #     with open(self.data['files']['opt log']) as log:
+        #         lines = log.readlines()
+        #         warning_lines = [line for line in lines if 'WARNING:' in line]
+        #         warning_lines = [l for l in warning_lines if 'total elapsed time is much higher than the (CPU+system) time' not in l]
+        #         if len(warning_lines) > 0:
+        #             self.data['info']['warnings'] = warning_lines
+        #         else:
+        #             self.status = 'Success'
         
 
 
@@ -435,15 +449,19 @@ def summarize_calculations(res, tabs=0):
 
     header = '\t'*tabs +  f'\t{"Reaction".ljust(reaction_len)} | {"Point".ljust(point_len)} | '
     header += (' | ').join([R.ljust(l) for R, l in zip(sub_names, sub_lens)])
-    header += f' | {"Step".ljust(step_len)} | Runtime  '
+    header += f' | {"Step".ljust(step_len)} | Progress | Runtime  '
     print()
     print(header)
     print('\t'*(tabs+1) + '-'*(len(header)))
     for r in res:
         if r.status != 'Running': continue
+        if r.step == 'FREQ':
+            progress = f"{r.data['opt']['freq progress']}/{r.data['opt']['natoms']}"
+        else:
+            progress = ''
         l = '\t'*tabs + f'\t{r.reaction:{reaction_len}} | {r.stationary_point:{point_len}} | '
-        l += (' | ').join([r.substituents[R].ljust(l) for R, l in zip(sub_names, sub_lens)])
-        l += f' | {r.step.ljust(step_len)} | {r.formatted_runtime}'
+        l += (' | ').join([r.substituents.get(R,'').ljust(l) for R, l in zip(sub_names, sub_lens)])
+        l += f' | {r.step.ljust(step_len)} | {progress.rjust(8)} | {r.formatted_runtime}'
         print(l)
     print()
 

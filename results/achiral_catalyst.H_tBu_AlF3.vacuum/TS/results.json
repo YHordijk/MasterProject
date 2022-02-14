@@ -1,12 +1,12 @@
 {
   "files": {
-    "calc_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\achiral_catalyst.H_tBu_AlF3.vacuum\\TS",
-    "res_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_tBu_AlF3.vacuum\\TS",
-    "run info": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\achiral_catalyst.H_tBu_AlF3.vacuum\\TS\\run.info",
-    "opt adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\achiral_catalyst.H_tBu_AlF3.vacuum\\TS\\TSRC.achiral_catalyst.H_tBu_AlF3.TS.adf.rkf",
-    "opt amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\achiral_catalyst.H_tBu_AlF3.vacuum\\TS\\TSRC.achiral_catalyst.H_tBu_AlF3.TS.ams.rkf",
-    "opt log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\achiral_catalyst.H_tBu_AlF3.vacuum\\TS\\TSRC.achiral_catalyst.H_tBu_AlF3.TS.log",
-    "opt out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\achiral_catalyst.H_tBu_AlF3.vacuum\\TS\\TSRC.achiral_catalyst.H_tBu_AlF3.TS.out"
+    "calc_path": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_tBu_AlF3.vacuum/TS",
+    "res_path": "/scistor/tc/yhk800/MasterProject/results/achiral_catalyst.H_tBu_AlF3.vacuum/TS",
+    "opt out": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_tBu_AlF3.vacuum/TS/TSRC.achiral_catalyst.H_tBu_AlF3.TS.out",
+    "opt amsrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_tBu_AlF3.vacuum/TS/TSRC.achiral_catalyst.H_tBu_AlF3.TS.ams.rkf",
+    "opt log": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_tBu_AlF3.vacuum/TS/TSRC.achiral_catalyst.H_tBu_AlF3.TS.log",
+    "opt adfrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_tBu_AlF3.vacuum/TS/TSRC.achiral_catalyst.H_tBu_AlF3.TS.adf.rkf",
+    "run info": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_tBu_AlF3.vacuum/TS/run.info"
   },
   "info": {
     "substituents": [
@@ -32,7 +32,7 @@
     "phase": "vacuum",
     "enantiomer": "N/A",
     "hash": "c8a9a5646409dc92aabe81bdd78a1c89e8eb38b7e4e7bd319b93337078e37a94",
-    "time silent": 962380
+    "time silent": 1085924
   },
   "pre opt": {
     "runtime": 0
@@ -212,7 +212,7 @@
         -1.7020977499446843
       ]
     ],
-    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_tBu_AlF3.vacuum\\TS\\input.xyz",
+    "input xyz": "/scistor/tc/yhk800/MasterProject/results/achiral_catalyst.H_tBu_AlF3.vacuum/TS/input.xyz",
     "steps": 44,
     "output coords": [
       [
@@ -357,10 +357,11 @@
       ]
     ],
     "output energy": -5.458202403704965,
-    "output xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_tBu_AlF3.vacuum\\TS\\output.xyz",
+    "output xyz": "/scistor/tc/yhk800/MasterProject/results/achiral_catalyst.H_tBu_AlF3.vacuum/TS/output.xyz",
     "status": "NORMAL TERMINATION with warnings",
     "bond energy": -5.458202403712288,
-    "step": "END"
+    "step": "END",
+    "freq progress": 28
   },
   "freq": {},
   "thermo": {

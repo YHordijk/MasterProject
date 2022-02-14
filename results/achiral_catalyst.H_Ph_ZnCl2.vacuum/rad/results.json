@@ -1,0 +1,95 @@
+{
+  "files": {
+    "calc_path": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_Ph_ZnCl2.vacuum/rad",
+    "res_path": "/scistor/tc/yhk800/MasterProject/results/achiral_catalyst.H_Ph_ZnCl2.vacuum/rad",
+    "opt amsrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_Ph_ZnCl2.vacuum/rad/GO.achiral_catalyst.H_Ph_ZnCl2.rad.ams.rkf",
+    "opt out": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_Ph_ZnCl2.vacuum/rad/GO.achiral_catalyst.H_Ph_ZnCl2.rad.out",
+    "opt adfrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_Ph_ZnCl2.vacuum/rad/GO.achiral_catalyst.H_Ph_ZnCl2.rad.adf.rkf",
+    "run info": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_Ph_ZnCl2.vacuum/rad/run.info",
+    "opt log": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_Ph_ZnCl2.vacuum/rad/GO.achiral_catalyst.H_Ph_ZnCl2.rad.log"
+  },
+  "info": {
+    "substituents": [],
+    "reaction": "achiral_catalyst",
+    "stationary point": "rad",
+    "task": "GO",
+    "TSRC": "N\\A",
+    "unique": "achiral_catalyst.vacuum.GO.rad.[].[].True.N/A",
+    "radical": "True",
+    "phase": "vacuum",
+    "enantiomer": "N/A",
+    "hash": "a75f6731723af880b7637aed21ded2dc99a78499ccf76627a25d71ca5b550f6d",
+    "time silent": 1548262
+  },
+  "pre opt": {
+    "runtime": 0
+  },
+  "opt": {
+    "runtime": 659,
+    "natoms": 4,
+    "elements": [
+      "H",
+      "C",
+      "H",
+      "H"
+    ],
+    "input coords": [
+      [
+        3.880685576946409,
+        -1.5182829370693998,
+        0.0
+      ],
+      [
+        1.8385848066657253,
+        -1.3147601893376542,
+        0.0
+      ],
+      [
+        1.2537700156585458,
+        -0.2841225149197891,
+        1.6754636097935065
+      ],
+      [
+        1.2537700156585458,
+        0.2841225149197891,
+        -1.6754636097935065
+      ]
+    ],
+    "input xyz": "/scistor/tc/yhk800/MasterProject/results/achiral_catalyst.H_Ph_ZnCl2.vacuum/rad/input.xyz",
+    "steps": 9,
+    "output coords": [
+      [
+        3.843983769116048,
+        -1.7013532575193269,
+        -0.07891943836608421
+      ],
+      [
+        2.056930419082617,
+        -0.7081616632289744,
+        0.0001227265916790123
+      ],
+      [
+        1.1058809887316678,
+        -0.45374506415894283,
+        1.793940697968957
+      ],
+      [
+        1.2200152379988938,
+        0.030216858500190874,
+        -1.7151439861945506
+      ]
+    ],
+    "output energy": -0.6477825297653628,
+    "output xyz": "/scistor/tc/yhk800/MasterProject/results/achiral_catalyst.H_Ph_ZnCl2.vacuum/rad/output.xyz",
+    "status": "NORMAL TERMINATION with warnings",
+    "bond energy": -0.647782529765088,
+    "step": "END",
+    "freq progress": 4
+  },
+  "freq": {},
+  "thermo": {
+    "gibbs": -0.6376940691167747,
+    "enthalpy": -0.6145498055855076
+  },
+  "misc": {}
+}

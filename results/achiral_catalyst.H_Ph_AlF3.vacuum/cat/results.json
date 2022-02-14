@@ -1,0 +1,100 @@
+{
+  "files": {
+    "calc_path": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_Ph_AlF3.vacuum/cat",
+    "res_path": "/scistor/tc/yhk800/MasterProject/results/achiral_catalyst.H_Ph_AlF3.vacuum/cat",
+    "opt out": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_Ph_AlF3.vacuum/cat/GO.achiral_catalyst.H_Ph_AlF3.cat.out",
+    "run info": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_Ph_AlF3.vacuum/cat/run.info",
+    "opt amsrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_Ph_AlF3.vacuum/cat/GO.achiral_catalyst.H_Ph_AlF3.cat.ams.rkf",
+    "opt log": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_Ph_AlF3.vacuum/cat/GO.achiral_catalyst.H_Ph_AlF3.cat.log",
+    "opt adfrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_Ph_AlF3.vacuum/cat/GO.achiral_catalyst.H_Ph_AlF3.cat.adf.rkf"
+  },
+  "info": {
+    "substituents": [
+      [
+        "Rcat",
+        "AlF3"
+      ]
+    ],
+    "reaction": "achiral_catalyst",
+    "stationary point": "cat",
+    "task": "GO",
+    "TSRC": "N\\A",
+    "unique": "achiral_catalyst.vacuum.GO.cat.['AlF3'].[].False.N/A",
+    "radical": "False",
+    "phase": "vacuum",
+    "enantiomer": "N/A",
+    "hash": "328b3aee5fe2945f84c6d1a0e1182dc374c6c908446294d097f44080170700b4",
+    "time silent": 1548342
+  },
+  "pre opt": {
+    "runtime": 0
+  },
+  "opt": {
+    "runtime": 461,
+    "natoms": 4,
+    "elements": [
+      "Al",
+      "F",
+      "F",
+      "F"
+    ],
+    "input coords": [
+      [
+        3.2692261956025823,
+        0.0,
+        0.0
+      ],
+      [
+        3.2692261956025823,
+        -2.647124065697476,
+        1.528317779633649
+      ],
+      [
+        3.2692261956025823,
+        2.647124065697476,
+        1.528317779633649
+      ],
+      [
+        3.2692261956025823,
+        0.0,
+        -3.056635578164559
+      ]
+    ],
+    "input xyz": "/scistor/tc/yhk800/MasterProject/results/achiral_catalyst.H_Ph_AlF3.vacuum/cat/input.xyz",
+    "steps": 4,
+    "output coords": [
+      [
+        3.269226296291494,
+        3.351823051184542e-26,
+        -3.351823044201629e-26
+      ],
+      [
+        3.2692261620396112,
+        -2.6983421989716176,
+        1.5578885826668645
+      ],
+      [
+        3.2692261620396112,
+        2.6983421989716176,
+        1.5578885826668643
+      ],
+      [
+        3.2692261620396112,
+        -6.38013852449214e-18,
+        -3.1157771842309896
+      ]
+    ],
+    "output energy": -0.7532245514372098,
+    "output xyz": "/scistor/tc/yhk800/MasterProject/results/achiral_catalyst.H_Ph_AlF3.vacuum/cat/output.xyz",
+    "status": "NORMAL TERMINATION with warnings",
+    "bond energy": -0.7532245514415379,
+    "step": "END",
+    "freq progress": 4
+  },
+  "freq": {},
+  "thermo": {
+    "gibbs": -0.7736463947203169,
+    "enthalpy": -0.7403314058293613
+  },
+  "misc": {}
+}

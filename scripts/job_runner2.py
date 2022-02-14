@@ -6,7 +6,7 @@ join = os.path.join
 
 
 
-def run_jobs(template, substituents={}, calc_dir=paths.calculations, phase='vacuum'):
+def run_jobs(template, substituents={}, calc_dir=paths.calculations, phase='vacuum', test_mode=False):
     def get_mols():
         print(f'Generating molecules:')
         print(f'\tTemplate: {template}')
@@ -52,6 +52,8 @@ def run_jobs(template, substituents={}, calc_dir=paths.calculations, phase='vacu
         if mol.radical:
             CORES = '64'
             NODES = '2'
+
+        print(mol.name, NODES, mol.radical)
 
         blocks = {
                 '[RADICAL]':          RADICAL, 
@@ -122,17 +124,25 @@ sbatch {os.path.basename(file)}
 
         JR_template = get_job_runner_template(mol)
         job_dir = get_job_dir(mol)
-        os.makedirs(job_dir, exist_ok=True)
+        if not test_mode:
+            os.makedirs(job_dir, exist_ok=True)
 
-        #copy input molecule to new dir
-        mol.write(join(job_dir, 'input.xyz'))
-        #make job_run script
-        write_runscript(mol)
-        write_info(mol)
+            #copy input molecule to new dir
+            mol.write(join(job_dir, 'input.xyz'))
+            #make job_run script
+            write_runscript(mol)
+            write_info(mol)
         #run the job we just made
         print(f'Running job {os.path.relpath(runscript_path(mol), calc_dir)}')
-        run_job(runscript_path(mol))
+        if not test_mode:
+            run_job(runscript_path(mol))
 
         
 if __name__ == '__main__':
-    run_jobs('no_catalyst', {'R1':'H', 'R2':'H'}, phase='vacuum', calc_dir=join(paths.master, 'calculations_test'))
+    # for R2 in ['Ph', 'tBu']:
+    #     for cat in ['I2', 'ZnCl2', 'TiCl4', 'BF3', 'AlF3', 'SnCl4']:
+    #         run_jobs('achiral_catalyst', {'R1':'H', 'R2':R2, 'Rcat':cat}, phase='vacuum', calc_dir=join(paths.master, 'calculations_test'), test_mode=False)
+
+    #     run_jobs('no_catalyst', {'R1':'H', 'R2':R2}, phase='vacuum', calc_dir=join(paths.master, 'calculations_test'), test_mode=False)
+    run_jobs('squaramide', {'R1':'H', 'R2':'Ph', 'Rc1':'H', 'Rc2':'Ph', 'Rch':'O', 'Rch2':'O'}, phase='vacuum', calc_dir=join(paths.master, 'calculations_test'), test_mode=False)
+    run_jobs('achiral_catalyst', {'R1':'H', 'R2':'H', 'Rcat':'SnCl4'}, phase='vacuum', calc_dir=join(paths.master, 'calculations_test'), test_mode=False)

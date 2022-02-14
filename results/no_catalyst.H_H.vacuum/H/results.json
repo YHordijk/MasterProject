@@ -1,0 +1,75 @@
+{
+  "files": {
+    "calc_path": "/scistor/tc/yhk800/MasterProject/calculations_test/no_catalyst.H_H.vacuum/H",
+    "res_path": "/scistor/tc/yhk800/MasterProject/results/no_catalyst.H_H.vacuum/H",
+    "opt out": "/scistor/tc/yhk800/MasterProject/calculations_test/no_catalyst.H_H.vacuum/H/GO.no_catalyst.H_H.H.out",
+    "opt amsrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/no_catalyst.H_H.vacuum/H/GO.no_catalyst.H_H.H.ams.rkf",
+    "preopt log": "/scistor/tc/yhk800/MasterProject/calculations_test/no_catalyst.H_H.vacuum/H/GO.no_catalyst.H_H.H_preopt.log",
+    "opt adfrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/no_catalyst.H_H.vacuum/H/GO.no_catalyst.H_H.H.adf.rkf",
+    "preopt adfrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/no_catalyst.H_H.vacuum/H/GO.no_catalyst.H_H.H_preopt.adf.rkf",
+    "run info": "/scistor/tc/yhk800/MasterProject/calculations_test/no_catalyst.H_H.vacuum/H/run.info",
+    "preopt out": "/scistor/tc/yhk800/MasterProject/calculations_test/no_catalyst.H_H.vacuum/H/GO.no_catalyst.H_H.H_preopt.out",
+    "preopt amsrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/no_catalyst.H_H.vacuum/H/GO.no_catalyst.H_H.H_preopt.ams.rkf",
+    "run script": "/scistor/tc/yhk800/MasterProject/calculations_test/no_catalyst.H_H.vacuum/H/GO.no_catalyst.H_H.H",
+    "opt log": "/scistor/tc/yhk800/MasterProject/calculations_test/no_catalyst.H_H.vacuum/H/GO.no_catalyst.H_H.H.log",
+    "input xyz": "/scistor/tc/yhk800/MasterProject/calculations_test/no_catalyst.H_H.vacuum/H/input.xyz"
+  },
+  "info": {
+    "substituents": [],
+    "unique": "no_catalyst.vacuum.GO.H.[].[].True.N/A",
+    "reaction": "no_catalyst",
+    "stationary point": "H",
+    "task": "GO",
+    "TSRC": "N\\A",
+    "radical": "True",
+    "phase": "vacuum",
+    "enantiomer": "N/A",
+    "hash": "4e3fa31720be9a8d28047aafa24df6b41ca3607a74e9053271885b14318742cf",
+    "time silent": 40952
+  },
+  "pre opt": {
+    "runtime": 2,
+    "natoms": 1,
+    "elements": [
+      "H"
+    ],
+    "input coords": [
+      [
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    "input xyz": "/scistor/tc/yhk800/MasterProject/results/no_catalyst.H_H.vacuum/H/input_preopt.xyz",
+    "steps": 0,
+    "status": "NORMAL TERMINATION",
+    "bond energy": -0.03405426125832169,
+    "step": "END"
+  },
+  "opt": {
+    "runtime": 4,
+    "natoms": 1,
+    "elements": [
+      "H"
+    ],
+    "input coords": [
+      [
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    "input xyz": "/scistor/tc/yhk800/MasterProject/results/no_catalyst.H_H.vacuum/H/input.xyz",
+    "steps": 0,
+    "status": "NORMAL TERMINATION with warnings",
+    "bond energy": -0.03405431096562873,
+    "step": "END",
+    "freq progress": 1
+  },
+  "freq": {},
+  "thermo": {
+    "gibbs": -0.04405401244227633,
+    "enthalpy": -0.03169384593191425
+  },
+  "misc": {}
+}

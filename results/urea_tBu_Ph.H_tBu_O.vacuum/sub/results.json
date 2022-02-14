@@ -33,7 +33,7 @@
     "phase": "vacuum",
     "enantiomer": "N/A",
     "hash": "178a71eb8aaa014318a096a3f978fe2aaaccc1b5f98b83ee03574a7425697aa4",
-    "time silent": 502489
+    "time silent": 633821
   },
   "pre opt": {
     "runtime": 114,
@@ -507,7 +507,8 @@
     "output xyz": "/scistor/tc/yhk800/MasterProject/results/urea_tBu_Ph.H_tBu_O.vacuum/sub/output.xyz",
     "status": "NORMAL TERMINATION",
     "bond energy": -4.027296088637557,
-    "step": "END"
+    "step": "END",
+    "freq progress": 20
   },
   "freq": {},
   "thermo": {

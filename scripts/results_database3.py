@@ -62,11 +62,8 @@ def make_database(res, out_file=paths.results_table):
 
 
 
-
-
 if __name__ == '__main__':
-
-    res = job_results.get_all_results(join(paths.master, 'calculations_test'), regenerate_all=True)
+    res = job_results.get_all_results(join(paths.master, 'calculations_test'), regenerate_all=False)
     make_database(res)
 
     import excel

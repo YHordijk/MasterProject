@@ -1,0 +1,100 @@
+{
+  "files": {
+    "calc_path": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_Ph_BF3.vacuum/cat",
+    "res_path": "/scistor/tc/yhk800/MasterProject/results/achiral_catalyst.H_Ph_BF3.vacuum/cat",
+    "opt adfrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_Ph_BF3.vacuum/cat/GO.achiral_catalyst.H_Ph_BF3.cat.adf.rkf",
+    "opt log": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_Ph_BF3.vacuum/cat/GO.achiral_catalyst.H_Ph_BF3.cat.log",
+    "opt amsrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_Ph_BF3.vacuum/cat/GO.achiral_catalyst.H_Ph_BF3.cat.ams.rkf",
+    "run info": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_Ph_BF3.vacuum/cat/run.info",
+    "opt out": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_Ph_BF3.vacuum/cat/GO.achiral_catalyst.H_Ph_BF3.cat.out"
+  },
+  "info": {
+    "substituents": [
+      [
+        "Rcat",
+        "BF3"
+      ]
+    ],
+    "reaction": "achiral_catalyst",
+    "stationary point": "cat",
+    "task": "GO",
+    "TSRC": "N\\A",
+    "unique": "achiral_catalyst.vacuum.GO.cat.['BF3'].[].False.N/A",
+    "radical": "False",
+    "phase": "vacuum",
+    "enantiomer": "N/A",
+    "hash": "b7cc530cf731e36701e044a23603784e93b4d28fb3593012f16766a464c0fb66",
+    "time silent": 1548495
+  },
+  "pre opt": {
+    "runtime": 0
+  },
+  "opt": {
+    "runtime": 327,
+    "natoms": 4,
+    "elements": [
+      "B",
+      "F",
+      "F",
+      "F"
+    ],
+    "input coords": [
+      [
+        2.229876827058409,
+        0.0,
+        0.0
+      ],
+      [
+        2.229876827058409,
+        2.1461687060597523,
+        -1.2390910766567231
+      ],
+      [
+        2.229876827058409,
+        -2.1461687060597523,
+        -1.2390910766567231
+      ],
+      [
+        2.229876827058409,
+        0.0,
+        2.4781821533134463
+      ]
+    ],
+    "input xyz": "/scistor/tc/yhk800/MasterProject/results/achiral_catalyst.H_Ph_BF3.vacuum/cat/input.xyz",
+    "steps": 3,
+    "output coords": [
+      [
+        2.229876740786331,
+        -6.055702159977579e-27,
+        6.055701734598485e-27
+      ],
+      [
+        2.229876855815768,
+        2.1672382642842165,
+        -1.2512555917693242
+      ],
+      [
+        2.229876855815768,
+        -2.1672382642842165,
+        -1.2512555917693242
+      ],
+      [
+        2.229876855815768,
+        2.624591956924546e-18,
+        2.5025111835386484
+      ]
+    ],
+    "output energy": -0.8320917169132316,
+    "output xyz": "/scistor/tc/yhk800/MasterProject/results/achiral_catalyst.H_Ph_BF3.vacuum/cat/output.xyz",
+    "status": "NORMAL TERMINATION with warnings",
+    "bond energy": -0.8320917169137164,
+    "step": "END",
+    "freq progress": 4
+  },
+  "freq": {},
+  "thermo": {
+    "gibbs": -0.8446867866086603,
+    "enthalpy": -0.8156828253501259
+  },
+  "misc": {}
+}

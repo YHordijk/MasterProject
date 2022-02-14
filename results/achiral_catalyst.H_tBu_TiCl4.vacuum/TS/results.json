@@ -1,0 +1,42 @@
+{
+  "files": {
+    "calc_path": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_tBu_TiCl4.vacuum/TS",
+    "res_path": "/scistor/tc/yhk800/MasterProject/results/achiral_catalyst.H_tBu_TiCl4.vacuum/TS",
+    "input xyz": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_tBu_TiCl4.vacuum/TS/input.xyz",
+    "run info": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_tBu_TiCl4.vacuum/TS/run.info",
+    "run script": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_tBu_TiCl4.vacuum/TS/TSRC.achiral_catalyst.H_tBu_TiCl4.TS"
+  },
+  "info": {
+    "substituents": [
+      [
+        "R1",
+        "H"
+      ],
+      [
+        "R2",
+        "tBu"
+      ],
+      [
+        "Rcat",
+        "TiCl4"
+      ]
+    ],
+    "unique": "achiral_catalyst.vacuum.TSRC.TS.['H', 'tBu', 'TiCl4'].[2, 10].True.N/A",
+    "reaction": "achiral_catalyst",
+    "stationary point": "TS",
+    "task": "TSRC",
+    "radical": "True",
+    "phase": "vacuum",
+    "enantiomer": "N/A",
+    "hash": "e912fa64d0efc032c386bdb02b3b8953e1559a6850aafdf4579f0635894c0307"
+  },
+  "pre opt": {
+    "runtime": 0
+  },
+  "opt": {
+    "runtime": 0
+  },
+  "freq": {},
+  "thermo": {},
+  "misc": {}
+}

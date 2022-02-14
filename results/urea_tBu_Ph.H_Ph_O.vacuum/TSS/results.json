@@ -4,14 +4,14 @@
     "res_path": "/scistor/tc/yhk800/MasterProject/results/urea_tBu_Ph.H_Ph_O.vacuum/TSS",
     "run info": "/scistor/tc/yhk800/MasterProject/calculations_test/urea_tBu_Ph.H_Ph_O.vacuum/TSS/run.info",
     "preopt amsrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/urea_tBu_Ph.H_Ph_O.vacuum/TSS/TSRC.urea_tBu_Ph.H_Ph_O.TSS_preopt.ams.rkf",
-    "ams.results": "/scistor/tc/yhk800/MasterProject/calculations_test/urea_tBu_Ph.H_Ph_O.vacuum/TSS/ams.results",
     "preopt log": "/scistor/tc/yhk800/MasterProject/calculations_test/urea_tBu_Ph.H_Ph_O.vacuum/TSS/TSRC.urea_tBu_Ph.H_Ph_O.TSS_preopt.log",
     "preopt adfrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/urea_tBu_Ph.H_Ph_O.vacuum/TSS/TSRC.urea_tBu_Ph.H_Ph_O.TSS_preopt.adf.rkf",
     "run script": "/scistor/tc/yhk800/MasterProject/calculations_test/urea_tBu_Ph.H_Ph_O.vacuum/TSS/TSRC.urea_tBu_Ph.H_Ph_O.TSS",
     "opt out": "/scistor/tc/yhk800/MasterProject/calculations_test/urea_tBu_Ph.H_Ph_O.vacuum/TSS/TSRC.urea_tBu_Ph.H_Ph_O.TSS.out",
     "input xyz": "/scistor/tc/yhk800/MasterProject/calculations_test/urea_tBu_Ph.H_Ph_O.vacuum/TSS/input.xyz",
-    "opt amsrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/urea_tBu_Ph.H_Ph_O.vacuum/TSS/ams.results/ams.rkf",
-    "opt log": "/scistor/tc/yhk800/MasterProject/calculations_test/urea_tBu_Ph.H_Ph_O.vacuum/TSS/ams.results/ams.log"
+    "opt adfrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/urea_tBu_Ph.H_Ph_O.vacuum/TSS/TSRC.urea_tBu_Ph.H_Ph_O.TSS.adf.rkf",
+    "opt log": "/scistor/tc/yhk800/MasterProject/calculations_test/urea_tBu_Ph.H_Ph_O.vacuum/TSS/TSRC.urea_tBu_Ph.H_Ph_O.TSS.log",
+    "opt amsrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/urea_tBu_Ph.H_Ph_O.vacuum/TSS/TSRC.urea_tBu_Ph.H_Ph_O.TSS.ams.rkf"
   },
   "info": {
     "substituents": [
@@ -36,7 +36,7 @@
     "phase": "vacuum",
     "enantiomer": "S",
     "hash": "ae0494b902b29473ed0606c62b6871cd73bfc8d22c0af18a3ac88b934f0c67e2",
-    "time silent": 18
+    "time silent": 113081
   },
   "pre opt": {
     "runtime": 3075,
@@ -760,7 +760,7 @@
     "step": "END"
   },
   "opt": {
-    "runtime": 236377,
+    "runtime": 254645,
     "natoms": 64,
     "elements": [
       "C",
@@ -1476,10 +1476,15 @@
     ],
     "output energy": -13.529789372842124,
     "output xyz": "/scistor/tc/yhk800/MasterProject/results/urea_tBu_Ph.H_Ph_O.vacuum/TSS/output.xyz",
-    "status": "IN PROGRESS",
-    "step": "FREQ"
+    "status": "NORMAL TERMINATION",
+    "bond energy": -13.529789372891253,
+    "step": "END",
+    "freq progress": 64
   },
   "freq": {},
-  "thermo": {},
+  "thermo": {
+    "gibbs": -13.057705606119317,
+    "enthalpy": -12.962769029225743
+  },
   "misc": {}
 }

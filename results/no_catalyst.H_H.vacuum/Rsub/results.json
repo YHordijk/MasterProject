@@ -1,12 +1,18 @@
 {
   "files": {
-    "calc_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\no_catalyst.H_H.vacuum\\Rsub",
-    "res_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\no_catalyst.H_H.vacuum\\Rsub",
-    "opt adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\no_catalyst.H_H.vacuum\\Rsub\\GO.no_catalyst.H_H.Rsub.adf.rkf",
-    "opt amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\no_catalyst.H_H.vacuum\\Rsub\\GO.no_catalyst.H_H.Rsub.ams.rkf",
-    "opt log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\no_catalyst.H_H.vacuum\\Rsub\\GO.no_catalyst.H_H.Rsub.log",
-    "opt out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\no_catalyst.H_H.vacuum\\Rsub\\GO.no_catalyst.H_H.Rsub.out",
-    "run info": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\no_catalyst.H_H.vacuum\\Rsub\\run.info"
+    "calc_path": "/scistor/tc/yhk800/MasterProject/calculations_test/no_catalyst.H_H.vacuum/Rsub",
+    "res_path": "/scistor/tc/yhk800/MasterProject/results/no_catalyst.H_H.vacuum/Rsub",
+    "opt adfrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/no_catalyst.H_H.vacuum/Rsub/GO.no_catalyst.H_H.Rsub.adf.rkf",
+    "preopt amsrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/no_catalyst.H_H.vacuum/Rsub/GO.no_catalyst.H_H.Rsub_preopt.ams.rkf",
+    "run info": "/scistor/tc/yhk800/MasterProject/calculations_test/no_catalyst.H_H.vacuum/Rsub/run.info",
+    "preopt log": "/scistor/tc/yhk800/MasterProject/calculations_test/no_catalyst.H_H.vacuum/Rsub/GO.no_catalyst.H_H.Rsub_preopt.log",
+    "opt amsrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/no_catalyst.H_H.vacuum/Rsub/GO.no_catalyst.H_H.Rsub.ams.rkf",
+    "preopt adfrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/no_catalyst.H_H.vacuum/Rsub/GO.no_catalyst.H_H.Rsub_preopt.adf.rkf",
+    "opt log": "/scistor/tc/yhk800/MasterProject/calculations_test/no_catalyst.H_H.vacuum/Rsub/GO.no_catalyst.H_H.Rsub.log",
+    "run script": "/scistor/tc/yhk800/MasterProject/calculations_test/no_catalyst.H_H.vacuum/Rsub/GO.no_catalyst.H_H.Rsub",
+    "opt out": "/scistor/tc/yhk800/MasterProject/calculations_test/no_catalyst.H_H.vacuum/Rsub/GO.no_catalyst.H_H.Rsub.out",
+    "preopt out": "/scistor/tc/yhk800/MasterProject/calculations_test/no_catalyst.H_H.vacuum/Rsub/GO.no_catalyst.H_H.Rsub_preopt.out",
+    "input xyz": "/scistor/tc/yhk800/MasterProject/calculations_test/no_catalyst.H_H.vacuum/Rsub/input.xyz"
   },
   "info": {
     "substituents": [
@@ -19,30 +25,27 @@
         "H"
       ]
     ],
+    "unique": "no_catalyst.vacuum.GO.Rsub.['H', 'H'].[].False.N/A",
     "reaction": "no_catalyst",
     "stationary point": "Rsub",
     "task": "GO",
     "TSRC": "N\\A",
-    "unique": "no_catalyst.vacuum.GO.Rsub.['H', 'H'].[].False.N/A",
     "radical": "False",
     "phase": "vacuum",
     "enantiomer": "N/A",
     "hash": "ddac071bf5085a782b9380d1fb15ecc2b7d4318c085c76457ec1e86fe56289dc",
-    "time silent": 1815456
+    "time silent": 40967
   },
   "pre opt": {
-    "runtime": 0
-  },
-  "opt": {
-    "runtime": 2535,
+    "runtime": 23,
     "natoms": 8,
     "elements": [
       "H",
       "C",
       "C",
       "C",
-      "O",
       "H",
+      "O",
       "H",
       "H"
     ],
@@ -68,80 +71,186 @@
         -0.3456577234077618
       ],
       [
-        3.526904298874106,
-        1.764359501435792,
-        0.13569121746091603
-      ],
-      [
         -1.5577318391949802,
         1.9745992806775197,
         0.3825295871199287
       ],
       [
+        4.8402289955557105,
+        -2.2041289117678966,
+        -0.8106056934462902
+      ],
+      [
+        3.455213380938953,
+        1.49498331315143,
+        0.07622225441487042
+      ],
+      [
         -3.571254640340912,
         -0.8071792987289024,
         -0.22214339086788057
-      ],
-      [
-        4.3938805415152435,
-        -1.7826422804381052,
-        -0.7010108189787448
       ]
     ],
-    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\no_catalyst.H_H.vacuum\\Rsub\\input.xyz",
-    "steps": 8,
+    "input xyz": "/scistor/tc/yhk800/MasterProject/results/no_catalyst.H_H.vacuum/Rsub/input_preopt.xyz",
+    "steps": 10,
     "output coords": [
       [
-        0.17286734369281898,
-        -3.419781109655465,
-        -0.9642421252869133
+        0.1018590446227876,
+        -3.511710178562158,
+        -0.9851459395186198
       ],
       [
-        -1.725648754521125,
-        -0.009804732591126582,
-        -0.09359272194896923
+        -1.6246477711451475,
+        -0.0031555656433123083,
+        -0.09468608549421445
       ],
       [
-        0.3381259997599917,
-        -1.4203121286515035,
-        -0.49666012898881606
+        0.3558908488883635,
+        -1.5231152107352037,
+        -0.5193910012440356
       ],
       [
-        2.9525923028365164,
-        -0.4019762627896964,
-        -0.34282317927348654
+        2.990786910921938,
+        -0.6062425884132159,
+        -0.3889337108060426
       ],
       [
-        3.5071763739679978,
-        1.7749073368820278,
-        0.15062057484251812
+        -1.3778005546695204,
+        1.9867135538468417,
+        0.3706231679930121
       ],
       [
-        -1.5558601833698777,
-        1.9825509223564433,
-        0.3787977179246134
+        4.85232134433169,
+        -1.9117362499879762,
+        -0.7637077542478296
       ],
       [
-        -3.6138733008686255,
-        -0.806252009358526,
-        -0.22380558746691082
+        3.174969220573384,
+        1.4434434629602597,
+        0.09125116115434417
       ],
       [
-        4.463527054458761,
-        -1.8224053932124258,
-        -0.727576852049496
+        -3.5598146714617225,
+        -0.6881334200996577,
+        -0.1983559775976656
       ]
     ],
-    "output energy": -1.6835619067074996,
-    "output xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\no_catalyst.H_H.vacuum\\Rsub\\output.xyz",
-    "status": "NORMAL TERMINATION with warnings",
-    "bond energy": -1.6835619067080716,
+    "output energy": -1.6872979994996438,
+    "output xyz": "/scistor/tc/yhk800/MasterProject/results/no_catalyst.H_H.vacuum/Rsub/output_preopt.xyz",
+    "status": "NORMAL TERMINATION",
+    "bond energy": -1.6872979995023356,
     "step": "END"
+  },
+  "opt": {
+    "runtime": 217,
+    "natoms": 8,
+    "elements": [
+      "H",
+      "C",
+      "C",
+      "C",
+      "H",
+      "O",
+      "H",
+      "H"
+    ],
+    "input coords": [
+      [
+        0.10185905380925471,
+        -3.5117101827361874,
+        -0.9851459383717853
+      ],
+      [
+        -1.6246477782611672,
+        -0.0031555591692063426,
+        -0.09468608807718394
+      ],
+      [
+        0.35589085493426775,
+        -1.523115212434464,
+        -0.5193909985862579
+      ],
+      [
+        2.9907869186190377,
+        -0.6062425845069234,
+        -0.3889337177781954
+      ],
+      [
+        -1.37780054578663,
+        1.986713558972046,
+        0.3706231598018503
+      ],
+      [
+        4.85232133412993,
+        -1.9117362561280788,
+        -0.7637077554990924
+      ],
+      [
+        3.1749692265337783,
+        1.443443470848963,
+        0.09125115179771294
+      ],
+      [
+        -3.559814673019436,
+        -0.6881334125833113,
+        -0.19835597194536128
+      ]
+    ],
+    "input xyz": "/scistor/tc/yhk800/MasterProject/results/no_catalyst.H_H.vacuum/Rsub/input.xyz",
+    "steps": 6,
+    "output coords": [
+      [
+        0.10994702388549317,
+        -3.522167148814257,
+        -0.9893640584614443
+      ],
+      [
+        -1.6218586489300109,
+        -0.006066295722280518,
+        -0.09571555737364759
+      ],
+      [
+        0.35298491304787083,
+        -1.5321699492168923,
+        -0.5238742538741117
+      ],
+      [
+        2.9779802733916023,
+        -0.6013074070762896,
+        -0.38897399696575097
+      ],
+      [
+        -1.3487018001170672,
+        1.980625385140791,
+        0.3655033445865637
+      ],
+      [
+        4.83977676542088,
+        -1.900412123458207,
+        -0.7583476745621186
+      ],
+      [
+        3.1634570704130036,
+        1.4455491228629191,
+        0.09405872917022937
+      ],
+      [
+        -3.5600212061527374,
+        -0.6779877614529459,
+        -0.1916326911780338
+      ]
+    ],
+    "output energy": -1.6872898912626146,
+    "output xyz": "/scistor/tc/yhk800/MasterProject/results/no_catalyst.H_H.vacuum/Rsub/output.xyz",
+    "status": "NORMAL TERMINATION",
+    "bond energy": -1.6872898913518755,
+    "step": "END",
+    "freq progress": 8
   },
   "freq": {},
   "thermo": {
-    "gibbs": -1.6504427579866083,
-    "enthalpy": -1.6183624573868476
+    "gibbs": -1.6538463878890703,
+    "enthalpy": -1.622101137015723
   },
   "misc": {}
 }

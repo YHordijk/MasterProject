@@ -32,7 +32,7 @@
     "phase": "vacuum",
     "enantiomer": "N/A",
     "hash": "7d64939ebfdd8468caa6b4d29c7172819aae53c7928ed513cf9325010a318f56",
-    "time silent": 807020
+    "time silent": 933071
   },
   "pre opt": {
     "runtime": 0
@@ -371,7 +371,8 @@
     "output xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_tBu_SnCl4.vacuum\\TS\\output.xyz",
     "status": "NORMAL TERMINATION with warnings",
     "bond energy": -5.203069538131538,
-    "step": "END"
+    "step": "END",
+    "freq progress": 29
   },
   "freq": {},
   "thermo": {

@@ -1,12 +1,18 @@
 {
   "files": {
-    "calc_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\no_catalyst.H_H.vacuum\\P1",
-    "res_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\no_catalyst.H_H.vacuum\\P1",
-    "opt adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\no_catalyst.H_H.vacuum\\P1\\GO.no_catalyst.H_H.P1.adf.rkf",
-    "opt amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\no_catalyst.H_H.vacuum\\P1\\GO.no_catalyst.H_H.P1.ams.rkf",
-    "opt log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\no_catalyst.H_H.vacuum\\P1\\GO.no_catalyst.H_H.P1.log",
-    "opt out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\no_catalyst.H_H.vacuum\\P1\\GO.no_catalyst.H_H.P1.out",
-    "run info": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\no_catalyst.H_H.vacuum\\P1\\run.info"
+    "calc_path": "/scistor/tc/yhk800/MasterProject/calculations_test/no_catalyst.H_H.vacuum/P1",
+    "res_path": "/scistor/tc/yhk800/MasterProject/results/no_catalyst.H_H.vacuum/P1",
+    "opt amsrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/no_catalyst.H_H.vacuum/P1/GO.no_catalyst.H_H.P1.ams.rkf",
+    "preopt log": "/scistor/tc/yhk800/MasterProject/calculations_test/no_catalyst.H_H.vacuum/P1/GO.no_catalyst.H_H.P1_preopt.log",
+    "run info": "/scistor/tc/yhk800/MasterProject/calculations_test/no_catalyst.H_H.vacuum/P1/run.info",
+    "run script": "/scistor/tc/yhk800/MasterProject/calculations_test/no_catalyst.H_H.vacuum/P1/GO.no_catalyst.H_H.P1",
+    "opt adfrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/no_catalyst.H_H.vacuum/P1/GO.no_catalyst.H_H.P1.adf.rkf",
+    "opt log": "/scistor/tc/yhk800/MasterProject/calculations_test/no_catalyst.H_H.vacuum/P1/GO.no_catalyst.H_H.P1.log",
+    "preopt amsrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/no_catalyst.H_H.vacuum/P1/GO.no_catalyst.H_H.P1_preopt.ams.rkf",
+    "opt out": "/scistor/tc/yhk800/MasterProject/calculations_test/no_catalyst.H_H.vacuum/P1/GO.no_catalyst.H_H.P1.out",
+    "input xyz": "/scistor/tc/yhk800/MasterProject/calculations_test/no_catalyst.H_H.vacuum/P1/input.xyz",
+    "preopt out": "/scistor/tc/yhk800/MasterProject/calculations_test/no_catalyst.H_H.vacuum/P1/GO.no_catalyst.H_H.P1_preopt.out",
+    "preopt adfrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/no_catalyst.H_H.vacuum/P1/GO.no_catalyst.H_H.P1_preopt.adf.rkf"
   },
   "info": {
     "substituents": [
@@ -19,22 +25,19 @@
         "H"
       ]
     ],
+    "unique": "no_catalyst.vacuum.GO.P1.['H', 'H'].[].True.N/A",
     "reaction": "no_catalyst",
     "stationary point": "P1",
     "task": "GO",
     "TSRC": "N\\A",
-    "unique": "no_catalyst.vacuum.GO.P1.['H', 'H'].[].True.N/A",
     "radical": "True",
     "phase": "vacuum",
     "enantiomer": "N/A",
     "hash": "8b4b1294e9a7be3782cdfcb2fc7d8c05f6c1da2fb321d4a776b78cd404509297",
-    "time silent": 1803853
+    "time silent": 41844
   },
   "pre opt": {
-    "runtime": 0
-  },
-  "opt": {
-    "runtime": 11602,
+    "runtime": 28,
     "natoms": 12,
     "elements": [
       "C",
@@ -77,9 +80,9 @@
         0.8318649989647625
       ],
       [
-        -3.2269648896747665,
-        -1.1383343567877462,
-        -1.374399511193835
+        -3.587161863529219,
+        2.829978538653487,
+        -1.0977645258168218
       ],
       [
         2.566217841623802,
@@ -102,90 +105,240 @@
         4.047679975380922
       ],
       [
+        -3.11936683211133,
+        -0.8865239476194919,
+        -1.3011660665149336
+      ],
+      [
         3.3045748455719943,
         -1.3378293611547256,
         -0.5255624094722771
-      ],
-      [
-        -3.435277299447466,
-        2.593881617951243,
-        -1.0585435624563937
       ]
     ],
-    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\no_catalyst.H_H.vacuum\\P1\\input.xyz",
-    "steps": 7,
+    "input xyz": "/scistor/tc/yhk800/MasterProject/results/no_catalyst.H_H.vacuum/P1/input_preopt.xyz",
+    "steps": 6,
     "output coords": [
       [
-        0.11828515156764358,
-        0.8138085024763086,
-        0.2768221323940353
+        0.10149841010287337,
+        0.855911907008459,
+        0.3107796997639607
       ],
       [
-        1.6861650221174447,
-        -1.4763318823040494,
-        0.6660125154136664
+        1.6327715304396622,
+        -1.471873498709291,
+        0.6828706154648047
       ],
       [
-        0.6378696703067065,
-        -3.1401405353249703,
-        0.03080257586495176
+        0.572896052252114,
+        -3.144659993709417,
+        0.07092867212176603
       ],
       [
-        -2.3694377738694197,
-        0.8096109256499392,
-        -0.8034239737035833
+        -2.3587800447436265,
+        0.9455249601077972,
+        -0.815438723326798
       ],
       [
-        0.8860309969119665,
-        2.642961839944237,
-        0.8407728629010007
+        0.8997057582073537,
+        2.663452854800687,
+        0.8971822921100157
       ],
       [
-        -3.507141777625338,
-        -1.108924833170916,
-        -1.5176289483049235
+        -3.5813568733318073,
+        2.9200004749668005,
+        -1.159207581570793
       ],
       [
-        2.5861208833285865,
-        -1.8173447430358873,
-        3.415926270793375
+        2.5953491668849624,
+        -1.8392882627277418,
+        3.4137557218913672
       ],
       [
-        3.7889089665539735,
-        -3.4934050868978797,
-        3.566357370513757
+        3.8046916625174325,
+        -3.514802127048813,
+        3.525315476728177
       ],
       [
-        0.9792057860420108,
-        -2.0643875479603078,
-        4.693812153470028
+        1.0234761269441015,
+        -2.090048908984538,
+        4.7338830318673075
       ],
       [
-        3.680266764654278,
-        -0.1862024051124135,
-        4.067880500318748
+        3.706769586175133,
+        -0.21150007539896884,
+        4.043207065523625
       ],
       [
-        3.372713710954385,
-        -1.3202252724939698,
-        -0.5486153464006956
+        -3.162990895325446,
+        -0.9125483396060837,
+        -1.4018998057555219
       ],
       [
-        -3.2758816540990248,
-        2.698371043776285,
-        -0.9803815285813414
+        3.3047887602021393,
+        -1.3544716552820164,
+        -0.5590273988204145
       ]
     ],
-    "output energy": -2.3841349511416596,
-    "output xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\no_catalyst.H_H.vacuum\\P1\\output.xyz",
-    "status": "NORMAL TERMINATION with warnings",
-    "bond energy": -2.3841349511349406,
+    "output energy": -2.383772511103506,
+    "output xyz": "/scistor/tc/yhk800/MasterProject/results/no_catalyst.H_H.vacuum/P1/output_preopt.xyz",
+    "status": "NORMAL TERMINATION",
+    "bond energy": -2.3837725110612036,
     "step": "END"
+  },
+  "opt": {
+    "runtime": 715,
+    "natoms": 12,
+    "elements": [
+      "C",
+      "C",
+      "H",
+      "C",
+      "H",
+      "O",
+      "C",
+      "H",
+      "H",
+      "H",
+      "H",
+      "H"
+    ],
+    "input coords": [
+      [
+        0.10149841847563112,
+        0.8559119150787154,
+        0.3107796908324263
+      ],
+      [
+        1.632771521898321,
+        -1.4718734933254178,
+        0.6828706198125347
+      ],
+      [
+        0.5728960615720297,
+        -3.144659984809951,
+        0.07092867800552372
+      ],
+      [
+        -2.3587800348961014,
+        0.9455249577852965,
+        -0.8154387247018042
+      ],
+      [
+        0.8997057510990802,
+        2.6634528489896647,
+        0.8971822864213
+      ],
+      [
+        -3.581356870538765,
+        2.920000480298915,
+        -1.1592075723616964
+      ],
+      [
+        2.5953491603623666,
+        -1.8392882572156173,
+        3.413755718840157
+      ],
+      [
+        3.8046916581391774,
+        -3.5148021337240385,
+        3.5253154738403043
+      ],
+      [
+        1.023476122631587,
+        -2.0900489046243806,
+        4.733883032727928
+      ],
+      [
+        3.706769584148923,
+        -0.2115000753887633,
+        4.043207069232978
+      ],
+      [
+        -3.1629908951366583,
+        -0.9125483487392982,
+        -1.401899807314235
+      ],
+      [
+        3.304788762569302,
+        -1.35447165001099,
+        -0.5590273993379237
+      ]
+    ],
+    "input xyz": "/scistor/tc/yhk800/MasterProject/results/no_catalyst.H_H.vacuum/P1/input.xyz",
+    "steps": 5,
+    "output coords": [
+      [
+        0.12667709306868621,
+        0.8678260744079405,
+        0.3008754934075002
+      ],
+      [
+        1.6492229744977012,
+        -1.45824612584542,
+        0.6690705765433708
+      ],
+      [
+        0.5747908986992026,
+        -3.117529532053582,
+        0.046958852860267596
+      ],
+      [
+        -2.3455122072582895,
+        0.9251910368694662,
+        -0.7925289170805326
+      ],
+      [
+        0.9141036499365772,
+        2.681545875316132,
+        0.8820157368830577
+      ],
+      [
+        -3.5916357555868568,
+        2.8818333757612047,
+        -1.1193171393194041
+      ],
+      [
+        2.5784309713358606,
+        -1.8354355547542283,
+        3.404622727897553
+      ],
+      [
+        3.751152671987648,
+        -3.534351039595623,
+        3.5342569865637734
+      ],
+      [
+        0.9856293834618917,
+        -2.049631328907645,
+        4.7059302082701935
+      ],
+      [
+        3.7114237482985026,
+        -0.22594317918775167,
+        4.041164712333597
+      ],
+      [
+        -3.140912865680944,
+        -0.9393026086435661,
+        -1.3643093500847576
+      ],
+      [
+        3.325448677564913,
+        -1.350259639052792,
+        -0.5663908222771223
+      ]
+    ],
+    "output energy": -2.383727093573943,
+    "output xyz": "/scistor/tc/yhk800/MasterProject/results/no_catalyst.H_H.vacuum/P1/output.xyz",
+    "status": "NORMAL TERMINATION",
+    "bond energy": -2.3837270935614603,
+    "step": "END",
+    "freq progress": 12
   },
   "freq": {},
   "thermo": {
-    "gibbs": -2.3164263893341603,
-    "enthalpy": -2.2792350649212167
+    "gibbs": -2.3158994173285663,
+    "enthalpy": -2.2789721824215983
   },
   "misc": {}
 }

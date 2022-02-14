@@ -1,0 +1,43 @@
+{
+  "files": {
+    "calc_path": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_Ph_SnCl4.vacuum/sub_cat_complex",
+    "res_path": "/scistor/tc/yhk800/MasterProject/results/achiral_catalyst.H_Ph_SnCl4.vacuum/sub_cat_complex",
+    "input xyz": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_Ph_SnCl4.vacuum/sub_cat_complex/input.xyz",
+    "run info": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_Ph_SnCl4.vacuum/sub_cat_complex/run.info",
+    "run script": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_Ph_SnCl4.vacuum/sub_cat_complex/GO.achiral_catalyst.H_Ph_SnCl4.sub_cat_complex"
+  },
+  "info": {
+    "substituents": [
+      [
+        "R2",
+        "Ph"
+      ],
+      [
+        "R1",
+        "H"
+      ],
+      [
+        "Rcat",
+        "SnCl4"
+      ]
+    ],
+    "unique": "achiral_catalyst.vacuum.GO.sub_cat_complex.['H', 'Ph', 'SnCl4'].[].False.N/A",
+    "reaction": "achiral_catalyst",
+    "stationary point": "sub_cat_complex",
+    "task": "GO",
+    "TSRC": "N\\A",
+    "radical": "False",
+    "phase": "vacuum",
+    "enantiomer": "N/A",
+    "hash": "0356ec624e358d005dd13c3f04516c3510fe734d2b94830552277475f1eda514"
+  },
+  "pre opt": {
+    "runtime": 0
+  },
+  "opt": {
+    "runtime": 0
+  },
+  "freq": {},
+  "thermo": {},
+  "misc": {}
+}

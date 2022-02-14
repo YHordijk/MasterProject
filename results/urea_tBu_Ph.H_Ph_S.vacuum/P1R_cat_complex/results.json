@@ -37,7 +37,7 @@
     "phase": "vacuum",
     "enantiomer": "R",
     "hash": "492ae96baacb3e93414a96dd2f32f5ff69140b3162e3657f99c3fbaf2d9152a6",
-    "time silent": 2919
+    "time silent": 79
   },
   "pre opt": {
     "runtime": 7024,
@@ -761,7 +761,7 @@
     "step": "END"
   },
   "opt": {
-    "runtime": 155601,
+    "runtime": 289772,
     "natoms": 64,
     "elements": [
       "C",
@@ -1478,7 +1478,8 @@
     "output energy": -13.448672700756969,
     "output xyz": "/scistor/tc/yhk800/MasterProject/results/urea_tBu_Ph.H_Ph_S.vacuum/P1R_cat_complex/output.xyz",
     "status": "IN PROGRESS",
-    "step": "FREQ"
+    "step": "FREQ",
+    "freq progress": 64
   },
   "freq": {},
   "thermo": {},

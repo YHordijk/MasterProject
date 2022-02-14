@@ -116,8 +116,9 @@ class Reaction:
 
 
 # show_reaction('squaramide', {'Rch':'S', 'Rch2':'O', 'R1':'H', 'R2':'Ph', 'Rc1':'Ph', 'Rc2':'H'}, simple=False)
-show_reaction('no_catalyst')
-# res = get_reaction_results('urea_tBu_Ph', {'R1':'H', 'R2':'tBu', 'Rch':'O'})
-# get_reaction_profile(res)
+# show_reaction('squaramide', {'R1':'H', 'R2':'Ph', 'Rc1':'tBu', 'Rc2':'Ph', 'Rch':'O', 'Rch2':'O'})
+# show_reaction('urea_tBu_Ph', {'R1':'H', 'R2':'tBu', 'Rch':'O'})
+res = get_reaction_results('urea_tBu_Ph', {'R1':'H', 'R2':'tBu', 'Rch':'O'})
+get_reaction_profile(res)
 
 # reaction = Reaction('urea_tBu_Ph', {'R1':'H', 'R2':'tBu', 'Rch':'O'})

@@ -1,12 +1,12 @@
 {
   "files": {
-    "calc_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\achiral_catalyst.H_tBu_ZnCl2.vacuum\\TS",
-    "res_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_tBu_ZnCl2.vacuum\\TS",
-    "run info": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\achiral_catalyst.H_tBu_ZnCl2.vacuum\\TS\\run.info",
-    "opt adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\achiral_catalyst.H_tBu_ZnCl2.vacuum\\TS\\TSRC.achiral_catalyst.H_tBu_ZnCl2.TS.adf.rkf",
-    "opt amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\achiral_catalyst.H_tBu_ZnCl2.vacuum\\TS\\TSRC.achiral_catalyst.H_tBu_ZnCl2.TS.ams.rkf",
-    "opt log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\achiral_catalyst.H_tBu_ZnCl2.vacuum\\TS\\TSRC.achiral_catalyst.H_tBu_ZnCl2.TS.log",
-    "opt out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\achiral_catalyst.H_tBu_ZnCl2.vacuum\\TS\\TSRC.achiral_catalyst.H_tBu_ZnCl2.TS.out"
+    "calc_path": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_tBu_ZnCl2.vacuum/TS",
+    "res_path": "/scistor/tc/yhk800/MasterProject/results/achiral_catalyst.H_tBu_ZnCl2.vacuum/TS",
+    "opt out": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_tBu_ZnCl2.vacuum/TS/TSRC.achiral_catalyst.H_tBu_ZnCl2.TS.out",
+    "run info": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_tBu_ZnCl2.vacuum/TS/run.info",
+    "opt amsrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_tBu_ZnCl2.vacuum/TS/TSRC.achiral_catalyst.H_tBu_ZnCl2.TS.ams.rkf",
+    "opt log": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_tBu_ZnCl2.vacuum/TS/TSRC.achiral_catalyst.H_tBu_ZnCl2.TS.log",
+    "opt adfrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_tBu_ZnCl2.vacuum/TS/TSRC.achiral_catalyst.H_tBu_ZnCl2.TS.adf.rkf"
   },
   "info": {
     "substituents": [
@@ -32,7 +32,7 @@
     "phase": "vacuum",
     "enantiomer": "N/A",
     "hash": "e103e0ff9ff0bbd9f1d921e74e463ab8a9774d38e15e54db506ff2d279d25637",
-    "time silent": 832550
+    "time silent": 956092
   },
   "pre opt": {
     "runtime": 0
@@ -206,7 +206,7 @@
         -4.936837747683873
       ]
     ],
-    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_tBu_ZnCl2.vacuum\\TS\\input.xyz",
+    "input xyz": "/scistor/tc/yhk800/MasterProject/results/achiral_catalyst.H_tBu_ZnCl2.vacuum/TS/input.xyz",
     "steps": 88,
     "output coords": [
       [
@@ -346,10 +346,11 @@
       ]
     ],
     "output energy": -5.013943230123478,
-    "output xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_tBu_ZnCl2.vacuum\\TS\\output.xyz",
+    "output xyz": "/scistor/tc/yhk800/MasterProject/results/achiral_catalyst.H_tBu_ZnCl2.vacuum/TS/output.xyz",
     "status": "NORMAL TERMINATION with warnings",
     "bond energy": -5.0139432301268965,
-    "step": "END"
+    "step": "END",
+    "freq progress": 27
   },
   "freq": {},
   "thermo": {

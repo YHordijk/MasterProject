@@ -1,0 +1,38 @@
+{
+  "files": {
+    "calc_path": "/scistor/tc/yhk800/MasterProject/calculations_test/no_catalyst.H_Ph.vacuum/TS",
+    "res_path": "/scistor/tc/yhk800/MasterProject/results/no_catalyst.H_Ph.vacuum/TS",
+    "input xyz": "/scistor/tc/yhk800/MasterProject/calculations_test/no_catalyst.H_Ph.vacuum/TS/input.xyz",
+    "run info": "/scistor/tc/yhk800/MasterProject/calculations_test/no_catalyst.H_Ph.vacuum/TS/run.info",
+    "run script": "/scistor/tc/yhk800/MasterProject/calculations_test/no_catalyst.H_Ph.vacuum/TS/TSRC.no_catalyst.H_Ph.TS"
+  },
+  "info": {
+    "substituents": [
+      [
+        "R1",
+        "H"
+      ],
+      [
+        "R2",
+        "Ph"
+      ]
+    ],
+    "unique": "no_catalyst.vacuum.TSRC.TS.['H', 'Ph'].[2, 3].True.N/A",
+    "reaction": "no_catalyst",
+    "stationary point": "TS",
+    "task": "TSRC",
+    "radical": "True",
+    "phase": "vacuum",
+    "enantiomer": "N/A",
+    "hash": "d50f0c314c3e3e9c741240c6dac806411e774572ca632ae45d7a2cd5604a0427"
+  },
+  "pre opt": {
+    "runtime": 0
+  },
+  "opt": {
+    "runtime": 0
+  },
+  "freq": {},
+  "thermo": {},
+  "misc": {}
+}
