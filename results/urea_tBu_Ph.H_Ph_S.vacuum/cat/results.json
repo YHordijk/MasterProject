@@ -1,17 +1,17 @@
 {
   "files": {
-    "calc_path": "/scistor/tc/yhk800/MasterProject/calculations_test/urea_tBu_Ph.H_Ph_S.vacuum/cat",
-    "res_path": "/scistor/tc/yhk800/MasterProject/results/urea_tBu_Ph.H_Ph_S.vacuum/cat",
-    "opt log": "/scistor/tc/yhk800/MasterProject/calculations_test/urea_tBu_Ph.H_Ph_S.vacuum/cat/GO.urea_tBu_Ph.H_Ph_S.cat.log",
-    "run script": "/scistor/tc/yhk800/MasterProject/calculations_test/urea_tBu_Ph.H_Ph_S.vacuum/cat/GO.urea_tBu_Ph.H_Ph_S.cat",
-    "input xyz": "/scistor/tc/yhk800/MasterProject/calculations_test/urea_tBu_Ph.H_Ph_S.vacuum/cat/input.xyz",
-    "opt adfrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/urea_tBu_Ph.H_Ph_S.vacuum/cat/GO.urea_tBu_Ph.H_Ph_S.cat.adf.rkf",
-    "preopt log": "/scistor/tc/yhk800/MasterProject/calculations_test/urea_tBu_Ph.H_Ph_S.vacuum/cat/GO.urea_tBu_Ph.H_Ph_S.cat_preopt.log",
-    "preopt amsrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/urea_tBu_Ph.H_Ph_S.vacuum/cat/GO.urea_tBu_Ph.H_Ph_S.cat_preopt.ams.rkf",
-    "run info": "/scistor/tc/yhk800/MasterProject/calculations_test/urea_tBu_Ph.H_Ph_S.vacuum/cat/run.info",
-    "opt out": "/scistor/tc/yhk800/MasterProject/calculations_test/urea_tBu_Ph.H_Ph_S.vacuum/cat/GO.urea_tBu_Ph.H_Ph_S.cat.out",
-    "preopt adfrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/urea_tBu_Ph.H_Ph_S.vacuum/cat/GO.urea_tBu_Ph.H_Ph_S.cat_preopt.adf.rkf",
-    "opt amsrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/urea_tBu_Ph.H_Ph_S.vacuum/cat/GO.urea_tBu_Ph.H_Ph_S.cat.ams.rkf"
+    "calc_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\urea_tBu_Ph.H_Ph_S.vacuum\\cat",
+    "res_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\urea_tBu_Ph.H_Ph_S.vacuum\\cat",
+    "run script": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\urea_tBu_Ph.H_Ph_S.vacuum\\cat\\GO.urea_tBu_Ph.H_Ph_S.cat",
+    "opt adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\urea_tBu_Ph.H_Ph_S.vacuum\\cat\\GO.urea_tBu_Ph.H_Ph_S.cat.adf.rkf",
+    "opt amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\urea_tBu_Ph.H_Ph_S.vacuum\\cat\\GO.urea_tBu_Ph.H_Ph_S.cat.ams.rkf",
+    "opt log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\urea_tBu_Ph.H_Ph_S.vacuum\\cat\\GO.urea_tBu_Ph.H_Ph_S.cat.log",
+    "opt out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\urea_tBu_Ph.H_Ph_S.vacuum\\cat\\GO.urea_tBu_Ph.H_Ph_S.cat.out",
+    "preopt adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\urea_tBu_Ph.H_Ph_S.vacuum\\cat\\GO.urea_tBu_Ph.H_Ph_S.cat_preopt.adf.rkf",
+    "preopt amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\urea_tBu_Ph.H_Ph_S.vacuum\\cat\\GO.urea_tBu_Ph.H_Ph_S.cat_preopt.ams.rkf",
+    "preopt log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\urea_tBu_Ph.H_Ph_S.vacuum\\cat\\GO.urea_tBu_Ph.H_Ph_S.cat_preopt.log",
+    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\urea_tBu_Ph.H_Ph_S.vacuum\\cat\\input.xyz",
+    "run info": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\urea_tBu_Ph.H_Ph_S.vacuum\\cat\\run.info"
   },
   "info": {
     "substituents": [
@@ -20,7 +20,7 @@
         "S"
       ]
     ],
-    "unique": "urea_tBu_Ph.vacuum.GO.cat.['S'].[].False.N/A",
+    "unique": "urea_tBu_Ph.vacuum.GO.cat.['S'].[].False.N/A.OLYP.TZ2P.VeryGood",
     "reaction": "urea_tBu_Ph",
     "stationary point": "cat",
     "task": "GO",
@@ -28,8 +28,11 @@
     "radical": "False",
     "phase": "vacuum",
     "enantiomer": "N/A",
-    "hash": "57ccca94fe8bb7cdf735d40336813745f033d21a7348e94f5eb86885a3708506",
-    "time silent": 340239
+    "functional": "OLYP",
+    "basis": "TZ2P",
+    "numerical_quality": "VeryGood",
+    "hash": "6185a1e523ae36a190c33a103dc830596d0bd1712ef4ba0d7f25225b30a49495",
+    "time silent": 452967
   },
   "pre opt": {
     "runtime": 256,
@@ -290,7 +293,7 @@
         -4.986066228168788
       ]
     ],
-    "input xyz": "/scistor/tc/yhk800/MasterProject/results/urea_tBu_Ph.H_Ph_S.vacuum/cat/input_preopt.xyz",
+    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\urea_tBu_Ph.H_Ph_S.vacuum\\cat\\input_preopt.xyz",
     "steps": 14,
     "output coords": [
       [
@@ -505,7 +508,7 @@
       ]
     ],
     "output energy": -8.614951535835319,
-    "output xyz": "/scistor/tc/yhk800/MasterProject/results/urea_tBu_Ph.H_Ph_S.vacuum/cat/output_preopt.xyz",
+    "output xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\urea_tBu_Ph.H_Ph_S.vacuum\\cat\\output_preopt.xyz",
     "status": "NORMAL TERMINATION",
     "bond energy": -8.614951537260236,
     "step": "END"
@@ -769,7 +772,7 @@
         -4.929989134543833
       ]
     ],
-    "input xyz": "/scistor/tc/yhk800/MasterProject/results/urea_tBu_Ph.H_Ph_S.vacuum/cat/input.xyz",
+    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\urea_tBu_Ph.H_Ph_S.vacuum\\cat\\input.xyz",
     "steps": 14,
     "output coords": [
       [
@@ -984,7 +987,7 @@
       ]
     ],
     "output energy": -8.64158345606059,
-    "output xyz": "/scistor/tc/yhk800/MasterProject/results/urea_tBu_Ph.H_Ph_S.vacuum/cat/output.xyz",
+    "output xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\urea_tBu_Ph.H_Ph_S.vacuum\\cat\\output.xyz",
     "status": "NORMAL TERMINATION",
     "bond energy": -8.641583456069034,
     "step": "END",

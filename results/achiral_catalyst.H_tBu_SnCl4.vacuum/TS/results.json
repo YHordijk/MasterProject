@@ -1,12 +1,12 @@
 {
   "files": {
-    "calc_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\achiral_catalyst.H_tBu_SnCl4.vacuum\\TS",
+    "calc_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_SnCl4.vacuum\\TS",
     "res_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_tBu_SnCl4.vacuum\\TS",
-    "run info": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\achiral_catalyst.H_tBu_SnCl4.vacuum\\TS\\run.info",
-    "opt adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\achiral_catalyst.H_tBu_SnCl4.vacuum\\TS\\TSRC.achiral_catalyst.H_tBu_SnCl4.TS.adf.rkf",
-    "opt amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\achiral_catalyst.H_tBu_SnCl4.vacuum\\TS\\TSRC.achiral_catalyst.H_tBu_SnCl4.TS.ams.rkf",
-    "opt log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\achiral_catalyst.H_tBu_SnCl4.vacuum\\TS\\TSRC.achiral_catalyst.H_tBu_SnCl4.TS.log",
-    "opt out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\achiral_catalyst.H_tBu_SnCl4.vacuum\\TS\\TSRC.achiral_catalyst.H_tBu_SnCl4.TS.out"
+    "run info": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_SnCl4.vacuum\\TS\\run.info",
+    "opt adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_SnCl4.vacuum\\TS\\TSRC.achiral_catalyst.H_tBu_SnCl4.TS.adf.rkf",
+    "opt amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_SnCl4.vacuum\\TS\\TSRC.achiral_catalyst.H_tBu_SnCl4.TS.ams.rkf",
+    "opt log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_SnCl4.vacuum\\TS\\TSRC.achiral_catalyst.H_tBu_SnCl4.TS.log",
+    "opt out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_SnCl4.vacuum\\TS\\TSRC.achiral_catalyst.H_tBu_SnCl4.TS.out"
   },
   "info": {
     "substituents": [
@@ -27,12 +27,15 @@
     "stationary point": "TS",
     "task": "TSRC",
     "TSRC": "2_10",
-    "unique": "achiral_catalyst.vacuum.TSRC.TS.['H', 'tBu', 'SnCl4'].[2, 10].True.N/A",
+    "unique": "achiral_catalyst.vacuum.TSRC.TS.['H', 'tBu', 'SnCl4'].[2, 10].True.N/A.OLYP.TZ2P.VeryGood",
     "radical": "True",
     "phase": "vacuum",
     "enantiomer": "N/A",
-    "hash": "7d64939ebfdd8468caa6b4d29c7172819aae53c7928ed513cf9325010a318f56",
-    "time silent": 933071
+    "functional": "OLYP",
+    "basis": "TZ2P",
+    "numerical_quality": "VeryGood",
+    "hash": "2fb512909b3f78842c613ab0bc2bec5ae62cb567116532af1c1f9b1cfc153c11",
+    "time silent": 1043287
   },
   "pre opt": {
     "runtime": 0

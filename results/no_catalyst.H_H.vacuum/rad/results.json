@@ -1,22 +1,22 @@
 {
   "files": {
-    "calc_path": "/scistor/tc/yhk800/MasterProject/calculations_test/no_catalyst.H_H.vacuum/rad",
-    "res_path": "/scistor/tc/yhk800/MasterProject/results/no_catalyst.H_H.vacuum/rad",
-    "preopt out": "/scistor/tc/yhk800/MasterProject/calculations_test/no_catalyst.H_H.vacuum/rad/GO.no_catalyst.H_H.rad_preopt.out",
-    "run script": "/scistor/tc/yhk800/MasterProject/calculations_test/no_catalyst.H_H.vacuum/rad/GO.no_catalyst.H_H.rad",
-    "run info": "/scistor/tc/yhk800/MasterProject/calculations_test/no_catalyst.H_H.vacuum/rad/run.info",
-    "opt log": "/scistor/tc/yhk800/MasterProject/calculations_test/no_catalyst.H_H.vacuum/rad/GO.no_catalyst.H_H.rad.log",
-    "opt out": "/scistor/tc/yhk800/MasterProject/calculations_test/no_catalyst.H_H.vacuum/rad/GO.no_catalyst.H_H.rad.out",
-    "preopt amsrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/no_catalyst.H_H.vacuum/rad/GO.no_catalyst.H_H.rad_preopt.ams.rkf",
-    "input xyz": "/scistor/tc/yhk800/MasterProject/calculations_test/no_catalyst.H_H.vacuum/rad/input.xyz",
-    "opt amsrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/no_catalyst.H_H.vacuum/rad/GO.no_catalyst.H_H.rad.ams.rkf",
-    "preopt adfrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/no_catalyst.H_H.vacuum/rad/GO.no_catalyst.H_H.rad_preopt.adf.rkf",
-    "opt adfrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/no_catalyst.H_H.vacuum/rad/GO.no_catalyst.H_H.rad.adf.rkf",
-    "preopt log": "/scistor/tc/yhk800/MasterProject/calculations_test/no_catalyst.H_H.vacuum/rad/GO.no_catalyst.H_H.rad_preopt.log"
+    "calc_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.H_H.vacuum\\rad",
+    "res_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\no_catalyst.H_H.vacuum\\rad",
+    "run script": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.H_H.vacuum\\rad\\GO.no_catalyst.H_H.rad",
+    "opt adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.H_H.vacuum\\rad\\GO.no_catalyst.H_H.rad.adf.rkf",
+    "opt amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.H_H.vacuum\\rad\\GO.no_catalyst.H_H.rad.ams.rkf",
+    "opt log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.H_H.vacuum\\rad\\GO.no_catalyst.H_H.rad.log",
+    "opt out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.H_H.vacuum\\rad\\GO.no_catalyst.H_H.rad.out",
+    "preopt adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.H_H.vacuum\\rad\\GO.no_catalyst.H_H.rad_preopt.adf.rkf",
+    "preopt amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.H_H.vacuum\\rad\\GO.no_catalyst.H_H.rad_preopt.ams.rkf",
+    "preopt log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.H_H.vacuum\\rad\\GO.no_catalyst.H_H.rad_preopt.log",
+    "preopt out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.H_H.vacuum\\rad\\GO.no_catalyst.H_H.rad_preopt.out",
+    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.H_H.vacuum\\rad\\input.xyz",
+    "run info": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.H_H.vacuum\\rad\\run.info"
   },
   "info": {
     "substituents": [],
-    "unique": "no_catalyst.vacuum.GO.rad.[].[].True.N/A",
+    "unique": "no_catalyst.vacuum.GO.rad.[].[].True.N/A.OLYP.TZ2P.VeryGood",
     "reaction": "no_catalyst",
     "stationary point": "rad",
     "task": "GO",
@@ -24,8 +24,11 @@
     "radical": "True",
     "phase": "vacuum",
     "enantiomer": "N/A",
-    "hash": "7b7b2a24a0e38ab4fb85594766c58def93462243c4ad869e6416f6463efe68d7",
-    "time silent": 41213
+    "functional": "OLYP",
+    "basis": "TZ2P",
+    "numerical_quality": "VeryGood",
+    "hash": "f63c0c4f0e9bd3fbafc1b4969f76dea25f333b34799ce6a2fb3b28ce8e3ffca2",
+    "time silent": 153941
   },
   "pre opt": {
     "runtime": 4,
@@ -58,7 +61,7 @@
         -1.720976586361227
       ]
     ],
-    "input xyz": "/scistor/tc/yhk800/MasterProject/results/no_catalyst.H_H.vacuum/rad/input_preopt.xyz",
+    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\no_catalyst.H_H.vacuum\\rad\\input_preopt.xyz",
     "steps": 2,
     "output coords": [
       [
@@ -83,7 +86,7 @@
       ]
     ],
     "output energy": -0.6478261870334038,
-    "output xyz": "/scistor/tc/yhk800/MasterProject/results/no_catalyst.H_H.vacuum/rad/output_preopt.xyz",
+    "output xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\no_catalyst.H_H.vacuum\\rad\\output_preopt.xyz",
     "status": "NORMAL TERMINATION",
     "bond energy": -0.6478261870243931,
     "step": "END"
@@ -119,7 +122,7 @@
         -1.7235023942994019
       ]
     ],
-    "input xyz": "/scistor/tc/yhk800/MasterProject/results/no_catalyst.H_H.vacuum/rad/input.xyz",
+    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\no_catalyst.H_H.vacuum\\rad\\input.xyz",
     "steps": 2,
     "output coords": [
       [
@@ -144,7 +147,7 @@
       ]
     ],
     "output energy": -0.6477822675926795,
-    "output xyz": "/scistor/tc/yhk800/MasterProject/results/no_catalyst.H_H.vacuum/rad/output.xyz",
+    "output xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\no_catalyst.H_H.vacuum\\rad\\output.xyz",
     "status": "NORMAL TERMINATION",
     "bond energy": -0.647782267592094,
     "step": "END",

@@ -1,18 +1,18 @@
 {
   "files": {
-    "calc_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\achiral_catalyst.H_tBu_SnCl4.vacuum\\sub_cat_complex",
+    "calc_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_SnCl4.vacuum\\sub_cat_complex",
     "res_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_tBu_SnCl4.vacuum\\sub_cat_complex",
-    "run script": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\achiral_catalyst.H_tBu_SnCl4.vacuum\\sub_cat_complex\\GO.achiral_catalyst.H_tBu_SnCl4.sub_cat_complex",
-    "opt adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\achiral_catalyst.H_tBu_SnCl4.vacuum\\sub_cat_complex\\GO.achiral_catalyst.H_tBu_SnCl4.sub_cat_complex.adf.rkf",
-    "opt amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\achiral_catalyst.H_tBu_SnCl4.vacuum\\sub_cat_complex\\GO.achiral_catalyst.H_tBu_SnCl4.sub_cat_complex.ams.rkf",
-    "opt log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\achiral_catalyst.H_tBu_SnCl4.vacuum\\sub_cat_complex\\GO.achiral_catalyst.H_tBu_SnCl4.sub_cat_complex.log",
-    "opt out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\achiral_catalyst.H_tBu_SnCl4.vacuum\\sub_cat_complex\\GO.achiral_catalyst.H_tBu_SnCl4.sub_cat_complex.out",
-    "preopt adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\achiral_catalyst.H_tBu_SnCl4.vacuum\\sub_cat_complex\\GO.achiral_catalyst.H_tBu_SnCl4.sub_cat_complex_preopt.adf.rkf",
-    "preopt amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\achiral_catalyst.H_tBu_SnCl4.vacuum\\sub_cat_complex\\GO.achiral_catalyst.H_tBu_SnCl4.sub_cat_complex_preopt.ams.rkf",
-    "preopt log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\achiral_catalyst.H_tBu_SnCl4.vacuum\\sub_cat_complex\\GO.achiral_catalyst.H_tBu_SnCl4.sub_cat_complex_preopt.log",
-    "preopt out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\achiral_catalyst.H_tBu_SnCl4.vacuum\\sub_cat_complex\\GO.achiral_catalyst.H_tBu_SnCl4.sub_cat_complex_preopt.out",
-    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\achiral_catalyst.H_tBu_SnCl4.vacuum\\sub_cat_complex\\input.xyz",
-    "run info": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations_test\\achiral_catalyst.H_tBu_SnCl4.vacuum\\sub_cat_complex\\run.info"
+    "run script": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_SnCl4.vacuum\\sub_cat_complex\\GO.achiral_catalyst.H_tBu_SnCl4.sub_cat_complex",
+    "opt adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_SnCl4.vacuum\\sub_cat_complex\\GO.achiral_catalyst.H_tBu_SnCl4.sub_cat_complex.adf.rkf",
+    "opt amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_SnCl4.vacuum\\sub_cat_complex\\GO.achiral_catalyst.H_tBu_SnCl4.sub_cat_complex.ams.rkf",
+    "opt log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_SnCl4.vacuum\\sub_cat_complex\\GO.achiral_catalyst.H_tBu_SnCl4.sub_cat_complex.log",
+    "opt out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_SnCl4.vacuum\\sub_cat_complex\\GO.achiral_catalyst.H_tBu_SnCl4.sub_cat_complex.out",
+    "preopt adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_SnCl4.vacuum\\sub_cat_complex\\GO.achiral_catalyst.H_tBu_SnCl4.sub_cat_complex_preopt.adf.rkf",
+    "preopt amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_SnCl4.vacuum\\sub_cat_complex\\GO.achiral_catalyst.H_tBu_SnCl4.sub_cat_complex_preopt.ams.rkf",
+    "preopt log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_SnCl4.vacuum\\sub_cat_complex\\GO.achiral_catalyst.H_tBu_SnCl4.sub_cat_complex_preopt.log",
+    "preopt out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_SnCl4.vacuum\\sub_cat_complex\\GO.achiral_catalyst.H_tBu_SnCl4.sub_cat_complex_preopt.out",
+    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_SnCl4.vacuum\\sub_cat_complex\\input.xyz",
+    "run info": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_SnCl4.vacuum\\sub_cat_complex\\run.info"
   },
   "info": {
     "substituents": [
@@ -29,7 +29,7 @@
         "SnCl4"
       ]
     ],
-    "unique": "achiral_catalyst.vacuum.GO.sub_cat_complex.['H', 'tBu', 'SnCl4'].[].False.N/A",
+    "unique": "achiral_catalyst.vacuum.GO.sub_cat_complex.['H', 'tBu', 'SnCl4'].[].False.N/A.OLYP.TZ2P.VeryGood",
     "reaction": "achiral_catalyst",
     "stationary point": "sub_cat_complex",
     "task": "GO",
@@ -37,8 +37,11 @@
     "radical": "False",
     "phase": "vacuum",
     "enantiomer": "N/A",
-    "hash": "7e975d5859c92cea7bdc99f4441dd9280686f36fafd8a4132a500b87313bd9eb",
-    "time silent": 12134
+    "functional": "OLYP",
+    "basis": "TZ2P",
+    "numerical_quality": "VeryGood",
+    "hash": "cf707bd805f092f3c2a4ad5a3eda12e87df2193046018ba598b92ed7b2b7157b",
+    "time silent": 122350
   },
   "pre opt": {
     "runtime": 2286,

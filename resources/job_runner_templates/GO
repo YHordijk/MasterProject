@@ -34,7 +34,7 @@ End
 Engine ADF
   
   BASIS
-     type TZ2P
+     type [BASIS]
      core none
   END
   
@@ -46,7 +46,7 @@ Engine ADF
   END
   
   XC
-    GGA OLYP
+    [FUNCTIONAL]
   END
   
   NumericalQuality NORMAL
@@ -86,7 +86,7 @@ End
 Engine ADF
   
   BASIS
-     type TZ2P
+     type [BASIS]
      core none
   END
   
@@ -98,11 +98,15 @@ Engine ADF
   END
   
   XC
-    GGA OLYP
+    [FUNCTIONAL]
   END
   
-  NumericalQuality VERYGOOD
+  NumericalQuality [NUMERICALQUALITY]
   [RADICAL]
+
+  PESPointCharacter
+    NegativeFrequenciesTolerance -20
+  End
 ENDEngine
 
 eor

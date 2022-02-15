@@ -1,17 +1,17 @@
 {
   "files": {
-    "calc_path": "/scistor/tc/yhk800/MasterProject/calculations_test/urea_tBu_Ph.H_tBu_O.vacuum/TSS",
-    "res_path": "/scistor/tc/yhk800/MasterProject/results/urea_tBu_Ph.H_tBu_O.vacuum/TSS",
-    "input xyz": "/scistor/tc/yhk800/MasterProject/calculations_test/urea_tBu_Ph.H_tBu_O.vacuum/TSS/input.xyz",
-    "opt out": "/scistor/tc/yhk800/MasterProject/calculations_test/urea_tBu_Ph.H_tBu_O.vacuum/TSS/TSRC.urea_tBu_Ph.H_tBu_O.TSS.out",
-    "run script": "/scistor/tc/yhk800/MasterProject/calculations_test/urea_tBu_Ph.H_tBu_O.vacuum/TSS/TSRC.urea_tBu_Ph.H_tBu_O.TSS",
-    "opt log": "/scistor/tc/yhk800/MasterProject/calculations_test/urea_tBu_Ph.H_tBu_O.vacuum/TSS/TSRC.urea_tBu_Ph.H_tBu_O.TSS.log",
-    "preopt log": "/scistor/tc/yhk800/MasterProject/calculations_test/urea_tBu_Ph.H_tBu_O.vacuum/TSS/TSRC.urea_tBu_Ph.H_tBu_O.TSS_preopt.log",
-    "preopt adfrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/urea_tBu_Ph.H_tBu_O.vacuum/TSS/TSRC.urea_tBu_Ph.H_tBu_O.TSS_preopt.adf.rkf",
-    "opt adfrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/urea_tBu_Ph.H_tBu_O.vacuum/TSS/TSRC.urea_tBu_Ph.H_tBu_O.TSS.adf.rkf",
-    "opt amsrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/urea_tBu_Ph.H_tBu_O.vacuum/TSS/TSRC.urea_tBu_Ph.H_tBu_O.TSS.ams.rkf",
-    "run info": "/scistor/tc/yhk800/MasterProject/calculations_test/urea_tBu_Ph.H_tBu_O.vacuum/TSS/run.info",
-    "preopt amsrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/urea_tBu_Ph.H_tBu_O.vacuum/TSS/TSRC.urea_tBu_Ph.H_tBu_O.TSS_preopt.ams.rkf"
+    "calc_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\urea_tBu_Ph.H_tBu_O.vacuum\\TSS",
+    "res_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\urea_tBu_Ph.H_tBu_O.vacuum\\TSS",
+    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\urea_tBu_Ph.H_tBu_O.vacuum\\TSS\\input.xyz",
+    "run info": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\urea_tBu_Ph.H_tBu_O.vacuum\\TSS\\run.info",
+    "run script": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\urea_tBu_Ph.H_tBu_O.vacuum\\TSS\\TSRC.urea_tBu_Ph.H_tBu_O.TSS",
+    "opt adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\urea_tBu_Ph.H_tBu_O.vacuum\\TSS\\TSRC.urea_tBu_Ph.H_tBu_O.TSS.adf.rkf",
+    "opt amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\urea_tBu_Ph.H_tBu_O.vacuum\\TSS\\TSRC.urea_tBu_Ph.H_tBu_O.TSS.ams.rkf",
+    "opt log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\urea_tBu_Ph.H_tBu_O.vacuum\\TSS\\TSRC.urea_tBu_Ph.H_tBu_O.TSS.log",
+    "opt out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\urea_tBu_Ph.H_tBu_O.vacuum\\TSS\\TSRC.urea_tBu_Ph.H_tBu_O.TSS.out",
+    "preopt adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\urea_tBu_Ph.H_tBu_O.vacuum\\TSS\\TSRC.urea_tBu_Ph.H_tBu_O.TSS_preopt.adf.rkf",
+    "preopt amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\urea_tBu_Ph.H_tBu_O.vacuum\\TSS\\TSRC.urea_tBu_Ph.H_tBu_O.TSS_preopt.ams.rkf",
+    "preopt log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\urea_tBu_Ph.H_tBu_O.vacuum\\TSS\\TSRC.urea_tBu_Ph.H_tBu_O.TSS_preopt.log"
   },
   "info": {
     "substituents": [
@@ -28,15 +28,18 @@
         "O"
       ]
     ],
-    "unique": "urea_tBu_Ph.vacuum.TSRC.TSS.['H', 'tBu', 'O'].[1, 12].True.S",
+    "unique": "urea_tBu_Ph.vacuum.TSRC.TSS.['H', 'tBu', 'O'].[1, 12].True.S.OLYP.TZ2P.VeryGood",
     "reaction": "urea_tBu_Ph",
     "stationary point": "TSS",
     "task": "TSRC",
     "radical": "True",
     "phase": "vacuum",
     "enantiomer": "S",
-    "hash": "d5bd7f7f3a8a4925ee56ac66041fea0e2ffa6a5001bcf18ecf535ed2ca6da602",
-    "time silent": 220465
+    "functional": "OLYP",
+    "basis": "TZ2P",
+    "numerical_quality": "VeryGood",
+    "hash": "061c2f51effae7d3d0bcf63b78abb8abca51edd2d3840c4cff46c66feec1d85f",
+    "time silent": 333192
   },
   "pre opt": {
     "runtime": 3650,
@@ -441,7 +444,7 @@
         5.289476365060398
       ]
     ],
-    "input xyz": "/scistor/tc/yhk800/MasterProject/results/urea_tBu_Ph.H_tBu_O.vacuum/TSS/input_preopt.xyz",
+    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\urea_tBu_Ph.H_tBu_O.vacuum\\TSS\\input_preopt.xyz",
     "steps": 56,
     "output coords": [
       [
@@ -776,7 +779,7 @@
       ]
     ],
     "output energy": -13.392783950541146,
-    "output xyz": "/scistor/tc/yhk800/MasterProject/results/urea_tBu_Ph.H_tBu_O.vacuum/TSS/output_preopt.xyz",
+    "output xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\urea_tBu_Ph.H_tBu_O.vacuum\\TSS\\output_preopt.xyz",
     "status": "NORMAL TERMINATION",
     "bond energy": -13.39278394931444,
     "step": "END"
@@ -1184,7 +1187,7 @@
         5.187077057449374
       ]
     ],
-    "input xyz": "/scistor/tc/yhk800/MasterProject/results/urea_tBu_Ph.H_tBu_O.vacuum/TSS/input.xyz",
+    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\urea_tBu_Ph.H_tBu_O.vacuum\\TSS\\input.xyz",
     "steps": 66,
     "output coords": [
       [
@@ -1519,7 +1522,7 @@
       ]
     ],
     "output energy": -13.434139961360799,
-    "output xyz": "/scistor/tc/yhk800/MasterProject/results/urea_tBu_Ph.H_tBu_O.vacuum/TSS/output.xyz",
+    "output xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\urea_tBu_Ph.H_tBu_O.vacuum\\TSS\\output.xyz",
     "status": "NORMAL TERMINATION",
     "bond energy": -13.434139961345178,
     "step": "END",

@@ -1,12 +1,12 @@
 {
   "files": {
-    "calc_path": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_tBu_ZnCl2.vacuum/sub_cat_complex",
-    "res_path": "/scistor/tc/yhk800/MasterProject/results/achiral_catalyst.H_tBu_ZnCl2.vacuum/sub_cat_complex",
-    "opt log": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_tBu_ZnCl2.vacuum/sub_cat_complex/GO.achiral_catalyst.H_tBu_ZnCl2.sub_cat_complex.log",
-    "run info": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_tBu_ZnCl2.vacuum/sub_cat_complex/run.info",
-    "opt adfrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_tBu_ZnCl2.vacuum/sub_cat_complex/GO.achiral_catalyst.H_tBu_ZnCl2.sub_cat_complex.adf.rkf",
-    "opt amsrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_tBu_ZnCl2.vacuum/sub_cat_complex/GO.achiral_catalyst.H_tBu_ZnCl2.sub_cat_complex.ams.rkf",
-    "opt out": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_tBu_ZnCl2.vacuum/sub_cat_complex/GO.achiral_catalyst.H_tBu_ZnCl2.sub_cat_complex.out"
+    "calc_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_ZnCl2.vacuum\\sub_cat_complex",
+    "res_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_tBu_ZnCl2.vacuum\\sub_cat_complex",
+    "opt adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_ZnCl2.vacuum\\sub_cat_complex\\GO.achiral_catalyst.H_tBu_ZnCl2.sub_cat_complex.adf.rkf",
+    "opt amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_ZnCl2.vacuum\\sub_cat_complex\\GO.achiral_catalyst.H_tBu_ZnCl2.sub_cat_complex.ams.rkf",
+    "opt log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_ZnCl2.vacuum\\sub_cat_complex\\GO.achiral_catalyst.H_tBu_ZnCl2.sub_cat_complex.log",
+    "opt out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_ZnCl2.vacuum\\sub_cat_complex\\GO.achiral_catalyst.H_tBu_ZnCl2.sub_cat_complex.out",
+    "run info": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_ZnCl2.vacuum\\sub_cat_complex\\run.info"
   },
   "info": {
     "substituents": [
@@ -27,12 +27,15 @@
     "stationary point": "sub_cat_complex",
     "task": "GO",
     "TSRC": "N\\A",
-    "unique": "achiral_catalyst.vacuum.GO.sub_cat_complex.['H', 'tBu', 'ZnCl2'].[].False.N/A",
+    "unique": "achiral_catalyst.vacuum.GO.sub_cat_complex.['H', 'tBu', 'ZnCl2'].[].False.N/A.OLYP.TZ2P.VeryGood",
     "radical": "False",
     "phase": "vacuum",
     "enantiomer": "N/A",
-    "hash": "af73ac829438be5e8ac0e916b8f3e1c4ca0ece8e88763f61f01a8c5b1760f119",
-    "time silent": 1332359
+    "functional": "OLYP",
+    "basis": "TZ2P",
+    "numerical_quality": "VeryGood",
+    "hash": "91cc9c1eeb1bf1d31ed36c2ce0dfd685aa330e2e572f328666dade27c5bc0d65",
+    "time silent": 1445084
   },
   "pre opt": {
     "runtime": 0
@@ -182,7 +185,7 @@
         -0.11038804921383442
       ]
     ],
-    "input xyz": "/scistor/tc/yhk800/MasterProject/results/achiral_catalyst.H_tBu_ZnCl2.vacuum/sub_cat_complex/input.xyz",
+    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_tBu_ZnCl2.vacuum\\sub_cat_complex\\input.xyz",
     "steps": 53,
     "output coords": [
       [
@@ -302,7 +305,7 @@
       ]
     ],
     "output energy": -4.379186168135055,
-    "output xyz": "/scistor/tc/yhk800/MasterProject/results/achiral_catalyst.H_tBu_ZnCl2.vacuum/sub_cat_complex/output.xyz",
+    "output xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_tBu_ZnCl2.vacuum\\sub_cat_complex\\output.xyz",
     "status": "NORMAL TERMINATION with warnings",
     "bond energy": -4.3791861681300475,
     "step": "END",

@@ -1,14 +1,18 @@
 {
   "files": {
-    "calc_path": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_Ph_TiCl4.vacuum/P1_cat_complex",
-    "res_path": "/scistor/tc/yhk800/MasterProject/results/achiral_catalyst.H_Ph_TiCl4.vacuum/P1_cat_complex",
-    "run script": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_Ph_TiCl4.vacuum/P1_cat_complex/GO.achiral_catalyst.H_Ph_TiCl4.P1_cat_complex",
-    "ams.results": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_Ph_TiCl4.vacuum/P1_cat_complex/ams.results",
-    "run info": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_Ph_TiCl4.vacuum/P1_cat_complex/run.info",
-    "preopt out": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_Ph_TiCl4.vacuum/P1_cat_complex/GO.achiral_catalyst.H_Ph_TiCl4.P1_cat_complex_preopt.out",
-    "input xyz": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_Ph_TiCl4.vacuum/P1_cat_complex/input.xyz",
-    "preopt amsrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_Ph_TiCl4.vacuum/P1_cat_complex/ams.results/ams.rkf",
-    "preopt log": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_Ph_TiCl4.vacuum/P1_cat_complex/ams.results/ams.log"
+    "calc_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_TiCl4.vacuum\\P1_cat_complex",
+    "res_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_Ph_TiCl4.vacuum\\P1_cat_complex",
+    "run script": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_TiCl4.vacuum\\P1_cat_complex\\GO.achiral_catalyst.H_Ph_TiCl4.P1_cat_complex",
+    "opt adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_TiCl4.vacuum\\P1_cat_complex\\GO.achiral_catalyst.H_Ph_TiCl4.P1_cat_complex.adf.rkf",
+    "opt amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_TiCl4.vacuum\\P1_cat_complex\\GO.achiral_catalyst.H_Ph_TiCl4.P1_cat_complex.ams.rkf",
+    "opt log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_TiCl4.vacuum\\P1_cat_complex\\GO.achiral_catalyst.H_Ph_TiCl4.P1_cat_complex.log",
+    "opt out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_TiCl4.vacuum\\P1_cat_complex\\GO.achiral_catalyst.H_Ph_TiCl4.P1_cat_complex.out",
+    "preopt adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_TiCl4.vacuum\\P1_cat_complex\\GO.achiral_catalyst.H_Ph_TiCl4.P1_cat_complex_preopt.adf.rkf",
+    "preopt amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_TiCl4.vacuum\\P1_cat_complex\\GO.achiral_catalyst.H_Ph_TiCl4.P1_cat_complex_preopt.ams.rkf",
+    "preopt log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_TiCl4.vacuum\\P1_cat_complex\\GO.achiral_catalyst.H_Ph_TiCl4.P1_cat_complex_preopt.log",
+    "preopt out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_TiCl4.vacuum\\P1_cat_complex\\GO.achiral_catalyst.H_Ph_TiCl4.P1_cat_complex_preopt.out",
+    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_TiCl4.vacuum\\P1_cat_complex\\input.xyz",
+    "run info": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_TiCl4.vacuum\\P1_cat_complex\\run.info"
   },
   "info": {
     "substituents": [
@@ -25,7 +29,7 @@
         "TiCl4"
       ]
     ],
-    "unique": "achiral_catalyst.vacuum.GO.P1_cat_complex.['H', 'Ph', 'TiCl4'].[].True.N/A",
+    "unique": "achiral_catalyst.vacuum.GO.P1_cat_complex.['H', 'Ph', 'TiCl4'].[].True.N/A.OLYP.TZ2P.VeryGood",
     "reaction": "achiral_catalyst",
     "stationary point": "P1_cat_complex",
     "task": "GO",
@@ -33,11 +37,14 @@
     "radical": "True",
     "phase": "vacuum",
     "enantiomer": "N/A",
-    "hash": "53a00effd6dd703b3ce8a8acf86ce4f0c66f3af559ae9777e70c343b0f64b985",
-    "time silent": 0
+    "functional": "OLYP",
+    "basis": "TZ2P",
+    "numerical_quality": "VeryGood",
+    "hash": "664832342b1395a9f717f66e729b2b9043c6e0c3bd99dc917286f0f3d39cee21",
+    "time silent": 94473
   },
   "pre opt": {
-    "runtime": 291,
+    "runtime": 3593,
     "natoms": 27,
     "elements": [
       "H",
@@ -205,154 +212,470 @@
         -5.750015490666607
       ]
     ],
-    "input xyz": "/scistor/tc/yhk800/MasterProject/results/achiral_catalyst.H_Ph_TiCl4.vacuum/P1_cat_complex/input_preopt.xyz",
-    "steps": 12,
+    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_Ph_TiCl4.vacuum\\P1_cat_complex\\input_preopt.xyz",
+    "steps": 250,
     "output coords": [
       [
-        0.008423088756122929,
-        -3.8177981370452767,
-        -0.13539511245440203
+        -2.1135333519065833,
+        -6.0336575536667345,
+        0.3411562242482236
       ],
       [
-        -1.6854735459553674,
-        -0.3371922987700015,
-        1.38870490874245
+        -1.3229581719655505,
+        -1.8631509458599937,
+        0.5160518500547928
       ],
       [
-        0.33366917584089706,
-        -1.8097628058075397,
-        0.07138229587939958
+        -0.9190261342276915,
+        -4.518930518566023,
+        -0.37681835770752586
       ],
       [
-        2.6770386067912346,
-        -0.6504989935619881,
-        -0.7727082726705351
+        1.0875166757224437,
+        -5.225062241806966,
+        -2.0526765445941186
       ],
       [
-        4.361546525126527,
-        -1.7186600070766607,
-        -1.879023556274692
+        1.5995777494920187,
+        -7.434879013320225,
+        -2.655888085471657
       ],
       [
-        -1.1143660635446222,
-        1.65403353872153,
-        1.3933731828142837
+        0.11160778303964759,
+        -0.6794054670509513,
+        -0.39798235449285374
       ],
       [
-        -3.430967237400437,
-        -0.03502034653015268,
-        5.103480728870735
+        -1.1349241330737978,
+        0.3209168887377844,
+        4.008316894827551
       ],
       [
-        -0.18787446197340255,
-        -0.8862953633102684,
-        5.205179809156653
+        1.0202425115076732,
+        -2.2505308801774957,
+        3.908471281224502
       ],
       [
-        -1.9641514207253066,
-        -1.1692324753435364,
-        4.184644220104291
+        -0.8934584059109761,
+        -1.64479085017757,
+        3.4103561279526784
       ],
       [
-        -2.4948657170664172,
-        -3.159347136461718,
-        4.354542961815799
+        -2.234151472987352,
+        -2.8076913556439758,
+        4.4691744052926765
       ],
       [
-        2.416177972061848,
-        1.5528494835987103,
-        -0.4739365240684261
+        2.2302549361836936,
+        -3.630675461116082,
+        -2.812208277648005
       ],
       [
-        -8.948105175007052,
-        -0.5157817073375391,
-        -2.48205084028781
+        -8.555025668878917,
+        1.4190582109387422,
+        -1.6227169485051163
       ],
       [
-        -7.598587467580887,
-        1.7330257701341856,
-        -2.256147774648429
+        -6.291697766236568,
+        2.532256539052743,
+        -2.379387969401612
       ],
       [
-        -5.25731401912137,
-        1.753674136562994,
-        -1.044928717688975
+        -3.9895978466256827,
+        1.4338806556778652,
+        -1.714103106181934
       ],
       [
-        -4.223161434429047,
-        -0.4596871360709894,
-        -0.026325518319955558
+        -3.8976585170820504,
+        -0.7817087582821706,
+        -0.26789175072392496
       ],
       [
-        -5.597848757570293,
-        -2.708951709308905,
-        -0.2747205043373647
+        -6.1883045192517505,
+        -1.888281765462826,
+        0.4700254781409755
       ],
       [
-        -7.934166753913266,
-        -2.7368772721201693,
-        -1.4902538153409624
+        -8.49202744479852,
+        -0.7996445864496236,
+        -0.19993711258702554
       ],
       [
-        -8.36984992867572,
-        3.4810182061299475,
-        -3.015750827094799
+        -6.311048461596142,
+        4.263073038576142,
+        -3.4889425394236167
       ],
       [
-        -4.228724309889601,
-        3.5245641939569636,
-        -0.872595863406045
+        -2.2387616132731814,
+        2.3292158696314305,
+        -2.3158731996832342
       ],
       [
-        -4.865486341424745,
-        -4.466623545046675,
-        0.4947506142102808
+        -6.196886404459017,
+        -3.6103270549235424,
+        1.5897511829739919
       ],
       [
-        -8.97072033128359,
-        -4.5041968637678576,
-        -1.6572300416009682
+        -10.246970109387183,
+        -1.688372507043343,
+        0.39721045349455714
       ],
       [
-        -10.776338359066148,
-        -0.5393906955023534,
-        -3.4207691910651303
+        -10.353240676385907,
+        2.270848708922755,
+        -2.1375932943060536
       ],
       [
-        10.947623890859273,
-        -7.733304810885104,
-        -5.734717723184067
+        10.43058570360366,
+        -4.861018537471244,
+        -4.591265686152111
       ],
       [
-        7.910276634111767,
-        -5.883924252051689,
-        -3.6837051261358487
+        8.721271356614901,
+        -8.595543316210279,
+        -4.785573652216337
       ],
       [
-        9.668169966129412,
-        -8.630777214117545,
-        -9.556310487881026
+        10.07131068305001,
+        -2.9680594893940784,
+        -8.245754999676267
       ],
       [
-        11.960836625996118,
-        -11.207221243564817,
-        -3.7443908112431306
+        14.429911409633734,
+        -5.215687706108904,
+        -3.622707006690149
       ],
       [
-        14.23298965096944,
-        -5.2409893759742365,
-        -5.9279714819185365
+        8.545742701214474,
+        -2.584199963356203,
+        -1.6960664807756596
       ]
     ],
-    "output energy": -5.559062050975283,
-    "output xyz": "/scistor/tc/yhk800/MasterProject/results/achiral_catalyst.H_Ph_TiCl4.vacuum/P1_cat_complex/output_preopt.xyz",
-    "status": "IN PROGRESS",
-    "step": "PREOPT"
+    "output energy": -5.568315335424992,
+    "output xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_Ph_TiCl4.vacuum\\P1_cat_complex\\output_preopt.xyz",
+    "status": "NORMAL TERMINATION with errors",
+    "bond energy": -5.568315336023783,
+    "step": "END"
   },
   "opt": {
-    "runtime": 0
+    "runtime": 14945,
+    "natoms": 27,
+    "elements": [
+      "H",
+      "C",
+      "C",
+      "C",
+      "O",
+      "H",
+      "H",
+      "H",
+      "C",
+      "H",
+      "H",
+      "C",
+      "C",
+      "C",
+      "C",
+      "C",
+      "C",
+      "H",
+      "H",
+      "H",
+      "H",
+      "H",
+      "Ti",
+      "Cl",
+      "Cl",
+      "Cl",
+      "Cl"
+    ],
+    "input coords": [
+      [
+        -2.113533343757339,
+        -6.033657561616471,
+        0.34115622570355203
+      ],
+      [
+        -1.3229581803142443,
+        -1.8631509439296805,
+        0.5160518525240442
+      ],
+      [
+        -0.9190261409219029,
+        -4.51893052219578,
+        -0.37681836233977845
+      ],
+      [
+        1.0875166733238049,
+        -5.225062234410603,
+        -2.0526765469481068
+      ],
+      [
+        1.5995777455260807,
+        -7.434879013943749,
+        -2.655888086340175
+      ],
+      [
+        0.11160779183823538,
+        -0.6794054668123309,
+        -0.39798235007252475
+      ],
+      [
+        -1.1349241381259851,
+        0.32091688096358506,
+        4.008316885718662
+      ],
+      [
+        1.0202425177734336,
+        -2.250530872196425,
+        3.908471278403412
+      ],
+      [
+        -0.8934584110173737,
+        -1.6447908414550845,
+        3.4103561204392165
+      ],
+      [
+        -2.234151463141357,
+        -2.8076913544040467,
+        4.469174411279608
+      ],
+      [
+        2.2302549423586853,
+        -3.630675453165302,
+        -2.8122082722734336
+      ],
+      [
+        -8.555025663850513,
+        1.4190582181696572,
+        -1.6227169505933308
+      ],
+      [
+        -6.291697774207996,
+        2.5322565340887833,
+        -2.3793879707166767
+      ],
+      [
+        -3.989597844543217,
+        1.4338806629733842,
+        -1.7141031044253872
+      ],
+      [
+        -3.8976585111826987,
+        -0.7817087574389627,
+        -0.2678917517216846
+      ],
+      [
+        -6.188304527347202,
+        -1.8882817691541962,
+        0.4700254751627853
+      ],
+      [
+        -8.492027448294117,
+        -0.7996445827247946,
+        -0.1999371057938357
+      ],
+      [
+        -6.311048456340596,
+        4.263073037764505,
+        -3.488942535619561
+      ],
+      [
+        -2.238761620097733,
+        2.3292158743886913,
+        -2.3158731985241134
+      ],
+      [
+        -6.196886397288749,
+        -3.6103270523306827,
+        1.5897511885752877
+      ],
+      [
+        -10.246970104300194,
+        -1.6883724990261764,
+        0.3972104536423989
+      ],
+      [
+        -10.353240667055605,
+        2.270848716159609,
+        -2.1375932989815514
+      ],
+      [
+        10.430585702247422,
+        -4.861018534056862,
+        -4.59126568556134
+      ],
+      [
+        8.72127135279445,
+        -8.595543319483136,
+        -4.7855736562778795
+      ],
+      [
+        10.071310687974652,
+        -2.9680594848743436,
+        -8.245754994917645
+      ],
+      [
+        14.429911403345942,
+        -5.215687699948821,
+        -3.62270700722107
+      ],
+      [
+        8.545742705516728,
+        -2.584199965199687,
+        -1.6960664811480675
+      ]
+    ],
+    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_Ph_TiCl4.vacuum\\P1_cat_complex\\input.xyz",
+    "steps": 53,
+    "output coords": [
+      [
+        0.28794244706979444,
+        -3.630751449409802,
+        -0.47385628963676274
+      ],
+      [
+        -1.353895043860992,
+        0.0624047560476871,
+        0.7668207809078478
+      ],
+      [
+        0.413819246619519,
+        -1.5873936458231717,
+        -0.6920327473478033
+      ],
+      [
+        2.286922129665093,
+        -0.6674469546891815,
+        -2.410156618031621
+      ],
+      [
+        3.7616209315407265,
+        -2.044850687898866,
+        -3.601064395805584
+      ],
+      [
+        -0.8884399410912712,
+        2.033051331907678,
+        0.326627501834695
+      ],
+      [
+        -2.352310727983834,
+        0.9497218732332894,
+        4.662251272982058
+      ],
+      [
+        0.891324010400295,
+        0.21242578333853274,
+        4.221424843145034
+      ],
+      [
+        -1.0339757775633038,
+        -0.28157815965062505,
+        3.6503772278300475
+      ],
+      [
+        -1.387825420305151,
+        -2.2292689797503544,
+        4.241409305098337
+      ],
+      [
+        2.38415897092702,
+        1.4239725519365587,
+        -2.6345070999842295
+      ],
+      [
+        -9.0511437797864,
+        -1.092358915227031,
+        -1.8891053696544446
+      ],
+      [
+        -7.76964995282804,
+        1.1504327900965015,
+        -2.411565531967241
+      ],
+      [
+        -5.30006033251181,
+        1.4944553114252483,
+        -1.5551227340555949
+      ],
+      [
+        -4.069521600156807,
+        -0.3793941814448792,
+        -0.14559373916359475
+      ],
+      [
+        -5.374764586152127,
+        -2.6315038656956387,
+        0.35462429199387785
+      ],
+      [
+        -7.840959277650419,
+        -2.9821346468803727,
+        -0.5033450064877503
+      ],
+      [
+        -8.68959284897014,
+        2.6395526812806063,
+        -3.4889935446665756
+      ],
+      [
+        -4.322232065776991,
+        3.252429511397771,
+        -1.9799463761767813
+      ],
+      [
+        -4.475986870911544,
+        -4.135542819915546,
+        1.4255880920998447
+      ],
+      [
+        -8.818974954736909,
+        -4.741795738383477,
+        -0.08884971082259249
+      ],
+      [
+        -10.973909118688715,
+        -1.3686512588743627,
+        -2.558797282505108
+      ],
+      [
+        10.086698548814587,
+        -7.968162839796337,
+        -4.293510971990395
+      ],
+      [
+        7.194861590392463,
+        -9.752086928694043,
+        -1.940154764083609
+      ],
+      [
+        8.494956312855365,
+        -6.898306391256318,
+        -7.9416244811916865
+      ],
+      [
+        13.142898727438528,
+        -10.685884108812582,
+        -4.920110410632658
+      ],
+      [
+        11.626790214163703,
+        -4.65370302232023,
+        -2.3736597097149037
+      ]
+    ],
+    "output energy": -5.569343046598439,
+    "output xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_Ph_TiCl4.vacuum\\P1_cat_complex\\output.xyz",
+    "status": "NORMAL TERMINATION",
+    "bond energy": -5.569343046747554,
+    "step": "END",
+    "freq progress": 27
   },
   "freq": {},
-  "thermo": {},
+  "thermo": {
+    "gibbs": -5.43640138612894,
+    "enthalpy": -5.3684940263075465
+  },
   "misc": {}
 }

@@ -71,6 +71,12 @@ def hash_collision(h, calc_dir=paths.calculations):
     hashes = [hash_from_info(join(d, 'run.info')) for d in dirs]
     return h in hashes
 
+def get_colliding_dirs(h, calc_dir=paths.calculations):
+    dirs = get_all_run_dirs(calc_dir)
+    dirs = [d for d in dirs if hash_from_info(join(d, 'run.info'))]
+    return dirs
+
+
 
 def get_sorted_dict_values(d):
     k, v = list(d.keys()), list(d.values())

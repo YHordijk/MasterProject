@@ -1,12 +1,12 @@
 {
   "files": {
-    "calc_path": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_Ph_AlF3.vacuum/cat",
-    "res_path": "/scistor/tc/yhk800/MasterProject/results/achiral_catalyst.H_Ph_AlF3.vacuum/cat",
-    "opt out": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_Ph_AlF3.vacuum/cat/GO.achiral_catalyst.H_Ph_AlF3.cat.out",
-    "run info": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_Ph_AlF3.vacuum/cat/run.info",
-    "opt amsrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_Ph_AlF3.vacuum/cat/GO.achiral_catalyst.H_Ph_AlF3.cat.ams.rkf",
-    "opt log": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_Ph_AlF3.vacuum/cat/GO.achiral_catalyst.H_Ph_AlF3.cat.log",
-    "opt adfrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_Ph_AlF3.vacuum/cat/GO.achiral_catalyst.H_Ph_AlF3.cat.adf.rkf"
+    "calc_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_AlF3.vacuum\\cat",
+    "res_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_Ph_AlF3.vacuum\\cat",
+    "opt adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_AlF3.vacuum\\cat\\GO.achiral_catalyst.H_Ph_AlF3.cat.adf.rkf",
+    "opt amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_AlF3.vacuum\\cat\\GO.achiral_catalyst.H_Ph_AlF3.cat.ams.rkf",
+    "opt log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_AlF3.vacuum\\cat\\GO.achiral_catalyst.H_Ph_AlF3.cat.log",
+    "opt out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_AlF3.vacuum\\cat\\GO.achiral_catalyst.H_Ph_AlF3.cat.out",
+    "run info": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_AlF3.vacuum\\cat\\run.info"
   },
   "info": {
     "substituents": [
@@ -19,12 +19,15 @@
     "stationary point": "cat",
     "task": "GO",
     "TSRC": "N\\A",
-    "unique": "achiral_catalyst.vacuum.GO.cat.['AlF3'].[].False.N/A",
+    "unique": "achiral_catalyst.vacuum.GO.cat.['AlF3'].[].False.N/A.OLYP.TZ2P.VeryGood",
     "radical": "False",
     "phase": "vacuum",
     "enantiomer": "N/A",
-    "hash": "328b3aee5fe2945f84c6d1a0e1182dc374c6c908446294d097f44080170700b4",
-    "time silent": 1548342
+    "functional": "OLYP",
+    "basis": "TZ2P",
+    "numerical_quality": "VeryGood",
+    "hash": "2e42e0a2f6ca798936e873d77e64fac732f5ebe9ca8fd606048126ccdcdd9654",
+    "time silent": 1661064
   },
   "pre opt": {
     "runtime": 0
@@ -60,7 +63,7 @@
         -3.056635578164559
       ]
     ],
-    "input xyz": "/scistor/tc/yhk800/MasterProject/results/achiral_catalyst.H_Ph_AlF3.vacuum/cat/input.xyz",
+    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_Ph_AlF3.vacuum\\cat\\input.xyz",
     "steps": 4,
     "output coords": [
       [
@@ -85,7 +88,7 @@
       ]
     ],
     "output energy": -0.7532245514372098,
-    "output xyz": "/scistor/tc/yhk800/MasterProject/results/achiral_catalyst.H_Ph_AlF3.vacuum/cat/output.xyz",
+    "output xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_Ph_AlF3.vacuum\\cat\\output.xyz",
     "status": "NORMAL TERMINATION with warnings",
     "bond energy": -0.7532245514415379,
     "step": "END",

@@ -6,15 +6,25 @@ join = os.path.join
 
 
 
-def run_jobs(template, substituents={}, calc_dir=paths.calculations, phase='vacuum', test_mode=False):
+def run_jobs(template, substituents={}, calc_dir=paths.calculations, phase='vacuum', 
+                test_mode=False, basis='DZP', functional='BLYP-D3(BJ)', numerical_quality='Good'):
+
+    assert basis in ['SZ', 'DZ', 'DZP', 'TZP', 'TZ2P', 'QZ4P']
+    assert functional in ['OLYP', 'BLYP-D3(BJ)', 'M06L']
+    assert numerical_quality in ['Basic', 'Normal', 'Good', 'VeryGood', 'Excellent']
+
     def get_mols():
         print(f'Generating molecules:')
-        print(f'\tTemplate: {template}')
+        print(f'\tTemplate  : {template}')
         for name, sub in substituents.items():
-            print(f'\t{name:<8}: {sub}')
+            print(f'\t{name:<8}  : {sub}')
+        print(f'\tBasis     : {basis}')
+        print(f'\tFunctional: {functional}')
+        print(f'\tQuality   : {numerical_quality}')
         mols = struct_generator2.generate_stationary_points(template, substituents)
         print(f'\nGenerated {len(mols)} molecules:')
         struct_generator2.print_mols(mols, tabs=1)
+        print()
         return mols
 
 
@@ -53,7 +63,12 @@ def run_jobs(template, substituents={}, calc_dir=paths.calculations, phase='vacu
             CORES = '64'
             NODES = '2'
 
-        print(mol.name, NODES, mol.radical)
+        FUNCTIONAL = {
+            'OLYP': 'GGA OLYP',
+            'BLYP-D3(BJ)': 'GGA BLYP\n    DISPERSION GRIMME3 BJDAMP',
+            'M06L': 'MetaGGA M06L'
+        }[functional]
+
 
         blocks = {
                 '[RADICAL]':          RADICAL, 
@@ -62,6 +77,9 @@ def run_jobs(template, substituents={}, calc_dir=paths.calculations, phase='vacu
                 '[SLURM_SUBMIT_DIR]': SLURM_SUBMIT_DIR,
                 '[CORES]':            CORES,
                 '[NODES]':            NODES,
+                '[BASIS]':            basis,
+                '[FUNCTIONAL]':       FUNCTIONAL,
+                '[NUMERICALQUALITY]': numerical_quality,
                 }
 
         with open(JR_template) as temp:
@@ -76,7 +94,7 @@ def run_jobs(template, substituents={}, calc_dir=paths.calculations, phase='vacu
 
 
     def get_unique(mol):
-        return f'{mol.reaction}.{mol.phase}.{mol.task}.{mol.name}.{sort_substituents(mol.substituents)}.{sorted(mol.TSRC_idx)}.{mol.radical}.{mol.enantiomer}'
+        return f'{mol.reaction}.{mol.phase}.{mol.task}.{mol.name}.{sort_substituents(mol.substituents)}.{sorted(mol.TSRC_idx)}.{mol.radical}.{mol.enantiomer}.{functional}.{basis}.{numerical_quality}'
 
 
     def hash(mol):
@@ -125,7 +143,18 @@ sbatch {os.path.basename(file)}
         JR_template = get_job_runner_template(mol)
         job_dir = get_job_dir(mol)
         if not test_mode:
-            os.makedirs(job_dir, exist_ok=True)
+            #check if the dir already exists
+            try:
+                os.makedirs(job_dir, exist_ok=False)
+            except:
+                #generate new dir in PLAMS style
+                i = 2
+                job_dir_next = job_dir + '.' + str(i).zfill(3)
+                while os.path.exists(job_dir_next):
+                    i += 1
+                    job_dir_next = job_dir + '.' + str(i).zfill(3)
+                job_dir = job_dir_next
+                os.makedirs(job_dir, exist_ok=False)
 
             #copy input molecule to new dir
             mol.write(join(job_dir, 'input.xyz'))
@@ -139,10 +168,13 @@ sbatch {os.path.basename(file)}
 
         
 if __name__ == '__main__':
-    # for R2 in ['Ph', 'tBu']:
-    #     for cat in ['I2', 'ZnCl2', 'TiCl4', 'BF3', 'AlF3', 'SnCl4']:
-    #         run_jobs('achiral_catalyst', {'R1':'H', 'R2':R2, 'Rcat':cat}, phase='vacuum', calc_dir=join(paths.master, 'calculations_test'), test_mode=False)
+    # functional = 'BLYP-D3(BJ)'
+    functional = 'OLYP'
+    basis = 'TZ2P'
+    numerical_quality = 'VeryGood'
+    calc_dir = paths.calculations
+    for R2 in ['Ph', 'tBu']:
+        for cat in ['I2', 'ZnCl2', 'TiCl4', 'BF3', 'AlF3', 'SnCl4']:
+            run_jobs('achiral_catalyst', {'R1':'H', 'R2':R2, 'Rcat':cat}, phase='vacuum', calc_dir=calc_dir, test_mode=False, basis=basis, functional=functional, numerical_quality=numerical_quality)
 
-    #     run_jobs('no_catalyst', {'R1':'H', 'R2':R2}, phase='vacuum', calc_dir=join(paths.master, 'calculations_test'), test_mode=False)
-    run_jobs('squaramide', {'R1':'H', 'R2':'Ph', 'Rc1':'H', 'Rc2':'Ph', 'Rch':'O', 'Rch2':'O'}, phase='vacuum', calc_dir=join(paths.master, 'calculations_test'), test_mode=False)
-    run_jobs('achiral_catalyst', {'R1':'H', 'R2':'H', 'Rcat':'SnCl4'}, phase='vacuum', calc_dir=join(paths.master, 'calculations_test'), test_mode=False)
+        run_jobs('no_catalyst', {'R1':'H', 'R2':R2}, phase='vacuum', calc_dir=calc_dir, test_mode=False, basis=basis, functional=functional, numerical_quality=numerical_quality)

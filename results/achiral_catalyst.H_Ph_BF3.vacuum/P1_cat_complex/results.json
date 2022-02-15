@@ -1,12 +1,12 @@
 {
   "files": {
-    "calc_path": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_Ph_BF3.vacuum/P1_cat_complex",
-    "res_path": "/scistor/tc/yhk800/MasterProject/results/achiral_catalyst.H_Ph_BF3.vacuum/P1_cat_complex",
-    "opt log": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_Ph_BF3.vacuum/P1_cat_complex/GO.achiral_catalyst.H_Ph_BF3.P1_cat_complex.log",
-    "opt adfrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_Ph_BF3.vacuum/P1_cat_complex/GO.achiral_catalyst.H_Ph_BF3.P1_cat_complex.adf.rkf",
-    "opt out": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_Ph_BF3.vacuum/P1_cat_complex/GO.achiral_catalyst.H_Ph_BF3.P1_cat_complex.out",
-    "run info": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_Ph_BF3.vacuum/P1_cat_complex/run.info",
-    "opt amsrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_Ph_BF3.vacuum/P1_cat_complex/GO.achiral_catalyst.H_Ph_BF3.P1_cat_complex.ams.rkf"
+    "calc_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_BF3.vacuum\\P1_cat_complex",
+    "res_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_Ph_BF3.vacuum\\P1_cat_complex",
+    "opt adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_BF3.vacuum\\P1_cat_complex\\GO.achiral_catalyst.H_Ph_BF3.P1_cat_complex.adf.rkf",
+    "opt amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_BF3.vacuum\\P1_cat_complex\\GO.achiral_catalyst.H_Ph_BF3.P1_cat_complex.ams.rkf",
+    "opt log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_BF3.vacuum\\P1_cat_complex\\GO.achiral_catalyst.H_Ph_BF3.P1_cat_complex.log",
+    "opt out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_BF3.vacuum\\P1_cat_complex\\GO.achiral_catalyst.H_Ph_BF3.P1_cat_complex.out",
+    "run info": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_BF3.vacuum\\P1_cat_complex\\run.info"
   },
   "info": {
     "substituents": [
@@ -27,12 +27,15 @@
     "stationary point": "P1_cat_complex",
     "task": "GO",
     "TSRC": "N\\A",
-    "unique": "achiral_catalyst.vacuum.GO.P1_cat_complex.['H', 'Ph', 'BF3'].[].True.N/A",
+    "unique": "achiral_catalyst.vacuum.GO.P1_cat_complex.['H', 'Ph', 'BF3'].[].True.N/A.OLYP.TZ2P.VeryGood",
     "radical": "True",
     "phase": "vacuum",
     "enantiomer": "N/A",
-    "hash": "2f414d2518ea2b79a99255db5cc3a2d839b5d3d4b9b8404d86273e17d37128b6",
-    "time silent": 1157904
+    "functional": "OLYP",
+    "basis": "TZ2P",
+    "numerical_quality": "VeryGood",
+    "hash": "aebdfe7f6d39cb7da8243f5746c0120d88b1cf1374e0cdbe6b38d7d98bcc1925",
+    "time silent": 1270628
   },
   "pre opt": {
     "runtime": 0
@@ -200,7 +203,7 @@
         -1.8124591918146842
       ]
     ],
-    "input xyz": "/scistor/tc/yhk800/MasterProject/results/achiral_catalyst.H_Ph_BF3.vacuum/P1_cat_complex/input.xyz",
+    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_Ph_BF3.vacuum\\P1_cat_complex\\input.xyz",
     "steps": 47,
     "output coords": [
       [
@@ -335,7 +338,7 @@
       ]
     ],
     "output energy": -5.591065728299996,
-    "output xyz": "/scistor/tc/yhk800/MasterProject/results/achiral_catalyst.H_Ph_BF3.vacuum/P1_cat_complex/output.xyz",
+    "output xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_Ph_BF3.vacuum\\P1_cat_complex\\output.xyz",
     "status": "NORMAL TERMINATION with warnings",
     "bond energy": -5.5910657283495455,
     "step": "END",

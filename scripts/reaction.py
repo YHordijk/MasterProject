@@ -3,6 +3,7 @@ import results_database3 as results_database
 from utility import hartree2kcalmol as h2k
 import struct_generator2, mol_viewer2, job_results3
 import matplotlib.pyplot as plt
+import itertools
 
 
 join = os.path.join
@@ -85,7 +86,40 @@ def get_reaction_profile(res):
 
 
 def get_all_reactions(res_dir=paths.results):
-	...
+	res = job_results3.get_all_results(res_dir=res_dir)
+	reaction_names = set(r.reaction for r in res)
+	for rn in reaction_names:
+		all_subs = struct_generator2.get_all_substituents(rn)
+		bases = set(r.basis for r in res)
+		functionals = set(r.functional for r in res)
+		qualities = set(r.numerical_quality for r in res)
+		phases = set(r.phase for r in res)
+		used_subs = {s: set(r.substituents[s] for r in res if s in r.substituents) for s in all_subs}
+
+		#filter based on settings:
+		settings_filtered = []
+		for basis in bases:
+			for functional in functionals:
+				for quality in qualities:
+					for phase in phases:
+						check = lambda r: all((r.reaction == rn, r.basis == basis, r.functional == functional, r.numerical_quality == quality, r.phase == phase))
+						settings_filtered.append([r for r in res if check(r)])
+		#filter based on substituents
+		subs_filtered = []
+		sub_products = list(itertools.product(*used_subs.values()))
+		for sres in settings_filtered:
+			for product in sub_products:
+				check = lambda r: all(r.substituents.get(s, None) in [p, None] for s, p in zip(all_subs, product))
+				rta = [r for r in sres if check(r)]
+				if len(rta) > 3:
+					subs_filtered.append(rta)
+
+		for rss in subs_filtered:
+			print(len(rss))
+			print(sorted([r.stationary_point for r in rss]))
+
+
+
 
 
 class Reaction:
@@ -113,12 +147,12 @@ class Reaction:
 
 	
 
-
-
 # show_reaction('squaramide', {'Rch':'S', 'Rch2':'O', 'R1':'H', 'R2':'Ph', 'Rc1':'Ph', 'Rc2':'H'}, simple=False)
 # show_reaction('squaramide', {'R1':'H', 'R2':'Ph', 'Rc1':'tBu', 'Rc2':'Ph', 'Rch':'O', 'Rch2':'O'})
 # show_reaction('urea_tBu_Ph', {'R1':'H', 'R2':'tBu', 'Rch':'O'})
-res = get_reaction_results('urea_tBu_Ph', {'R1':'H', 'R2':'tBu', 'Rch':'O'})
-get_reaction_profile(res)
+# res = get_reaction_results('urea_tBu_Ph', {'R1':'H', 'R2':'tBu', 'Rch':'O'})
+# get_reaction_profile(res)
 
 # reaction = Reaction('urea_tBu_Ph', {'R1':'H', 'R2':'tBu', 'Rch':'O'})
+
+get_all_reactions()

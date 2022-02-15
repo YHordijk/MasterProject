@@ -11,6 +11,9 @@ def make_database(res, out_file=paths.results_table):
         d = {}
         d['status'] = r.status
         d['task'] = r.task
+        d['basis'] = r.basis
+        d['functional'] = r.functional
+        d['quality'] = r.numerical_quality
         d['reaction'] = r.reaction
         d['enantiomer'] = r.enantiomer
         for R, g in r.substituents.items():
@@ -40,6 +43,7 @@ def make_database(res, out_file=paths.results_table):
           'outxyz',
           'runtime',
           'step',
+          'functional', 'basis', 'quality',
           'hash',
           ]
 
@@ -63,8 +67,7 @@ def make_database(res, out_file=paths.results_table):
 
 
 if __name__ == '__main__':
-    res = job_results.get_all_results(join(paths.master, 'calculations_test'), regenerate_all=False)
+    res = job_results.get_all_results(paths.calculations, regenerate_all=False)
     make_database(res)
 
     import excel
-

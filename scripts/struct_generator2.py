@@ -5,12 +5,25 @@ join = os.path.join
 
 
 
+def get_all_substituents(template):
+    template_dir = join(paths.SGT, template)
+    template_meta = join(template_dir, 'meta.info')
+
+    assert os.path.isdir(template_dir), f'Directory {template_dir} does not exist'
+    assert os.path.exists(template_meta), f'No meta.info file found in {template_dir}'
+
+    with open(template_meta) as meta:
+        subs = []
+        for line in meta.readlines():
+            if line.startswith('subdefault'):
+                subs.append(line.split()[1])
+    return subs
+
 
 def generate_stationary_points(template, substituents=None, keep_dummy=False):
     template_dir = join(paths.SGT, template)
     template_meta = join(template_dir, 'meta.info')
 
-    
     assert os.path.isdir(template_dir), f'Directory {template_dir} does not exist'
     assert os.path.exists(template_meta), f'No meta.info file found in {template_dir}'
 

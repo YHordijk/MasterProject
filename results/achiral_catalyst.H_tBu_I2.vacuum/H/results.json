@@ -1,22 +1,22 @@
 {
   "files": {
-    "calc_path": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_tBu_I2.vacuum/H",
-    "res_path": "/scistor/tc/yhk800/MasterProject/results/achiral_catalyst.H_tBu_I2.vacuum/H",
-    "preopt log": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_tBu_I2.vacuum/H/GO.achiral_catalyst.H_tBu_I2.H_preopt.log",
-    "run script": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_tBu_I2.vacuum/H/GO.achiral_catalyst.H_tBu_I2.H",
-    "opt log": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_tBu_I2.vacuum/H/GO.achiral_catalyst.H_tBu_I2.H.log",
-    "preopt adfrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_tBu_I2.vacuum/H/GO.achiral_catalyst.H_tBu_I2.H_preopt.adf.rkf",
-    "opt adfrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_tBu_I2.vacuum/H/GO.achiral_catalyst.H_tBu_I2.H.adf.rkf",
-    "opt out": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_tBu_I2.vacuum/H/GO.achiral_catalyst.H_tBu_I2.H.out",
-    "run info": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_tBu_I2.vacuum/H/run.info",
-    "opt amsrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_tBu_I2.vacuum/H/GO.achiral_catalyst.H_tBu_I2.H.ams.rkf",
-    "preopt out": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_tBu_I2.vacuum/H/GO.achiral_catalyst.H_tBu_I2.H_preopt.out",
-    "preopt amsrkf": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_tBu_I2.vacuum/H/GO.achiral_catalyst.H_tBu_I2.H_preopt.ams.rkf",
-    "input xyz": "/scistor/tc/yhk800/MasterProject/calculations_test/achiral_catalyst.H_tBu_I2.vacuum/H/input.xyz"
+    "calc_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_I2.vacuum\\H",
+    "res_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_tBu_I2.vacuum\\H",
+    "run script": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_I2.vacuum\\H\\GO.achiral_catalyst.H_tBu_I2.H",
+    "opt adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_I2.vacuum\\H\\GO.achiral_catalyst.H_tBu_I2.H.adf.rkf",
+    "opt amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_I2.vacuum\\H\\GO.achiral_catalyst.H_tBu_I2.H.ams.rkf",
+    "opt log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_I2.vacuum\\H\\GO.achiral_catalyst.H_tBu_I2.H.log",
+    "opt out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_I2.vacuum\\H\\GO.achiral_catalyst.H_tBu_I2.H.out",
+    "preopt adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_I2.vacuum\\H\\GO.achiral_catalyst.H_tBu_I2.H_preopt.adf.rkf",
+    "preopt amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_I2.vacuum\\H\\GO.achiral_catalyst.H_tBu_I2.H_preopt.ams.rkf",
+    "preopt log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_I2.vacuum\\H\\GO.achiral_catalyst.H_tBu_I2.H_preopt.log",
+    "preopt out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_I2.vacuum\\H\\GO.achiral_catalyst.H_tBu_I2.H_preopt.out",
+    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_I2.vacuum\\H\\input.xyz",
+    "run info": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_I2.vacuum\\H\\run.info"
   },
   "info": {
     "substituents": [],
-    "unique": "achiral_catalyst.vacuum.GO.H.[].[].True.N/A",
+    "unique": "achiral_catalyst.vacuum.GO.H.[].[].True.N/A.OLYP.TZ2P.VeryGood",
     "reaction": "achiral_catalyst",
     "stationary point": "H",
     "task": "GO",
@@ -24,8 +24,11 @@
     "radical": "True",
     "phase": "vacuum",
     "enantiomer": "N/A",
-    "hash": "4cd9f7ec9c0e3dc73802e857448b11112388345e723ab6e5a692b1228e930aad",
-    "time silent": 28207
+    "functional": "OLYP",
+    "basis": "TZ2P",
+    "numerical_quality": "VeryGood",
+    "hash": "bd71c2832fbf3913cd653b0c4bfc91a1ecada7430064e431a382d8e1faa655e3",
+    "time silent": 140930
   },
   "pre opt": {
     "runtime": 2,
@@ -40,7 +43,7 @@
         0.0
       ]
     ],
-    "input xyz": "/scistor/tc/yhk800/MasterProject/results/achiral_catalyst.H_tBu_I2.vacuum/H/input_preopt.xyz",
+    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_tBu_I2.vacuum\\H\\input_preopt.xyz",
     "steps": 0,
     "status": "NORMAL TERMINATION",
     "bond energy": -0.03405426125832218,
@@ -59,7 +62,7 @@
         0.0
       ]
     ],
-    "input xyz": "/scistor/tc/yhk800/MasterProject/results/achiral_catalyst.H_tBu_I2.vacuum/H/input.xyz",
+    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_tBu_I2.vacuum\\H\\input.xyz",
     "steps": 0,
     "status": "NORMAL TERMINATION with warnings",
     "bond energy": -0.03405431096562917,

@@ -95,6 +95,7 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
 
         return files
 
+
     def get_info():
         general = {}
         general['substituents'] = []
@@ -103,7 +104,10 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
         if 'run info' in files:
             with open(files['run info']) as info:
                 for line in info.readlines():
-                    arg, val = line.strip().split('=')
+                    try:
+                        arg, val = line.strip().split('=')
+                    except:
+                        print(files['run info'])
 
                     if arg == 'reaction':
                         general['reaction'] = val
@@ -123,6 +127,13 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
                         general['substituents'].append((arg, val))
                     elif arg == 'unique':
                         general['unique'] = val
+                    elif arg == 'functional':
+                        general['functional'] = val
+                    elif arg == 'basis':
+                        general['basis'] = val
+                    elif arg == 'numerical_quality':
+                        general['numerical_quality'] = val
+
 
             if 'unique' in general:
                 general['hash'] = utility.hash2(general['unique'])
@@ -172,14 +183,17 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
 
         if amsrkf in files:
             ams = plams.KFFile(files[amsrkf])
+            try:
+                opt['natoms'] = ams.read('InputMolecule', 'nAtoms')
+                opt['elements'] = ams.read('InputMolecule', 'AtomSymbols').split()
+                c = ams.read('InputMolecule', 'Coords')
+                opt['input coords'] = [c[i:i+3] for i in range(0, len(c), 3)]
+                write_xyz(input_xyz, opt['elements'], opt['input coords'])
+                opt['input xyz'] = input_xyz
+            except:
+                pass
             
-            opt['natoms'] = ams.read('InputMolecule', 'nAtoms')
-            opt['elements'] = ams.read('InputMolecule', 'AtomSymbols').split()
-            c = ams.read('InputMolecule', 'Coords')
-            opt['input coords'] = [c[i:i+3] for i in range(0, len(c), 3)]
-            write_xyz(input_xyz, opt['elements'], opt['input coords'])
-            opt['input xyz'] = input_xyz
-
+            
             try:
                 opt['steps'] = ams.read('History', 'nEntries')
                 c = ams.read('History', f'Coords({opt["steps"]})')
@@ -333,6 +347,19 @@ class Result:
         return self.data['info'].get('hash', None)
 
     @property
+    def functional(self):
+        return self.data['info'].get('functional', None)
+
+    @property
+    def basis(self):
+        return self.data['info'].get('basis', None)
+
+    @property
+    def numerical_quality(self):
+        return self.data['info'].get('numerical_quality', None)
+    
+
+    @property
     def reaction(self):
         return self.data['info'].get('reaction', None)
 
@@ -379,8 +406,7 @@ class Result:
 
     @property
     def calc_path(self):
-        rel = os.path.relpath(self.path, paths.results)
-        return join(paths.master, 'calculations_test', rel)  
+        return utility.get_colliding_dirs(self.hash)[0]
 
     def _set_status(self):
         preopt_status = self.data['pre opt'].get('status', None)
@@ -456,7 +482,7 @@ def summarize_calculations(res, tabs=0):
     for r in res:
         if r.status != 'Running': continue
         if r.step == 'FREQ':
-            progress = f"{r.data['opt']['freq progress']}/{r.data['opt']['natoms']}"
+            progress = f"{r.data['opt'].get('freq progress','???')}/{r.data['opt'].get('natoms', '???')}"
         else:
             progress = ''
         l = '\t'*tabs + f'\t{r.reaction:{reaction_len}} | {r.stationary_point:{point_len}} | '
@@ -467,7 +493,7 @@ def summarize_calculations(res, tabs=0):
 
 
 if __name__ == '__main__':
-    res = get_all_results(calc_dir=join(paths.master, 'calculations_test'), regenerate_all=True)
+    res = get_all_results(calc_dir=paths.calculations, regenerate_all=True)
     summarize_calculations(res)
 
  
