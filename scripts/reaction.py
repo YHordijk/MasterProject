@@ -158,6 +158,7 @@ class Reaction:
 	@property
 	def all_energies_present(self):
 		profile = self.get_reaction_pathways()
+		print(self, profile)
 		# print(profile)
 		return all(all(e is not None for e in energy.values()) for energy in profile.values())
 	
