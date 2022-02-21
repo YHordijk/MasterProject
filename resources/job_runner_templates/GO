@@ -82,6 +82,9 @@ End
 NormalModes
   ReScanFreqRange -10000000.0 20.0 
 End
+PESPointCharacter
+    NegativeFrequenciesTolerance -30
+End
 
 Engine ADF
   
@@ -103,10 +106,6 @@ Engine ADF
   
   NumericalQuality [NUMERICALQUALITY]
   [RADICAL]
-
-  PESPointCharacter
-    NegativeFrequenciesTolerance -20
-  End
 ENDEngine
 
 eor

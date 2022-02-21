@@ -41,7 +41,7 @@
     "basis": "TZ2P",
     "numerical_quality": "VeryGood",
     "hash": "c8fc155f6014077a4f60761d5d5e29726dc30a7cd33035024749aaa352ae707b",
-    "time silent": 120892
+    "time silent": 610655
   },
   "pre opt": {
     "runtime": 2879,
@@ -388,7 +388,13 @@
     "output xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_tBu_TiCl4.vacuum\\P2_cat_complex\\output_preopt.xyz",
     "status": "NORMAL TERMINATION with errors",
     "bond energy": -5.655393383881445,
-    "step": "END"
+    "step": "END",
+    "warnings": [
+      "<Feb14-2022> <05:28:04>  WARNING: Geometry optimization did NOT converge\n"
+    ],
+    "errors": [
+      "<Feb14-2022> <05:28:04>  ERROR: Geometry optimization failed! (Did not converge.)\n"
+    ]
   },
   "opt": {
     "runtime": 10888,
@@ -736,7 +742,9 @@
     "status": "NORMAL TERMINATION",
     "bond energy": -5.656230139045311,
     "step": "END",
-    "freq progress": 30
+    "freq progress": 30,
+    "warnings": [],
+    "errors": []
   },
   "freq": {},
   "thermo": {

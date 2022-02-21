@@ -88,6 +88,9 @@ def get_sorted_dict_values(d):
 def hartree2kcalmol(v):
     return plams.Units.convert(v, 'Hartree', 'kcal/mol')
 
+def bohr2angstrom(v):
+    return plams.Units.convert(v, 'bohr', 'angstrom')
+
 
 def print_table(header, data, tabs=0):
     #data is provided as columns

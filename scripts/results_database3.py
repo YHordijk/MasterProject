@@ -67,7 +67,7 @@ def make_database(res, out_file=paths.results_table):
 
 
 if __name__ == '__main__':
-    res = job_results.get_all_results(paths.calculations, regenerate_all=False)
+    res = job_results.get_all_results(paths.calculations, regenerate_all=True)
     make_database(res)
 
     import excel

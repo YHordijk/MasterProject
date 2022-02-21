@@ -33,7 +33,7 @@
     "basis": "TZ2P",
     "numerical_quality": "VeryGood",
     "hash": "e58dcf6bc380a9f51bf3e728c1b52991e9f6ceb83bf3a20a31bc481c4f2803d0",
-    "time silent": 75829
+    "time silent": 565559
   },
   "pre opt": {
     "runtime": 13,
@@ -105,7 +105,9 @@
     "output xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_Ph_SnCl4.vacuum\\cat\\output_preopt.xyz",
     "status": "NORMAL TERMINATION",
     "bond energy": -0.5440166639913311,
-    "step": "END"
+    "step": "END",
+    "warnings": [],
+    "errors": []
   },
   "opt": {
     "runtime": 126,
@@ -178,7 +180,9 @@
     "status": "NORMAL TERMINATION",
     "bond energy": -0.544028913795487,
     "step": "END",
-    "freq progress": 5
+    "freq progress": 5,
+    "warnings": [],
+    "errors": []
   },
   "freq": {},
   "thermo": {

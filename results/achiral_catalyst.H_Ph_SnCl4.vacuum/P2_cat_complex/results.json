@@ -41,7 +41,7 @@
     "basis": "TZ2P",
     "numerical_quality": "VeryGood",
     "hash": "ac5bd2b8ae54bfa36bb5d43eede38259822983531a009a602624ec0dc195b8ca",
-    "time silent": 91807
+    "time silent": 581540
   },
   "pre opt": {
     "runtime": 2714,
@@ -366,7 +366,13 @@
     "output xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_Ph_SnCl4.vacuum\\P2_cat_complex\\output_preopt.xyz",
     "status": "NORMAL TERMINATION with errors",
     "bond energy": -5.521382520147343,
-    "step": "END"
+    "step": "END",
+    "warnings": [
+      "<Feb14-2022> <13:44:28>  WARNING: Geometry optimization did NOT converge\n"
+    ],
+    "errors": [
+      "<Feb14-2022> <13:44:28>  ERROR: Geometry optimization failed! (Did not converge.)\n"
+    ]
   },
   "opt": {
     "runtime": 10040,
@@ -692,7 +698,11 @@
     "status": "NORMAL TERMINATION with errors",
     "bond energy": -5.523096929107696,
     "step": "END",
-    "freq progress": 28
+    "freq progress": 28,
+    "warnings": [],
+    "errors": [
+      "<Feb14-2022> <16:34:33>  ERROR: Geometry optimization failed! (Converged, but did not find a minimum on the PES.)\n"
+    ]
   },
   "freq": {},
   "thermo": {

@@ -1,0 +1,86 @@
+{
+  "files": {
+    "calc_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.H_Ph.vacuum\\H",
+    "res_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\no_catalyst.H_Ph.vacuum\\H",
+    "run script": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.H_Ph.vacuum\\H\\GO.no_catalyst.H_Ph.H",
+    "opt adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.H_Ph.vacuum\\H\\GO.no_catalyst.H_Ph.H.adf.rkf",
+    "opt amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.H_Ph.vacuum\\H\\GO.no_catalyst.H_Ph.H.ams.rkf",
+    "opt log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.H_Ph.vacuum\\H\\GO.no_catalyst.H_Ph.H.log",
+    "opt out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.H_Ph.vacuum\\H\\GO.no_catalyst.H_Ph.H.out",
+    "preopt adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.H_Ph.vacuum\\H\\GO.no_catalyst.H_Ph.H_preopt.adf.rkf",
+    "preopt amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.H_Ph.vacuum\\H\\GO.no_catalyst.H_Ph.H_preopt.ams.rkf",
+    "preopt log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.H_Ph.vacuum\\H\\GO.no_catalyst.H_Ph.H_preopt.log",
+    "preopt out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.H_Ph.vacuum\\H\\GO.no_catalyst.H_Ph.H_preopt.out",
+    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.H_Ph.vacuum\\H\\input.xyz",
+    "run info": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.H_Ph.vacuum\\H\\run.info"
+  },
+  "info": {
+    "substituents": [],
+    "unique": "no_catalyst.vacuum.GO.H.[].[].True.N/A.BLYP-D3(BJ).TZ2P.Good",
+    "reaction": "no_catalyst",
+    "stationary point": "H",
+    "task": "GO",
+    "TSRC": "N\\A",
+    "radical": "True",
+    "phase": "vacuum",
+    "enantiomer": "N/A",
+    "functional": "BLYP-D3(BJ)",
+    "basis": "TZ2P",
+    "numerical_quality": "Good",
+    "hash": "0bf0b6a85049d188c403c8fcfb474b0e9ba6b0ebe9d6dbcdc4a75e6563889c71",
+    "time silent": 497839
+  },
+  "pre opt": {
+    "runtime": 3,
+    "natoms": 1,
+    "elements": [
+      "H"
+    ],
+    "input coords": [
+      [
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\no_catalyst.H_Ph.vacuum\\H\\input_preopt.xyz",
+    "steps": 0,
+    "status": "NORMAL TERMINATION",
+    "bond energy": -0.035287110344408894,
+    "step": "END",
+    "warnings": [],
+    "errors": []
+  },
+  "opt": {
+    "runtime": 7,
+    "natoms": 1,
+    "elements": [
+      "H"
+    ],
+    "input coords": [
+      [
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\no_catalyst.H_Ph.vacuum\\H\\input.xyz",
+    "steps": 0,
+    "status": "NORMAL TERMINATION with warnings",
+    "bond energy": -0.03528715045658698,
+    "step": "END",
+    "freq progress": 1,
+    "warnings": [
+      "<Feb15-2022> <15:50:13>  WARNING: CPKS failed to converge. Frequencies may be wrong\n",
+      "<Feb15-2022> <15:50:13>  WARNING: CPKS failed to converge. Frequencies may be wrong\n",
+      "<Feb15-2022> <15:50:14>  WARNING: CPKS failed to converge. Frequencies may be wrong\n"
+    ],
+    "errors": []
+  },
+  "freq": {},
+  "thermo": {
+    "gibbs": -0.04528685193323458,
+    "enthalpy": -0.032926685422872505
+  },
+  "misc": {}
+}

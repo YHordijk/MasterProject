@@ -35,7 +35,7 @@
     "basis": "TZ2P",
     "numerical_quality": "VeryGood",
     "hash": "f64973fc34ac0fa0b2aba3e0ba0cf0a0ca0642a6519d0e4763866ea401986bad",
-    "time silent": 1167433
+    "time silent": 1657171
   },
   "pre opt": {
     "runtime": 0
@@ -364,7 +364,9 @@
     "status": "NORMAL TERMINATION",
     "bond energy": -5.748927140297014,
     "step": "END",
-    "freq progress": 28
+    "freq progress": 28,
+    "warnings": [],
+    "errors": []
   },
   "freq": {},
   "thermo": {

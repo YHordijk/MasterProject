@@ -1,0 +1,193 @@
+{
+  "files": {
+    "calc_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_SnCl4.vacuum\\cat.002",
+    "res_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_Ph_SnCl4.vacuum\\cat.002",
+    "run script": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_SnCl4.vacuum\\cat.002\\GO.achiral_catalyst.H_Ph_SnCl4.cat",
+    "opt adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_SnCl4.vacuum\\cat.002\\GO.achiral_catalyst.H_Ph_SnCl4.cat.adf.rkf",
+    "opt amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_SnCl4.vacuum\\cat.002\\GO.achiral_catalyst.H_Ph_SnCl4.cat.ams.rkf",
+    "opt log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_SnCl4.vacuum\\cat.002\\GO.achiral_catalyst.H_Ph_SnCl4.cat.log",
+    "opt out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_SnCl4.vacuum\\cat.002\\GO.achiral_catalyst.H_Ph_SnCl4.cat.out",
+    "preopt adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_SnCl4.vacuum\\cat.002\\GO.achiral_catalyst.H_Ph_SnCl4.cat_preopt.adf.rkf",
+    "preopt amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_SnCl4.vacuum\\cat.002\\GO.achiral_catalyst.H_Ph_SnCl4.cat_preopt.ams.rkf",
+    "preopt log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_SnCl4.vacuum\\cat.002\\GO.achiral_catalyst.H_Ph_SnCl4.cat_preopt.log",
+    "preopt out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_SnCl4.vacuum\\cat.002\\GO.achiral_catalyst.H_Ph_SnCl4.cat_preopt.out",
+    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_SnCl4.vacuum\\cat.002\\input.xyz",
+    "run info": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_SnCl4.vacuum\\cat.002\\run.info"
+  },
+  "info": {
+    "substituents": [
+      [
+        "Rcat",
+        "SnCl4"
+      ]
+    ],
+    "unique": "achiral_catalyst.vacuum.GO.cat.['SnCl4'].[].False.N/A.BLYP-D3(BJ).TZ2P.Good",
+    "reaction": "achiral_catalyst",
+    "stationary point": "cat",
+    "task": "GO",
+    "TSRC": "N\\A",
+    "radical": "False",
+    "phase": "vacuum",
+    "enantiomer": "N/A",
+    "functional": "BLYP-D3(BJ)",
+    "basis": "TZ2P",
+    "numerical_quality": "Good",
+    "hash": "337a624b67e08d6ce846a9712aa1ec18b3e9700bdd1d70e1e0dff8dba500ef13",
+    "time silent": 498127
+  },
+  "pre opt": {
+    "runtime": 13,
+    "natoms": 5,
+    "elements": [
+      "Sn",
+      "Cl",
+      "Cl",
+      "Cl",
+      "Cl"
+    ],
+    "input coords": [
+      [
+        2.4448581370166966,
+        -3.239385379190527,
+        2.913657236616383
+      ],
+      [
+        0.5854458650464981,
+        -6.7906343016322595,
+        1.2011984584810782
+      ],
+      [
+        0.16733660893842167,
+        -1.9584922000542722,
+        6.397622347007248
+      ],
+      [
+        6.539453190160767,
+        -4.1661375519893955,
+        4.067511271558799
+      ],
+      [
+        2.4377467007672435,
+        0.0,
+        0.0
+      ]
+    ],
+    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_Ph_SnCl4.vacuum\\cat.002\\input_preopt.xyz",
+    "steps": 4,
+    "output coords": [
+      [
+        2.432513114912646,
+        -3.233997052990862,
+        2.9131258833124143
+      ],
+      [
+        0.5499573522061,
+        -6.836900064673961,
+        1.1585906759941118
+      ],
+      [
+        0.14507490004457016,
+        -1.9549511703229563,
+        6.483894478088261
+      ],
+      [
+        6.5964334513007,
+        -4.163809029605082,
+        4.098678781406751
+      ],
+      [
+        2.4508616834656114,
+        0.0350078847264086,
+        -0.07430050513803027
+      ]
+    ],
+    "output energy": -0.5408084258646484,
+    "output xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_Ph_SnCl4.vacuum\\cat.002\\output_preopt.xyz",
+    "status": "NORMAL TERMINATION",
+    "bond energy": -0.5408084258028025,
+    "step": "END",
+    "warnings": [],
+    "errors": []
+  },
+  "opt": {
+    "runtime": 52,
+    "natoms": 5,
+    "elements": [
+      "Sn",
+      "Cl",
+      "Cl",
+      "Cl",
+      "Cl"
+    ],
+    "input coords": [
+      [
+        2.432513123162354,
+        -3.2339970519132915,
+        2.913125883424661
+      ],
+      [
+        0.5499573564466023,
+        -6.836900069498986,
+        1.1585906712683123
+      ],
+      [
+        0.1450748981971415,
+        -1.9549511745501644,
+        6.483894486206319
+      ],
+      [
+        6.596433440592463,
+        -4.163809031458631,
+        4.098678789093909
+      ],
+      [
+        2.450861683531065,
+        0.0350078756573585,
+        -0.07430049743243224
+      ]
+    ],
+    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_Ph_SnCl4.vacuum\\cat.002\\input.xyz",
+    "steps": 2,
+    "output coords": [
+      [
+        2.4334038051702613,
+        -3.232154991740466,
+        2.91494900030898
+      ],
+      [
+        0.5516191779797316,
+        -6.834155752425218,
+        1.1596510749163285
+      ],
+      [
+        0.14304914829201582,
+        -1.9558757823789508,
+        6.483378934681429
+      ],
+      [
+        6.596642758636719,
+        -4.165753448993442,
+        4.097028434010364
+      ],
+      [
+        2.450125611850898,
+        0.03329052377436346,
+        -0.07501811135633375
+      ]
+    ],
+    "output energy": -0.5407816562349944,
+    "output xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_Ph_SnCl4.vacuum\\cat.002\\output.xyz",
+    "status": "NORMAL TERMINATION",
+    "bond energy": -0.5407816563369734,
+    "step": "END",
+    "freq progress": 5,
+    "warnings": [],
+    "errors": []
+  },
+  "freq": {},
+  "thermo": {
+    "gibbs": -0.5723231626288782,
+    "enthalpy": -0.5275197916504457
+  },
+  "misc": {}
+}

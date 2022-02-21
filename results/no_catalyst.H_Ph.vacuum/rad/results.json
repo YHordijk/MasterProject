@@ -1,0 +1,166 @@
+{
+  "files": {
+    "calc_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.H_Ph.vacuum\\rad",
+    "res_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\no_catalyst.H_Ph.vacuum\\rad",
+    "run script": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.H_Ph.vacuum\\rad\\GO.no_catalyst.H_Ph.rad",
+    "opt adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.H_Ph.vacuum\\rad\\GO.no_catalyst.H_Ph.rad.adf.rkf",
+    "opt amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.H_Ph.vacuum\\rad\\GO.no_catalyst.H_Ph.rad.ams.rkf",
+    "opt log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.H_Ph.vacuum\\rad\\GO.no_catalyst.H_Ph.rad.log",
+    "opt out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.H_Ph.vacuum\\rad\\GO.no_catalyst.H_Ph.rad.out",
+    "preopt adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.H_Ph.vacuum\\rad\\GO.no_catalyst.H_Ph.rad_preopt.adf.rkf",
+    "preopt amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.H_Ph.vacuum\\rad\\GO.no_catalyst.H_Ph.rad_preopt.ams.rkf",
+    "preopt log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.H_Ph.vacuum\\rad\\GO.no_catalyst.H_Ph.rad_preopt.log",
+    "preopt out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.H_Ph.vacuum\\rad\\GO.no_catalyst.H_Ph.rad_preopt.out",
+    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.H_Ph.vacuum\\rad\\input.xyz",
+    "run info": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.H_Ph.vacuum\\rad\\run.info"
+  },
+  "info": {
+    "substituents": [],
+    "unique": "no_catalyst.vacuum.GO.rad.[].[].True.N/A.BLYP-D3(BJ).TZ2P.Good",
+    "reaction": "no_catalyst",
+    "stationary point": "rad",
+    "task": "GO",
+    "TSRC": "N\\A",
+    "radical": "True",
+    "phase": "vacuum",
+    "enantiomer": "N/A",
+    "functional": "BLYP-D3(BJ)",
+    "basis": "TZ2P",
+    "numerical_quality": "Good",
+    "hash": "e6fb6b5fd73ede1199eba5b1417189aa60869a53a9b42435b09bb5358e052c33",
+    "time silent": 497942
+  },
+  "pre opt": {
+    "runtime": 7,
+    "natoms": 4,
+    "elements": [
+      "H",
+      "C",
+      "H",
+      "H"
+    ],
+    "input coords": [
+      [
+        3.8580647993441888,
+        -1.6699755427714131,
+        -0.07194183576998059
+      ],
+      [
+        2.051116767004841,
+        -0.7185977819247096,
+        -0.0014042554832094099
+      ],
+      [
+        1.1225249647209108,
+        -0.42209960179283623,
+        1.794322677614417
+      ],
+      [
+        1.1951038838592862,
+        -0.022370199918094944,
+        -1.720976586361227
+      ]
+    ],
+    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\no_catalyst.H_Ph.vacuum\\rad\\input_preopt.xyz",
+    "steps": 3,
+    "output coords": [
+      [
+        3.8614191913383076,
+        -1.6756478296508128,
+        -0.07272181678304822
+      ],
+      [
+        2.0559176574728664,
+        -0.7094883543751698,
+        -0.00016955311911455358
+      ],
+      [
+        1.1182094388952162,
+        -0.42434307829924894,
+        1.7993306433317415
+      ],
+      [
+        1.1912641272228368,
+        -0.02356386408182226,
+        -1.7264392734295788
+      ]
+    ],
+    "output energy": -0.6441981496351862,
+    "output xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\no_catalyst.H_Ph.vacuum\\rad\\output_preopt.xyz",
+    "status": "NORMAL TERMINATION",
+    "bond energy": -0.6441981496347865,
+    "step": "END",
+    "warnings": [],
+    "errors": []
+  },
+  "opt": {
+    "runtime": 21,
+    "natoms": 4,
+    "elements": [
+      "H",
+      "C",
+      "H",
+      "H"
+    ],
+    "input coords": [
+      [
+        3.861419195496228,
+        -1.675647820296135,
+        -0.07272182022791987
+      ],
+      [
+        2.055917654018975,
+        -0.709488357140951,
+        -0.0001695462279014241
+      ],
+      [
+        1.1182094349646254,
+        -0.4243430846479919,
+        1.7993306408172878
+      ],
+      [
+        1.191264130449398,
+        -0.023563864321976057,
+        -1.7264392743614665
+      ]
+    ],
+    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\no_catalyst.H_Ph.vacuum\\rad\\input.xyz",
+    "steps": 2,
+    "output coords": [
+      [
+        3.8609781315912564,
+        -1.6756964905245086,
+        -0.07267759288710693
+      ],
+      [
+        2.0562947135541148,
+        -0.7088583494304762,
+        -7.592494839051333e-05
+      ],
+      [
+        1.1182976941208018,
+        -0.42461529801770864,
+        1.798870040259814
+      ],
+      [
+        1.1912398756630536,
+        -0.023872988434360243,
+        -1.7261165224243162
+      ]
+    ],
+    "output energy": -0.6441493714479212,
+    "output xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\no_catalyst.H_Ph.vacuum\\rad\\output.xyz",
+    "status": "NORMAL TERMINATION",
+    "bond energy": -0.6441493714471265,
+    "step": "END",
+    "freq progress": 4,
+    "warnings": [],
+    "errors": []
+  },
+  "freq": {},
+  "thermo": {
+    "gibbs": -0.6342108047400339,
+    "enthalpy": -0.6111041001380799
+  },
+  "misc": {}
+}

@@ -7,6 +7,8 @@ import matplotlib.pyplot as plt
 import json
 
 
+b2a = utility.bohr2angstrom
+
 np.seterr(all='raise')
 
 
@@ -39,7 +41,7 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
 
     def get_files():
         files = {}
-        job_name = os.path.basename(calc_path)
+        job_name = os.path.basename(calc_path).split('.')[0]
 
         #preopt file endings:
         preopt_adf_kf = f'{job_name}_preopt.adf.rkf'
@@ -163,7 +165,7 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
                 xyz.write(str(len(elements)))
                 xyz.write(f'\n{comment}\n')
                 for e, c in zip(elements, coords):
-                    xyz.write(f'{e:2}\t{c[0]:11.9f}\t{c[1]:11.9f}\t{c[2]:11.9f}\n')
+                    xyz.write(f'{e:2}\t{b2a(c[0]):11.9f}\t{b2a(c[1]):11.9f}\t{b2a(c[2]):11.9f}\n')
 
         opt = {}
         files = data['files'] 
@@ -226,7 +228,15 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
                 if any('NORMAL TERMINATION' in line for line in lines):
                     opt['step'] = 'END'
 
+                warning_lines = [line for line in lines if 'WARNING:' in line]
+                warning_lines = [l for l in warning_lines if 'total elapsed time is much higher than the (CPU+system) time' not in l]
+                opt['warnings'] = warning_lines
+
+                error_lines = [line for line in lines if 'ERROR:' in line]
+                opt['errors'] = error_lines
+
         return opt
+
 
     def get_freq_data():
         freq = {}
@@ -280,7 +290,7 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
     return Result(join(res_path))
 
 
-def get_all_results(calc_dir=paths.calculations, res_dir=paths.results, regenerate_all=True):
+def get_all_results(calc_dir=paths.calculations, res_dir=paths.results, regenerate_all=False):
     def check_regenerate(calc_path, res_path):
         check = False
         reason = 'None'
@@ -294,7 +304,7 @@ def get_all_results(calc_dir=paths.calculations, res_dir=paths.results, regenera
 
         #if it does exist check the status
         try:
-            r = Result(res_path)
+            r = Result(res_path, calc_path=calc_path)
             if r.status in ['Running', 'Queued', 'Canceled']:
                 reason = 'calc still running'
                 check = True
@@ -302,23 +312,25 @@ def get_all_results(calc_dir=paths.calculations, res_dir=paths.results, regenera
             pass
         return check
 
-
+    calc_path_dict = {}
     for calc_path in get_all_run_dirs(calc_dir):
         res_path = join(res_dir, os.path.relpath(calc_path, calc_dir))
+        calc_path_dict[res_path] = calc_path
         if check_regenerate(calc_path, res_path):
             generate_result(calc_path, calc_dir=calc_dir, res_dir=res_dir)
     
     res = []
     for res_path in get_all_result_dirs(res_dir):
-        r = Result(res_path)
+        r = Result(res_path, calc_path=calc_path_dict.get(res_path, None))
         res.append(r)
 
     return res
 
 
 class Result:
-    def __init__(self, path):
+    def __init__(self, path, calc_path=None):
         self.path = path
+        self._calc_path = calc_path
         self.data = self.read_data()
         self._set_status()
 
@@ -358,7 +370,6 @@ class Result:
     def numerical_quality(self):
         return self.data['info'].get('numerical_quality', None)
     
-
     @property
     def reaction(self):
         return self.data['info'].get('reaction', None)
@@ -406,7 +417,12 @@ class Result:
 
     @property
     def calc_path(self):
-        return utility.get_colliding_dirs(self.hash)[0]
+        return self._calc_path
+
+    @property
+    def natoms(self):
+        return self.data['opt'].get('natoms')
+    
 
     def _set_status(self):
         preopt_status = self.data['pre opt'].get('status', None)
@@ -418,8 +434,7 @@ class Result:
 
         if preopt_status in ['IN PROGRESS', 'NORMAL TERMINATION']:
             self.status = 'Running'
-
-        if opt_status is None:
+        if opt_status is None: 
             return 
         if opt_status == 'IN PROGRESS':
             self.status = 'Running'
@@ -427,6 +442,8 @@ class Result:
             self.status = 'Success'
         elif 'warnings' in opt_status:
             self.status = 'Warning'
+        elif 'errors' in opt_status:
+            self.status = 'Error'
         else:
             self.status = 'Failed'
 
@@ -437,30 +454,30 @@ class Result:
             if time/3600 >= 2:
                 self.status = 'Canceled'
 
-        # if self.status == 'Warning':
-        #     with open(self.data['files']['opt log']) as log:
-        #         lines = log.readlines()
-        #         warning_lines = [line for line in lines if 'WARNING:' in line]
-        #         warning_lines = [l for l in warning_lines if 'total elapsed time is much higher than the (CPU+system) time' not in l]
-        #         if len(warning_lines) > 0:
-        #             self.data['info']['warnings'] = warning_lines
-        #         else:
-        #             self.status = 'Success'
-        
+        if self.status == 'Warning':
+            warnings = self.data['opt']['warnings']
+            if len(warnings) == 0:
+                self.status = 'Success'
+            else:
+                if all('CPKS failed to converge' in warning for warning in warnings):
+                    if self.natoms == 1:
+                        self.status = 'Success'
 
 
+    
 def summarize_calculations(res, tabs=0):
     statuses = [r.status for r in res]
     njobs = len(statuses)
     nSuccess = statuses.count('Success')
     nFailed = statuses.count('Failed')
     nWarn = statuses.count('Warning')
+    nError = statuses.count('Error')
     nQueued = statuses.count('Queued')
     nRunning = statuses.count('Running')
     nCanceled = statuses.count('Canceled')
 
     print('\t'*tabs + f'Found {njobs} jobs!')
-    print('\t'*tabs + f'\tSuccessful     = {nSuccess+nWarn} ({nWarn} warnings)')
+    print('\t'*tabs + f'\tSuccessful     = {nSuccess+nWarn+nError} ({nWarn} warnings, {nError} errors)')
     print('\t'*tabs + f'\tFailed         = {nFailed}')
     print('\t'*tabs + f'\tCanceled       = {nCanceled}')
     print('\t'*tabs + f'\tQueued         = {nQueued}')
@@ -491,9 +508,18 @@ def summarize_calculations(res, tabs=0):
         print(l)
     print()
 
+def print_failed(res, tabs=0):
+    failed = [r for r in res if r.status == 'Failed']
+    print(f'Found {len(failed)} failed jobs')
+    for r in failed:
+        print(r.calc_path)
+
 
 if __name__ == '__main__':
-    res = get_all_results(calc_dir=paths.calculations, regenerate_all=True)
+    calc_dir = join(paths.master, 'calculations_test')
+    calc_dir = paths.calculations
+    res = get_all_results(calc_dir=calc_dir, regenerate_all=True)
     summarize_calculations(res)
+    print_failed(res)
 
  

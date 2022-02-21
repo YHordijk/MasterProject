@@ -28,7 +28,7 @@
     "basis": "TZ2P",
     "numerical_quality": "VeryGood",
     "hash": "bd71c2832fbf3913cd653b0c4bfc91a1ecada7430064e431a382d8e1faa655e3",
-    "time silent": 140930
+    "time silent": 630682
   },
   "pre opt": {
     "runtime": 2,
@@ -47,7 +47,9 @@
     "steps": 0,
     "status": "NORMAL TERMINATION",
     "bond energy": -0.03405426125832218,
-    "step": "END"
+    "step": "END",
+    "warnings": [],
+    "errors": []
   },
   "opt": {
     "runtime": 5,
@@ -67,7 +69,13 @@
     "status": "NORMAL TERMINATION with warnings",
     "bond energy": -0.03405431096562917,
     "step": "END",
-    "freq progress": 1
+    "freq progress": 1,
+    "warnings": [
+      "<Feb14-2022> <02:55:49>  WARNING: CPKS failed to converge. Frequencies may be wrong\n",
+      "<Feb14-2022> <02:55:50>  WARNING: CPKS failed to converge. Frequencies may be wrong\n",
+      "<Feb14-2022> <02:55:50>  WARNING: CPKS failed to converge. Frequencies may be wrong\n"
+    ],
+    "errors": []
   },
   "freq": {},
   "thermo": {

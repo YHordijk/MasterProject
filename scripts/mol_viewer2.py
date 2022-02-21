@@ -20,6 +20,16 @@ def show(mols, simple=False):
 	scr.draw_molecules(mols)
 
 
+def show_results(results, simple=False):
+	mol_files = [r.data['opt'].get('output xyz', r.data['opt']['input xyz']) for r in results]
+	mols = [molecule.load_molecule(f) for f in mol_files]
+	scr = screen.Screen(size=(1600, 900))
+	if simple:
+		scr.draw_mode = 'simple'
+	[mol.center() for mol in mols]
+	scr.draw_molecules(mols)
+
+
 if __name__ == '__main__':
 	if len(sys.argv) > 1:
 		mol = molecule.load_molecule(sys.argv[1])

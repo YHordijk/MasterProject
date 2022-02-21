@@ -28,7 +28,7 @@
     "basis": "TZ2P",
     "numerical_quality": "VeryGood",
     "hash": "f63c0c4f0e9bd3fbafc1b4969f76dea25f333b34799ce6a2fb3b28ce8e3ffca2",
-    "time silent": 153941
+    "time silent": 643713
   },
   "pre opt": {
     "runtime": 4,
@@ -89,7 +89,9 @@
     "output xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\no_catalyst.H_H.vacuum\\rad\\output_preopt.xyz",
     "status": "NORMAL TERMINATION",
     "bond energy": -0.6478261870243931,
-    "step": "END"
+    "step": "END",
+    "warnings": [],
+    "errors": []
   },
   "opt": {
     "runtime": 45,
@@ -151,7 +153,9 @@
     "status": "NORMAL TERMINATION",
     "bond energy": -0.647782267592094,
     "step": "END",
-    "freq progress": 4
+    "freq progress": 4,
+    "warnings": [],
+    "errors": []
   },
   "freq": {},
   "thermo": {

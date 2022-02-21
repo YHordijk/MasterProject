@@ -40,7 +40,7 @@
     "basis": "TZ2P",
     "numerical_quality": "VeryGood",
     "hash": "614595405c98112f0634abee410e56a4c7a4b069d21a22e9b2cc3180b89bb847",
-    "time silent": 70985
+    "time silent": 560737
   },
   "pre opt": {
     "runtime": 1173,
@@ -365,7 +365,9 @@
     "output xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_tBu_BF3.vacuum\\TS\\output_preopt.xyz",
     "status": "NORMAL TERMINATION",
     "bond energy": -5.5004749995958075,
-    "step": "END"
+    "step": "END",
+    "warnings": [],
+    "errors": []
   },
   "opt": {
     "runtime": 10903,
@@ -691,7 +693,9 @@
     "status": "NORMAL TERMINATION",
     "bond energy": -5.500436887990227,
     "step": "END",
-    "freq progress": 28
+    "freq progress": 28,
+    "warnings": [],
+    "errors": []
   },
   "freq": {},
   "thermo": {

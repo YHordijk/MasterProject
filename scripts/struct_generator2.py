@@ -20,6 +20,17 @@ def get_all_substituents(template):
     return subs
 
 
+def get_all_stationary_points(template):
+    template_dir = join(paths.SGT, template)
+    assert os.path.isdir(template_dir), f'Directory {template_dir} does not exist'
+
+    sps = set()
+    for file in os.listdir(template_dir):
+        if file.endswith('.xyz'):
+            sps.add(file[:-4])
+    return sps
+
+
 def generate_stationary_points(template, substituents=None, keep_dummy=False):
     template_dir = join(paths.SGT, template)
     template_meta = join(template_dir, 'meta.info')
@@ -151,6 +162,7 @@ def generate_stationary_points(template, substituents=None, keep_dummy=False):
 
             #substitute the molecule
             main_conn = main_conns[sub_name]
+            # print(sub_name, template, substituents, mol.name)
             mol.substitute(main_conn, sub_mol, sub_conn, bond_length=mol.substituent_dist[sub_name])
 
         [mol.delete_atom(a) for a in mol.delete_atoms]

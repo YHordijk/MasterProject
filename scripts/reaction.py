@@ -1,9 +1,12 @@
 import paths, os
 import results_database3 as results_database
 from utility import hartree2kcalmol as h2k
-import struct_generator2, mol_viewer2, job_results3
+import struct_generator2, job_results3
 import matplotlib.pyplot as plt
 import itertools
+
+try: import mol_viewer2
+except: raise
 
 
 join = os.path.join
@@ -34,17 +37,19 @@ def show_reaction(template, substituents=None, simple=False):
 	mol_viewer2.show(list(mols.values()), simple=simple)
 
 
-def get_reaction_results(template, substituents):
-	print(f'Searching for reactions matching: reaction={template}, ' + ', '.join(f'{R}={sub}' for R, sub in substituents.items()))
-	results = job_results3.get_all_results(calc_dir=join(paths.master, 'calculations_test'))
+def get_reaction_results(template, substituents, functional, basis, quality, silent=False):
+	if not silent: print(f'Searching for reactions matching: reaction={template}, ' + ', '.join(f'{R}={sub}' for R, sub in substituents.items()))
+	results = job_results3.get_all_results(calc_dir=paths.calculations)
 
 	#filter the results
 	results = [r for r in results if r.reaction == template] #first filter by template
-	results = [r for r in results if all(sub == substituents[R] for R, sub in r.substituents)]
+	results = [r for r in results if all(sub == substituents[R] for R, sub in r.substituents.items())]
+	results = [r for r in results if all((r.functional == functional, r.basis == basis, r.numerical_quality == quality))]
 	
-	print(f'Found {len(results)} results')
-	for r in results:
-		print(f'\t{r.stationary_point}, {r.status}')
+	if not silent:
+		print(f'Found {len(results)} results')
+		for r in results:
+			print(f'\t{r.stationary_point}, {r.status}')
 	return results
 
 
@@ -55,6 +60,8 @@ def get_reaction_profile(res):
 
 	reaction = res[0].reaction
 	res = {r.stationary_point: r for r in res}
+
+	fig, ax = plt.subplots(1,1) 
 
 	if reaction == 'urea_tBu_Ph':
 		Renergies = [res['sub'].gibbs + res['cat'].gibbs + res['H'].gibbs + res['rad'].gibbs,
@@ -71,29 +78,35 @@ def get_reaction_profile(res):
 					 res['P2S_cat_complex'].gibbs,
 					 res['P2'].gibbs + res['cat'].gibbs]
 		Senergies = [h2k(R - Senergies[0]) for R in Senergies]
-		labels = ['R', 'RC', 'TS', 'P1C', 'P2C', 'P']
+		sps = ['R', 'RC', 'TS', 'P1C', 'P2C', 'P']
 
+		trends = {'(R)':Renergies, '(S)':Senergies}
 
-		fig, ax = plt.subplots(1,1) 
+	if reaction == 'no_catalyst':
+		energies = [res['sub'].gibbs + res['H'].gibbs + res['rad'].gibbs,
+					res['TS'].gibbs + res['H'].gibbs,
+					res['P1'].gibbs + res['H'].gibbs,
+					res['P2'].gibbs]
 
-		plot_path(Renergies, '(R)')
-		plot_path(Senergies, '(S)')
+		trends = {'':energies}
 
-		ax.set_xticks(range(len(labels)))
-		ax.set_xticklabels(labels)
-		plt.legend()
-		plt.show()
+	[plot(t, l) for t, l in trends.items()]
+	plt.gca.set_xticks(range(len(sps)))
+	plt.gca.set_xticklabels(sps)
+	plt.legend()
+	plt.show()
 
 
 def get_all_reactions(res_dir=paths.results):
 	res = job_results3.get_all_results(res_dir=res_dir)
 	reaction_names = set(r.reaction for r in res)
+	reactions = []
 	for rn in reaction_names:
 		all_subs = struct_generator2.get_all_substituents(rn)
-		bases = set(r.basis for r in res)
-		functionals = set(r.functional for r in res)
-		qualities = set(r.numerical_quality for r in res)
-		phases = set(r.phase for r in res)
+		bases = set(r.basis for r in res if not r.basis is None)
+		functionals = set(r.functional for r in res if not r.functional is None)
+		qualities = set(r.numerical_quality for r in res if not r.numerical_quality is None)
+		phases = set(r.phase for r in res if not r.phase is None)
 		used_subs = {s: set(r.substituents[s] for r in res if s in r.substituents) for s in all_subs}
 
 		#filter based on settings:
@@ -102,31 +115,29 @@ def get_all_reactions(res_dir=paths.results):
 			for functional in functionals:
 				for quality in qualities:
 					for phase in phases:
-						check = lambda r: all((r.reaction == rn, r.basis == basis, r.functional == functional, r.numerical_quality == quality, r.phase == phase))
-						settings_filtered.append([r for r in res if check(r)])
-		#filter based on substituents
-		subs_filtered = []
-		sub_products = list(itertools.product(*used_subs.values()))
-		for sres in settings_filtered:
-			for product in sub_products:
-				check = lambda r: all(r.substituents.get(s, None) in [p, None] for s, p in zip(all_subs, product))
-				rta = [r for r in sres if check(r)]
-				if len(rta) > 3:
-					subs_filtered.append(rta)
+						subs_filtered = []
+						sub_products = list(itertools.product(*used_subs.values()))
 
-		for rss in subs_filtered:
-			print(len(rss))
-			print(sorted([r.stationary_point for r in rss]))
+						for product in sub_products:
+							substituents = {sn:p for sn, p in zip(used_subs.keys(), product)}
+							R = Reaction(rn, substituents, functional, basis, quality)
+							if R.complete:
+								reactions.append(R)	
 
-
-
+	return reactions
 
 
 class Reaction:
-	def __init__(self, reaction, substituents):
+	def __init__(self, reaction, substituents, functional='OLYP', basis='TZ2P', numerical_quality='VeryGood'):
 		self.reaction = reaction 
 		self.substituents = substituents
-		self.results = get_reaction_results(self.reaction, self.substituents)
+		self.functional = functional
+		self.basis = basis 
+		self.numerical_quality = numerical_quality
+		self.results = get_reaction_results(self.reaction, self.substituents, functional, basis, numerical_quality, silent=True)
+
+	def __repr__(self):
+		return f'{self.reaction} ({", ".join(f"{R}={s}" for R, s in self.substituents.items())}) @ ({self.basis}/{self.functional}, numerical_quality={self.numerical_quality})'
 
 	def print_reaction(self):
 		print(f'Reaction: {self.reaction}')
@@ -142,8 +153,90 @@ class Reaction:
 		return {r.enantiomer for r in self.results if r.enantiomer != 'N/A'}
 
 	@property
+	def all_stationary_points_present(self):
+		return len(self.missing_stationary_points) == 0
+
+	@property
+	def missing_stationary_points(self):
+		expected_sp = struct_generator2.get_all_stationary_points(self.reaction)
+		return expected_sp - set(r.stationary_point for r in self.results)
+
+	@property
 	def complete(self):
-		return all(r.status in ['Success', 'Warning', 'Failed'] for r in self.results)
+		finished = all(r.status in ['Success', 'Warning', 'Failed', 'Error'] for r in self.results)
+		all_present = self.all_stationary_points_present
+		return finished and all_present
+
+	def show(self, simple=False):
+		mol_viewer2.show_results(self.results, simple=simple)
+
+	def get_reaction_pathway(self, name=''):
+		res = self.results
+		res = {r.stationary_point: r for r in res}
+
+		if self.reaction == 'urea_tBu_Ph':
+			Renergies = {'R':   res['sub'].gibbs 				+ res['cat'].gibbs 	+ res['H'].gibbs 	+ res['rad'].gibbs,
+						 'RC':  res['sub_cat_complex'].gibbs	+ res['H'].gibbs 	+ res['rad'].gibbs,
+						 'TS':  res['TSR'].gibbs 				+ res['H'].gibbs,
+						 'P1C': res['P1R_cat_complex'].gibbs	+ res['H'].gibbs,
+						 'P2C': res['P2R_cat_complex'].gibbs,
+						 'P':   res['P2'].gibbs 				+ res['cat'].gibbs}
+
+			Senergies = {'R':   res['sub'].gibbs 				+ res['cat'].gibbs 	+ res['H'].gibbs 	+ res['rad'].gibbs,
+						 'RC':  res['sub_cat_complex'].gibbs	+ res['H'].gibbs 	+ res['rad'].gibbs,
+						 'TS':  res['TSS'].gibbs 				+ res['H'].gibbs,
+						 'P1C': res['P1S_cat_complex'].gibbs	+ res['H'].gibbs,
+						 'P2C': res['P2S_cat_complex'].gibbs,
+						 'P':   res['P2'].gibbs 				+ res['cat'].gibbs}
+
+			trends = {f'{name} (R)':Renergies, f'{name} (S)':Senergies}
+
+
+		elif self.reaction == 'no_catalyst':
+			energies = {'R': 	res['sub'].gibbs 				+ res['H'].gibbs 	+ res['rad'].gibbs,
+						'TS': 	res['TS'].gibbs 				+ res['H'].gibbs,
+						'P1': 	res['P1'].gibbs 				+ res['H'].gibbs,
+						'P2': 	res['P2'].gibbs}
+
+			trends = {name:energies}
+
+		elif self.reaction == 'achiral_catalyst':
+			energies = {'R':	res['sub'].gibbs 				+ res['H'].gibbs 	+ res['rad'].gibbs 	+ res['cat'].gibbs,
+						'RC':	res['sub_cat_complex'].gibbs 	+ res['H'].gibbs 	+ res['rad'].gibbs,
+						'TS':	res['TS'].gibbs 				+ res['H'].gibbs,
+						'P1C':	res['P1_cat_complex'].gibbs 	+ res['H'].gibbs,
+						'P2C':	res['P2_cat_complex'].gibbs,
+						'P2':	res['P2'].gibbs 				+ res['cat'].gibbs}
+
+			trends = {name:energies}
+
+		else: NotImplemented
+
+		return trends
+
+
+	def plot_reaction_profile(self, name=None, format=''):
+		def plot_path(energies, label=None):
+			plt.plot(range(len(energies)), energies, format, label=label)
+
+		profile = self.get_reaction_pathway(name)
+		trend_names = profile.keys()
+
+		if self.reaction in ['urea_tBu_Ph', 'achiral_catalyst']:
+			order = ['R', 'RC', 'TS', 'P1C', 'P2C', 'P2']
+		elif self.reaction == 'no_catalyst':
+			order = ['R', 'TS', 'P1', 'P2']
+		else: NotImplemented
+
+		energies = [[t[o] for o in order] for t in profile.values()]
+		energies = [[h2k(e-energy[0]) for e in energy] for energy in energies]
+
+		[plot_path(energy, label=l) for l, energy in zip(trend_names, energies)]
+		plt.gca().set_xticks(range(len(order)))
+		plt.gca().set_xticklabels(order)
+		plt.legend()
+		# plt.show()
+
 
 	
 
@@ -154,5 +247,30 @@ class Reaction:
 # get_reaction_profile(res)
 
 # reaction = Reaction('urea_tBu_Ph', {'R1':'H', 'R2':'tBu', 'Rch':'O'})
+colors = ['b', 'r', 'g']
+rxns = [Reaction('no_catalyst', {'R1':'H', 'R2':R2}) for R2 in ['H', 'Ph', 'tBu']]
+for i, rxn in enumerate(rxns):
+	if not rxn.complete: continue
+	rxn.plot_reaction_profile(name=f'R2={rxn.substituents["R2"]} OLYP', format='-'+colors[i])
+rxns = [Reaction('no_catalyst', {'R1':'H', 'R2':R2}, functional='BLYP-D3(BJ)', basis='TZ2P', numerical_quality='Good') for R2 in ['H', 'Ph', 'tBu']]
+for i, rxn in enumerate(rxns):
+	if not rxn.complete: continue
+	rxn.plot_reaction_profile(name=f'R2={rxn.substituents["R2"]} BLYP-D3(BJ)', format='--'+colors[i])
+plt.title('No catalyst (R1=H)')
+plt.xlabel(r'$\xi$')
+plt.ylabel(r'$\Delta G \quad (kcal/mol)$')
+plt.show()
 
-get_all_reactions()
+rxns = [Reaction('achiral_catalyst', {'R1':'H', 'R2':'Ph', 'Rcat':Rcat}, functional='BLYP-D3(BJ)', basis='TZ2P', numerical_quality='Good') for Rcat in ['AlF3', 'BF3', 'I2', 'SnCl4', 'TiCl4', 'ZnCl2']]
+for rxn in rxns:
+	if not rxn.complete: continue
+	rxn.plot_reaction_profile(name=f'Cat={rxn.substituents["Rcat"]}')
+plt.title('Achiral catalyst (R1=H, R2=Ph)')
+plt.xlabel(r'$\xi$')
+plt.ylabel(r'$\Delta G \quad (kcal/mol)$')
+plt.show()
+
+
+
+rxn = Reaction('achiral_catalyst', {'Rcat':'AlF3', 'R1':'H', 'R2':'Ph'})
+rxn.show()
