@@ -1,6 +1,8 @@
 import scm.plams as plams
 import os, paths, utility
-
+try:
+    import mol_viewer2
+except: pass
 join = os.path.join
 
 
@@ -201,13 +203,19 @@ def print_mols(mols, tabs=0):
     name_len = max(len(name) for name in mols)
     header = '\t'*tabs + f'Mol   {"Name".center(name_len)}   Task   Radical   Enantiomer   TSRC indices'
     print(header)
-    print('\t'*tabs + '_'*len(header))
+    print('\t'*tabs + '-'*len(header))
     i = 0
     for name, mol in mols.items():
         i += 1
         print('\t'*tabs + f'{i:<3} | {name:<{name_len}} | {mol.task.center(4)} | {str(mol.radical)[0].center(7)} | {mol.enantiomer.center(10)} | {" ".join(str(i).center(3) for i in mol.TSRC_idx)}')
 
+def show_reaction(template, substituents=None, simple=False):
+    if substituents is None:
+        substituents = {}
+    mols = generate_stationary_points(template, substituents, keep_dummy=True)
+    mol_viewer2.show(list(mols.values()), simple=simple)
 
 if __name__ == '__main__':
     mols = generate_stationary_points('achiral_catalyst', {'Rcat':'AlF3'})
     print_mols(mols)
+    show_reaction('achiral_catalyst', {'Rcat':'ZnCl2'})

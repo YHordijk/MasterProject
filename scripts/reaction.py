@@ -30,12 +30,6 @@ def print_energies(results):
 		print(f'{SP:5}: ΔG = {h2k(res.energies["gibbs_energy"]):.2f} kcal/mol')
 
 
-def show_reaction(template, substituents=None, simple=False):
-	if substituents is None:
-		substituents = {}
-	mols = struct_generator2.generate_stationary_points(template, substituents, keep_dummy=True)
-	mol_viewer2.show(list(mols.values()), simple=simple)
-
 
 def get_reaction_results(template, substituents, functional, basis, quality, silent=False):
 	if not silent: print(f'Searching for reactions matching: reaction={template}, ' + ', '.join(f'{R}={sub}' for R, sub in substituents.items()))
@@ -158,7 +152,7 @@ class Reaction:
 	@property
 	def all_energies_present(self):
 		profile = self.get_reaction_pathways()
-		print(self, profile)
+		# print(self, profile)
 		# print(profile)
 		return all(all(e is not None for e in energy.values()) for energy in profile.values())
 	
@@ -180,6 +174,7 @@ class Reaction:
 	def get_reaction_pathways(self):
 		res = self.results
 		res = {r.stationary_point: r for r in res}
+		print(self, res)
 
 		if self.reaction == 'urea_tBu_Ph':
 			Renergies = {'R':  res['sub_cat_complex'].gibbs 	+ res['rad'].gibbs,
@@ -201,6 +196,7 @@ class Reaction:
 			trends = {'':energies}
 
 		elif self.reaction == 'achiral_catalyst':
+			# print(self)
 			energies = {'R':	res['sub_cat_complex'].gibbs + res['rad'].gibbs,
 						'TS':	res['TS'].gibbs,
 						'P':	res['P1_cat_complex'].gibbs}
@@ -264,12 +260,12 @@ rxns = [Reaction('no_catalyst', {'R1':'H', 'R2':R2}) for R2 in ['H', 'Ph', 'tBu'
 for i, rxn in enumerate(rxns):
 	if not rxn.complete: continue
 	rxn.plot_reaction_profile(name=f'R2={rxn.substituents["R2"]} OLYP', format='-'+colors[i])
-	print(rxn, h2k(rxn.get_activation_energy()['']))
+	# print(rxn, h2k(rxn.get_activation_energy()['']))
 rxns = [Reaction('no_catalyst', {'R1':'H', 'R2':R2}, functional='BLYP-D3(BJ)', basis='TZ2P', numerical_quality='Good') for R2 in ['H', 'Ph', 'tBu']]
 for i, rxn in enumerate(rxns):
 	if not rxn.complete: continue
 	rxn.plot_reaction_profile(name=f'R2={rxn.substituents["R2"]} BLYP-D3(BJ)', format='--'+colors[i])
-	print(rxn, h2k(rxn.get_activation_energy()['']))
+	# print(rxn, h2k(rxn.get_activation_energy()['']))
 plt.title('No catalyst (R1=H)')
 plt.xlabel(r'$\xi$')
 plt.ylabel(r'$\Delta G \quad (kcal/mol)$')
@@ -281,7 +277,7 @@ rxns = [Reaction('achiral_catalyst', {'R1':'H', 'R2':'Ph', 'Rcat':Rcat}, functio
 for rxn in rxns:
 	if not rxn.complete: continue
 	rxn.plot_reaction_profile(name=f'Cat={rxn.substituents["Rcat"]}')
-	print(rxn, h2k(rxn.get_activation_energy()['']))
+	# print(rxn, h2k(rxn.get_activation_energy()['']))
 rxn_no_cat.plot_reaction_profile(name=f'No cat', format='--k')
 plt.title('Achiral catalyst (R1=H, R2=Ph) @BLYP-D3(BJ)/TZ2P (Good)')
 plt.xlabel(r'$\xi$')
@@ -294,7 +290,7 @@ rxns = [Reaction('achiral_catalyst', {'R1':'H', 'R2':'tBu', 'Rcat':Rcat}, functi
 for rxn in rxns:
 	if not rxn.complete: continue
 	rxn.plot_reaction_profile(name=f'Cat={rxn.substituents["Rcat"]}')
-	print(rxn, h2k(rxn.get_activation_energy()['']))
+	# print(rxn, h2k(rxn.get_activation_energy()['']))
 rxn_no_cat.plot_reaction_profile(name=f'No cat', format='--k')
 rxn_no_cat.print_energies()
 plt.title('Achiral catalyst (R1=H, R2=tBu) @BLYP-D3(BJ)/TZ2P (Good)')
@@ -303,4 +299,7 @@ plt.ylabel(r'$\Delta G \quad (kcal/mol)$')
 plt.show()
 
 # rxn = Reaction('achiral_catalyst', {'Rcat':'AlF3', 'R1':'H', 'R2':'Ph'}, functional='BLYP-D3(BJ)', basis='TZ2P', numerical_quality='Good')
+# res = rxn.results
+# res = {r.stationary_point: r for r in res}
+# print(res.keys())
 # rxn.show()

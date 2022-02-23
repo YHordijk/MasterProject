@@ -59,7 +59,7 @@ def run_jobs(template, substituents={}, calc_dir=paths.calculations, phase='vacu
 
         CORES = '64'
         NODES = '1'
-        if mol.radical and mol.reaction == 'urea_tBu_Ph':
+        if mol.radical and mol.reaction in ['urea_tBu_Ph', 'squaramide']:
             CORES = '64'
             NODES = '2'
 
@@ -174,18 +174,18 @@ if __name__ == '__main__':
     calc_dir = paths.calculations
     test_mode = False
 
-    # basis = 'TZ2P'
-    # functional = 'BLYP-D3(BJ)'
-    # numerical_quality = 'Good'
+    basis = 'TZ2P'
+    functional = 'BLYP-D3(BJ)'
+    numerical_quality = 'Good'
 
-    # for R2 in ['H', 'Ph', 'tBu']:
-    #     run_jobs('no_catalyst', {'R1':'H', 'R2':R2}, phase='vacuum', calc_dir=calc_dir, test_mode=test_mode, basis=basis, functional=functional, numerical_quality=numerical_quality)
-    # for R2 in ['Ph', 'tBu']:
-    #     for cat in ['I2', 'ZnCl2', 'TiCl4', 'BF3', 'AlF3', 'SnCl4']:
-    #         run_jobs('achiral_catalyst', {'R1':'H', 'R2':R2, 'Rcat':cat}, phase='vacuum', calc_dir=calc_dir, test_mode=test_mode, basis=basis, functional=functional, numerical_quality=numerical_quality)
-    # for R2 in ['Ph', 'tBu']:
-    #     for Rch in ['O', 'S']:
-    #         run_jobs('urea_tBu_Ph', {'R1':'H', 'R2':R2, 'Rch':Rch}, phase='vacuum', calc_dir=calc_dir, test_mode=test_mode, basis=basis, functional=functional, numerical_quality=numerical_quality)
+    for R2 in ['H', 'Ph', 'tBu']:
+        run_jobs('no_catalyst', {'R1':'H', 'R2':R2}, phase='vacuum', calc_dir=calc_dir, test_mode=test_mode, basis=basis, functional=functional, numerical_quality=numerical_quality)
+    for R2 in ['Ph', 'tBu']:
+        for cat in ['I2', 'ZnCl2', 'TiCl4', 'BF3', 'AlF3', 'SnCl4']:
+            run_jobs('achiral_catalyst', {'R1':'H', 'R2':R2, 'Rcat':cat}, phase='vacuum', calc_dir=calc_dir, test_mode=test_mode, basis=basis, functional=functional, numerical_quality=numerical_quality)
+    for R2 in ['Ph', 'tBu']:
+        for Rch in ['O', 'S']:
+            run_jobs('urea_tBu_Ph', {'R1':'H', 'R2':R2, 'Rch':Rch}, phase='vacuum', calc_dir=calc_dir, test_mode=test_mode, basis=basis, functional=functional, numerical_quality=numerical_quality)
 
     # basis = 'TZ2P'
     # functional = 'OLYP'
@@ -211,19 +211,19 @@ if __name__ == '__main__':
     #         run_jobs('no_catalyst', {'R1':R1, 'R2':R2}, phase='vacuum', calc_dir=calc_dir, test_mode=test_mode, basis=basis, functional=functional, numerical_quality=numerical_quality)
 
 
-    basis = 'TZ2P'
-    functional = 'BLYP-D3(BJ)'
-    numerical_quality = 'Good'
+    # basis = 'TZ2P'
+    # functional = 'BLYP-D3(BJ)'
+    # numerical_quality = 'Good'
 
-    for R1 in ['H']:
-        for R2 in ['Ph', 'tBu']:
-            for Rch in ['O', 'S']:
-                for Rc1 in ['H', 'Ph']:
-                    for Rc2 in ['H', 'tBu']:
     # for R1 in ['H']:
-    #     for R2 in ['Ph']:
-    #         for Rch in ['O']:
-    #             for Rc1 in ['H']:
-    #                 for Rc2 in ['H']:
-                        subs = {'R1':R1, 'R2':R2, 'Rch':Rch,'Rch2':Rch,'Rc1':Rc1, 'Rc2':Rc2}
-                        run_jobs('squaramide', subs, phase='vacuum', calc_dir=calc_dir, test_mode=test_mode, basis=basis, functional=functional, numerical_quality=numerical_quality)
+    #     for R2 in ['Ph', 'tBu']:
+    #         for Rch in ['O', 'S']:
+    #             for Rc1 in ['H', 'Ph']:
+    #                 for Rc2 in ['H', 'tBu']:
+    # # for R1 in ['H']:
+    # #     for R2 in ['Ph']:
+    # #         for Rch in ['O']:
+    # #             for Rc1 in ['H']:
+    # #                 for Rc2 in ['H']:
+    #                     subs = {'R1':R1, 'R2':R2, 'Rch':Rch,'Rch2':Rch,'Rc1':Rc1, 'Rc2':Rc2}
+    #                     run_jobs('squaramide', subs, phase='vacuum', calc_dir=calc_dir, test_mode=test_mode, basis=basis, functional=functional, numerical_quality=numerical_quality)

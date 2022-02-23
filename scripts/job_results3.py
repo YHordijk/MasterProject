@@ -4,6 +4,7 @@ import datetime, time, json, shutil
 from os.path import join, relpath
 import numpy as np
 import matplotlib.pyplot as plt
+import molviewer2.molecule as molecule
 import json
 
 
@@ -422,6 +423,13 @@ class Result:
     @property
     def natoms(self):
         return self.data['opt'].get('natoms')
+
+    def get_mol(self):
+        xyz = self.data['opt'].get('output xyz')
+        mol = plams.Molecule(xyz)
+        mol.name = self.stationary_point
+        mol.reaction = self.reaction
+        return mol
     
 
     def _set_status(self):
@@ -514,12 +522,20 @@ def print_failed(res, tabs=0):
     for r in failed:
         print(r.calc_path)
 
+def print_canceled(res, tabs=0):
+    canceled = [r for r in res if r.status == 'Canceled']
+    print(f'Found {len(canceled)} canceled jobs')
+    for r in canceled:
+        print(r.calc_path)
+
+
 
 if __name__ == '__main__':
     calc_dir = join(paths.master, 'calculations_test')
     calc_dir = paths.calculations
     res = get_all_results(calc_dir=calc_dir, regenerate_all=True)
-    summarize_calculations(res)
+    # summarize_calculations(res)
     print_failed(res)
+    print_canceled(res)
 
  

@@ -2,7 +2,6 @@
   "files": {
     "calc_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.Cl_tBu.vacuum\\TS",
     "res_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\no_catalyst.Cl_tBu.vacuum\\TS",
-    "ams.results": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.Cl_tBu.vacuum\\TS\\ams.results",
     "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.Cl_tBu.vacuum\\TS\\input.xyz",
     "run info": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.Cl_tBu.vacuum\\TS\\run.info",
     "run script": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.Cl_tBu.vacuum\\TS\\TSRC.no_catalyst.Cl_tBu.TS",
@@ -35,7 +34,7 @@
     "basis": "TZ2P",
     "numerical_quality": "Good",
     "hash": "bbf86f7953d71f8a6266080de1f17ed2d48518c680ab8c10f551ed067389a3b1",
-    "time silent": 147314
+    "time silent": 321680
   },
   "pre opt": {
     "runtime": 397,

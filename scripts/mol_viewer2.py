@@ -21,8 +21,8 @@ def show(mols, simple=False):
 
 
 def show_results(results, simple=False):
-	mol_files = [r.data['opt'].get('output xyz', r.data['opt']['input xyz']) for r in results]
-	mols = [molecule.load_molecule(f) for f in mol_files]
+	mols = [r.get_mol() for r in results]
+	mols = [molecule.load_plams_molecule(m) for m in mols]
 	scr = screen.Screen(size=(1600, 900))
 	if simple:
 		scr.draw_mode = 'simple'
