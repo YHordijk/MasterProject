@@ -1,0 +1,25 @@
+#!/bin/bash
+#SBATCH -N [NODES]
+#SBATCH -t 240:00:00
+#SBATCH --ntasks-per-node=[CORES]
+#SBATCH --partition=tc
+
+echo "== Starting run at $(date)"
+echo "== Job ID: ${SLURM_JOBID}"
+echo "== Node list: ${SLURM_NODELIST}"
+echo "== Submit dir. : ${SLURM_SUBMIT_DIR}"
+echo "== Scratch dir. : ${TMPDIR}"
+
+
+module load ams
+module list
+
+
+$AMSBIN/ams << eor >$SLURM_SUBMIT_DIR/NCI.out
+
+	ADFFILE [ADFFILE]
+	NDI 
+
+eor
+
+

@@ -34,11 +34,12 @@ def print_energies(results):
 def get_reaction_results(template, substituents, functional, basis, quality, silent=False):
 	if not silent: print(f'Searching for reactions matching: reaction={template}, ' + ', '.join(f'{R}={sub}' for R, sub in substituents.items()))
 	results = job_results3.get_all_results(calc_dir=paths.calculations)
-
+	expected_sp = struct_generator2.get_all_stationary_points(template)
 	#filter the results
 	results = [r for r in results if r.reaction == template] #first filter by template
 	results = [r for r in results if all(sub == substituents[R] for R, sub in r.substituents.items())]
 	results = [r for r in results if all((r.functional == functional, r.basis == basis, r.numerical_quality == quality))]
+	results = [r for r in results if r.stationary_point in expected_sp]
 	
 	if not silent:
 		print(f'Found {len(results)} results')
@@ -298,8 +299,8 @@ plt.xlabel(r'$\xi$')
 plt.ylabel(r'$\Delta G \quad (kcal/mol)$')
 plt.show()
 
-# rxn = Reaction('achiral_catalyst', {'Rcat':'AlF3', 'R1':'H', 'R2':'Ph'}, functional='BLYP-D3(BJ)', basis='TZ2P', numerical_quality='Good')
-# res = rxn.results
-# res = {r.stationary_point: r for r in res}
-# print(res.keys())
-# rxn.show()
+
+rxn = Reaction('achiral_catalyst', {'Rcat':'I2', 'R1':'H', 'R2':'tBu'}, functional='BLYP-D3(BJ)', basis='TZ2P', numerical_quality='Good')
+rxn.show()
+rxn = Reaction('achiral_catalyst', {'Rcat':'I2', 'R1':'H', 'R2':'Ph'}, functional='BLYP-D3(BJ)', basis='TZ2P', numerical_quality='Good')
+rxn.show()

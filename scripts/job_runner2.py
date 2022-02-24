@@ -177,15 +177,15 @@ if __name__ == '__main__':
     basis = 'TZ2P'
     functional = 'BLYP-D3(BJ)'
     numerical_quality = 'Good'
-
-    for R2 in ['H', 'Ph', 'tBu']:
-        run_jobs('no_catalyst', {'R1':'H', 'R2':R2}, phase='vacuum', calc_dir=calc_dir, test_mode=test_mode, basis=basis, functional=functional, numerical_quality=numerical_quality)
-    for R2 in ['Ph', 'tBu']:
-        for cat in ['I2', 'ZnCl2', 'TiCl4', 'BF3', 'AlF3', 'SnCl4']:
-            run_jobs('achiral_catalyst', {'R1':'H', 'R2':R2, 'Rcat':cat}, phase='vacuum', calc_dir=calc_dir, test_mode=test_mode, basis=basis, functional=functional, numerical_quality=numerical_quality)
-    for R2 in ['Ph', 'tBu']:
-        for Rch in ['O', 'S']:
-            run_jobs('urea_tBu_Ph', {'R1':'H', 'R2':R2, 'Rch':Rch}, phase='vacuum', calc_dir=calc_dir, test_mode=test_mode, basis=basis, functional=functional, numerical_quality=numerical_quality)
+    for R1 in ['H', 'F', 'Cl', 'Br', 'I']:
+        for R2 in ['H', 'Ph', 'tBu']:
+            run_jobs('no_catalyst', {'R1':R1, 'R2':R2}, phase='vacuum', calc_dir=calc_dir, test_mode=test_mode, basis=basis, functional=functional, numerical_quality=numerical_quality)
+        for R2 in ['Ph', 'tBu']:
+            for cat in ['I2', 'ZnCl2', 'TiCl4', 'BF3', 'AlF3', 'SnCl4']:
+                run_jobs('achiral_catalyst', {'R1':R1, 'R2':R2, 'Rcat':cat}, phase='vacuum', calc_dir=calc_dir, test_mode=test_mode, basis=basis, functional=functional, numerical_quality=numerical_quality)
+    # for R2 in ['Ph', 'tBu']:
+    #     for Rch in ['O', 'S']:
+    #         run_jobs('urea_tBu_Ph', {'R1':'H', 'R2':R2, 'Rch':Rch}, phase='vacuum', calc_dir=calc_dir, test_mode=test_mode, basis=basis, functional=functional, numerical_quality=numerical_quality)
 
     # basis = 'TZ2P'
     # functional = 'OLYP'

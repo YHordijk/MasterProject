@@ -242,14 +242,16 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
     def get_freq_data():
         freq = {}
         files = data['files']
-        adfrkf = 'adfrkf'
+        adfrkf = 'opt adfrkf'
 
         if adfrkf in files:
             adf = plams.KFFile(files[adfrkf])
             freq['nmodes'] = adf.read('Vibrations', 'nNormalModes')
             freq['frequencies'] = adf.read('Vibrations', 'Frequencies[cm-1]')
             freq['intensities'] = adf.read('Vibrations', 'Intensities[km/mol]')
-            freq['nimag'] = len(f for f in freq['frequencies'] if f < 0)
+            if type(freq['frequencies']) is float: freq['frequencies'] = [freq['frequencies']]
+            if type(freq['intensities']) is float: freq['intensities'] = [freq['intensities']]
+            freq['nimag'] = len([f for f in freq['frequencies'] if f < 0])
             if freq['nimag'] > 0:
                 freq['imag mode'] = adf.read('Vibrations', 'NoWeightNormalMode(1)')
             freq['ZPE'] = adf.read('Vibrations', 'ZeroPointEnergy')
@@ -424,11 +426,17 @@ class Result:
     def natoms(self):
         return self.data['opt'].get('natoms')
 
+    @property
+    def get_imaginary_mode(self):
+        return self.data['freq'].get('imag mode', None)
+
     def get_mol(self):
         xyz = self.data['opt'].get('output xyz')
         mol = plams.Molecule(xyz)
         mol.name = self.stationary_point
         mol.reaction = self.reaction
+        mol.normalmode = self.get_imaginary_mode
+        mol.substituents = self.substituents
         return mol
     
 

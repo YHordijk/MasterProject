@@ -22,11 +22,10 @@ def show(mols, simple=False):
 
 def show_results(results, simple=False):
 	mols = [r.get_mol() for r in results]
-	mols = [molecule.load_plams_molecule(m) for m in mols]
+	mols = [molecule.load_plams_molecule(m)[0] for m in mols]
 	scr = screen.Screen(size=(1600, 900))
 	if simple:
 		scr.draw_mode = 'simple'
-	[mol.center() for mol in mols]
 	scr.draw_molecules(mols)
 
 

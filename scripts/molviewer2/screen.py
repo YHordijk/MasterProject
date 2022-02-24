@@ -419,7 +419,7 @@ class Screen:
 		#draw some text
 		try:
 			font = pg.font.SysFont(None, 50)
-			text = font.render(f"{state['mols'][state['molidx']].name} - {state['mols'][state['molidx']].reaction}", True, (255,255,255,255))
+			text = font.render(f"{state['mols'][state['molidx']].reaction} | {state['mols'][state['molidx']].name}", True, (255,255,255,255))
 			self.molecule_surf.blit(text, (20,20))
 		except: pass
 		try:
@@ -456,6 +456,15 @@ class Screen:
 
 
 	def handle_events(self, state):
+		def start_mode_animation():
+			state['normalmode_animation'] = True
+			state['normalmode_animation_start_time'] = state['time']
+
+		def stop_mode_animation():
+			state['normalmode_animation'] = False
+			self.mols[state['molidx']].positions = self.mols[state['molidx']].original_pos
+			state['normalmode_displacement'] = 0
+
 		if state['keys'][pg.K_ESCAPE]:
 			state['run'] = False
 		# if state['keys'][pg.K_SPACE]:
@@ -488,18 +497,25 @@ class Screen:
 		if state['keys'][pg.K_LEFT] and not state['prev_keys'][pg.K_LEFT]:
 			state['molidx'] += 1
 			state['molidx'] = state['molidx'] % len(self.mols)
+			stop_mode_animation()
 
 		if state['keys'][pg.K_RIGHT] and not state['prev_keys'][pg.K_RIGHT]:
 			state['molidx'] -= 1
 			state['molidx'] = state['molidx'] % len(self.mols)
+			stop_mode_animation()
 
 		if state['keys'][pg.K_SPACE] and not state['prev_keys'][pg.K_SPACE] and hasattr(self.mols[state['molidx']], 'normalmode'):
-			state['normalmode_animation'] = not state['normalmode_animation']
 			if state['normalmode_animation']:
-				state['normalmode_animation_start_time'] = state['time']
+				stop_mode_animation()
 			else:
-				state['normalmode_displacement'] = 0
-				self.mols[state['molidx']].positions = self.mols[state['molidx']].original_pos
+				start_mode_animation()
+
+			# state['normalmode_animation'] = not state['normalmode_animation']
+			# if state['normalmode_animation']:
+			# 	state['normalmode_animation_start_time'] = state['time']
+			# else:
+			# 	state['normalmode_displacement'] = 0
+			# 	self.mols[state['molidx']].positions = self.mols[state['molidx']].original_pos
 
 	
 	def draw_axes(self, surf):

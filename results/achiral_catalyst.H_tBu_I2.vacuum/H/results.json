@@ -28,7 +28,7 @@
     "basis": "TZ2P",
     "numerical_quality": "VeryGood",
     "hash": "bd71c2832fbf3913cd653b0c4bfc91a1ecada7430064e431a382d8e1faa655e3",
-    "time silent": 805063
+    "time silent": 890763
   },
   "pre opt": {
     "runtime": 2,
@@ -77,7 +77,13 @@
     ],
     "errors": []
   },
-  "freq": {},
+  "freq": {
+    "nmodes": 0,
+    "frequencies": [],
+    "intensities": [],
+    "nimag": 0,
+    "ZPE": 0.0
+  },
   "thermo": {
     "gibbs": -0.044054012442276774,
     "enthalpy": -0.031693845931914696

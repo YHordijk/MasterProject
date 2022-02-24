@@ -33,7 +33,7 @@
     "basis": "TZ2P",
     "numerical_quality": "Good",
     "hash": "b46eea78d9ba995f6ddc5dd02e6290d91a1a6a491afdeefd588f670735792444",
-    "time silent": 679145
+    "time silent": 764844
   },
   "pre opt": {
     "runtime": 9,
@@ -118,7 +118,17 @@
     "warnings": [],
     "errors": []
   },
-  "freq": {},
+  "freq": {
+    "nmodes": 1,
+    "frequencies": [
+      199.06350862517277
+    ],
+    "intensities": [
+      4.496435769272527e-11
+    ],
+    "nimag": 0,
+    "ZPE": 0.0004535000409434845
+  },
   "thermo": {
     "gibbs": -0.11140919588177924,
     "enthalpy": -0.08172431758937364
