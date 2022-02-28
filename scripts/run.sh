@@ -13,4 +13,4 @@ echo "== Scratch dir. : ${TMPDIR}"
 module load ams
 module list
 
-$AMSBIN/amspython job_runner.py > $SLURM_JOBID.log
+$AMSBIN/amspython job_runner2.py > $SLURM_JOBID.log

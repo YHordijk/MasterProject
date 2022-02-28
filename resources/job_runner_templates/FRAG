@@ -1,0 +1,164 @@
+#!/bin/bash
+#SBATCH -N [NODES]
+#SBATCH -t 240:00:00
+#SBATCH --ntasks-per-node=[CORES]
+#SBATCH --partition=tc
+
+echo "== Starting run at $(date)"
+echo "== Job ID: ${SLURM_JOBID}"
+echo "== Node list: ${SLURM_NODELIST}"
+echo "== Submit dir. : ${SLURM_SUBMIT_DIR}"
+echo "== Scratch dir. : ${TMPDIR}"
+
+
+module load ams
+module list
+
+
+##Single Point Calculation of Fragment 1 ##
+
+AMS_JOBNAME=Fragment_1 $AMSBIN/ams <<eor>$SLURM_SUBMIT_DIR/Fragment_1.out
+
+Task SinglePoint
+
+System
+  ATOMS
+[ATOMS1]
+  END
+End
+
+
+Engine ADF
+ 
+  BASIS
+     type [BASIS]
+     core none
+  END
+  
+  SYMMETRY NOSYM
+  
+  SCF
+     ITERATIONS 99
+     Converge 1.0e-6 
+  END
+  
+  XC
+    [FUNCTIONAL]
+  END
+  
+  NumericalQuality [NUMERICALQUALITY]
+  [RADICAL]
+ENDEngine
+
+eor
+
+cp Fragment_1.results/ams.rkf $SLURM_SUBMIT_DIR/Fragment_1.rkf
+cp Fragment_1.results/adf.rkf $SLURM_SUBMIT_DIR/Fragment_1.adf.rkf
+cp Fragment_1.results/ams.log $SLURM_SUBMIT_DIR/Fragment_1.log
+
+
+##Single Point Calculation of Fragment 2 ##
+
+AMS_JOBNAME=Fragment_2 $AMSBIN/ams <<eor>$SLURM_SUBMIT_DIR/Fragment_2.out
+
+Task SinglePoint
+
+System
+  ATOMS
+[ATOMS2]
+  END
+End
+
+
+Engine ADF
+ 
+  BASIS
+     type [BASIS]
+     core none
+  END
+  
+  SYMMETRY NOSYM
+  
+  SCF
+     ITERATIONS 99
+     Converge 1.0e-6 
+  END
+  
+  XC
+    [FUNCTIONAL]
+  END
+  
+  NumericalQuality [NUMERICALQUALITY]
+ENDEngine
+
+eor
+
+cp Fragment_2.results/ams.rkf $SLURM_SUBMIT_DIR/Fragment_2.rkf
+cp Fragment_2.results/adf.rkf $SLURM_SUBMIT_DIR/Fragment_2.adf.rkf
+cp Fragment_2.results/ams.log $SLURM_SUBMIT_DIR/Fragment_2.log
+
+
+
+AMS_JOBNAME=EDA $AMSBIN/ams <<eor>$SLURM_SUBMIT_DIR/$SLURM_JOB_NAME.out
+
+Task SinglePoint
+
+System
+  ATOMS
+[ATOMS]
+  END
+End
+
+
+Engine ADF
+  FRAGMENTS
+   f1 $SLURM_SUBMIT_DIR/Fragment_1.adf.rkf
+   f2 $SLURM_SUBMIT_DIR/Fragment_2.adf.rkf
+  END 
+
+  BASIS
+     type [BASIS]
+     core none
+  END
+  
+  SYMMETRY NOSYM
+  
+  SCF
+     ITERATIONS 99
+     Converge 1.0e-6 
+  END
+  
+  XC
+    [FUNCTIONAL]
+  END
+  
+  NumericalQuality [NUMERICALQUALITY]
+  [RADICAL]
+
+ENDEngine
+
+eor
+
+cp EDA.results/ams.rkf $SLURM_SUBMIT_DIR/EDA.ams.rkf
+cp EDA.results/adf.rkf $SLURM_SUBMIT_DIR/EDA.adf.rkf
+cp EDA.results/ams.log $SLURM_SUBMIT_DIR/EDA.log
+
+rm -Rf Fragment_1.results Fragment_2.results EDA.results
+
+echo " " 
+echo " " 
+echo " " 
+echo Total energy Fragment 1
+grep 'Bond Energy' $SLURM_SUBMIT_DIR/Fragment_1.log | tail -n 1
+echo " " 
+echo Total energy Fragment 2
+grep 'Bond Energy' $SLURM_SUBMIT_DIR/Fragment_2.log | tail -n 1
+echo " " 
+echo " " 
+echo Energy Decomposition Analysis 
+echo "                                                   hartree              eV          kcal/mol          kJ/mol"
+awk '/Total Bonding Energy/{i++}i==2{print;exit}' $SLURM_SUBMIT_DIR/frag.run.out 
+grep 'Electrostatic Interaction:' $SLURM_SUBMIT_DIR/frag.run.out
+grep 'Total Pauli Repulsion:' $SLURM_SUBMIT_DIR/frag.run.out
+grep -m 1 'Total Orbital Interactions:' $SLURM_SUBMIT_DIR/frag.run.out
+

@@ -2,15 +2,11 @@
   "files": {
     "calc_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.F_Ph.vacuum\\Rsub",
     "res_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\no_catalyst.F_Ph.vacuum\\Rsub",
-    "run script": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.F_Ph.vacuum\\Rsub\\GO.no_catalyst.F_Ph.Rsub",
-    "opt adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.F_Ph.vacuum\\Rsub\\GO.no_catalyst.F_Ph.Rsub.adf.rkf",
-    "opt amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.F_Ph.vacuum\\Rsub\\GO.no_catalyst.F_Ph.Rsub.ams.rkf",
-    "opt log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.F_Ph.vacuum\\Rsub\\GO.no_catalyst.F_Ph.Rsub.log",
-    "opt out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.F_Ph.vacuum\\Rsub\\GO.no_catalyst.F_Ph.Rsub.out",
-    "preopt adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.F_Ph.vacuum\\Rsub\\GO.no_catalyst.F_Ph.Rsub_preopt.adf.rkf",
-    "preopt amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.F_Ph.vacuum\\Rsub\\GO.no_catalyst.F_Ph.Rsub_preopt.ams.rkf",
-    "preopt log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.F_Ph.vacuum\\Rsub\\GO.no_catalyst.F_Ph.Rsub_preopt.log",
-    "preopt out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.F_Ph.vacuum\\Rsub\\GO.no_catalyst.F_Ph.Rsub_preopt.out",
+    "GO run script": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.F_Ph.vacuum\\Rsub\\GO.no_catalyst.F_Ph.Rsub",
+    "GO adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.F_Ph.vacuum\\Rsub\\GO.no_catalyst.F_Ph.Rsub.adf.rkf",
+    "GO amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.F_Ph.vacuum\\Rsub\\GO.no_catalyst.F_Ph.Rsub.ams.rkf",
+    "GO log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.F_Ph.vacuum\\Rsub\\GO.no_catalyst.F_Ph.Rsub.log",
+    "GO out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.F_Ph.vacuum\\Rsub\\GO.no_catalyst.F_Ph.Rsub.out",
     "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.F_Ph.vacuum\\Rsub\\input.xyz",
     "run info": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.F_Ph.vacuum\\Rsub\\run.info"
   },
@@ -36,228 +32,11 @@
     "functional": "BLYP-D3(BJ)",
     "basis": "TZ2P",
     "numerical_quality": "Good",
-    "hash": "a3e5ad90a9662b9ec618bb3d17646c51e33afe42787daaff91cc0c10e7eca676",
-    "time silent": 426970
+    "hash": "a3e5ad90a9662b9ec618bb3d17646c51e33afe42787daaff91cc0c10e7eca676"
   },
-  "pre opt": {
-    "runtime": 108,
-    "natoms": 18,
-    "elements": [
-      "H",
-      "C",
-      "C",
-      "C",
-      "H",
-      "O",
-      "F",
-      "C",
-      "C",
-      "C",
-      "C",
-      "C",
-      "C",
-      "H",
-      "H",
-      "H",
-      "H",
-      "H"
-    ],
-    "input coords": [
-      [
-        0.17081948756967447,
-        -3.420186305664169,
-        -0.9742644229146588
-      ],
-      [
-        -1.7155282413822737,
-        -0.01457513634579738,
-        -0.09341768500507389
-      ],
-      [
-        0.3451877296233061,
-        -1.4214453202102844,
-        -0.5010090656541857
-      ],
-      [
-        2.946629499292295,
-        -0.41600381774632467,
-        -0.3456577234077618
-      ],
-      [
-        -1.5577318391949802,
-        1.9745992806775197,
-        0.3825295871199287
-      ],
-      [
-        4.8402289955557105,
-        -2.2041289117678966,
-        -0.8106056934462902
-      ],
-      [
-        3.6168194898907533,
-        2.1022128638187234,
-        0.21027759266148166
-      ],
-      [
-        -9.244076311700194,
-        -3.230113003323042,
-        -0.6156485640114194
-      ],
-      [
-        -7.778825269092221,
-        -3.636777718972421,
-        1.5503418573147572
-      ],
-      [
-        -5.349980520077514,
-        -2.599387486193431,
-        1.7188229032915134
-      ],
-      [
-        -4.386386794773518,
-        -1.1553325188678,
-        -0.2786864531606456
-      ],
-      [
-        -5.85163781848423,
-        -0.7486678032184209,
-        -2.4446768555895613
-      ],
-      [
-        -8.280482567498938,
-        -1.7860580359974112,
-        -2.6131579204635784
-      ],
-      [
-        -8.51619296361965,
-        -4.741807183491799,
-        3.0788894087478993
-      ],
-      [
-        -4.228731271668815,
-        -2.910578192457963,
-        3.376296679426546
-      ],
-      [
-        -5.114270142854062,
-        0.35636166130095703,
-        -3.9732244259199643
-      ],
-      [
-        -9.401731834804897,
-        -1.4748673297328787,
-        -4.2706316965986115
-      ],
-      [
-        -11.102693254636321,
-        -4.023951742680626,
-        -0.7445747698160489
-      ]
-    ],
-    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\no_catalyst.F_Ph.vacuum\\Rsub\\input_preopt.xyz",
-    "steps": 14,
-    "output coords": [
-      [
-        0.2557034969721783,
-        -2.7939009397157806,
-        1.908048254629294
-      ],
-      [
-        -1.6199928234741996,
-        -0.5668694824929735,
-        -0.9095384525841566
-      ],
-      [
-        0.39859617403184056,
-        -1.352175865745306,
-        0.450208257439773
-      ],
-      [
-        2.9562024454172953,
-        -0.3705293855094419,
-        0.12209872219575388
-      ],
-      [
-        -1.2926473559576632,
-        0.8887311736098749,
-        -2.3279988156808225
-      ],
-      [
-        4.837891097755987,
-        -0.9647769910282845,
-        1.239685677602369
-      ],
-      [
-        3.105658734900039,
-        1.5000269546654432,
-        -1.7718841849590932
-      ],
-      [
-        -9.331478603005007,
-        -2.964496292477101,
-        -0.4508632939840407
-      ],
-      [
-        -7.523686403573877,
-        -4.09849107673571,
-        1.1241547872733308
-      ],
-      [
-        -5.001925499439071,
-        -3.3523646857076494,
-        1.0086479638720407
-      ],
-      [
-        -4.225727049872363,
-        -1.4455462660238536,
-        -0.6945170082574881
-      ],
-      [
-        -6.069410920125206,
-        -0.3274804982787643,
-        -2.2675648588160326
-      ],
-      [
-        -8.596004311134495,
-        -1.075212114782031,
-        -2.147730090603641
-      ],
-      [
-        -8.094222914805092,
-        -5.5708635823011114,
-        2.441062599014606
-      ],
-      [
-        -3.628356357424769,
-        -4.254580186762787,
-        2.242193649380456
-      ],
-      [
-        -5.49434368924264,
-        1.1421138195298188,
-        -3.5872009967033898
-      ],
-      [
-        -9.98657672015136,
-        -0.18807966499847625,
-        -3.375293281467524
-      ],
-      [
-        -11.29826292872751,
-        -3.556211616118938,
-        -0.3519061757771022
-      ]
-    ],
-    "output energy": -4.139627506544273,
-    "output xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\no_catalyst.F_Ph.vacuum\\Rsub\\output_preopt.xyz",
-    "status": "NORMAL TERMINATION",
-    "bond energy": -4.1396275064355565,
-    "step": "END",
-    "warnings": [],
-    "errors": []
-  },
-  "opt": {
+  "GO": {
     "runtime": 722,
+    "done": true,
     "natoms": 18,
     "elements": [
       "H",
@@ -469,8 +248,86 @@
     "output xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\no_catalyst.F_Ph.vacuum\\Rsub\\output.xyz",
     "status": "NORMAL TERMINATION",
     "bond energy": -4.139120769569353,
-    "step": "END",
-    "freq progress": 18,
+    "Mulliken charge": [
+      -0.16879277332910192,
+      0.26305922853958563,
+      0.12351442579135608,
+      0.7702096248353554,
+      -0.17786230234260225,
+      -0.49308667988048427,
+      -0.4164182376518024,
+      0.22683062028446166,
+      0.21899968989184782,
+      0.2669013644945153,
+      -0.04098522023501161,
+      0.27140629008180106,
+      0.21551877073112458,
+      -0.20996601910969326,
+      -0.22069558608876738,
+      -0.21495121261325112,
+      -0.208967938128511,
+      -0.20471404527082582
+    ],
+    "electron dens at nuclei": [
+      0.5075994159078956,
+      127.19209615563919,
+      127.10807854190676,
+      127.22002509716815,
+      0.5090000317832191,
+      314.0606441171858,
+      450.8363370284799,
+      127.13145128056277,
+      127.12390157093583,
+      127.12710159307392,
+      127.09695635863248,
+      127.14459253451643,
+      127.12116417423577,
+      0.5087864776354207,
+      0.5106391378525522,
+      0.5087912064310266,
+      0.5084534344551354,
+      0.5086648087294303
+    ],
+    "Hirshfeld charge": [
+      0.051267895612733705,
+      0.04553481851341712,
+      0.04891045864658583,
+      0.047477977009252714,
+      0.04813769084528596,
+      0.049008019327772545,
+      0.04933254543294541,
+      -0.004456612603039645,
+      -0.05233015827633558,
+      0.204873797384872,
+      -0.026452056727555018,
+      -0.03229436635523797,
+      -0.027510293808244768,
+      0.004187894001592696,
+      -0.02708960159719709,
+      -0.03379293160484931,
+      -0.22592297371275905,
+      -0.11886922317490978
+    ],
+    "Voronoi charge": [
+      -0.4845783479225708,
+      0.5358227341206021,
+      0.48403793136754336,
+      0.5482490028993539,
+      -0.4907486443109551,
+      -0.37122667329901304,
+      -0.32813687490904453,
+      0.5110752799445812,
+      0.5003934503413565,
+      0.5047078148112147,
+      0.03125076232037749,
+      0.4982694014228506,
+      0.502972776748928,
+      -0.48432572660306705,
+      -0.49700945370058036,
+      -0.4861910081046389,
+      -0.48761356173063586,
+      -0.4869359844819724
+    ],
     "warnings": [],
     "errors": []
   },
@@ -583,5 +440,6 @@
     "gibbs": -4.043348546341822,
     "enthalpy": -3.9968900359544155
   },
-  "misc": {}
+  "misc": {},
+  "EDA": null
 }

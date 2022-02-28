@@ -2,15 +2,11 @@
   "files": {
     "calc_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_BF3.vacuum\\cat.002",
     "res_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_Ph_BF3.vacuum\\cat.002",
-    "run script": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_BF3.vacuum\\cat.002\\GO.achiral_catalyst.H_Ph_BF3.cat",
-    "opt adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_BF3.vacuum\\cat.002\\GO.achiral_catalyst.H_Ph_BF3.cat.adf.rkf",
-    "opt amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_BF3.vacuum\\cat.002\\GO.achiral_catalyst.H_Ph_BF3.cat.ams.rkf",
-    "opt log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_BF3.vacuum\\cat.002\\GO.achiral_catalyst.H_Ph_BF3.cat.log",
-    "opt out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_BF3.vacuum\\cat.002\\GO.achiral_catalyst.H_Ph_BF3.cat.out",
-    "preopt adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_BF3.vacuum\\cat.002\\GO.achiral_catalyst.H_Ph_BF3.cat_preopt.adf.rkf",
-    "preopt amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_BF3.vacuum\\cat.002\\GO.achiral_catalyst.H_Ph_BF3.cat_preopt.ams.rkf",
-    "preopt log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_BF3.vacuum\\cat.002\\GO.achiral_catalyst.H_Ph_BF3.cat_preopt.log",
-    "preopt out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_BF3.vacuum\\cat.002\\GO.achiral_catalyst.H_Ph_BF3.cat_preopt.out",
+    "GO run script": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_BF3.vacuum\\cat.002\\GO.achiral_catalyst.H_Ph_BF3.cat",
+    "GO adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_BF3.vacuum\\cat.002\\GO.achiral_catalyst.H_Ph_BF3.cat.adf.rkf",
+    "GO amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_BF3.vacuum\\cat.002\\GO.achiral_catalyst.H_Ph_BF3.cat.ams.rkf",
+    "GO log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_BF3.vacuum\\cat.002\\GO.achiral_catalyst.H_Ph_BF3.cat.log",
+    "GO out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_BF3.vacuum\\cat.002\\GO.achiral_catalyst.H_Ph_BF3.cat.out",
     "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_BF3.vacuum\\cat.002\\input.xyz",
     "run info": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_BF3.vacuum\\cat.002\\run.info"
   },
@@ -32,74 +28,11 @@
     "functional": "BLYP-D3(BJ)",
     "basis": "TZ2P",
     "numerical_quality": "Good",
-    "hash": "4c3f9bdac98bb4f9ffb8ced9a294f98654a485f09efb3cd47769943df23d3aea",
-    "time silent": 761664
+    "hash": "4c3f9bdac98bb4f9ffb8ced9a294f98654a485f09efb3cd47769943df23d3aea"
   },
-  "pre opt": {
-    "runtime": 6,
-    "natoms": 4,
-    "elements": [
-      "B",
-      "F",
-      "F",
-      "F"
-    ],
-    "input coords": [
-      [
-        2.229876827058409,
-        0.0,
-        0.0
-      ],
-      [
-        2.229876827058409,
-        2.1461687060597523,
-        -1.2390910766567231
-      ],
-      [
-        2.229876827058409,
-        -2.1461687060597523,
-        -1.2390910766567231
-      ],
-      [
-        2.229876827058409,
-        0.0,
-        2.4781821533134463
-      ]
-    ],
-    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_Ph_BF3.vacuum\\cat.002\\input_preopt.xyz",
-    "steps": 3,
-    "output coords": [
-      [
-        2.2298769752491037,
-        -8.116173595736703e-27,
-        8.116185572530853e-27
-      ],
-      [
-        2.229876777661511,
-        2.176016524343203,
-        -1.2563237225773962
-      ],
-      [
-        2.229876777661511,
-        -2.176016524343203,
-        -1.2563237225773962
-      ],
-      [
-        2.229876777661511,
-        3.7180819348305426e-18,
-        2.5126474451547924
-      ]
-    ],
-    "output energy": -0.8368070449463212,
-    "output xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_Ph_BF3.vacuum\\cat.002\\output_preopt.xyz",
-    "status": "NORMAL TERMINATION",
-    "bond energy": -0.8368070449444788,
-    "step": "END",
-    "warnings": [],
-    "errors": []
-  },
-  "opt": {
+  "GO": {
     "runtime": 22,
+    "done": true,
     "natoms": 4,
     "elements": [
       "B",
@@ -157,8 +90,30 @@
     "output xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_Ph_BF3.vacuum\\cat.002\\output.xyz",
     "status": "NORMAL TERMINATION",
     "bond energy": -0.8367422802716976,
-    "step": "END",
-    "freq progress": 4,
+    "Mulliken charge": [
+      1.4495312217974377,
+      -0.4832598866931974,
+      -0.48325988673956743,
+      -0.4830114483646675
+    ],
+    "electron dens at nuclei": [
+      71.41487003161035,
+      450.56186202732994,
+      450.56186202888586,
+      450.56627875947504
+    ],
+    "Hirshfeld charge": [
+      0.39306418888455497,
+      -0.13102545804334653,
+      -0.13102545833831414,
+      -0.1310093292379264
+    ],
+    "Voronoi charge": [
+      0.9792186740609918,
+      -0.3293556780419298,
+      -0.32659267836086414,
+      -0.32326637439323136
+    ],
     "warnings": [],
     "errors": []
   },
@@ -187,5 +142,6 @@
     "gibbs": -0.8511470593316434,
     "enthalpy": -0.8204349992208879
   },
-  "misc": {}
+  "misc": {},
+  "EDA": null
 }

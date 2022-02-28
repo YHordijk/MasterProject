@@ -2,10 +2,10 @@
   "files": {
     "calc_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_AlF3.vacuum\\sub",
     "res_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_tBu_AlF3.vacuum\\sub",
-    "opt adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_AlF3.vacuum\\sub\\GO.achiral_catalyst.H_tBu_AlF3.sub.adf.rkf",
-    "opt amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_AlF3.vacuum\\sub\\GO.achiral_catalyst.H_tBu_AlF3.sub.ams.rkf",
-    "opt log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_AlF3.vacuum\\sub\\GO.achiral_catalyst.H_tBu_AlF3.sub.log",
-    "opt out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_AlF3.vacuum\\sub\\GO.achiral_catalyst.H_tBu_AlF3.sub.out",
+    "GO adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_AlF3.vacuum\\sub\\GO.achiral_catalyst.H_tBu_AlF3.sub.adf.rkf",
+    "GO amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_AlF3.vacuum\\sub\\GO.achiral_catalyst.H_tBu_AlF3.sub.ams.rkf",
+    "GO log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_AlF3.vacuum\\sub\\GO.achiral_catalyst.H_tBu_AlF3.sub.log",
+    "GO out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_AlF3.vacuum\\sub\\GO.achiral_catalyst.H_tBu_AlF3.sub.out",
     "run info": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_AlF3.vacuum\\sub\\run.info"
   },
   "info": {
@@ -30,14 +30,11 @@
     "functional": "OLYP",
     "basis": "TZ2P",
     "numerical_quality": "VeryGood",
-    "hash": "221f75f137cda729183b80950eda500992af50bb95ca87896f0ad1444e761872",
-    "time silent": 2288242
+    "hash": "221f75f137cda729183b80950eda500992af50bb95ca87896f0ad1444e761872"
   },
-  "pre opt": {
-    "runtime": 0
-  },
-  "opt": {
+  "GO": {
     "runtime": 42737,
+    "done": true,
     "natoms": 20,
     "elements": [
       "H",
@@ -271,8 +268,94 @@
     "output xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_tBu_AlF3.vacuum\\sub\\output.xyz",
     "status": "NORMAL TERMINATION with warnings",
     "bond energy": -4.02728006187368,
-    "step": "END",
-    "freq progress": 20,
+    "Mulliken charge": [
+      -0.20765787117784118,
+      0.36593755486192237,
+      0.1846311973329886,
+      0.64515927101918,
+      -0.49691162664176325,
+      -0.20645300153060298,
+      0.7225861502244975,
+      -0.036665093124834236,
+      0.7338550617457784,
+      0.7228237062294083,
+      -0.23135383172556945,
+      -0.22860645289336268,
+      -0.242824372617106,
+      -0.23118316419758345,
+      -0.25256509807079097,
+      -0.23657002446114284,
+      -0.23635116765676933,
+      -0.22841192705537194,
+      -0.24302919925690847,
+      -0.29641011100420234
+    ],
+    "electron dens at nuclei": [
+      0.504556415310758,
+      126.91451840353912,
+      126.86879522854966,
+      126.9532582900135,
+      313.3354923164561,
+      0.5067456372116049,
+      126.72921203179396,
+      126.63547956307933,
+      126.7126503318088,
+      126.72910777463967,
+      0.5073941302391356,
+      0.5072310017057514,
+      0.5076578216281208,
+      0.5074382559887185,
+      0.5069908310985846,
+      0.507663910525462,
+      0.5076866739008924,
+      0.5072882765767165,
+      0.507718568391645,
+      0.5025901507552096
+    ],
+    "Hirshfeld charge": [
+      0.051776610698809566,
+      0.045523804508527554,
+      0.0408045898048669,
+      0.04234398560781161,
+      0.039597224635935624,
+      0.04078741247614204,
+      0.041050293509076186,
+      0.04107709958726513,
+      0.041083078290813146,
+      0.04236372565834201,
+      0.03958852926746914,
+      0.03003260632601279,
+      -0.0005626842141932542,
+      -0.058491193472474556,
+      0.09655521389227406,
+      -0.10731911908809444,
+      0.027931966391840923,
+      -0.11030083415773007,
+      -0.10730511665538423,
+      -0.23653605315995918
+    ],
+    "Voronoi charge": [
+      -0.4859085878803946,
+      0.5323338038647605,
+      0.47431823466057565,
+      0.7547541152655537,
+      -0.3941372400378187,
+      -0.49311757777215715,
+      1.3748074892315967,
+      0.15463515170999864,
+      1.3778591255020536,
+      1.3731841724866074,
+      -0.4716546808589226,
+      -0.45968262749547395,
+      -0.4566330208348236,
+      -0.48351580303873853,
+      -0.46158730561654226,
+      -0.4676324333872437,
+      -0.4705348421984892,
+      -0.46185384429569076,
+      -0.46379712073170887,
+      -0.47183586866576377
+    ],
     "warnings": [],
     "errors": []
   },
@@ -397,5 +480,6 @@
     "gibbs": -3.8909843565443754,
     "enthalpy": -3.845964515859368
   },
-  "misc": {}
+  "misc": {},
+  "EDA": null
 }

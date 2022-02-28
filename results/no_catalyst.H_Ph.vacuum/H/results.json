@@ -2,15 +2,11 @@
   "files": {
     "calc_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.H_Ph.vacuum\\H",
     "res_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\no_catalyst.H_Ph.vacuum\\H",
-    "run script": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.H_Ph.vacuum\\H\\GO.no_catalyst.H_Ph.H",
-    "opt adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.H_Ph.vacuum\\H\\GO.no_catalyst.H_Ph.H.adf.rkf",
-    "opt amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.H_Ph.vacuum\\H\\GO.no_catalyst.H_Ph.H.ams.rkf",
-    "opt log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.H_Ph.vacuum\\H\\GO.no_catalyst.H_Ph.H.log",
-    "opt out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.H_Ph.vacuum\\H\\GO.no_catalyst.H_Ph.H.out",
-    "preopt adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.H_Ph.vacuum\\H\\GO.no_catalyst.H_Ph.H_preopt.adf.rkf",
-    "preopt amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.H_Ph.vacuum\\H\\GO.no_catalyst.H_Ph.H_preopt.ams.rkf",
-    "preopt log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.H_Ph.vacuum\\H\\GO.no_catalyst.H_Ph.H_preopt.log",
-    "preopt out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.H_Ph.vacuum\\H\\GO.no_catalyst.H_Ph.H_preopt.out",
+    "GO run script": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.H_Ph.vacuum\\H\\GO.no_catalyst.H_Ph.H",
+    "GO adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.H_Ph.vacuum\\H\\GO.no_catalyst.H_Ph.H.adf.rkf",
+    "GO amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.H_Ph.vacuum\\H\\GO.no_catalyst.H_Ph.H.ams.rkf",
+    "GO log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.H_Ph.vacuum\\H\\GO.no_catalyst.H_Ph.H.log",
+    "GO out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.H_Ph.vacuum\\H\\GO.no_catalyst.H_Ph.H.out",
     "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.H_Ph.vacuum\\H\\input.xyz",
     "run info": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.H_Ph.vacuum\\H\\run.info"
   },
@@ -27,32 +23,11 @@
     "functional": "BLYP-D3(BJ)",
     "basis": "TZ2P",
     "numerical_quality": "Good",
-    "hash": "0bf0b6a85049d188c403c8fcfb474b0e9ba6b0ebe9d6dbcdc4a75e6563889c71",
-    "time silent": 757907
+    "hash": "0bf0b6a85049d188c403c8fcfb474b0e9ba6b0ebe9d6dbcdc4a75e6563889c71"
   },
-  "pre opt": {
-    "runtime": 3,
-    "natoms": 1,
-    "elements": [
-      "H"
-    ],
-    "input coords": [
-      [
-        0.0,
-        0.0,
-        0.0
-      ]
-    ],
-    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\no_catalyst.H_Ph.vacuum\\H\\input_preopt.xyz",
-    "steps": 0,
-    "status": "NORMAL TERMINATION",
-    "bond energy": -0.035287110344408894,
-    "step": "END",
-    "warnings": [],
-    "errors": []
-  },
-  "opt": {
+  "GO": {
     "runtime": 7,
+    "done": true,
     "natoms": 1,
     "elements": [
       "H"
@@ -68,8 +43,10 @@
     "steps": 0,
     "status": "NORMAL TERMINATION with warnings",
     "bond energy": -0.03528715045658698,
-    "step": "END",
-    "freq progress": 1,
+    "Mulliken charge": 3.3306690738754696e-16,
+    "electron dens at nuclei": 0.3431995285405035,
+    "Hirshfeld charge": -1.9253487693049465e-12,
+    "Voronoi charge": -1.9251991754350698e-12,
     "warnings": [
       "<Feb15-2022> <15:50:13>  WARNING: CPKS failed to converge. Frequencies may be wrong\n",
       "<Feb15-2022> <15:50:13>  WARNING: CPKS failed to converge. Frequencies may be wrong\n",
@@ -88,5 +65,6 @@
     "gibbs": -0.04528685193323458,
     "enthalpy": -0.032926685422872505
   },
-  "misc": {}
+  "misc": {},
+  "EDA": null
 }

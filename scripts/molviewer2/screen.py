@@ -8,6 +8,7 @@ import skimage.draw
 import matplotlib.pyplot as plt
 from time import perf_counter
 from math import cos, sin, pi, acos, pi
+import pyperclip
 
 
 l2_norm = lambda u, v: np.linalg.norm(u-v)
@@ -206,6 +207,8 @@ class Screen:
 		# state['main_mol'] = mol
 		state['molidx'] = 0
 		state['mols'] = mols
+		for mol in mols:
+			mol.positions[:,1] *= -1
 		self.mols = mols
 
 		md = self.main_display
@@ -424,6 +427,11 @@ class Screen:
 		except: pass
 		try:
 			font = pg.font.SysFont(None, 24)
+			text = font.render(f"ctrl + c to copy coordinates", True, (255,255,255,255))
+			self.molecule_surf.blit(text, (20,self.size[1]-40))
+		except: pass
+		try:
+			font = pg.font.SysFont(None, 24)
 			i = 0
 			for R, s in state['mols'][state['molidx']].substituents.items():
 				text = font.render(f'{R} = {s}', True, (255,255,255,255))
@@ -464,6 +472,14 @@ class Screen:
 			state['normalmode_animation'] = False
 			self.mols[state['molidx']].positions = self.mols[state['molidx']].original_pos
 			state['normalmode_displacement'] = 0
+
+		def copy_atoms():
+			p = self.mols[state['molidx']]
+			p.positions[:,1] *= -1
+			pyperclip.copy(p.__repr__())
+			p.positions[:,1] *= -1
+			print('Copied atoms!')
+
 
 		if state['keys'][pg.K_ESCAPE]:
 			state['run'] = False
@@ -509,6 +525,9 @@ class Screen:
 				stop_mode_animation()
 			else:
 				start_mode_animation()
+
+		if (state['keys'][pg.K_RCTRL] or state['keys'][pg.K_LCTRL]) and state['keys'][pg.K_c]:
+			copy_atoms()
 
 			# state['normalmode_animation'] = not state['normalmode_animation']
 			# if state['normalmode_animation']:

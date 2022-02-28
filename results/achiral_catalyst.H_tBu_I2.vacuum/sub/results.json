@@ -2,15 +2,11 @@
   "files": {
     "calc_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_I2.vacuum\\sub",
     "res_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_tBu_I2.vacuum\\sub",
-    "run script": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_I2.vacuum\\sub\\GO.achiral_catalyst.H_tBu_I2.sub",
-    "opt adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_I2.vacuum\\sub\\GO.achiral_catalyst.H_tBu_I2.sub.adf.rkf",
-    "opt amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_I2.vacuum\\sub\\GO.achiral_catalyst.H_tBu_I2.sub.ams.rkf",
-    "opt log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_I2.vacuum\\sub\\GO.achiral_catalyst.H_tBu_I2.sub.log",
-    "opt out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_I2.vacuum\\sub\\GO.achiral_catalyst.H_tBu_I2.sub.out",
-    "preopt adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_I2.vacuum\\sub\\GO.achiral_catalyst.H_tBu_I2.sub_preopt.adf.rkf",
-    "preopt amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_I2.vacuum\\sub\\GO.achiral_catalyst.H_tBu_I2.sub_preopt.ams.rkf",
-    "preopt log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_I2.vacuum\\sub\\GO.achiral_catalyst.H_tBu_I2.sub_preopt.log",
-    "preopt out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_I2.vacuum\\sub\\GO.achiral_catalyst.H_tBu_I2.sub_preopt.out",
+    "GO run script": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_I2.vacuum\\sub\\GO.achiral_catalyst.H_tBu_I2.sub",
+    "GO adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_I2.vacuum\\sub\\GO.achiral_catalyst.H_tBu_I2.sub.adf.rkf",
+    "GO amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_I2.vacuum\\sub\\GO.achiral_catalyst.H_tBu_I2.sub.ams.rkf",
+    "GO log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_I2.vacuum\\sub\\GO.achiral_catalyst.H_tBu_I2.sub.log",
+    "GO out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_I2.vacuum\\sub\\GO.achiral_catalyst.H_tBu_I2.sub.out",
     "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_I2.vacuum\\sub\\input.xyz",
     "run info": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_I2.vacuum\\sub\\run.info"
   },
@@ -36,250 +32,11 @@
     "functional": "BLYP-D3(BJ)",
     "basis": "TZ2P",
     "numerical_quality": "Good",
-    "hash": "5773e2d30f04caab95a4633cbe6edf1eb09952fa5644c6f4455bd2d045460bbf",
-    "time silent": 756311
+    "hash": "5773e2d30f04caab95a4633cbe6edf1eb09952fa5644c6f4455bd2d045460bbf"
   },
-  "pre opt": {
-    "runtime": 120,
-    "natoms": 20,
-    "elements": [
-      "H",
-      "C",
-      "C",
-      "C",
-      "H",
-      "O",
-      "H",
-      "C",
-      "C",
-      "C",
-      "C",
-      "H",
-      "H",
-      "H",
-      "H",
-      "H",
-      "H",
-      "H",
-      "H",
-      "H"
-    ],
-    "input coords": [
-      [
-        0.17081948756967447,
-        -3.420186305664169,
-        -0.9742644229146588
-      ],
-      [
-        -1.7155282413822737,
-        -0.01457513634579738,
-        -0.09341768500507389
-      ],
-      [
-        0.3451877296233061,
-        -1.4214453202102844,
-        -0.5010090656541857
-      ],
-      [
-        2.946629499292295,
-        -0.41600381774632467,
-        -0.3456577234077618
-      ],
-      [
-        -1.5577318391949802,
-        1.9745992806775197,
-        0.3825295871199287
-      ],
-      [
-        4.8402289955557105,
-        -2.2041289117678966,
-        -0.8106056934462902
-      ],
-      [
-        3.455213380938953,
-        1.49498331315143,
-        0.07622225441487042
-      ],
-      [
-        -6.280966945512047,
-        0.7816578104226427,
-        0.7395587185853648
-      ],
-      [
-        -4.386386794773518,
-        -1.1553325188678,
-        -0.2786864531606456
-      ],
-      [
-        -4.459409232633344,
-        -3.5754050647256888,
-        1.307537145863281
-      ],
-      [
-        -4.937156298816701,
-        -1.7478788030604444,
-        -3.057846514665219
-      ],
-      [
-        -3.5570481139729835,
-        -3.0922056284467323,
-        -3.789533635770239
-      ],
-      [
-        -8.201966676897564,
-        0.03837871242668221,
-        0.6386259896251405
-      ],
-      [
-        -6.191175531556562,
-        2.518976370364409,
-        -0.36540326381410276
-      ],
-      [
-        -5.855188009160042,
-        1.2337230261408048,
-        2.704661426287974
-      ],
-      [
-        -6.329199181281321,
-        -4.441175057386956,
-        1.2225720924300905
-      ],
-      [
-        -4.021076902327233,
-        -3.1533668601346414,
-        3.2765540999796112
-      ],
-      [
-        -3.0760086157572135,
-        -4.9323264423010755,
-        0.6059343701759969
-      ],
-      [
-        -6.82037723023106,
-        -2.5622712242015657,
-        -3.2655363541661604
-      ],
-      [
-        -4.838103922939524,
-        -0.027992720953955243,
-        -4.188978596068702
-      ]
-    ],
-    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_tBu_I2.vacuum\\sub\\input_preopt.xyz",
-    "steps": 16,
-    "output coords": [
-      [
-        0.4816699776684828,
-        -3.272046053577111,
-        1.2393856071810725
-      ],
-      [
-        -1.6011800254239525,
-        -0.3632867242057039,
-        -0.6439123256406372
-      ],
-      [
-        0.5095137995744208,
-        -1.4739442406532666,
-        0.2385663707812597
-      ],
-      [
-        3.0028068941473856,
-        -0.2931938531384051,
-        -0.09889732003841648
-      ],
-      [
-        -1.3867193704188054,
-        1.447236943992737,
-        -1.6253243507109278
-      ],
-      [
-        4.998029926949361,
-        -1.1817552712245447,
-        0.6721269054103135
-      ],
-      [
-        2.971912394238935,
-        1.5458248522349234,
-        -1.1444255683712783
-      ],
-      [
-        -5.847223088660488,
-        0.7404141566795438,
-        1.000610734256688
-      ],
-      [
-        -4.297693641007058,
-        -1.291377279858212,
-        -0.4505373190775665
-      ],
-      [
-        -4.513669796024873,
-        -3.8525816846239342,
-        0.9242952670730191
-      ],
-      [
-        -5.370306705219262,
-        -1.5397538414430947,
-        -3.175615462893371
-      ],
-      [
-        -4.323774889077048,
-        -2.963628612839237,
-        -4.256901843139753
-      ],
-      [
-        -7.840447948624038,
-        0.17604752075218955,
-        1.093097980949854
-      ],
-      [
-        -5.7421882551971954,
-        2.581388697142785,
-        0.05305731616406388
-      ],
-      [
-        -5.141374639814598,
-        0.9661532442251097,
-        2.935606455269008
-      ],
-      [
-        -6.500051087457892,
-        -4.434588390834688,
-        1.0222460835094362
-      ],
-      [
-        -3.7910634822021296,
-        -3.7322920734628107,
-        2.862678970635192
-      ],
-      [
-        -3.4616990838214194,
-        -5.334810677879104,
-        -0.07025118517597054
-      ],
-      [
-        -7.362710142778672,
-        -2.1093496736809536,
-        -3.100931396439308
-      ],
-      [
-        -5.253075280307574,
-        0.26356766376393626,
-        -4.191618643333459
-      ]
-    ],
-    "output energy": -4.020487110631201,
-    "output xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_tBu_I2.vacuum\\sub\\output_preopt.xyz",
-    "status": "NORMAL TERMINATION",
-    "bond energy": -4.020487110656401,
-    "step": "END",
-    "warnings": [],
-    "errors": []
-  },
-  "opt": {
+  "GO": {
     "runtime": 764,
+    "done": true,
     "natoms": 20,
     "elements": [
       "H",
@@ -513,8 +270,94 @@
     "output xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_tBu_I2.vacuum\\sub\\output.xyz",
     "status": "NORMAL TERMINATION",
     "bond energy": -4.0202559519635175,
-    "step": "END",
-    "freq progress": 20,
+    "Mulliken charge": [
+      -0.1781264551363162,
+      0.3038913182861833,
+      0.1662622704255874,
+      0.626827151641459,
+      -0.18961997440644773,
+      -0.4997877425284578,
+      -0.27329843489472405,
+      0.7321487304714855,
+      -0.0751068837818325,
+      0.7291570725553136,
+      0.7319269252322442,
+      -0.2238066092613975,
+      -0.2250069441931093,
+      -0.23660823266686504,
+      -0.22386303674703667,
+      -0.24664269327736643,
+      -0.2283639409701419,
+      -0.22832622508368816,
+      -0.22498281843845414,
+      -0.2366734772264112
+    ],
+    "electron dens at nuclei": [
+      0.5062943758654742,
+      127.2258502202753,
+      127.16570303199013,
+      127.24124461757883,
+      0.508780153750745,
+      314.0542169363607,
+      0.5039831948290768,
+      127.01784811948728,
+      126.96548440019195,
+      127.00506920812589,
+      127.01747850222493,
+      0.50950285484455,
+      0.509099378113141,
+      0.5096468412771661,
+      0.5095147955988649,
+      0.5093670754378191,
+      0.5098323511445664,
+      0.5098074897476571,
+      0.5090922386742993,
+      0.5096625641120741
+    ],
+    "Hirshfeld charge": [
+      0.047605423141758196,
+      0.041697119973369334,
+      0.02795027952453255,
+      0.0370068171504816,
+      0.03869450446247624,
+      0.03590211265994514,
+      0.03700489460292289,
+      0.037558544857475784,
+      0.037176769051495806,
+      0.037194323134077556,
+      0.03868739552719136,
+      0.03590078761589044,
+      0.0033234831891952865,
+      -0.05110671637206998,
+      0.10217040789993348,
+      -0.09668854500413104,
+      0.0286732282437967,
+      -0.09953537170516036,
+      -0.09670926829216775,
+      -0.2424812225599986
+    ],
+    "Voronoi charge": [
+      -0.4907397117628347,
+      0.5305406888916577,
+      0.48477821219606465,
+      0.7639449538225329,
+      -0.4925415054105,
+      -0.4053014278713061,
+      -0.47281750466649164,
+      1.3804412360124108,
+      0.1633479565379976,
+      1.3717739900046428,
+      1.3767412984123282,
+      -0.47763992010371537,
+      -0.46381842855149535,
+      -0.47123483457727644,
+      -0.47235940265703413,
+      -0.4627170459580221,
+      -0.46710997244908203,
+      -0.4686236055949604,
+      -0.46066289436884345,
+      -0.46597711480506043
+    ],
     "warnings": [],
     "errors": []
   },
@@ -639,5 +482,6 @@
     "gibbs": -3.885481374823269,
     "enthalpy": -3.8405191027090213
   },
-  "misc": {}
+  "misc": {},
+  "EDA": null
 }

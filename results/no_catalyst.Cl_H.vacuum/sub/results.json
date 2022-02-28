@@ -1,0 +1,235 @@
+{
+  "files": {
+    "calc_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.Cl_H.vacuum\\sub",
+    "res_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\no_catalyst.Cl_H.vacuum\\sub",
+    "GO run script": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.Cl_H.vacuum\\sub\\GO.no_catalyst.Cl_H.sub",
+    "GO adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.Cl_H.vacuum\\sub\\GO.no_catalyst.Cl_H.sub.adf.rkf",
+    "GO amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.Cl_H.vacuum\\sub\\GO.no_catalyst.Cl_H.sub.ams.rkf",
+    "GO log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.Cl_H.vacuum\\sub\\GO.no_catalyst.Cl_H.sub.log",
+    "GO out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.Cl_H.vacuum\\sub\\GO.no_catalyst.Cl_H.sub.out",
+    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.Cl_H.vacuum\\sub\\input.xyz",
+    "run info": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\no_catalyst.Cl_H.vacuum\\sub\\run.info"
+  },
+  "info": {
+    "substituents": [
+      [
+        "R1",
+        "Cl"
+      ],
+      [
+        "R2",
+        "H"
+      ]
+    ],
+    "unique": "no_catalyst.vacuum.GO.sub.['Cl', 'H'].[].False.N/A.BLYP-D3(BJ).TZ2P.Good",
+    "reaction": "no_catalyst",
+    "stationary point": "sub",
+    "task": "GO",
+    "TSRC": "N\\A",
+    "radical": "False",
+    "phase": "vacuum",
+    "enantiomer": "N/A",
+    "functional": "BLYP-D3(BJ)",
+    "basis": "TZ2P",
+    "numerical_quality": "Good",
+    "hash": "f4735d08b7c299ddaea11c3c2f526f28ada8ccb1fedd1227ce69d91d83a75208"
+  },
+  "GO": {
+    "runtime": 107,
+    "done": true,
+    "natoms": 8,
+    "elements": [
+      "H",
+      "C",
+      "C",
+      "C",
+      "H",
+      "O",
+      "Cl",
+      "H"
+    ],
+    "input coords": [
+      [
+        0.14118521822304053,
+        -3.4545036942928498,
+        -0.9497730054216715
+      ],
+      [
+        -1.655583672065182,
+        0.025935319430291426,
+        -0.09222224425863561
+      ],
+      [
+        0.35346108287774647,
+        -1.456460112265259,
+        -0.49564611739880404
+      ],
+      [
+        3.0336877267646885,
+        -0.6693478719455414,
+        -0.41018395261126966
+      ],
+      [
+        -1.4514421902057115,
+        2.0182737426985917,
+        0.3586920904551068
+      ],
+      [
+        4.815202955644805,
+        -2.008565879445687,
+        -0.8082805177307668
+      ],
+      [
+        3.5624265768798486,
+        2.708302928530128,
+        0.39208430696769403
+      ],
+      [
+        -3.557408012313419,
+        -0.7452518019947186,
+        -0.21096324199127964
+      ]
+    ],
+    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\no_catalyst.Cl_H.vacuum\\sub\\input.xyz",
+    "steps": 4,
+    "output coords": [
+      [
+        0.14217888869093123,
+        -3.454693848212153,
+        -0.9565101028196193
+      ],
+      [
+        -1.652244498582686,
+        0.02468796421104271,
+        -0.08981076491192207
+      ],
+      [
+        0.3534975509545547,
+        -1.4581247423769679,
+        -0.4992974870021172
+      ],
+      [
+        3.029278126144395,
+        -0.6697784802816794,
+        -0.4101671580266524
+      ],
+      [
+        -1.441140929385057,
+        2.014879648950482,
+        0.364730213306672
+      ],
+      [
+        4.812106029996771,
+        -2.0070018252160837,
+        -0.7983580127281135
+      ],
+      [
+        3.552993837962566,
+        2.709128844005805,
+        0.3837914095349793
+      ],
+      [
+        -3.5551393199756594,
+        -0.7407149303654894,
+        -0.2106707793428532
+      ]
+    ],
+    "output energy": -1.634879529414007,
+    "output xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\no_catalyst.Cl_H.vacuum\\sub\\output.xyz",
+    "status": "NORMAL TERMINATION",
+    "bond energy": -1.634879529418339,
+    "Mulliken charge": [
+      -0.1277986420040249,
+      0.46260748070358026,
+      0.1367798209878286,
+      0.4660955094542132,
+      -0.13201493321794433,
+      -0.41243139558926956,
+      -0.20162232848406703,
+      -0.19161551185033554
+    ],
+    "electron dens at nuclei": [
+      0.5047089160237426,
+      127.19200735537973,
+      127.14784561776864,
+      127.29689166998082,
+      0.5031184633226318,
+      314.1312156004511,
+      3312.4774752807753,
+      0.5046707811442053
+    ],
+    "Hirshfeld charge": [
+      0.059733535651942615,
+      0.04566085733071468,
+      0.061732232268273846,
+      -0.033354723021918,
+      -0.03599732486503715,
+      0.16476847858303056,
+      -0.18650579536835998,
+      -0.07602154549952544
+    ],
+    "Voronoi charge": [
+      -0.4721408285382068,
+      1.0056020883204786,
+      0.5054090858730587,
+      0.19687992785966557,
+      -0.5308223660762726,
+      -0.33288573300265156,
+      0.08085209659201098,
+      -0.4528785559489581
+    ],
+    "warnings": [],
+    "errors": []
+  },
+  "freq": {
+    "nmodes": 18,
+    "frequencies": [
+      109.13507315439375,
+      248.30418119013498,
+      391.16067055598467,
+      437.7557599980771,
+      474.2034905666046,
+      576.1552630500441,
+      746.3835811726253,
+      911.8935634100355,
+      983.0280305688594,
+      989.3011617758891,
+      1117.7962590751918,
+      1286.5379966954154,
+      1401.7136908861803,
+      1620.6896894150764,
+      1754.7863470186014,
+      3077.4081867156324,
+      3090.7589814084226,
+      3169.6778434196635
+    ],
+    "intensities": [
+      0.7199357060662792,
+      0.04747051775459819,
+      32.7816678244772,
+      0.08639764702863503,
+      28.914712598120204,
+      59.0879744887649,
+      12.718200897665902,
+      117.99453222874001,
+      27.404814456869286,
+      17.47885572770695,
+      101.32347921959128,
+      3.0995988530938896,
+      24.8942813537408,
+      1.2770673485605948,
+      330.50426198176854,
+      2.4134279080486842,
+      2.2601677335906407,
+      0.6762882828524449
+    ],
+    "nimag": 0,
+    "ZPE": 0.051000631896001354
+  },
+  "thermo": {
+    "gibbs": -1.613049950860592,
+    "enthalpy": -1.5776142678292822
+  },
+  "misc": {},
+  "EDA": null
+}

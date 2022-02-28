@@ -1,5 +1,6 @@
 import scm.plams as plams
 import os, paths, utility
+import matplotlib.pyplot as plt
 try:
     import mol_viewer2
 except: pass
@@ -50,11 +51,13 @@ def generate_stationary_points(template, substituents=None, keep_dummy=False):
             #parse flags
             task = 'GO'
             radical = False
+            get_frags = False
             enant = 'N/A'
             TSRC_idx = []
             substituent_idx = {}
             substituent_dist = {}
             delete_idx = []
+            active_atom_idx = False
             for flag in flags:
                 if flag in ['GO']:
                     task = flag
@@ -76,6 +79,10 @@ def generate_stationary_points(template, substituents=None, keep_dummy=False):
                     TSRC_idx = [int(i) for i in idx.split('_')]
                 if flag.startswith('delete'):
                     delete_idx = [int(i) for i in flag.split('=')[1].split('_')]
+                if flag == 'FRAG':
+                    get_frags = True
+                if flag.startswith('active_atom='):
+                    active_atom_idx = flag.split('=')[1]
 
             #construct our molecule object
             mol = plams.Molecule(file)
@@ -89,6 +96,9 @@ def generate_stationary_points(template, substituents=None, keep_dummy=False):
             mol.substituents = substituent_idx.keys()
             mol.substituent_dist = substituent_dist
             mol.delete_atoms = [mol.atoms[i-1] for i in delete_idx]
+            mol.get_frags = get_frags
+            if active_atom_idx:
+                mol.active_atom = mol.atoms[int(active_atom_idx)]
         return mol
 
 
@@ -172,6 +182,34 @@ def generate_stationary_points(template, substituents=None, keep_dummy=False):
         #atom indices have changed so update the TSRC indices
         mol.TSRC_idx = [mol.atoms.index(a) + 1 for a in TSRC_atoms]
 
+    def get_fragments(mol):
+        #we must copy the atoms into a new molecule as 
+        #the properties we glued on mol are not picklable
+
+        newm = plams.Molecule()
+        newm.add_molecule(mol)
+        newm.delete_all_bonds()
+        newm.guess_bonds()
+        frag1, frag2 = newm.separate()
+        frag1coord = [a.coords for a in frag1.atoms]
+        frag2coord = [a.coords for a in frag2.atoms]
+        frag1idx = []
+        frag2idx = []
+        for i, a in enumerate(newm.atoms, 1):
+            if a.coords in frag1coord:
+                frag1idx.append(i)
+            elif a.coords in frag2coord:
+                frag2idx.append(i)
+            else: raise
+        mol.frag1idx = frag1idx
+        mol.frag2idx = frag2idx
+
+    def set_active_atom_idx(mol):
+        if hasattr(mol, 'active_atom'):
+            i = mol.atoms.index(mol.active_atom)
+            mol.active_atom_idx = i
+
+
 
     template_files = [join(template_dir, f) for f in os.listdir(template_dir) if f.endswith('.xyz')]
     #load the molecules here
@@ -194,6 +232,14 @@ def generate_stationary_points(template, substituents=None, keep_dummy=False):
     #read default substituents:
     for mol in template_mols:
         substitute_mol(mol)
+
+    for mol in template_mols:
+        try:
+            if mol.get_frags:
+                get_fragments(mol)
+        except:
+            pass
+        set_active_atom_idx(mol)
 
     return {mol.name: mol for mol in template_mols}
 
@@ -218,4 +264,4 @@ def show_reaction(template, substituents=None, simple=False):
 if __name__ == '__main__':
     mols = generate_stationary_points('achiral_catalyst', {'Rcat':'AlF3'})
     print_mols(mols)
-    show_reaction('achiral_catalyst', {'Rcat':'ZnCl2'})
+    show_reaction('achiral_catalyst', {'Rcat':'SnCl4'})

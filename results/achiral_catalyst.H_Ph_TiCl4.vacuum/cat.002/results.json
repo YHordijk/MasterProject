@@ -2,15 +2,11 @@
   "files": {
     "calc_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_TiCl4.vacuum\\cat.002",
     "res_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_Ph_TiCl4.vacuum\\cat.002",
-    "run script": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_TiCl4.vacuum\\cat.002\\GO.achiral_catalyst.H_Ph_TiCl4.cat",
-    "opt adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_TiCl4.vacuum\\cat.002\\GO.achiral_catalyst.H_Ph_TiCl4.cat.adf.rkf",
-    "opt amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_TiCl4.vacuum\\cat.002\\GO.achiral_catalyst.H_Ph_TiCl4.cat.ams.rkf",
-    "opt log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_TiCl4.vacuum\\cat.002\\GO.achiral_catalyst.H_Ph_TiCl4.cat.log",
-    "opt out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_TiCl4.vacuum\\cat.002\\GO.achiral_catalyst.H_Ph_TiCl4.cat.out",
-    "preopt adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_TiCl4.vacuum\\cat.002\\GO.achiral_catalyst.H_Ph_TiCl4.cat_preopt.adf.rkf",
-    "preopt amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_TiCl4.vacuum\\cat.002\\GO.achiral_catalyst.H_Ph_TiCl4.cat_preopt.ams.rkf",
-    "preopt log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_TiCl4.vacuum\\cat.002\\GO.achiral_catalyst.H_Ph_TiCl4.cat_preopt.log",
-    "preopt out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_TiCl4.vacuum\\cat.002\\GO.achiral_catalyst.H_Ph_TiCl4.cat_preopt.out",
+    "GO run script": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_TiCl4.vacuum\\cat.002\\GO.achiral_catalyst.H_Ph_TiCl4.cat",
+    "GO adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_TiCl4.vacuum\\cat.002\\GO.achiral_catalyst.H_Ph_TiCl4.cat.adf.rkf",
+    "GO amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_TiCl4.vacuum\\cat.002\\GO.achiral_catalyst.H_Ph_TiCl4.cat.ams.rkf",
+    "GO log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_TiCl4.vacuum\\cat.002\\GO.achiral_catalyst.H_Ph_TiCl4.cat.log",
+    "GO out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_TiCl4.vacuum\\cat.002\\GO.achiral_catalyst.H_Ph_TiCl4.cat.out",
     "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_TiCl4.vacuum\\cat.002\\input.xyz",
     "run info": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_TiCl4.vacuum\\cat.002\\run.info"
   },
@@ -32,85 +28,11 @@
     "functional": "BLYP-D3(BJ)",
     "basis": "TZ2P",
     "numerical_quality": "Good",
-    "hash": "01c4847dfbd6bc1bfb3ae7163a3351fde71f13e03c305a21f866f3083b9ae635",
-    "time silent": 763334
+    "hash": "01c4847dfbd6bc1bfb3ae7163a3351fde71f13e03c305a21f866f3083b9ae635"
   },
-  "pre opt": {
-    "runtime": 11,
-    "natoms": 5,
-    "elements": [
-      "Ti",
-      "Cl",
-      "Cl",
-      "Cl",
-      "Cl"
-    ],
-    "input coords": [
-      [
-        6.461629222779925,
-        -0.11336967799053022,
-        -0.10942956122616299
-      ],
-      [
-        2.4377467007672435,
-        0.0,
-        0.0
-      ],
-      [
-        7.789097555744029,
-        -3.0305096987518603,
-        2.328721370856399
-      ],
-      [
-        7.937931251483881,
-        3.429639207068339,
-        1.1087980508434128
-      ],
-      [
-        7.681741402021807,
-        -0.8526082013813384,
-        -3.875237685501726
-      ]
-    ],
-    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_Ph_TiCl4.vacuum\\cat.002\\input_preopt.xyz",
-    "steps": 4,
-    "output coords": [
-      [
-        6.4618473782884545,
-        -0.11345658037060237,
-        -0.10940308166919373
-      ],
-      [
-        2.312740141558204,
-        0.005931681982751827,
-        0.0017764209707244556
-      ],
-      [
-        7.832967542328649,
-        -3.1209396483257827,
-        2.404011438264359
-      ],
-      [
-        7.982190873480152,
-        3.53999948542188,
-        1.1494580407639048
-      ],
-      [
-        7.718400197141429,
-        -0.8783833097636367,
-        -3.992990643357871
-      ]
-    ],
-    "output energy": -0.7775375349006363,
-    "output xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_Ph_TiCl4.vacuum\\cat.002\\output_preopt.xyz",
-    "status": "NORMAL TERMINATION",
-    "bond energy": -0.7775375388412765,
-    "step": "END",
-    "warnings": [],
-    "errors": []
-  },
-  "opt": {
+  "GO": {
     "runtime": 48,
+    "done": true,
     "natoms": 5,
     "elements": [
       "Ti",
@@ -179,8 +101,34 @@
     "output xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_Ph_TiCl4.vacuum\\cat.002\\output.xyz",
     "status": "NORMAL TERMINATION",
     "bond energy": -0.7774828121658525,
-    "step": "END",
-    "freq progress": 5,
+    "Mulliken charge": [
+      0.8616060140258135,
+      -0.21537122604718206,
+      -0.215397559380051,
+      -0.2155321603039937,
+      -0.21530506829465423
+    ],
+    "electron dens at nuclei": [
+      7493.3028399894565,
+      3312.313145571398,
+      3312.3125733364877,
+      3312.312923782245,
+      3312.3127860778955
+    ],
+    "Hirshfeld charge": [
+      0.39854453981473625,
+      -0.09959114252153967,
+      -0.09962469336097257,
+      -0.0996607251192394,
+      -0.09967497980314022
+    ],
+    "Voronoi charge": [
+      1.1929357146468735,
+      -0.2987970028276141,
+      -0.29634281179722244,
+      -0.29664187323456304,
+      -0.30116102777761533
+    ],
     "warnings": [],
     "errors": []
   },
@@ -215,5 +163,6 @@
     "gibbs": -0.8063102853333158,
     "enthalpy": -0.7636605070373215
   },
-  "misc": {}
+  "misc": {},
+  "EDA": null
 }

@@ -2,15 +2,11 @@
   "files": {
     "calc_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_I2.vacuum\\H",
     "res_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_tBu_I2.vacuum\\H",
-    "run script": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_I2.vacuum\\H\\GO.achiral_catalyst.H_tBu_I2.H",
-    "opt adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_I2.vacuum\\H\\GO.achiral_catalyst.H_tBu_I2.H.adf.rkf",
-    "opt amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_I2.vacuum\\H\\GO.achiral_catalyst.H_tBu_I2.H.ams.rkf",
-    "opt log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_I2.vacuum\\H\\GO.achiral_catalyst.H_tBu_I2.H.log",
-    "opt out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_I2.vacuum\\H\\GO.achiral_catalyst.H_tBu_I2.H.out",
-    "preopt adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_I2.vacuum\\H\\GO.achiral_catalyst.H_tBu_I2.H_preopt.adf.rkf",
-    "preopt amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_I2.vacuum\\H\\GO.achiral_catalyst.H_tBu_I2.H_preopt.ams.rkf",
-    "preopt log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_I2.vacuum\\H\\GO.achiral_catalyst.H_tBu_I2.H_preopt.log",
-    "preopt out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_I2.vacuum\\H\\GO.achiral_catalyst.H_tBu_I2.H_preopt.out",
+    "GO run script": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_I2.vacuum\\H\\GO.achiral_catalyst.H_tBu_I2.H",
+    "GO adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_I2.vacuum\\H\\GO.achiral_catalyst.H_tBu_I2.H.adf.rkf",
+    "GO amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_I2.vacuum\\H\\GO.achiral_catalyst.H_tBu_I2.H.ams.rkf",
+    "GO log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_I2.vacuum\\H\\GO.achiral_catalyst.H_tBu_I2.H.log",
+    "GO out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_I2.vacuum\\H\\GO.achiral_catalyst.H_tBu_I2.H.out",
     "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_I2.vacuum\\H\\input.xyz",
     "run info": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_tBu_I2.vacuum\\H\\run.info"
   },
@@ -27,32 +23,11 @@
     "functional": "OLYP",
     "basis": "TZ2P",
     "numerical_quality": "VeryGood",
-    "hash": "bd71c2832fbf3913cd653b0c4bfc91a1ecada7430064e431a382d8e1faa655e3",
-    "time silent": 890763
+    "hash": "bd71c2832fbf3913cd653b0c4bfc91a1ecada7430064e431a382d8e1faa655e3"
   },
-  "pre opt": {
-    "runtime": 2,
-    "natoms": 1,
-    "elements": [
-      "H"
-    ],
-    "input coords": [
-      [
-        0.0,
-        0.0,
-        0.0
-      ]
-    ],
-    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_tBu_I2.vacuum\\H\\input_preopt.xyz",
-    "steps": 0,
-    "status": "NORMAL TERMINATION",
-    "bond energy": -0.03405426125832218,
-    "step": "END",
-    "warnings": [],
-    "errors": []
-  },
-  "opt": {
+  "GO": {
     "runtime": 5,
+    "done": true,
     "natoms": 1,
     "elements": [
       "H"
@@ -68,8 +43,10 @@
     "steps": 0,
     "status": "NORMAL TERMINATION with warnings",
     "bond energy": -0.03405431096562917,
-    "step": "END",
-    "freq progress": 1,
+    "Mulliken charge": 0.0,
+    "electron dens at nuclei": 0.3391626793161874,
+    "Hirshfeld charge": 5.229150445984487e-14,
+    "Voronoi charge": 5.262457136723242e-14,
     "warnings": [
       "<Feb14-2022> <02:55:49>  WARNING: CPKS failed to converge. Frequencies may be wrong\n",
       "<Feb14-2022> <02:55:50>  WARNING: CPKS failed to converge. Frequencies may be wrong\n",
@@ -88,5 +65,6 @@
     "gibbs": -0.044054012442276774,
     "enthalpy": -0.031693845931914696
   },
-  "misc": {}
+  "misc": {},
+  "EDA": null
 }

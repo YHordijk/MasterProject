@@ -1,10 +1,14 @@
 import scm.plams as plams
-import paths, os, utility
+import paths, os, utility, struct_generator2
+os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 import datetime, time, json, shutil
 from os.path import join, relpath
 import numpy as np
 import matplotlib.pyplot as plt
-import molviewer2.molecule as molecule
+try:
+    import molviewer2.molecule as molecule
+except:
+    pass
 import json
 
 
@@ -22,6 +26,8 @@ def get_all_run_dirs(calc_dir=paths.calculations):
             dirs.append(p)
     return dirs
 
+all_run_dirs = get_all_run_dirs()
+
 
 def get_all_result_dirs(res_dir=paths.results):
     dirs = []
@@ -32,6 +38,8 @@ def get_all_result_dirs(res_dir=paths.results):
             p = join(res_dir,system,dir)
             dirs.append(p)
     return dirs
+
+all_result_dirs = get_all_result_dirs()
 
 
 def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.results):
@@ -44,16 +52,11 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
         files = {}
         job_name = os.path.basename(calc_path).split('.')[0]
 
-        #preopt file endings:
-        preopt_adf_kf = f'{job_name}_preopt.adf.rkf'
-        preopt_ams_kf = f'{job_name}_preopt.ams.rkf'
-        preopt_out = f'{job_name}_preopt.out'
-        preopt_log = f'{job_name}_preopt.log'
         #opt file endings
-        opt_adf_kf = f'{job_name}.adf.rkf'
-        opt_ams_kf = f'{job_name}.ams.rkf'
-        opt_out = f'{job_name}.out'
-        opt_log = f'{job_name}.log'
+        GO_adf_kf = f'{job_name}.adf.rkf'
+        GO_ams_kf = f'{job_name}.ams.rkf'
+        GO_out = f'{job_name}.out'
+        GO_log = f'{job_name}.log'
 
         files['calc_path'] = calc_path
         files['res_path'] = res_path
@@ -64,37 +67,48 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
             elif file == 'run.info':
                 files['run info'] = join(calc_path, file)
             elif file.endswith(job_name):
-                files['run script'] = join(calc_path, file)
+                files['GO run script'] = join(calc_path, file)
 
-            #preopt result files
-            elif file.endswith(preopt_adf_kf):
-                files['preopt adfrkf'] = join(calc_path, file)
-            elif file.endswith(preopt_ams_kf):
-                files['preopt amsrkf'] = join(calc_path, file)
-            elif file.endswith(preopt_out):
-                files['preopt out'] = join(calc_path, file)
-            elif file.endswith(preopt_log):
-                files['preopt log'] = join(calc_path, file)
-            #opt results files
-            elif file.endswith(opt_adf_kf):
-                files['opt adfrkf'] = join(calc_path, file)
-            elif file.endswith(opt_ams_kf):
-                files['opt amsrkf'] = join(calc_path, file)
-            elif file.endswith(opt_out):
-                files['opt out'] = join(calc_path, file)
-            elif file.endswith(opt_log):
-                files['opt log'] = join(calc_path, file)
+            #fragment files 
+            elif file == 'Fragment_1.log':
+                files['frag1 log'] = join(calc_path, file)
+            elif file == 'Fragment_1.out':
+                files['frag1 out'] = join(calc_path, file)
+            elif file == 'Fragment_1.rkf':
+                files['frag1 rkf'] = join(calc_path, file)
+            elif file == 'Fragment_1.adf.rkf':
+                files['frag1 adfrkf'] = join(calc_path, file)
 
-            if os.path.isdir(join(calc_path, file)) and file == 'ams.results':
-                files['ams.results'] = join(calc_path, file)
+            elif file == 'Fragment_2.log':
+                files['frag2 log'] = join(calc_path, file)
+            elif file == 'Fragment_2.out':
+                files['frag2 out'] = join(calc_path, file)
+            elif file == 'Fragment_2.rkf':
+                files['frag2 rkf'] = join(calc_path, file)
+            elif file == 'Fragment_2.adf.rkf':
+                files['frag2 adfrkf'] = join(calc_path, file)
 
-        if 'ams.results' in files:
-            if not 'preopt amsrkf' in files:
-                files['preopt amsrkf'] = join(files['ams.results'], 'ams.rkf')
-                files['preopt log'] = join(files['ams.results'], 'ams.log')
-            elif not 'opt amsrkf' in files:
-                files['opt amsrkf'] = join(files['ams.results'], 'ams.rkf')
-                files['opt log'] = join(files['ams.results'], 'ams.log')
+            #EDA files
+            elif file == 'EDA.log':
+                files['EDA log'] = join(calc_path, file)
+            elif file == 'EDA.ams.rkf':
+                files['EDA amsrkf'] = join(calc_path, file)
+            elif file == 'EDA.adf.rkf':
+                files['EDA adfrkf'] = join(calc_path, file)
+            elif file == 'frag.run.out':
+                files['EDA out'] = join(calc_path, file)
+            elif file == 'frag.run':
+                files['EDA run script'] = join(calc_path, file)
+
+            #GO results files
+            elif file.endswith(GO_adf_kf):
+                files['GO adfrkf'] = join(calc_path, file)
+            elif file.endswith(GO_ams_kf):
+                files['GO amsrkf'] = join(calc_path, file)
+            elif file.endswith(GO_out):
+                files['GO out'] = join(calc_path, file)
+            elif file.endswith(GO_log):
+                files['GO log'] = join(calc_path, file)
 
         return files
 
@@ -137,30 +151,21 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
                     elif arg == 'numerical_quality':
                         general['numerical_quality'] = val
 
-
             if 'unique' in general:
                 general['hash'] = utility.hash2(general['unique'])
 
-        if 'opt log' in files:
-            logfile = files['opt log']
-        elif 'preopt log' in files:
-            logfile = files['preopt log']
-        else:
-            return general
-
-
-        with open(logfile) as log:
-            lines = log.readlines()
-            last = lines[-1]
-            last = ' '.join(last.split()[0:2])
-
-            now = datetime.datetime.now()
-            then = datetime.datetime.strptime(last, '<%b%d-%Y> <%H:%M:%S>')
-            general['time silent'] = int((now-then).total_seconds())
+            try:
+                subdict = {x[0]:x[1] for x in general['substituents']}
+                mol = struct_generator2.generate_stationary_points(template=general['reaction'], substituents=subdict)[general['stationary point']]
+                if hasattr(mol, 'active_atom_idx'):
+                    general['active atom index'] = mol.active_atom_idx
+            except:
+                pass
 
         return general
 
-    def get_GO_data(preopt=False):
+
+    def get_GO_data():
         def write_xyz(file, elements, coords, comment=''):
             with open(file, 'w+') as xyz:
                 xyz.write(str(len(elements)))
@@ -168,100 +173,94 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
                 for e, c in zip(elements, coords):
                     xyz.write(f'{e:2}\t{b2a(c[0]):11.9f}\t{b2a(c[1]):11.9f}\t{b2a(c[2]):11.9f}\n')
 
-        opt = {}
+        GO = {}
         files = data['files'] 
-        amsrkf = 'opt amsrkf'
-        adfrkf = 'opt adfrkf'
+        amsrkf = 'GO amsrkf'
+        adfrkf = 'GO adfrkf'
         input_xyz = join(res_path, 'input.xyz')
         output_xyz = join(res_path, 'output.xyz')
-        log = 'opt log'
-        opt['runtime'] = 0
-        # xyz_comment =
-        if preopt:
-            amsrkf = 'preopt amsrkf'
-            adfrkf = 'preopt adfrkf'
-            input_xyz = join(res_path, 'input_preopt.xyz')
-            output_xyz = join(res_path, 'output_preopt.xyz')
-            log = 'preopt log'
+        log = 'GO log'
+        GO['runtime'] = 0
+        GO['done'] = False
 
         if amsrkf in files:
             ams = plams.KFFile(files[amsrkf])
             try:
-                opt['natoms'] = ams.read('InputMolecule', 'nAtoms')
-                opt['elements'] = ams.read('InputMolecule', 'AtomSymbols').split()
+                GO['natoms'] = ams.read('InputMolecule', 'nAtoms')
+                GO['elements'] = ams.read('InputMolecule', 'AtomSymbols').split()
                 c = ams.read('InputMolecule', 'Coords')
-                opt['input coords'] = [c[i:i+3] for i in range(0, len(c), 3)]
-                write_xyz(input_xyz, opt['elements'], opt['input coords'])
-                opt['input xyz'] = input_xyz
+                GO['input coords'] = [c[i:i+3] for i in range(0, len(c), 3)]
+                write_xyz(input_xyz, GO['elements'], GO['input coords'])
+                GO['input xyz'] = input_xyz
             except:
                 pass
             
-            
             try:
-                opt['steps'] = ams.read('History', 'nEntries')
-                c = ams.read('History', f'Coords({opt["steps"]})')
-                opt['output coords'] = [c[i:i+3] for i in range(0, len(c), 3)]
-                opt['output energy'] = ams.read('History', f'Energy({opt["steps"]})')
-                write_xyz(output_xyz, opt['elements'], opt['output coords'])
-                opt['output xyz'] = output_xyz
+                GO['steps'] = ams.read('History', 'nEntries')
+                c = ams.read('History', f'Coords({GO["steps"]})')
+                GO['output coords'] = [c[i:i+3] for i in range(0, len(c), 3)]
+                GO['output energy'] = ams.read('History', f'Energy({GO["steps"]})')
+                write_xyz(output_xyz, GO['elements'], GO['output coords'])
+                GO['output xyz'] = output_xyz
             except: 
-                opt['steps'] = 0
+                GO['steps'] = 0
 
-            opt['status'] = ams.read('General', 'termination status')
+            GO['status'] = ams.read('General', 'termination status')
 
         if adfrkf in files:
             adf = plams.KFFile(files[adfrkf])
-            opt['bond energy'] = adf.read('Energy', 'Bond Energy')
+            GO['bond energy'] = adf.read('Energy', 'Bond Energy')
+            GO['Mulliken charge'] = adf.read('Properties', 'AtomCharge Mulliken')
+            GO['electron dens at nuclei'] = adf.read('Properties', 'Electron Density at Nuclei')
+            GO['Hirshfeld charge'] = adf.read('Properties', 'FragmentCharge Hirshfeld')
+            GO['Voronoi charge'] = adf.read('Properties', 'AtomCharge_SCF Voronoi')
 
         if log in files:
             with open(files[log]) as log:
                 lines = log.readlines()
                 first = datetime.datetime.strptime(' '.join(lines[0].split()[0:2]),  '<%b%d-%Y> <%H:%M:%S>')
                 last  = datetime.datetime.strptime(' '.join(lines[-1].split()[0:2]), '<%b%d-%Y> <%H:%M:%S>')
-                opt['runtime'] = int((last-first).total_seconds())
-                opt['step'] = 'GO'
-                if preopt:
-                    opt['step'] = 'PREOPT'
+                GO['runtime'] = int((last-first).total_seconds())
 
-                if any('=== NUCLEUS' in line for line in lines):
-                    opt['step'] = 'FREQ'
-                    opt['freq progress'] = max(int(line.split()[4]) for line in lines if '=== NUCLEUS' in line)
                 if any('NORMAL TERMINATION' in line for line in lines):
-                    opt['step'] = 'END'
+                    GO['done'] = True
 
                 warning_lines = [line for line in lines if 'WARNING:' in line]
                 warning_lines = [l for l in warning_lines if 'total elapsed time is much higher than the (CPU+system) time' not in l]
-                opt['warnings'] = warning_lines
+                GO['warnings'] = warning_lines
 
                 error_lines = [line for line in lines if 'ERROR:' in line]
-                opt['errors'] = error_lines
+                GO['errors'] = error_lines
 
-        return opt
+        return GO
 
 
     def get_freq_data():
         freq = {}
         files = data['files']
-        adfrkf = 'opt adfrkf'
+        adfrkf = 'GO adfrkf'
 
         if adfrkf in files:
             adf = plams.KFFile(files[adfrkf])
-            freq['nmodes'] = adf.read('Vibrations', 'nNormalModes')
-            freq['frequencies'] = adf.read('Vibrations', 'Frequencies[cm-1]')
-            freq['intensities'] = adf.read('Vibrations', 'Intensities[km/mol]')
-            if type(freq['frequencies']) is float: freq['frequencies'] = [freq['frequencies']]
-            if type(freq['intensities']) is float: freq['intensities'] = [freq['intensities']]
-            freq['nimag'] = len([f for f in freq['frequencies'] if f < 0])
-            if freq['nimag'] > 0:
-                freq['imag mode'] = adf.read('Vibrations', 'NoWeightNormalMode(1)')
-            freq['ZPE'] = adf.read('Vibrations', 'ZeroPointEnergy')
+            try:
+                freq['nmodes'] = adf.read('Vibrations', 'nNormalModes')
+                freq['frequencies'] = adf.read('Vibrations', 'Frequencies[cm-1]')
+                freq['intensities'] = adf.read('Vibrations', 'Intensities[km/mol]')
+                if type(freq['frequencies']) is float: freq['frequencies'] = [freq['frequencies']]
+                if type(freq['intensities']) is float: freq['intensities'] = [freq['intensities']]
+                freq['nimag'] = len([f for f in freq['frequencies'] if f < 0])
+                if freq['nimag'] > 0:
+                    freq['imag mode'] = adf.read('Vibrations', 'NoWeightNormalMode(1)')
+                freq['ZPE'] = adf.read('Vibrations', 'ZeroPointEnergy')
+            except:
+                pass
 
         return freq
 
     def get_thermo_data():
         thermo = {}
         files = data['files']
-        adfrkf = 'opt adfrkf'
+        adfrkf = 'GO adfrkf'
         if adfrkf in files:
             adf = plams.KFFile(files[adfrkf])
             if 'Thermodynamics' in adf.sections():
@@ -273,19 +272,36 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
     def get_misc_data():
         misc = {}
         files = data['files']
-        adfrkf = 'opt adfrkf'
+        adfrkf = 'GO adfrkf'
 
         return misc
+
+    def get_EDA_data():
+        files = data['files']
+        EDA = {}
+        if not 'EDA adfrkf' in files:
+            return
+        try:
+            EDAadfrkf = plams.KFFile(files['EDA adfrkf'])
+            EDA['pauli'] = EDAadfrkf.read('Energy', 'Pauli Total')
+            EDA['bonding'] = EDAadfrkf.read('Energy', 'Bond Energy')
+            EDA['elstat'] = EDAadfrkf.read('Energy', 'Electrostatic Interaction')
+            EDA['orbital interaction'] = EDAadfrkf.read('Energy', 'Orb.Int. Total')
+        except:
+            print(files['calc_path'])
+            raise
+
+        return EDA
 
 
     data = {}
     data['files']   = get_files()
     data['info']    = get_info()
-    data['pre opt'] = get_GO_data(True)
-    data['opt']     = get_GO_data()
+    data['GO']      = get_GO_data()
     data['freq']    = get_freq_data()
     data['thermo']  = get_thermo_data()
     data['misc']    = get_misc_data()
+    data['EDA']     = get_EDA_data()
 
     with open(join(res_path, 'results.json'), 'w+') as res:
         res.write(json.dumps(data, indent=2))
@@ -330,6 +346,7 @@ def get_all_results(calc_dir=paths.calculations, res_dir=paths.results, regenera
     return res
 
 
+
 class Result:
     def __init__(self, path, calc_path=None):
         self.path = path
@@ -348,10 +365,10 @@ class Result:
 
     @property
     def energy(self):
-        if 'bond energy' in self.data['opt']:
-            return self.data['opt'].get('bond energy')
+        if 'bond energy' in self.data['GO']:
+            return self.data['GO'].get('bond energy')
 
-        return self.data['opt'].get('output energy')
+        return self.data['GO'].get('output energy')
 
     @property
     def phase(self):
@@ -411,7 +428,7 @@ class Result:
 
     @property
     def runtime(self):
-        return self.data['pre opt']['runtime'] + self.data['opt']['runtime']
+        return self.data['GO']['runtime']
 
     @property
     def formatted_runtime(self):
@@ -424,14 +441,14 @@ class Result:
 
     @property
     def natoms(self):
-        return self.data['opt'].get('natoms')
+        return self.data['GO'].get('natoms')
 
     @property
     def get_imaginary_mode(self):
         return self.data['freq'].get('imag mode', None)
 
     def get_mol(self):
-        xyz = self.data['opt'].get('output xyz')
+        xyz = self.data['GO'].get('output xyz')
         mol = plams.Molecule(xyz)
         mol.name = self.stationary_point
         mol.reaction = self.reaction
@@ -441,15 +458,10 @@ class Result:
     
 
     def _set_status(self):
-        preopt_status = self.data['pre opt'].get('status', None)
-        opt_status    = self.data['opt'].get('status', None)
-        self.step     = self.data['pre opt'].get('step', '')
-        self.step     = self.data['opt'].get('step', self.step)
+        opt_status    = self.data['GO'].get('status', None)
 
         self.status = 'Queued'
 
-        if preopt_status in ['IN PROGRESS', 'NORMAL TERMINATION']:
-            self.status = 'Running'
         if opt_status is None: 
             return 
         if opt_status == 'IN PROGRESS':
@@ -471,7 +483,7 @@ class Result:
                 self.status = 'Canceled'
 
         if self.status == 'Warning':
-            warnings = self.data['opt']['warnings']
+            warnings = self.data['GO']['warnings']
             if len(warnings) == 0:
                 self.status = 'Success'
             else:
@@ -536,6 +548,9 @@ def print_canceled(res, tabs=0):
     for r in canceled:
         print(r.calc_path)
 
+
+
+all_results = get_all_results()
 
 
 if __name__ == '__main__':

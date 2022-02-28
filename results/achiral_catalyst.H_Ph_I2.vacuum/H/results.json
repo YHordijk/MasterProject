@@ -2,15 +2,11 @@
   "files": {
     "calc_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_I2.vacuum\\H",
     "res_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_Ph_I2.vacuum\\H",
-    "run script": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_I2.vacuum\\H\\GO.achiral_catalyst.H_Ph_I2.H",
-    "opt adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_I2.vacuum\\H\\GO.achiral_catalyst.H_Ph_I2.H.adf.rkf",
-    "opt amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_I2.vacuum\\H\\GO.achiral_catalyst.H_Ph_I2.H.ams.rkf",
-    "opt log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_I2.vacuum\\H\\GO.achiral_catalyst.H_Ph_I2.H.log",
-    "opt out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_I2.vacuum\\H\\GO.achiral_catalyst.H_Ph_I2.H.out",
-    "preopt adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_I2.vacuum\\H\\GO.achiral_catalyst.H_Ph_I2.H_preopt.adf.rkf",
-    "preopt amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_I2.vacuum\\H\\GO.achiral_catalyst.H_Ph_I2.H_preopt.ams.rkf",
-    "preopt log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_I2.vacuum\\H\\GO.achiral_catalyst.H_Ph_I2.H_preopt.log",
-    "preopt out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_I2.vacuum\\H\\GO.achiral_catalyst.H_Ph_I2.H_preopt.out",
+    "GO run script": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_I2.vacuum\\H\\GO.achiral_catalyst.H_Ph_I2.H",
+    "GO adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_I2.vacuum\\H\\GO.achiral_catalyst.H_Ph_I2.H.adf.rkf",
+    "GO amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_I2.vacuum\\H\\GO.achiral_catalyst.H_Ph_I2.H.ams.rkf",
+    "GO log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_I2.vacuum\\H\\GO.achiral_catalyst.H_Ph_I2.H.log",
+    "GO out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_I2.vacuum\\H\\GO.achiral_catalyst.H_Ph_I2.H.out",
     "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_I2.vacuum\\H\\input.xyz",
     "run info": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.H_Ph_I2.vacuum\\H\\run.info"
   },
@@ -27,32 +23,11 @@
     "functional": "BLYP-D3(BJ)",
     "basis": "TZ2P",
     "numerical_quality": "Good",
-    "hash": "24ae896f589333b1985f6844e34ce94a69e61c07fb3ab5f55527c10fc6bf5565",
-    "time silent": 764861
+    "hash": "24ae896f589333b1985f6844e34ce94a69e61c07fb3ab5f55527c10fc6bf5565"
   },
-  "pre opt": {
-    "runtime": 2,
-    "natoms": 1,
-    "elements": [
-      "H"
-    ],
-    "input coords": [
-      [
-        0.0,
-        0.0,
-        0.0
-      ]
-    ],
-    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.H_Ph_I2.vacuum\\H\\input_preopt.xyz",
-    "steps": 0,
-    "status": "NORMAL TERMINATION",
-    "bond energy": -0.03528711034441041,
-    "step": "END",
-    "warnings": [],
-    "errors": []
-  },
-  "opt": {
+  "GO": {
     "runtime": 4,
+    "done": true,
     "natoms": 1,
     "elements": [
       "H"
@@ -68,8 +43,10 @@
     "steps": 0,
     "status": "NORMAL TERMINATION with warnings",
     "bond energy": -0.035287150456586855,
-    "step": "END",
-    "freq progress": 1,
+    "Mulliken charge": 0.0,
+    "electron dens at nuclei": 0.34319952859491465,
+    "Hirshfeld charge": -1.9257928585147965e-12,
+    "Voronoi charge": -1.9260849777501294e-12,
     "warnings": [
       "<Feb15-2022> <13:54:07>  WARNING: CPKS failed to converge. Frequencies may be wrong\n",
       "<Feb15-2022> <13:54:07>  WARNING: CPKS failed to converge. Frequencies may be wrong\n",
@@ -88,5 +65,6 @@
     "gibbs": -0.04528685193323446,
     "enthalpy": -0.03292668542287238
   },
-  "misc": {}
+  "misc": {},
+  "EDA": null
 }

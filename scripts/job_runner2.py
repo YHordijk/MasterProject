@@ -1,8 +1,120 @@
 import scm.plams as plams
-import struct_generator2, paths, os, utility
-
+import struct_generator2, paths, os, utility, job_results3
 
 join = os.path.join
+
+
+
+def run_frag_job(calc_path):
+    def run_job(file):
+        start_script = f"""#!/bin/bash
+cd {os.path.dirname(file)}
+sbatch {os.path.basename(file)}
+"""     
+        os.system(start_script)
+
+
+    #read information about run
+    substituents = {}
+    with open(join(calc_path, 'run.info')) as info:
+        for line in info.readlines():
+            line = line.strip()
+            if line.startswith('R'): R, s = line.split('='); substituents[R] = s
+            if line.startswith('reaction'):          template            = line.split('=')[1]
+            if line.startswith('functional'):        functional          = line.split('=')[1]
+            if line.startswith('basis'):             basis               = line.split('=')[1]
+            if line.startswith('phase'):             phase               = line.split('=')[1]
+            if line.startswith('stationary_point'):  stationary_point    = line.split('=')[1]
+            if line.startswith('radical'):           radical             = line.split('=')[1]
+            if line.startswith('numerical_quality'): numerical_quality   = line.split('=')[1]
+
+    if functional == 'OLYP': return
+    mol = struct_generator2.generate_stationary_points(template=template, substituents=substituents)[stationary_point]
+    opt_xyz = join(calc_path, 'output.xyz')
+    rewrite = False
+    with open(opt_xyz) as opt:
+        lines = opt.readlines()
+        try:
+            int(lines[0].strip())
+        except:
+            print('wrong format')
+            rewrite = True
+
+
+    if rewrite:
+        with open(opt_xyz, 'w+') as opt:
+            opt.write(str(len(lines)-2))
+            opt.write('\n\n')
+            for line in lines[1:]:
+                opt.write(line.strip() + '\n')
+    print(opt_xyz)
+    opt_mol = plams.Molecule(opt_xyz)
+    ATOMS = ''
+    for i, atom in enumerate(opt_mol.atoms, 1):
+        if i in mol.frag1idx:
+            ATOMS += f'    {atom.symbol:<2}\t{atom.coords[0]:=11.8f}\t{atom.coords[1]:=11.8f}\t{atom.coords[2]:=11.8f}\tf=f1\n'
+        elif i in mol.frag2idx:
+            ATOMS += f'    {atom.symbol:<2}\t{atom.coords[0]:=11.8f}\t{atom.coords[1]:=11.8f}\t{atom.coords[2]:=11.8f}\tf=f2\n'
+
+    ATOMS1 = ''
+    for i, atom in enumerate(opt_mol.atoms, 1):
+        if i in mol.frag1idx:
+            ATOMS1 += f'    {atom.symbol:<2}\t{atom.coords[0]:=11.8f}\t{atom.coords[1]:=11.8f}\t{atom.coords[2]:=11.8f}\tregion=Region_1\n'
+
+    ATOMS2 = ''
+    for i, atom in enumerate(opt_mol.atoms, 1):
+        if i in mol.frag2idx:
+            ATOMS2 += f'    {atom.symbol:<2}\t{atom.coords[0]:=11.8f}\t{atom.coords[1]:=11.8f}\t{atom.coords[2]:=11.8f}\tregion=Region_2\n'
+
+    FUNCTIONAL = {
+            'OLYP': 'GGA OLYP',
+            'BLYP-D3(BJ)': 'GGA BLYP\n    DISPERSION GRIMME3 BJDAMP',
+            'M06L': 'MetaGGA M06L'
+        }[functional]
+
+    RADICAL = ''
+    if radical == 'True':
+        RADICAL = '\n  SpinPolarization 1\n  Unrestricted Yes\n'
+    CORES = '64'
+    NODES = '1'
+    
+    blocks = {
+        '[RADICAL]':          RADICAL, 
+        '[ATOMS]':            ATOMS, 
+        '[ATOMS1]':           ATOMS1, 
+        '[ATOMS2]':           ATOMS2, 
+        '[CORES]':            CORES,
+        '[NODES]':            NODES,
+        '[BASIS]':            basis,
+        '[FUNCTIONAL]':       FUNCTIONAL,
+        '[NUMERICALQUALITY]': numerical_quality,
+        }
+
+    JR_template = join(paths.JR_templates, 'FRAG')
+    runscript = join(calc_path, 'frag.run')
+    with open(JR_template, 'r') as temp:
+        temp_lines = temp.readlines()
+        with open(runscript, 'w+') as run:
+            for line in temp_lines:
+                for block in blocks:
+                    if block in line:
+                        line = line.replace(block, blocks[block])
+
+                run.write(line)
+
+    run_job(runscript)
+
+
+# with open(JR_template) as temp:
+#             temp_lines = temp.readlines()
+#             with open(runscript_path(mol), 'w+') as run:
+#                 for line in temp_lines:
+#                     for block in blocks:
+#                         if block in line:
+#                             line = line.replace(block, blocks[block])
+
+#                     run.write(line)
+
 
 
 
@@ -133,6 +245,7 @@ sbatch {os.path.basename(file)}
         os.system(start_script)
 
     mols = get_mols()
+    Njobs = 0
     i = 0
     for mol_name, mol in mols.items():
         i += 1
@@ -142,6 +255,7 @@ sbatch {os.path.basename(file)}
         if utility.hash_collision(hash(mol), calc_dir):
             print(f'Hash collision detected {i} {mol_name}')
             continue
+        Njobs += 1
 
         JR_template = get_job_runner_template(mol)
         job_dir = get_job_dir(mol)
@@ -169,24 +283,26 @@ sbatch {os.path.basename(file)}
         if not test_mode:
             run_job(runscript_path(mol))
 
-        
+    return Njobs
 if __name__ == '__main__':
     calc_dir = paths.calculations
-    test_mode = False
+    test_mode = True
 
     basis = 'TZ2P'
     functional = 'BLYP-D3(BJ)'
     numerical_quality = 'Good'
+    n = 0
     for R1 in ['H', 'F', 'Cl', 'Br', 'I']:
-        for R2 in ['H', 'Ph', 'tBu']:
-            run_jobs('no_catalyst', {'R1':R1, 'R2':R2}, phase='vacuum', calc_dir=calc_dir, test_mode=test_mode, basis=basis, functional=functional, numerical_quality=numerical_quality)
+        # for R2 in ['H', 'Ph', 'tBu']:
+        #     run_jobs('no_catalyst', {'R1':R1, 'R2':R2}, phase='vacuum', calc_dir=calc_dir, test_mode=test_mode, basis=basis, functional=functional, numerical_quality=numerical_quality)
         for R2 in ['Ph', 'tBu']:
             for cat in ['I2', 'ZnCl2', 'TiCl4', 'BF3', 'AlF3', 'SnCl4']:
-                run_jobs('achiral_catalyst', {'R1':R1, 'R2':R2, 'Rcat':cat}, phase='vacuum', calc_dir=calc_dir, test_mode=test_mode, basis=basis, functional=functional, numerical_quality=numerical_quality)
+                n += run_jobs('achiral_catalyst', {'R1':R1, 'R2':R2, 'Rcat':cat}, phase='vacuum', calc_dir=calc_dir, test_mode=test_mode, basis=basis, functional=functional, numerical_quality=numerical_quality)
     # for R2 in ['Ph', 'tBu']:
     #     for Rch in ['O', 'S']:
     #         run_jobs('urea_tBu_Ph', {'R1':'H', 'R2':R2, 'Rch':Rch}, phase='vacuum', calc_dir=calc_dir, test_mode=test_mode, basis=basis, functional=functional, numerical_quality=numerical_quality)
 
+    print(n)
     # basis = 'TZ2P'
     # functional = 'OLYP'
     # numerical_quality = 'VeryGood'
@@ -227,3 +343,12 @@ if __name__ == '__main__':
     # #                 for Rc2 in ['H']:
     #                     subs = {'R1':R1, 'R2':R2, 'Rch':Rch,'Rch2':Rch,'Rc1':Rc1, 'Rc2':Rc2}
     #                     run_jobs('squaramide', subs, phase='vacuum', calc_dir=calc_dir, test_mode=test_mode, basis=basis, functional=functional, numerical_quality=numerical_quality)
+
+
+    # filtered_dirs = []
+    # dirs = job_results3.get_all_run_dirs() 
+    # #filter sub_cat_complex stationary points for achiral_catalysts
+    # filtered_dirs += [d for d in dirs if 'achiral_catalyst' in d and os.path.basename(d) == 'sub_cat_complex.002']
+    # print(filtered_dirs)
+    # for d in filtered_dirs:
+    #     run_frag_job(d)

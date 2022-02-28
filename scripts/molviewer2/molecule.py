@@ -85,7 +85,7 @@ def load_plams_molecule(mol):
 			positions = np.array([a.coords for a in m.atoms])
 			newm = Molecule(name=name, elements=elements, positions=positions)
 			newm.reaction = m.reaction
-			if m.normalmode is not None:
+			if hasattr(m, 'normalmode') and m.normalmode is not None:
 				d = np.array([float(x) for x in m.normalmode])
 				newm.normalmode = d.reshape(d.size//3,3)
 			newm.substituents = m.substituents
