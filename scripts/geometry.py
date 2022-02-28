@@ -3,7 +3,7 @@ import scm.plams as plams
 
 
 
-def align_molecule_to_plane(mol, i, j, k, plane='xy'):
+def align_molecule(mol, plane_idx=[0,1,2], plane='xy'):
 	'''
 	Aligns a plams.Molecule object to a plane
 	i, j, k are indices of atoms forming the plane
@@ -15,10 +15,10 @@ def align_molecule_to_plane(mol, i, j, k, plane='xy'):
 		 'yz':np.array([1,0,0]),
 		 'zy':np.array([1,0,0])}[plane]
 
-	a, b, c = np.array(mol.atoms[i].coords), np.array(mol.atoms[j].coords), np.array(mol.atoms[k].coords)
+	a, b, c = [np.array(mol.atoms[i].coords) for i in plane_idx]
+	Rplane = align_plane((a-b), (c-b), v)
 
-	R = align_plane((a-b), (c-b), v)
-	mol.rotate(R)
+	mol.rotate(Rplane)
 	mol.translate([-x for x in mol.get_center_of_mass()])
 
 
@@ -29,9 +29,16 @@ def align_plane(a, b, v=np.array([0,0,1])):
 
 	n = np.cross(a, b)
 	n = n/np.linalg.norm(n)
-	k = np.cross(n, v)
+
+	return align_axis(n, v)
+
+
+
+def align_axis(a, v=np.array([1,0,0])):
+	a = a/np.linalg.norm(a)
+	k = np.cross(a, v)
 	s = np.linalg.norm(k)
-	c = n@v
+	c = a@v
 
 	I = np.eye(3)
 	skew = np.array([
@@ -43,7 +50,8 @@ def align_plane(a, b, v=np.array([0,0,1])):
 
 	return R
 
+
 mol = plams.Molecule(r"C:\Users\Yuman Hordijk\Desktop\Scripts\MasterProject\calculations\achiral_catalyst.H_Ph_AlF3.vacuum\TS.002\output.xyz")
 print(mol)
-align_molecule_to_plane(mol, 1, 2, 3, 'xy')
+align_molecule(mol, plane_idx=[3, 2, 1], plane='xy')
 print(mol)
