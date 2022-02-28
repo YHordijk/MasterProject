@@ -335,4 +335,3 @@ if __name__ == '__main__':
 	rxn.show()
 	# rxn = Reaction('achiral_catalyst', {'Rcat':'TiCl4', 'R1':'H', 'R2':'Ph'})
 	# rxn.show()
-

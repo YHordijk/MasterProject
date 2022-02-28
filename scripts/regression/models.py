@@ -1,6 +1,7 @@
 import numpy as np 
 import matplotlib.pyplot as plt
 import data_gen
+import sklearn.kernel_ridge
 
 
 def correlation(y, y_pred):
@@ -46,11 +47,11 @@ class KRR:
 		N = Y.size
 		m = X.shape[1]
 
-	def kernelize(self):
+	# def kernelize(self):
 		
 
 
-
+help(sklearn.kernel_ridge)
 
 data = data_gen.random_data(600, 1, noise=0.1)
 # plt.scatter(data['x'][:,1:], data['y'])
