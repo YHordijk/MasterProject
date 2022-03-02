@@ -353,6 +353,10 @@ class Result:
         self._calc_path = calc_path
         self.data = self.read_data()
         self._set_status()
+        try:
+            self.write_aligned_xyz()
+        except:
+            pass
 
     def read_data(self):
         with open(join(self.path, 'results.json'), 'r') as res:
@@ -454,7 +458,22 @@ class Result:
         mol.reaction = self.reaction
         mol.normalmode = self.get_imaginary_mode
         mol.substituents = self.substituents
+        mol.template_mol = self.get_template_mol()
         return mol
+
+    def get_template_mol(self):
+        mol = struct_generator2.generate_stationary_points(self.reaction, self.substituents)[self.stationary_point]
+        return mol
+
+    def write_aligned_xyz(self, force=False):
+        p = join(self.path, 'aligned.xyz')
+        if os.path.exists(p) and not force:
+            return
+
+        mol = self.get_mol()
+        mol = molecule.load_plams_molecule(mol)
+        mol.align()
+        molecule.save_to_xyz(mol, p)
     
 
     def _set_status(self):

@@ -172,8 +172,11 @@ class Reaction:
 		if not finished: return False
 		all_present = self.all_stationary_points_present
 		if not all_present: return False
-		all_energies = self.all_energies_present
-		return all_energies
+		try:
+			all_energies = self.all_energies_present
+			return all_energies
+		except:
+			return False
 
 	@property
 	def incomplete_reason(self):

@@ -3,6 +3,7 @@ os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 
 import molviewer2.molecule as molecule
 import molviewer2.screen as screen
+import geometry
 import sys, json
 import numpy as np
 
@@ -23,6 +24,9 @@ def show(mols, simple=False):
 def show_results(results, simple=False):
 	mols = [r.get_mol() for r in results]
 	mols = [molecule.load_plams_molecule(m)[0] for m in mols]
+	# plane_idx = [t.plane_idx for t in tmplt_mols]
+	# [geometry.align_molecule(mol, plane_idx=i) for mol, i in zip(mols, plane_idx)]
+	[mol.align() for mol in mols]
 	scr = screen.Screen(size=(1600, 900))
 	if simple:
 		scr.draw_mode = 'simple'

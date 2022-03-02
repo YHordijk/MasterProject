@@ -1,5 +1,5 @@
 9
-GO FRAG R2=2_8 R1=4_7 Rcat=5_9_3 center=5 align=4_5 plane=4_5_11 active_atom=2
+GO FRAG R2=2_8 R1=4_7 Rcat=5_9_3 center=2 plane=2_3_4 active_atom=2 align=3_2
 H       2.49467187       0.59752872       0.11809962
 C       4.34312134      -0.42304305       0.06161598
 C       3.00653226      -0.36428963       0.06479932

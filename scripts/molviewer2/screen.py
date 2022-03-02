@@ -427,7 +427,7 @@ class Screen:
 		except: pass
 		try:
 			font = pg.font.SysFont(None, 24)
-			text = font.render(f"ctrl + c to copy coordinates", True, (255,255,255,255))
+			text = font.render(f"[CTRL + C] to copy coordinates", True, (255,255,255,255))
 			self.molecule_surf.blit(text, (20,self.size[1]-40))
 		except: pass
 		try:
@@ -475,9 +475,9 @@ class Screen:
 
 		def copy_atoms():
 			p = self.mols[state['molidx']]
-			p.positions[:,1] *= -1
+			p.unaligned_original_pos[:,1] *= -1
 			pyperclip.copy(p.__repr__())
-			p.positions[:,1] *= -1
+			p.unaligned_original_pos[:,1] *= -1
 			print('Copied atoms!')
 
 

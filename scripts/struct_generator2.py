@@ -45,6 +45,8 @@ def generate_stationary_points(template, substituents=None, keep_dummy=False):
     def load_mol(file):
         name = os.path.basename(file).split('.')[0]
         with open(file, 'r') as f:
+            mol = plams.Molecule(file)
+
             lines = [l.strip() for l in f.readlines()]
 
             flags = lines[1].split()
@@ -83,9 +85,17 @@ def generate_stationary_points(template, substituents=None, keep_dummy=False):
                     get_frags = True
                 if flag.startswith('active_atom='):
                     active_atom_idx = flag.split('=')[1]
+                if flag.startswith('plane='):
+                    plane = [int(i) for i in flag.split('=')[1].split('_')]
+                    mol.plane_idx = [mol.atoms[i-1] for i in plane]
+                if flag.startswith('align='):
+                    align = [int(i) for i in flag.split('=')[1].split('_')]
+                    mol.align_idx = [mol.atoms[i-1] for i in align]
+                if flag.startswith('center='):
+                    center = int(flag.split('=')[1])
+                    mol.center_idx = mol.atoms[center-1]
 
             #construct our molecule object
-            mol = plams.Molecule(file)
             mol.name = name
             mol.reaction = template
             mol.task = task
@@ -99,6 +109,7 @@ def generate_stationary_points(template, substituents=None, keep_dummy=False):
             mol.get_frags = get_frags
             if active_atom_idx:
                 mol.active_atom = mol.atoms[int(active_atom_idx)]
+            
         return mol
 
 
@@ -209,7 +220,20 @@ def generate_stationary_points(template, substituents=None, keep_dummy=False):
             i = mol.atoms.index(mol.active_atom)
             mol.active_atom_idx = i
 
+    def set_plane_idx(mol):
+        if hasattr(mol, 'plane_idx'):
+            idx = [mol.atoms.index(i) for i in mol.plane_idx]
+            mol.plane_idx = idx
 
+    def set_align_idx(mol):
+        if hasattr(mol, 'align_idx'):
+            idx = [mol.atoms.index(i) for i in mol.align_idx]
+            mol.align_idx = idx
+
+    def set_center_idx(mol):
+        if hasattr(mol, 'center_idx'):
+            idx = mol.atoms.index(mol.center_idx)
+            mol.center_idx = idx
 
     template_files = [join(template_dir, f) for f in os.listdir(template_dir) if f.endswith('.xyz')]
     #load the molecules here
@@ -240,6 +264,9 @@ def generate_stationary_points(template, substituents=None, keep_dummy=False):
         except:
             pass
         set_active_atom_idx(mol)
+        set_plane_idx(mol)
+        set_align_idx(mol)
+        set_center_idx(mol)
 
     return {mol.name: mol for mol in template_mols}
 
@@ -264,4 +291,4 @@ def show_reaction(template, substituents=None, simple=False):
 if __name__ == '__main__':
     mols = generate_stationary_points('achiral_catalyst', {'Rcat':'AlF3'})
     print_mols(mols)
-    show_reaction('achiral_catalyst', {'Rcat':'SnCl4'})
+    show_reaction('achiral_catalyst', {'Rcat':'SnCl4', 'R1':'OMe'})

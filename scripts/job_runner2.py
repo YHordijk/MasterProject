@@ -1,5 +1,5 @@
 import scm.plams as plams
-import struct_generator2, paths, os, utility, job_results3
+import struct_generator2, paths, os, utility, job_results3, time, sys
 
 join = os.path.join
 
@@ -103,6 +103,7 @@ sbatch {os.path.basename(file)}
                 run.write(line)
 
     run_job(runscript)
+    print('running?', runscript)
 
 
 # with open(JR_template) as temp:
@@ -286,23 +287,26 @@ sbatch {os.path.basename(file)}
     return Njobs
 if __name__ == '__main__':
     calc_dir = paths.calculations
-    test_mode = True
+    test_mode = False
 
-    basis = 'TZ2P'
-    functional = 'BLYP-D3(BJ)'
-    numerical_quality = 'Good'
-    n = 0
-    for R1 in ['H', 'F', 'Cl', 'Br', 'I']:
-        # for R2 in ['H', 'Ph', 'tBu']:
-        #     run_jobs('no_catalyst', {'R1':R1, 'R2':R2}, phase='vacuum', calc_dir=calc_dir, test_mode=test_mode, basis=basis, functional=functional, numerical_quality=numerical_quality)
-        for R2 in ['Ph', 'tBu']:
-            for cat in ['I2', 'ZnCl2', 'TiCl4', 'BF3', 'AlF3', 'SnCl4']:
-                n += run_jobs('achiral_catalyst', {'R1':R1, 'R2':R2, 'Rcat':cat}, phase='vacuum', calc_dir=calc_dir, test_mode=test_mode, basis=basis, functional=functional, numerical_quality=numerical_quality)
+    # basis = 'TZ2P'
+    # functional = 'BLYP-D3(BJ)'
+    # numerical_quality = 'Good'
+    # n = 0
+    # for R1 in ['Me', 'OMe', 'NH2']:
+    #     for R2 in ['Ph', 'tBu']:
+    #         run_jobs('no_catalyst', {'R1':R1, 'R2':R2}, phase='vacuum', calc_dir=calc_dir, test_mode=test_mode, basis=basis, functional=functional, numerical_quality=numerical_quality)
+    #         time.sleep(2)
+    #     for R2 in ['Ph', 'tBu']:
+    #         for cat in ['I2', 'ZnCl2', 'TiCl4', 'BF3', 'AlF3', 'SnCl4']:
+    #             n += run_jobs('achiral_catalyst', {'R1':R1, 'R2':R2, 'Rcat':cat}, phase='vacuum', calc_dir=calc_dir, test_mode=test_mode, basis=basis, functional=functional, numerical_quality=numerical_quality)
+    #             time.sleep(2)
+
     # for R2 in ['Ph', 'tBu']:
     #     for Rch in ['O', 'S']:
     #         run_jobs('urea_tBu_Ph', {'R1':'H', 'R2':R2, 'Rch':Rch}, phase='vacuum', calc_dir=calc_dir, test_mode=test_mode, basis=basis, functional=functional, numerical_quality=numerical_quality)
 
-    print(n)
+    # print(n)
     # basis = 'TZ2P'
     # functional = 'OLYP'
     # numerical_quality = 'VeryGood'
@@ -345,10 +349,17 @@ if __name__ == '__main__':
     #                     run_jobs('squaramide', subs, phase='vacuum', calc_dir=calc_dir, test_mode=test_mode, basis=basis, functional=functional, numerical_quality=numerical_quality)
 
 
-    # filtered_dirs = []
-    # dirs = job_results3.get_all_run_dirs() 
-    # #filter sub_cat_complex stationary points for achiral_catalysts
-    # filtered_dirs += [d for d in dirs if 'achiral_catalyst' in d and os.path.basename(d) == 'sub_cat_complex.002']
-    # print(filtered_dirs)
-    # for d in filtered_dirs:
-    #     run_frag_job(d)
+    filtered_dirs = []
+    dirs = job_results3.get_all_run_dirs() 
+    #filter sub_cat_complex stationary points for achiral_catalysts
+    filtered_dirs += [d for d in dirs if 'achiral_catalyst' in d and os.path.basename(d) in ['sub_cat_complex.002', 'sub_cat_complex']]
+    n = 0
+    for d in filtered_dirs:
+        if not os.path.exists(join(d, 'frag.run.out')):
+            print(d)
+            if not test_mode:
+                run_frag_job(d)
+            n += 1
+            time.sleep(2)
+
+    print(n)
