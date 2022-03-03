@@ -1,14 +1,14 @@
 {
   "files": {
-    "calc_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.Br_Ph_AlF3.vacuum\\P1_cat_complex",
-    "res_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.Br_Ph_AlF3.vacuum\\P1_cat_complex",
-    "GO run script": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.Br_Ph_AlF3.vacuum\\P1_cat_complex\\GO.achiral_catalyst.Br_Ph_AlF3.P1_cat_complex",
-    "GO adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.Br_Ph_AlF3.vacuum\\P1_cat_complex\\GO.achiral_catalyst.Br_Ph_AlF3.P1_cat_complex.adf.rkf",
-    "GO amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.Br_Ph_AlF3.vacuum\\P1_cat_complex\\GO.achiral_catalyst.Br_Ph_AlF3.P1_cat_complex.ams.rkf",
-    "GO log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.Br_Ph_AlF3.vacuum\\P1_cat_complex\\GO.achiral_catalyst.Br_Ph_AlF3.P1_cat_complex.log",
-    "GO out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.Br_Ph_AlF3.vacuum\\P1_cat_complex\\GO.achiral_catalyst.Br_Ph_AlF3.P1_cat_complex.out",
-    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.Br_Ph_AlF3.vacuum\\P1_cat_complex\\input.xyz",
-    "run info": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.Br_Ph_AlF3.vacuum\\P1_cat_complex\\run.info"
+    "calc_path": "achiral_catalyst.Br_Ph_AlF3.vacuum\\P1_cat_complex",
+    "res_path": "achiral_catalyst.Br_Ph_AlF3.vacuum\\P1_cat_complex",
+    "GO run script": "GO.achiral_catalyst.Br_Ph_AlF3.P1_cat_complex",
+    "GO adfrkf": "GO.achiral_catalyst.Br_Ph_AlF3.P1_cat_complex.adf.rkf",
+    "GO amsrkf": "GO.achiral_catalyst.Br_Ph_AlF3.P1_cat_complex.ams.rkf",
+    "GO log": "GO.achiral_catalyst.Br_Ph_AlF3.P1_cat_complex.log",
+    "GO out": "GO.achiral_catalyst.Br_Ph_AlF3.P1_cat_complex.out",
+    "input xyz": "input.xyz",
+    "run info": "run.info"
   },
   "info": {
     "substituents": [
@@ -202,7 +202,7 @@
         -5.723148895304838
       ]
     ],
-    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.Br_Ph_AlF3.vacuum\\P1_cat_complex\\input.xyz",
+    "input xyz": "input.xyz",
     "steps": 13,
     "output coords": [
       [
@@ -337,7 +337,7 @@
       ]
     ],
     "output energy": -5.530889294951367,
-    "output xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.Br_Ph_AlF3.vacuum\\P1_cat_complex\\output.xyz",
+    "output xyz": "output.xyz",
     "status": "NORMAL TERMINATION",
     "bond energy": -5.530889294923893,
     "Mulliken charge": [
@@ -612,6 +612,5 @@
     "gibbs": -5.401756935878993,
     "enthalpy": -5.336817866540121
   },
-  "misc": {},
   "EDA": null
 }

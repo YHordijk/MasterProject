@@ -1,27 +1,27 @@
 {
   "files": {
-    "calc_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.Br_Ph_AlF3.vacuum\\sub_cat_complex",
-    "res_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.Br_Ph_AlF3.vacuum\\sub_cat_complex",
-    "EDA adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.Br_Ph_AlF3.vacuum\\sub_cat_complex\\EDA.adf.rkf",
-    "EDA amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.Br_Ph_AlF3.vacuum\\sub_cat_complex\\EDA.ams.rkf",
-    "EDA log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.Br_Ph_AlF3.vacuum\\sub_cat_complex\\EDA.log",
-    "EDA run script": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.Br_Ph_AlF3.vacuum\\sub_cat_complex\\frag.run",
-    "EDA out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.Br_Ph_AlF3.vacuum\\sub_cat_complex\\frag.run.out",
-    "frag1 adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.Br_Ph_AlF3.vacuum\\sub_cat_complex\\Fragment_1.adf.rkf",
-    "frag1 log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.Br_Ph_AlF3.vacuum\\sub_cat_complex\\Fragment_1.log",
-    "frag1 out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.Br_Ph_AlF3.vacuum\\sub_cat_complex\\Fragment_1.out",
-    "frag1 rkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.Br_Ph_AlF3.vacuum\\sub_cat_complex\\Fragment_1.rkf",
-    "frag2 adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.Br_Ph_AlF3.vacuum\\sub_cat_complex\\Fragment_2.adf.rkf",
-    "frag2 log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.Br_Ph_AlF3.vacuum\\sub_cat_complex\\Fragment_2.log",
-    "frag2 out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.Br_Ph_AlF3.vacuum\\sub_cat_complex\\Fragment_2.out",
-    "frag2 rkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.Br_Ph_AlF3.vacuum\\sub_cat_complex\\Fragment_2.rkf",
-    "GO run script": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.Br_Ph_AlF3.vacuum\\sub_cat_complex\\GO.achiral_catalyst.Br_Ph_AlF3.sub_cat_complex",
-    "GO adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.Br_Ph_AlF3.vacuum\\sub_cat_complex\\GO.achiral_catalyst.Br_Ph_AlF3.sub_cat_complex.adf.rkf",
-    "GO amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.Br_Ph_AlF3.vacuum\\sub_cat_complex\\GO.achiral_catalyst.Br_Ph_AlF3.sub_cat_complex.ams.rkf",
-    "GO log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.Br_Ph_AlF3.vacuum\\sub_cat_complex\\GO.achiral_catalyst.Br_Ph_AlF3.sub_cat_complex.log",
-    "GO out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.Br_Ph_AlF3.vacuum\\sub_cat_complex\\GO.achiral_catalyst.Br_Ph_AlF3.sub_cat_complex.out",
-    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.Br_Ph_AlF3.vacuum\\sub_cat_complex\\input.xyz",
-    "run info": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.Br_Ph_AlF3.vacuum\\sub_cat_complex\\run.info"
+    "calc_path": "achiral_catalyst.Br_Ph_AlF3.vacuum\\sub_cat_complex",
+    "res_path": "achiral_catalyst.Br_Ph_AlF3.vacuum\\sub_cat_complex",
+    "EDA adfrkf": "EDA.adf.rkf",
+    "EDA amsrkf": "EDA.ams.rkf",
+    "EDA log": "EDA.log",
+    "EDA run script": "frag.run",
+    "EDA out": "frag.run.out",
+    "frag1 adfrkf": "Fragment_1.adf.rkf",
+    "frag1 log": "Fragment_1.log",
+    "frag1 out": "Fragment_1.out",
+    "frag1 rkf": "Fragment_1.rkf",
+    "frag2 adfrkf": "Fragment_2.adf.rkf",
+    "frag2 log": "Fragment_2.log",
+    "frag2 out": "Fragment_2.out",
+    "frag2 rkf": "Fragment_2.rkf",
+    "GO run script": "GO.achiral_catalyst.Br_Ph_AlF3.sub_cat_complex",
+    "GO adfrkf": "GO.achiral_catalyst.Br_Ph_AlF3.sub_cat_complex.adf.rkf",
+    "GO amsrkf": "GO.achiral_catalyst.Br_Ph_AlF3.sub_cat_complex.ams.rkf",
+    "GO log": "GO.achiral_catalyst.Br_Ph_AlF3.sub_cat_complex.log",
+    "GO out": "GO.achiral_catalyst.Br_Ph_AlF3.sub_cat_complex.out",
+    "input xyz": "input.xyz",
+    "run info": "run.info"
   },
   "info": {
     "substituents": [
@@ -192,7 +192,7 @@
         3.2646986763696364
       ]
     ],
-    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.Br_Ph_AlF3.vacuum\\sub_cat_complex\\input.xyz",
+    "input xyz": "input.xyz",
     "steps": 7,
     "output coords": [
       [
@@ -307,7 +307,7 @@
       ]
     ],
     "output energy": -4.8470242768105605,
-    "output xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.Br_Ph_AlF3.vacuum\\sub_cat_complex\\output.xyz",
+    "output xyz": "output.xyz",
     "status": "NORMAL TERMINATION",
     "bond energy": -4.847024276844212,
     "Mulliken charge": [
@@ -542,7 +542,6 @@
     "gibbs": -4.752484216858732,
     "enthalpy": -4.691930844548175
   },
-  "misc": {},
   "EDA": {
     "pauli": 0.08752431520709598,
     "bonding": -0.06509341907239577,

@@ -29,41 +29,25 @@ sbatch {os.path.basename(file)}
             if line.startswith('numerical_quality'): numerical_quality   = line.split('=')[1]
 
     if functional == 'OLYP': return
-    mol = struct_generator2.generate_stationary_points(template=template, substituents=substituents)[stationary_point]
-    opt_xyz = join(calc_path, 'output.xyz')
-    rewrite = False
-    with open(opt_xyz) as opt:
-        lines = opt.readlines()
-        try:
-            int(lines[0].strip())
-        except:
-            print('wrong format')
-            rewrite = True
-
-
-    if rewrite:
-        with open(opt_xyz, 'w+') as opt:
-            opt.write(str(len(lines)-2))
-            opt.write('\n\n')
-            for line in lines[1:]:
-                opt.write(line.strip() + '\n')
-    print(opt_xyz)
-    opt_mol = plams.Molecule(opt_xyz)
+    sg2_mol = struct_generator2.generate_stationary_points(template=template, substituents=substituents)[stationary_point]
+    res = job_results3.Result(template, substituents)
+    align_mol = res.get_aligned_mol()
+    print(align_mol)
     ATOMS = ''
     for i, atom in enumerate(opt_mol.atoms, 1):
-        if i in mol.frag1idx:
+        if i in sg2_mol.frag1idx:
             ATOMS += f'    {atom.symbol:<2}\t{atom.coords[0]:=11.8f}\t{atom.coords[1]:=11.8f}\t{atom.coords[2]:=11.8f}\tf=f1\n'
-        elif i in mol.frag2idx:
+        elif i in sg2_mol.frag2idx:
             ATOMS += f'    {atom.symbol:<2}\t{atom.coords[0]:=11.8f}\t{atom.coords[1]:=11.8f}\t{atom.coords[2]:=11.8f}\tf=f2\n'
 
     ATOMS1 = ''
     for i, atom in enumerate(opt_mol.atoms, 1):
-        if i in mol.frag1idx:
+        if i in sg2_mol.frag1idx:
             ATOMS1 += f'    {atom.symbol:<2}\t{atom.coords[0]:=11.8f}\t{atom.coords[1]:=11.8f}\t{atom.coords[2]:=11.8f}\tregion=Region_1\n'
 
     ATOMS2 = ''
     for i, atom in enumerate(opt_mol.atoms, 1):
-        if i in mol.frag2idx:
+        if i in sg2_mol.frag2idx:
             ATOMS2 += f'    {atom.symbol:<2}\t{atom.coords[0]:=11.8f}\t{atom.coords[1]:=11.8f}\t{atom.coords[2]:=11.8f}\tregion=Region_2\n'
 
     FUNCTIONAL = {
@@ -355,7 +339,7 @@ if __name__ == '__main__':
     filtered_dirs += [d for d in dirs if 'achiral_catalyst' in d and os.path.basename(d) in ['sub_cat_complex.002', 'sub_cat_complex']]
     n = 0
     for d in filtered_dirs:
-        if not os.path.exists(join(d, 'frag.run.out')):
+        # if not os.path.exists(join(d, 'frag.run.out')):
             print(d)
             if not test_mode:
                 run_frag_job(d)

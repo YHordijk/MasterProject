@@ -2,6 +2,13 @@ import numpy as np
 import scm.plams as plams
 
 
+normal_to_plane = 	{'xy':np.array([0,0,1]),
+					 'yx':np.array([0,0,1]),
+					 'xz':np.array([0,1,0]),
+					 'zx':np.array([0,1,0]),
+					 'yz':np.array([1,0,0]),
+					 'zy':np.array([1,0,0])}
+
 
 def align_molecule_to_plane(mol, plane_idx=[0,1,2], plane='xy'):
 	'''
@@ -9,20 +16,15 @@ def align_molecule_to_plane(mol, plane_idx=[0,1,2], plane='xy'):
 	i, j, k are indices of atoms forming the plane
 	'''
 
-	v = {'xy':np.array([0,0,1]), #plane normal
-		 'yx':np.array([0,0,1]),
-		 'xz':np.array([0,1,0]),
-		 'zx':np.array([0,1,0]),
-		 'yz':np.array([1,0,0]),
-		 'zy':np.array([1,0,0])}[plane]
+	p = normal_to_plane[plane]
 
 	if type(mol) is plams.Molecule:
 		a, b, c = [np.array(mol.atoms[i].coords) for i in plane_idx]
-		Rplane = align_plane((a-b), (c-b), v)
+		Rplane = align_plane((a-b), (c-b), p)
 		mol.rotate(Rplane)
 	else:
 		a, b, c = [np.array(mol.positions[i]) for i in plane_idx]
-		Rplane = align_plane((a-b), (c-b), v)
+		Rplane = align_plane((a-b), (c-b), p)
 		mol.apply_rotmat(Rplane)
 
 
@@ -32,12 +34,7 @@ def rotate_molecule_in_plane(mol, align_idx=[0,1], v=np.array([1,0,0]), plane='x
 	By default aligns to the x-axis in the xy-plane
 	''' 
 
-	k = {'xy':np.array([0,0,1]), #plane normal
-		 'yx':np.array([0,0,1]),
-		 'xz':np.array([0,1,0]),
-		 'zx':np.array([0,1,0]),
-		 'yz':np.array([1,0,0]),
-		 'zy':np.array([1,0,0])}[plane]
+	k = normal_to_plane[plane]
 
 	v = v/np.linalg.norm(v)
 	if type(mol) is plams.Molecule:
@@ -86,14 +83,14 @@ def align_axis(a, v=np.array([1,0,0])):
 	c = a@v
 
 	I = np.eye(3)
-	skew = np.array([
-		[0, -k[2], k[1]],
-		[k[2], 0, -k[0]],
-		[-k[1], k[0], 0]])
+	w = skew(k)
 
-	R = I + skew + (skew@skew) * (1-c)/(s*s)
+	R = I + w + (w@w) * (1-c)/(s*s)
 
 	return R
+
+def skew(v):
+	return np.array([[0,-v[2],v[1]],[v[2],0,-v[0]],[-v[1],v[0],0]])
 
 
 # mol = plams.Molecule(r"C:\Users\Yuman Hordijk\Desktop\Scripts\MasterProject\calculations\achiral_catalyst.H_Ph_AlF3.vacuum\TS.002\output.xyz")

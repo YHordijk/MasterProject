@@ -1,14 +1,14 @@
 {
   "files": {
-    "calc_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.Br_Ph_AlF3.vacuum\\TS",
-    "res_path": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.Br_Ph_AlF3.vacuum\\TS",
-    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.Br_Ph_AlF3.vacuum\\TS\\input.xyz",
-    "run info": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.Br_Ph_AlF3.vacuum\\TS\\run.info",
-    "GO run script": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.Br_Ph_AlF3.vacuum\\TS\\TSRC.achiral_catalyst.Br_Ph_AlF3.TS",
-    "GO adfrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.Br_Ph_AlF3.vacuum\\TS\\TSRC.achiral_catalyst.Br_Ph_AlF3.TS.adf.rkf",
-    "GO amsrkf": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.Br_Ph_AlF3.vacuum\\TS\\TSRC.achiral_catalyst.Br_Ph_AlF3.TS.ams.rkf",
-    "GO log": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.Br_Ph_AlF3.vacuum\\TS\\TSRC.achiral_catalyst.Br_Ph_AlF3.TS.log",
-    "GO out": "D:\\Users\\Yuman\\Desktop\\MasterProject\\calculations\\achiral_catalyst.Br_Ph_AlF3.vacuum\\TS\\TSRC.achiral_catalyst.Br_Ph_AlF3.TS.out"
+    "calc_path": "achiral_catalyst.Br_Ph_AlF3.vacuum\\TS",
+    "res_path": "achiral_catalyst.Br_Ph_AlF3.vacuum\\TS",
+    "input xyz": "input.xyz",
+    "run info": "run.info",
+    "GO run script": "TSRC.achiral_catalyst.Br_Ph_AlF3.TS",
+    "GO adfrkf": "TSRC.achiral_catalyst.Br_Ph_AlF3.TS.adf.rkf",
+    "GO amsrkf": "TSRC.achiral_catalyst.Br_Ph_AlF3.TS.ams.rkf",
+    "GO log": "TSRC.achiral_catalyst.Br_Ph_AlF3.TS.log",
+    "GO out": "TSRC.achiral_catalyst.Br_Ph_AlF3.TS.out"
   },
   "info": {
     "substituents": [
@@ -201,7 +201,7 @@
         -2.110409040658234
       ]
     ],
-    "input xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.Br_Ph_AlF3.vacuum\\TS\\input.xyz",
+    "input xyz": "input.xyz",
     "steps": 20,
     "output coords": [
       [
@@ -336,7 +336,7 @@
       ]
     ],
     "output energy": -5.495223784460362,
-    "output xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.Br_Ph_AlF3.vacuum\\TS\\output.xyz",
+    "output xyz": "output.xyz",
     "status": "NORMAL TERMINATION with errors",
     "bond energy": -5.495223784424248,
     "Mulliken charge": [
@@ -693,6 +693,5 @@
     "gibbs": -5.374441261393189,
     "enthalpy": -5.305469835794614
   },
-  "misc": {},
   "EDA": null
 }

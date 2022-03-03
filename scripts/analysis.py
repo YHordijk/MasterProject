@@ -12,9 +12,11 @@ import matplotlib.pyplot as plt
 # profiles.achiral_catalyst_Eact()
 # plt.show()
 
-for Rcat in ['AlF3', 'BF3', 'I2', 'SnCl4', 'TiCl4', 'ZnCl2']:
-	print(Rcat)
-	draw.draw('achiral_catalyst', {'R1':'OMe', 'R2':'tBu', 'Rcat':Rcat})
-	draw.draw('achiral_catalyst', {'R1':'OMe', 'R2':'Ph', 'Rcat':Rcat})
+# for Rcat in ['AlF3', 'BF3', 'I2', 'SnCl4', 'TiCl4', 'ZnCl2']:
+# 	print(Rcat)
+# 	draw.draw('achiral_catalyst', {'R1':'OMe', 'R2':'tBu', 'Rcat':Rcat})
+# 	draw.draw('achiral_catalyst', {'R1':'OMe', 'R2':'Ph', 'Rcat':Rcat})
+
+draw.draw('achiral_catalyst', {'R1':'Br', 'R2':'Ph', 'Rcat':'AlF3'})
 
 # trends.Eact_EDA()

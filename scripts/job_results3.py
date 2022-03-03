@@ -58,57 +58,58 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
         GO_out = f'{job_name}.out'
         GO_log = f'{job_name}.log'
 
-        files['calc_path'] = calc_path
-        files['res_path'] = res_path
+        rel_calc_path = os.path.relpath(calc_path, calc_dir)
+        files['calc_path'] = rel_calc_path
+        files['res_path'] = os.path.relpath(res_path, res_dir)
         for file in os.listdir(calc_path):
             #input files
             if file == 'input.xyz':
-                files['input xyz'] = join(calc_path, file)
+                files['input xyz'] = file
             elif file == 'run.info':
-                files['run info'] = join(calc_path, file)
+                files['run info'] = file
             elif file.endswith(job_name):
-                files['GO run script'] = join(calc_path, file)
+                files['GO run script'] = file
 
             #fragment files 
             elif file == 'Fragment_1.log':
-                files['frag1 log'] = join(calc_path, file)
+                files['frag1 log'] = file
             elif file == 'Fragment_1.out':
-                files['frag1 out'] = join(calc_path, file)
+                files['frag1 out'] = file
             elif file == 'Fragment_1.rkf':
-                files['frag1 rkf'] = join(calc_path, file)
+                files['frag1 rkf'] = file
             elif file == 'Fragment_1.adf.rkf':
-                files['frag1 adfrkf'] = join(calc_path, file)
+                files['frag1 adfrkf'] = file
 
             elif file == 'Fragment_2.log':
-                files['frag2 log'] = join(calc_path, file)
+                files['frag2 log'] = file
             elif file == 'Fragment_2.out':
-                files['frag2 out'] = join(calc_path, file)
+                files['frag2 out'] = file
             elif file == 'Fragment_2.rkf':
-                files['frag2 rkf'] = join(calc_path, file)
+                files['frag2 rkf'] = file
             elif file == 'Fragment_2.adf.rkf':
-                files['frag2 adfrkf'] = join(calc_path, file)
+                files['frag2 adfrkf'] = file
 
             #EDA files
             elif file == 'EDA.log':
-                files['EDA log'] = join(calc_path, file)
+                files['EDA log'] = file
             elif file == 'EDA.ams.rkf':
-                files['EDA amsrkf'] = join(calc_path, file)
+                files['EDA amsrkf'] = file
             elif file == 'EDA.adf.rkf':
-                files['EDA adfrkf'] = join(calc_path, file)
+                files['EDA adfrkf'] = file
             elif file == 'frag.run.out':
-                files['EDA out'] = join(calc_path, file)
+                files['EDA out'] = file
             elif file == 'frag.run':
-                files['EDA run script'] = join(calc_path, file)
+                files['EDA run script'] = file
 
             #GO results files
             elif file.endswith(GO_adf_kf):
-                files['GO adfrkf'] = join(calc_path, file)
+                files['GO adfrkf'] = file
             elif file.endswith(GO_ams_kf):
-                files['GO amsrkf'] = join(calc_path, file)
+                files['GO amsrkf'] = file
             elif file.endswith(GO_out):
-                files['GO out'] = join(calc_path, file)
+                files['GO out'] = file
             elif file.endswith(GO_log):
-                files['GO log'] = join(calc_path, file)
+                files['GO log'] = file
 
         return files
 
@@ -119,7 +120,8 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
         files = data['files']
 
         if 'run info' in files:
-            with open(files['run info']) as info:
+            fileinfo = join(calc_dir, calc_path, files['run info'])
+            with open(fileinfo) as info:
                 for line in info.readlines():
                     try:
                         arg, val = line.strip().split('=')
@@ -175,25 +177,25 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
 
         GO = {}
         files = data['files'] 
-        amsrkf = 'GO amsrkf'
-        adfrkf = 'GO adfrkf'
+        amsrkf = join(calc_dir, calc_path, files['GO amsrkf'])
+        adfrkf = join(calc_dir, calc_path, files['GO adfrkf'])
         input_xyz = join(res_path, 'input.xyz')
         output_xyz = join(res_path, 'output.xyz')
-        log = 'GO log'
+        log = join(calc_dir, calc_path, files['GO log'])
         GO['runtime'] = 0
         GO['done'] = False
 
-        if amsrkf in files:
-            ams = plams.KFFile(files[amsrkf])
+        if 'GO amsrkf' in files:
+            ams = plams.KFFile(amsrkf)
             try:
                 GO['natoms'] = ams.read('InputMolecule', 'nAtoms')
                 GO['elements'] = ams.read('InputMolecule', 'AtomSymbols').split()
                 c = ams.read('InputMolecule', 'Coords')
                 GO['input coords'] = [c[i:i+3] for i in range(0, len(c), 3)]
                 write_xyz(input_xyz, GO['elements'], GO['input coords'])
-                GO['input xyz'] = input_xyz
+                GO['input xyz'] = os.path.relpath(input_xyz, res_path)
             except:
-                pass
+                raise
             
             try:
                 GO['steps'] = ams.read('History', 'nEntries')
@@ -201,22 +203,22 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
                 GO['output coords'] = [c[i:i+3] for i in range(0, len(c), 3)]
                 GO['output energy'] = ams.read('History', f'Energy({GO["steps"]})')
                 write_xyz(output_xyz, GO['elements'], GO['output coords'])
-                GO['output xyz'] = output_xyz
+                GO['output xyz'] = os.path.relpath(output_xyz, res_path)
             except: 
                 GO['steps'] = 0
 
             GO['status'] = ams.read('General', 'termination status')
 
-        if adfrkf in files:
-            adf = plams.KFFile(files[adfrkf])
+        if 'GO adfrkf' in files:
+            adf = plams.KFFile(adfrkf)
             GO['bond energy'] = adf.read('Energy', 'Bond Energy')
             GO['Mulliken charge'] = adf.read('Properties', 'AtomCharge Mulliken')
             GO['electron dens at nuclei'] = adf.read('Properties', 'Electron Density at Nuclei')
             GO['Hirshfeld charge'] = adf.read('Properties', 'FragmentCharge Hirshfeld')
             GO['Voronoi charge'] = adf.read('Properties', 'AtomCharge_SCF Voronoi')
 
-        if log in files:
-            with open(files[log]) as log:
+        if 'GO log' in files:
+            with open(log) as log:
                 lines = log.readlines()
                 first = datetime.datetime.strptime(' '.join(lines[0].split()[0:2]),  '<%b%d-%Y> <%H:%M:%S>')
                 last  = datetime.datetime.strptime(' '.join(lines[-1].split()[0:2]), '<%b%d-%Y> <%H:%M:%S>')
@@ -238,10 +240,10 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
     def get_freq_data():
         freq = {}
         files = data['files']
-        adfrkf = 'GO adfrkf'
+        adfrkf = join(calc_dir, calc_path, files['GO adfrkf'])
 
-        if adfrkf in files:
-            adf = plams.KFFile(files[adfrkf])
+        if 'GO adfrkf' in files:
+            adf = plams.KFFile(adfrkf)
             try:
                 freq['nmodes'] = adf.read('Vibrations', 'nNormalModes')
                 freq['frequencies'] = adf.read('Vibrations', 'Frequencies[cm-1]')
@@ -260,21 +262,15 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
     def get_thermo_data():
         thermo = {}
         files = data['files']
-        adfrkf = 'GO adfrkf'
-        if adfrkf in files:
-            adf = plams.KFFile(files[adfrkf])
+        adfrkf = join(calc_dir, calc_path, files['GO adfrkf'])
+        if 'GO adfrkf' in files:
+            adf = plams.KFFile(adfrkf)
             if 'Thermodynamics' in adf.sections():
                 thermo['gibbs'] = adf.read('Thermodynamics', 'Gibbs free Energy')
                 thermo['enthalpy'] = adf.read('Thermodynamics', 'Enthalpy')
 
         return thermo
 
-    def get_misc_data():
-        misc = {}
-        files = data['files']
-        adfrkf = 'GO adfrkf'
-
-        return misc
 
     def get_EDA_data():
         files = data['files']
@@ -282,7 +278,8 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
         if not 'EDA adfrkf' in files:
             return
         try:
-            EDAadfrkf = plams.KFFile(files['EDA adfrkf'])
+            p = join(calc_dir, calc_path, files['EDA adfrkf'])
+            EDAadfrkf = plams.KFFile(p)
             EDA['pauli'] = EDAadfrkf.read('Energy', 'Pauli Total')
             EDA['bonding'] = EDAadfrkf.read('Energy', 'Bond Energy')
             EDA['elstat'] = EDAadfrkf.read('Energy', 'Electrostatic Interaction')
@@ -300,9 +297,7 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
     data['GO']      = get_GO_data()
     data['freq']    = get_freq_data()
     data['thermo']  = get_thermo_data()
-    data['misc']    = get_misc_data()
     data['EDA']     = get_EDA_data()
-
     with open(join(res_path, 'results.json'), 'w+') as res:
         res.write(json.dumps(data, indent=2))
 
@@ -340,6 +335,7 @@ def get_all_results(calc_dir=paths.calculations, res_dir=paths.results, regenera
     
     res = []
     for res_path in get_all_result_dirs(res_dir):
+        print(res_path)
         r = Result(res_path, calc_path=calc_path_dict.get(res_path, None))
         res.append(r)
 
@@ -452,7 +448,7 @@ class Result:
         return self.data['freq'].get('imag mode', None)
 
     def get_mol(self):
-        xyz = self.data['GO'].get('output xyz')
+        xyz = join(self.path, self.data['GO'].get('output xyz'))
         mol = plams.Molecule(xyz)
         mol.name = self.stationary_point
         mol.reaction = self.reaction
@@ -465,15 +461,22 @@ class Result:
         mol = struct_generator2.generate_stationary_points(self.reaction, self.substituents)[self.stationary_point]
         return mol
 
-    def write_aligned_xyz(self, force=False):
+    def write_aligned_xyz(self, force=True):
         p = join(self.path, 'aligned.xyz')
+        
         if os.path.exists(p) and not force:
             return
 
+        print(p)
         mol = self.get_mol()
         mol = molecule.load_plams_molecule(mol)
         mol.align()
         molecule.save_to_xyz(mol, p)
+
+    def get_aligned_mol(self):
+        mol = self.get_mol()
+        mol = molecule.load_plams_molecule(mol)
+        mol.align()
     
 
     def _set_status(self):
