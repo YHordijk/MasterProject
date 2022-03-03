@@ -29,8 +29,8 @@ sbatch {os.path.basename(file)}
             if line.startswith('numerical_quality'): numerical_quality   = line.split('=')[1]
 
     if functional == 'OLYP': return
-    sg2_mol = struct_generator2.generate_stationary_points(template=template, substituents=substituents)[stationary_point]
-    res = job_results3.Result(template, substituents)
+    sg2_mol = struct_generator2.get_mol(template, substituents, stationary_point)
+    res = job_results3.get_result(template, substituents, stationary_point)
     align_mol = res.get_aligned_mol()
     print(align_mol)
     ATOMS = ''
@@ -86,7 +86,7 @@ sbatch {os.path.basename(file)}
 
                 run.write(line)
 
-    run_job(runscript)
+    # run_job(runscript)
     print('running?', runscript)
 
 

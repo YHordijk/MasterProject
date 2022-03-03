@@ -7,6 +7,9 @@ except: pass
 join = os.path.join
 
 
+def get_mol(template, substituents, stationary_point):
+    return generate_stationary_points(template, substituents)[stationary_point]
+
 
 def get_all_substituents(template):
     template_dir = join(paths.SGT, template)

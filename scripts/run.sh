@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH -N 1
 #SBATCH -t 240:00:00
-#SBATCH --ntasks 16
+#SBATCH --ntasks 1
 #SBATCH --partition=tc
 
 echo "== Starting run at $(date)"

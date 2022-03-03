@@ -3,6 +3,7 @@ import paths, os, utility, struct_generator2
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 import datetime, time, json, shutil
 from os.path import join, relpath
+import geometry
 import numpy as np
 import matplotlib.pyplot as plt
 try:
@@ -178,9 +179,13 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
         GO = {}
         files = data['files'] 
         amsrkf = join(calc_dir, calc_path, files['GO amsrkf'])
-        adfrkf = join(calc_dir, calc_path, files['GO adfrkf'])
+        try:
+            adfrkf = join(calc_dir, calc_path, files['GO adfrkf'])
+        except:
+            print(files)
         input_xyz = join(res_path, 'input.xyz')
         output_xyz = join(res_path, 'output.xyz')
+        aligned_xyz = join(res_path, 'aligned.xyz')
         log = join(calc_dir, calc_path, files['GO log'])
         GO['runtime'] = 0
         GO['done'] = False
@@ -206,6 +211,23 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
                 GO['output xyz'] = os.path.relpath(output_xyz, res_path)
             except: 
                 GO['steps'] = 0
+
+            try:
+                xyz = np.array(GO['output coords'])
+                el = GO['elements']
+                m = plams.Molecule()
+                for e, x in zip(el, xyz):
+                    m.add_atom(plams.Atom(symbol=e, coords=x))
+                subdict = {x[0]:x[1] for x in data['info']['substituents']}
+                tmol = struct_generator2.get_mol(data['info']['reaction'], subdict, data['info']['stationary point'])
+                geometry.align_molecule_to_plane(m, tmol.plane_idx)
+                geometry.rotate_molecule_in_plane(m, tmol.align_idx)
+                geometry.center_molecule(m, tmol.center_idx)
+                GO['aligned coords'] = [a.coords for a in m.atoms]
+                print(GO['aligned coords'])
+                write_xyz(aligned_xyz, GO['elements'], GO['aligned coords'])
+            except:
+                raise
 
             GO['status'] = ams.read('General', 'termination status')
 
@@ -291,9 +313,12 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
         return EDA
 
 
+
     data = {}
     data['files']   = get_files()
     data['info']    = get_info()
+    if data['info']['reaction'] == 'achiral_catalyst':
+        if data['info']['stationary point'] not in ['sub_cat_complex', 'TS', 'P1_cat_complex']: return
     data['GO']      = get_GO_data()
     data['freq']    = get_freq_data()
     data['thermo']  = get_thermo_data()
@@ -349,10 +374,10 @@ class Result:
         self._calc_path = calc_path
         self.data = self.read_data()
         self._set_status()
-        try:
-            self.write_aligned_xyz()
-        except:
-            pass
+        # try:
+        #     self.write_aligned_xyz()
+        # except:
+        #     pass
 
     def read_data(self):
         with open(join(self.path, 'results.json'), 'r') as res:
@@ -458,26 +483,18 @@ class Result:
         return mol
 
     def get_template_mol(self):
-        mol = struct_generator2.generate_stationary_points(self.reaction, self.substituents)[self.stationary_point]
+        mol = struct_generator2.get_mol(self.reaction, self.substituents, self.stationary_point)
         return mol
 
-    def write_aligned_xyz(self, force=True):
-        p = join(self.path, 'aligned.xyz')
-        
-        if os.path.exists(p) and not force:
-            return
-
-        print(p)
-        mol = self.get_mol()
-        mol = molecule.load_plams_molecule(mol)
-        mol.align()
-        molecule.save_to_xyz(mol, p)
-
     def get_aligned_mol(self):
-        mol = self.get_mol()
-        mol = molecule.load_plams_molecule(mol)
-        mol.align()
-    
+        xyz = join(self.path, self.data['GO'].get('aligned xyz'))
+        mol = plams.Molecule(xyz)
+        mol.name = self.stationary_point
+        mol.reaction = self.reaction
+        mol.normalmode = self.get_imaginary_mode
+        mol.substituents = self.substituents
+        mol.template_mol = self.get_template_mol()
+        return mol
 
     def _set_status(self):
         opt_status    = self.data['GO'].get('status', None)
@@ -570,6 +587,18 @@ def print_canceled(res, tabs=0):
     for r in canceled:
         print(r.calc_path)
 
+
+def get_result(template, substituents, stationary_point):
+    results = all_results
+    results = [r for r in results if r.reaction == template]
+    results = [r for r in results if all(sub == substituents[R] for R, sub in r.substituents.items())]
+    results = [r for r in results if all((r.functional == functional, r.basis == basis, r.numerical_quality == numerical_quality))]
+    results = [r for r in results if r.phase == phase]
+    results = [r for r in results if r.stationary_point == stationary_point]
+    if len(results) == 0:
+        return
+    else:
+        return results[0]
 
 
 all_results = get_all_results()
