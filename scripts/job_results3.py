@@ -220,12 +220,16 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
                     m.add_atom(plams.Atom(symbol=e, coords=x))
                 subdict = {x[0]:x[1] for x in data['info']['substituents']}
                 tmol = struct_generator2.get_mol(data['info']['reaction'], subdict, data['info']['stationary point'])
-                geometry.align_molecule_to_plane(m, tmol.plane_idx)
-                geometry.rotate_molecule_in_plane(m, tmol.align_idx)
-                geometry.center_molecule(m, tmol.center_idx)
+                if hasattr(tmol, 'plane_idx'):
+                    geometry.align_molecule_to_plane(m, tmol.plane_idx)
+                if hasattr(tmol, 'align_idx'):
+                    geometry.rotate_molecule_in_plane(m, tmol.align_idx)
+                if hasattr(tmol, 'center_idx'):
+                    geometry.center_molecule(m, tmol.center_idx)
                 GO['aligned coords'] = [a.coords for a in m.atoms]
                 print(GO['aligned coords'])
                 write_xyz(aligned_xyz, GO['elements'], GO['aligned coords'])
+                GO['aligned xyz'] = aligned_xyz
             except:
                 raise
 
@@ -480,6 +484,9 @@ class Result:
         mol.normalmode = self.get_imaginary_mode
         mol.substituents = self.substituents
         mol.template_mol = self.get_template_mol()
+        mol.functional = self.functional
+        mol.basis = self.basis
+        mol.numerical_quality = self.numerical_quality
         return mol
 
     def get_template_mol(self):
@@ -494,6 +501,9 @@ class Result:
         mol.normalmode = self.get_imaginary_mode
         mol.substituents = self.substituents
         mol.template_mol = self.get_template_mol()
+        mol.functional = self.functional
+        mol.basis = self.basis
+        mol.numerical_quality = self.numerical_quality
         return mol
 
     def _set_status(self):
@@ -588,8 +598,9 @@ def print_canceled(res, tabs=0):
         print(r.calc_path)
 
 
-def get_result(template, substituents, stationary_point):
+def get_result(template, substituents, stationary_point, functional='BLYP-D3(BJ)', basis='TZ2P', numerical_quality='Good', phase='vacuum'):
     results = all_results
+    print(results)
     results = [r for r in results if r.reaction == template]
     results = [r for r in results if all(sub == substituents[R] for R, sub in r.substituents.items())]
     results = [r for r in results if all((r.functional == functional, r.basis == basis, r.numerical_quality == numerical_quality))]
@@ -602,7 +613,6 @@ def get_result(template, substituents, stationary_point):
 
 
 all_results = get_all_results()
-
 
 if __name__ == '__main__':
     calc_dir = join(paths.master, 'calculations_test')

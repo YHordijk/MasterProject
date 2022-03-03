@@ -8,7 +8,11 @@ join = os.path.join
 
 
 def get_mol(template, substituents, stationary_point):
-    return generate_stationary_points(template, substituents)[stationary_point]
+    mols = generate_stationary_points(template, substituents)
+    if stationary_point in mols:
+        return mols[stationary_point]
+    else:
+        return None
 
 
 def get_all_substituents(template):
@@ -43,7 +47,6 @@ def generate_stationary_points(template, substituents=None, keep_dummy=False):
 
     assert os.path.isdir(template_dir), f'Directory {template_dir} does not exist'
     assert os.path.exists(template_meta), f'No meta.info file found in {template_dir}'
-
 
     def load_mol(file):
         name = os.path.basename(file).split('.')[0]
@@ -131,7 +134,6 @@ def generate_stationary_points(template, substituents=None, keep_dummy=False):
                 if line.startswith('subdefault'):
                     name, sub = line.split()[1:3]
                     default[name] = sub
-
         return default
 
 
@@ -140,7 +142,6 @@ def generate_stationary_points(template, substituents=None, keep_dummy=False):
         for name, sub in subs.items():
             substituent_files[name] = join(paths.SGT_substituents, sub + '.xyz')
             assert os.path.exists(substituent_files[name]), f'File {substituent_files[name]} does not exist'
-
         return substituent_files
 
 
@@ -153,7 +154,6 @@ def generate_stationary_points(template, substituents=None, keep_dummy=False):
                     tag = line.split()[4:]
                     if 'R' in tag:
                         substituent_idx.append(i)
-
             mol = plams.Molecule(file)
             mol.substituent_idx = substituent_idx
             return mol

@@ -29,24 +29,25 @@ sbatch {os.path.basename(file)}
             if line.startswith('numerical_quality'): numerical_quality   = line.split('=')[1]
 
     if functional == 'OLYP': return
-    sg2_mol = struct_generator2.get_mol(template, substituents, stationary_point)
     res = job_results3.get_result(template, substituents, stationary_point)
+    print(res)
     align_mol = res.get_aligned_mol()
-    print(align_mol)
+    sg2_mol = align_mol.template_mol
+    if sg2_mol is None: return
     ATOMS = ''
-    for i, atom in enumerate(opt_mol.atoms, 1):
+    for i, atom in enumerate(align_mol.atoms, 1):
         if i in sg2_mol.frag1idx:
             ATOMS += f'    {atom.symbol:<2}\t{atom.coords[0]:=11.8f}\t{atom.coords[1]:=11.8f}\t{atom.coords[2]:=11.8f}\tf=f1\n'
         elif i in sg2_mol.frag2idx:
             ATOMS += f'    {atom.symbol:<2}\t{atom.coords[0]:=11.8f}\t{atom.coords[1]:=11.8f}\t{atom.coords[2]:=11.8f}\tf=f2\n'
 
     ATOMS1 = ''
-    for i, atom in enumerate(opt_mol.atoms, 1):
+    for i, atom in enumerate(align_mol.atoms, 1):
         if i in sg2_mol.frag1idx:
             ATOMS1 += f'    {atom.symbol:<2}\t{atom.coords[0]:=11.8f}\t{atom.coords[1]:=11.8f}\t{atom.coords[2]:=11.8f}\tregion=Region_1\n'
 
     ATOMS2 = ''
-    for i, atom in enumerate(opt_mol.atoms, 1):
+    for i, atom in enumerate(align_mol.atoms, 1):
         if i in sg2_mol.frag2idx:
             ATOMS2 += f'    {atom.symbol:<2}\t{atom.coords[0]:=11.8f}\t{atom.coords[1]:=11.8f}\t{atom.coords[2]:=11.8f}\tregion=Region_2\n'
 
@@ -86,7 +87,7 @@ sbatch {os.path.basename(file)}
 
                 run.write(line)
 
-    # run_job(runscript)
+    run_job(runscript)
     print('running?', runscript)
 
 
