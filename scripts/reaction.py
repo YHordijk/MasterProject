@@ -273,14 +273,16 @@ class Reaction:
 			print(f'{name} {" ".join(e.rjust(energy_len) for e in trend)}')
 
 
-def get_all_reactions():
+def get_all_reactions(silent=True):
 	reactions = []
-	for R1 in ['H', 'F', 'Cl', 'Br', 'I']:
+	for R1 in ['H', 'F', 'Cl', 'Br', 'I', 'OMe', 'Me', 'NH2']:
 		for R2 in ['H', 'tBu', 'Ph']:
 			for Rcat in ['AlF3', 'BF3', 'I2', 'SnCl4', 'TiCl4', 'ZnCl2']:
 				r = Reaction('achiral_catalyst', {'R1':R1, 'R2':R2, 'Rcat':Rcat})
 				if r.complete:
 					reactions.append(r)
+				else:
+					if not silent: print('Reaction not complete', r, r.incomplete_reason)
 	return reactions
 
 

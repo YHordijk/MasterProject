@@ -6,8 +6,10 @@ import matplotlib.pyplot as plt
 
 def Eact_EDA():
 	rxns = reaction.all_reactions
+	print(rxns)
 	#we now look at only achiral catalysts
 	rxns = [r for r in rxns if r.reaction == 'achiral_catalyst']
+	# rxns = [r for r in rxns if r.substituents['R1'] == 'F']
 	Eact = [r.get_activation_energy()[''] for r in rxns]
 	sub_res = []
 	for rxn in rxns:
@@ -16,6 +18,8 @@ def Eact_EDA():
 			print(res.substituents)
 		print(res.data['EDA'])
 		sub_res.append(res)
+
+	print(sub_res)
 
 	pauli = [r.data['EDA']['pauli'] for r in sub_res]
 	bonding = [r.data['EDA']['bonding'] for r in sub_res]
@@ -71,6 +75,35 @@ def Eact_EDA():
 	plt.subplot(2,2,4)
 	plt.scatter(voronoi, Eact)
 	plt.xlabel('Voronoi charge')
+	plt.ylabel('Eact (ha)')
+
+	plt.show()
+
+
+	plt.suptitle('Orbital contribution/energy trends')
+
+	HOMO_cont = [r.data['SP']['occupied cont'] for r in sub_res]
+	HOMO_ener = [r.data['SP']['occupied energy'] for r in sub_res]
+	LUMO_cont = [r.data['SP']['virtual cont'] for r in sub_res]
+	LUMO_ener = [r.data['SP']['virtual energy'] for r in sub_res]
+	plt.subplot(2,2,1)
+	plt.scatter(HOMO_cont, Eact)
+	plt.xlabel('HOMO contribution')
+	plt.ylabel('Eact (ha)')
+
+	plt.subplot(2,2,2)
+	plt.scatter(HOMO_ener, Eact)
+	plt.xlabel('HOMO energy (ha)')
+	plt.ylabel('Eact (ha)')
+
+	plt.subplot(2,2,3)
+	plt.scatter(LUMO_cont, Eact)
+	plt.xlabel('LUMO contribution')
+	plt.ylabel('Eact (ha)')
+
+	plt.subplot(2,2,4)
+	plt.scatter(LUMO_ener, Eact)
+	plt.xlabel('LUMO energy (ha)')
 	plt.ylabel('Eact (ha)')
 
 	plt.show()

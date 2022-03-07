@@ -29,7 +29,9 @@ End
 
 
 Engine ADF
- 
+  EPRINT
+    SFO Eig Ovl
+  END
   BASIS
      type [BASIS]
      core none
@@ -71,7 +73,9 @@ End
 
 
 Engine ADF
- 
+  EPRINT
+    SFO Eig Ovl
+  END
   BASIS
      type [BASIS]
      core none
@@ -111,6 +115,9 @@ End
 
 
 Engine ADF
+  EPRINT
+    SFO Eig Ovl
+  END
   FRAGMENTS
    f1 $SLURM_SUBMIT_DIR/Fragment_1.adf.rkf
    f2 $SLURM_SUBMIT_DIR/Fragment_2.adf.rkf

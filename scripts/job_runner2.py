@@ -102,6 +102,73 @@ sbatch {os.path.basename(file)}
 #                     run.write(line)
 
 
+def run_SP_job(calc_path):
+    def run_job(file):
+        start_script = f"""#!/bin/bash
+cd {os.path.dirname(file)}
+sbatch {os.path.basename(file)}
+"""     
+        os.system(start_script)
+
+
+    #read information about run
+    substituents = {}
+    with open(join(calc_path, 'run.info')) as info:
+        for line in info.readlines():
+            line = line.strip()
+            if line.startswith('R'): R, s = line.split('='); substituents[R] = s
+            if line.startswith('reaction'):          template            = line.split('=')[1]
+            if line.startswith('functional'):        functional          = line.split('=')[1]
+            if line.startswith('basis'):             basis               = line.split('=')[1]
+            if line.startswith('phase'):             phase               = line.split('=')[1]
+            if line.startswith('stationary_point'):  stationary_point    = line.split('=')[1]
+            if line.startswith('radical'):           radical             = line.split('=')[1]
+            if line.startswith('numerical_quality'): numerical_quality   = line.split('=')[1]
+
+    if functional == 'OLYP': return
+    res = job_results3.get_result(template, substituents, stationary_point)
+    align_mol = res.get_aligned_mol()
+    ATOMS = ''
+    for i, atom in enumerate(align_mol.atoms, 1):
+        ATOMS += f'    {atom.symbol:<2}\t{atom.coords[0]:=11.8f}\t{atom.coords[1]:=11.8f}\t{atom.coords[2]:=11.8f}\n'
+
+    FUNCTIONAL = {
+            'OLYP': 'GGA OLYP',
+            'BLYP-D3(BJ)': 'GGA BLYP\n    DISPERSION GRIMME3 BJDAMP',
+            'M06L': 'MetaGGA M06L'
+        }[functional]
+
+    RADICAL = ''
+    if radical == 'True':
+        RADICAL = '\n  SpinPolarization 1\n  Unrestricted Yes\n'
+    CORES = '64'
+    NODES = '1'
+    
+    blocks = {
+        '[RADICAL]':          RADICAL, 
+        '[ATOMS]':            ATOMS, 
+        '[CORES]':            CORES,
+        '[NODES]':            NODES,
+        '[BASIS]':            basis,
+        '[FUNCTIONAL]':       FUNCTIONAL,
+        '[NUMERICALQUALITY]': numerical_quality,
+        }
+
+    JR_template = join(paths.JR_templates, 'SP')
+    runscript = join(calc_path, 'SP.run')
+    with open(JR_template, 'r') as temp:
+        temp_lines = temp.readlines()
+        with open(runscript, 'w+') as run:
+            for line in temp_lines:
+                for block in blocks:
+                    if block in line:
+                        line = line.replace(block, blocks[block])
+
+                run.write(line)
+
+    run_job(runscript)
+    print('running?', runscript)
+
 
 
 def run_jobs(template, substituents={}, calc_dir=paths.calculations, phase='vacuum', 
@@ -274,18 +341,18 @@ if __name__ == '__main__':
     calc_dir = paths.calculations
     test_mode = False
 
-    # basis = 'TZ2P'
-    # functional = 'BLYP-D3(BJ)'
-    # numerical_quality = 'Good'
-    # n = 0
-    # for R1 in ['Me', 'OMe', 'NH2']:
-    #     for R2 in ['Ph', 'tBu']:
-    #         run_jobs('no_catalyst', {'R1':R1, 'R2':R2}, phase='vacuum', calc_dir=calc_dir, test_mode=test_mode, basis=basis, functional=functional, numerical_quality=numerical_quality)
-    #         time.sleep(2)
-    #     for R2 in ['Ph', 'tBu']:
-    #         for cat in ['I2', 'ZnCl2', 'TiCl4', 'BF3', 'AlF3', 'SnCl4']:
-    #             n += run_jobs('achiral_catalyst', {'R1':R1, 'R2':R2, 'Rcat':cat}, phase='vacuum', calc_dir=calc_dir, test_mode=test_mode, basis=basis, functional=functional, numerical_quality=numerical_quality)
-    #             time.sleep(2)
+    basis = 'TZ2P'
+    functional = 'BLYP-D3(BJ)'
+    numerical_quality = 'Good'
+    n = 0
+    for R1 in ['Me', 'OMe', 'NH2']:
+        # for R2 in ['Ph', 'tBu']:
+        #     run_jobs('no_catalyst', {'R1':R1, 'R2':R2}, phase='vacuum', calc_dir=calc_dir, test_mode=test_mode, basis=basis, functional=functional, numerical_quality=numerical_quality)
+        #     time.sleep(2)
+        for R2 in ['o-FPh', 'm-FPh', 'p-FPh']:
+            for cat in ['I2', 'ZnCl2', 'TiCl4', 'BF3', 'AlF3', 'SnCl4']:
+                n += run_jobs('achiral_catalyst', {'R1':R1, 'R2':R2, 'Rcat':cat}, phase='vacuum', calc_dir=calc_dir, test_mode=test_mode, basis=basis, functional=functional, numerical_quality=numerical_quality)
+                time.sleep(2)
 
     # for R2 in ['Ph', 'tBu']:
     #     for Rch in ['O', 'S']:
@@ -334,17 +401,18 @@ if __name__ == '__main__':
     #                     run_jobs('squaramide', subs, phase='vacuum', calc_dir=calc_dir, test_mode=test_mode, basis=basis, functional=functional, numerical_quality=numerical_quality)
 
 
-    filtered_dirs = []
-    dirs = job_results3.get_all_run_dirs() 
-    #filter sub_cat_complex stationary points for achiral_catalysts
-    filtered_dirs += [d for d in dirs if 'achiral_catalyst' in d and os.path.basename(d) in ['sub_cat_complex.002', 'sub_cat_complex']]
-    n = 0
-    for d in filtered_dirs:
-        # if not os.path.exists(join(d, 'frag.run.out')):
-            print(d)
-            if not test_mode:
-                run_frag_job(d)
-            n += 1
-            time.sleep(2)
+    # filtered_dirs = []
+    # dirs = job_results3.get_all_run_dirs() 
+    # #filter sub_cat_complex stationary points for achiral_catalysts
+    # filtered_dirs += [d for d in dirs if 'achiral_catalyst' in d and os.path.basename(d) in ['sub_cat_complex.002', 'sub_cat_complex']]
+    # n = 0
+    # for d in filtered_dirs:
+    #     # if not os.path.exists(join(d, 'frag.run.out')):
+    #         print(d)
+    #         if not test_mode:
+    #             run_SP_job(d)
+    #         n += 1
+    #         time.sleep(2)
+            
 
-    print(n)
+    # print(n)

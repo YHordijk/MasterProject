@@ -27,7 +27,6 @@ def get_all_run_dirs(calc_dir=paths.calculations):
             dirs.append(p)
     return dirs
 
-all_run_dirs = get_all_run_dirs()
 
 
 def get_all_result_dirs(res_dir=paths.results):
@@ -40,7 +39,6 @@ def get_all_result_dirs(res_dir=paths.results):
             dirs.append(p)
     return dirs
 
-all_result_dirs = get_all_result_dirs()
 
 
 def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.results):
@@ -111,6 +109,18 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
                 files['GO out'] = file
             elif file.endswith(GO_log):
                 files['GO log'] = file
+
+            #SP files
+            elif file == 'SP.log':
+                files['SP log'] = file
+            elif file == 'SP.ams.rkf':
+                files['SP amsrkf'] = file
+            elif file == 'SP.adf.rkf':
+                files['SP adfrkf'] = file
+            elif file == 'SP.run.out':
+                files['SP out'] = file
+            elif file == 'SP.run':
+                files['SP run script'] = file
 
         return files
 
@@ -218,8 +228,7 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
                 m = plams.Molecule()
                 for e, x in zip(el, xyz):
                     m.add_atom(plams.Atom(symbol=e, coords=x))
-                subdict = {x[0]:x[1] for x in data['info']['substituents']}
-                tmol = struct_generator2.get_mol(data['info']['reaction'], subdict, data['info']['stationary point'])
+                
                 if hasattr(tmol, 'plane_idx'):
                     geometry.align_molecule_to_plane(m, tmol.plane_idx)
                 if hasattr(tmol, 'align_idx'):
@@ -227,11 +236,11 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
                 if hasattr(tmol, 'center_idx'):
                     geometry.center_molecule(m, tmol.center_idx)
                 GO['aligned coords'] = [a.coords for a in m.atoms]
-                print(GO['aligned coords'])
+                # print(GO['aligned coords'])
                 write_xyz(aligned_xyz, GO['elements'], GO['aligned coords'])
                 GO['aligned xyz'] = aligned_xyz
-            except:
-                raise
+            except Exception as e:
+                print(e)
 
             GO['status'] = ams.read('General', 'termination status')
 
@@ -316,17 +325,109 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
 
         return EDA
 
+    def get_SP_data():
+        files = data['files']
+        SP = {}
+        if not 'SP out' in files:
+            return
+        try:
+            p = join(calc_dir, calc_path, files['SP adfrkf'])
+            SPadfrkf = plams.KFFile(p)
+
+            nmo = SPadfrkf.read('A', 'nmo_A')
+            
+            mo_energy = SPadfrkf.read('A', 'eps_A')
+            #coeffs is an array where the MOs are on the rows and 
+            #the columns are the SFO coefficients (other way around of out file)
+            coeffs = SPadfrkf.read('A', 'Eig-CoreSFO_A')
+            coeffs = np.abs(np.array(coeffs).reshape((nmo, nmo)))
+            occupations = SPadfrkf.read('A', 'froc_A')
+            occupied = [i for i in range(nmo) if occupations[i] > 0]
+            virtual = [i for i in range(nmo) if occupations[i] == 0]
+            # print(occupied)
+            # print(virtual)
+            assert len(occupied) + len(virtual) == nmo, f'occupied ({len(occupied)}) and virtual ({len(virtual)}) MOs dont add up to nmo ({nmo})'
+
+            occupied_coeff = [coeffs[i] for i in occupied]
+            virtual_coeff = [coeffs[i] for i in virtual]
+
+            #read in the identities of the SFOs
+            fragtypes = SPadfrkf.read('Geometry', 'fragmenttype')
+            #the order of atoms is not the same as input
+            #atom 1 in the input is atomorder[0] in the internal order
+            atomorder = SPadfrkf.read('Geometry', 'atom order index')
+            atomorder = np.array(atomorder[:len(atomorder)//2])
+
+            nSFO = SPadfrkf.read('SFOs', 'number')
+            SFOsubsp = SPadfrkf.read('SFOs', 'subspecies').split()
+            SFOfrag = SPadfrkf.read('SFOs', 'fragment')
+            SFOprincipal = SPadfrkf.read('SFOs', 'ifo')
+
+            #sort SFOs for each atom by inputorder
+            SFOsubsp_by_atom = [[s for i, s in zip(SFOfrag, SFOsubsp) if i == j] for j in atomorder]
+            SFOidx_by_atom = [[n for n, i in zip(range(nSFO), SFOfrag) if i == j] for j in atomorder]
+            # for s in SFOsubsp_by_atom: print(s)
+            # for s in SFOidx_by_atom: print(s)
+
+            #summarize SFOs as tuples (atom_idx, principal_quantum_number, subspecies)
+            SFO = [(i, n, s) for i, n, s in zip(SFOfrag, SFOprincipal, SFOsubsp)]
+            # for s in SFO: print(s)
+
+            activate_atom = atomorder[tmol.active_atom_idx-1]
+            active_SFOs = [s for s in SFO if s[0] == activate_atom]
+
+            #we are interested in the 2pz SFO
+            ifo = 1
+            subsp = 'P:z'
+            active_2pz_SFO = [s for s in active_SFOs if s[1] == ifo and s[2] == subsp][0]
+            active_2pz_idx = SFO.index(active_2pz_SFO)
+
+            #get relative occupations
+            occupied_active_cont = [c[active_2pz_idx]/c.sum() for c in occupied_coeff]
+            virtual_active_cont  = [c[active_2pz_idx]/c.sum() for c in virtual_coeff]
+            best_occupied_idx = occupied_active_cont.index(max(occupied_active_cont))
+            best_occupied_energy = mo_energy[best_occupied_idx]
+            best_virtual_idx = virtual_active_cont.index(max(virtual_active_cont))
+            best_virtual_energy = mo_energy[best_virtual_idx+len(occupied_active_cont)]
+            print(occupied_active_cont)
+
+            print(f'Biggest contribution in occupied orbital no. {best_occupied_idx+1}: {occupied_active_cont[best_occupied_idx]*100:.2f}%, E={best_occupied_energy:.3f} ha')
+            print(f'Biggest contribution in virtual  orbital no. {best_virtual_idx+1}({best_virtual_idx+len(occupied_active_cont)+1}): {virtual_active_cont[best_virtual_idx]*100:.2f}%, E={best_virtual_energy:.3f} ha' )
+            # plt.plot(range(len(occupied_active_cont)), occupied_active_cont)
+            # plt.plot(np.arange(len(virtual_active_cont))+len(occupied_active_cont), virtual_active_cont)
+            # plt.xlabel('MO index')
+            # plt.ylabel('C($2p_z$) contribution (%)')
+            # plt.show()
+
+
+            SP['occupied idx'] = best_occupied_idx
+            SP['occupied energy'] = best_occupied_energy
+            SP['occupied cont'] = occupied_active_cont[best_occupied_idx]
+            SP['virtual idx'] = best_virtual_idx
+            SP['virtual energy'] = best_virtual_energy
+            SP['virtual cont'] = virtual_active_cont[best_virtual_idx]
+
+            print(SP)
+
+        except:
+            print(files['calc_path'])
+            raise
+        return SP
+
 
 
     data = {}
     data['files']   = get_files()
     data['info']    = get_info()
+    subdict = {x[0]:x[1] for x in data['info']['substituents']}
+    tmol = struct_generator2.get_mol(data['info']['reaction'], subdict, data['info']['stationary point'])
     if data['info']['reaction'] == 'achiral_catalyst':
-        if data['info']['stationary point'] not in ['sub_cat_complex', 'TS', 'P1_cat_complex']: return
+        if data['info']['stationary point'] not in ['sub_cat_complex', 'TS', 'P1_cat_complex', 'rad']: return
     data['GO']      = get_GO_data()
     data['freq']    = get_freq_data()
     data['thermo']  = get_thermo_data()
     data['EDA']     = get_EDA_data()
+    data['SP']      = get_SP_data()
     with open(join(res_path, 'results.json'), 'w+') as res:
         res.write(json.dumps(data, indent=2))
 
@@ -360,13 +461,17 @@ def get_all_results(calc_dir=paths.calculations, res_dir=paths.results, regenera
         res_path = join(res_dir, os.path.relpath(calc_path, calc_dir))
         calc_path_dict[res_path] = calc_path
         if check_regenerate(calc_path, res_path):
-            generate_result(calc_path, calc_dir=calc_dir, res_dir=res_dir)
-    
+            try:
+                generate_result(calc_path, calc_dir=calc_dir, res_dir=res_dir)
+            except:
+                print('failed', calc_path)
+                raise
     res = []
     for res_path in get_all_result_dirs(res_dir):
-        print(res_path)
+        # print(res_path)
         r = Result(res_path, calc_path=calc_path_dict.get(res_path, None))
-        res.append(r)
+        if not r.data == {}:
+            res.append(r)
 
     return res
 
@@ -377,6 +482,7 @@ class Result:
         self.path = path
         self._calc_path = calc_path
         self.data = self.read_data()
+        if self.data == {}: return
         self._set_status()
         # try:
         #     self.write_aligned_xyz()
@@ -384,16 +490,20 @@ class Result:
         #     pass
 
     def read_data(self):
-        with open(join(self.path, 'results.json'), 'r') as res:
-            return json.loads(res.read())
+        if os.path.exists(join(self.path, 'results.json')):
+            with open(join(self.path, 'results.json'), 'r') as res:
+                return json.loads(res.read())
+        return {}
 
     # some handy functions
     @property
     def gibbs(self):
+        if not 'thermo' in self.data: return
         return self.data['thermo'].get('gibbs', None)
 
     @property
     def energy(self):
+        if not 'GO' in self.data: return
         if 'bond energy' in self.data['GO']:
             return self.data['GO'].get('bond energy')
 
@@ -401,30 +511,37 @@ class Result:
 
     @property
     def phase(self):
+        if not 'info' in self.data: return
         return self.data['info'].get('phase', 'vacuum')
     
     @property
     def hash(self):
+        if not 'info' in self.data: return
         return self.data['info'].get('hash', None)
 
     @property
     def functional(self):
+        if not 'info' in self.data: return
         return self.data['info'].get('functional', None)
 
     @property
     def basis(self):
+        if not 'info' in self.data: return
         return self.data['info'].get('basis', None)
 
     @property
     def numerical_quality(self):
+        if not 'info' in self.data: return
         return self.data['info'].get('numerical_quality', None)
     
     @property
     def reaction(self):
+        if not 'info' in self.data: return
         return self.data['info'].get('reaction', None)
 
     @property
     def substituents(self):
+        if not 'info' in self.data: return
         s = self.data['info'].get('substituents', [])
         return {x[0]:x[1] for x in s}
 
@@ -434,29 +551,40 @@ class Result:
 
     @property
     def radical(self):
+        if not 'info' in self.data: return
         return self.data['info'].get('radical', False)
 
     @property
     def task(self):
+        if not 'info' in self.data: return
         return self.data['info'].get('task', None)
 
     @property
     def enantiomer(self):
+        if not 'info' in self.data: return
         return self.data['info'].get('enantiomer', None)
 
     def get_substituent(self, R):
         s = self.substituents
+        if s is None: return
         for sub in s:
             if sub[0] == R:
                 return sub[1]
         return ''
 
     @property
+    def active_atom(self):
+        if not 'info' in self.data: return
+        return int(self.data['info'].get('active atom index', -1))
+    
+    @property
     def stationary_point(self):
+        if not 'info' in self.data: return
         return self.data['info'].get('stationary point', None)
 
     @property
     def runtime(self):
+        if not 'GO' in self.data: return
         return self.data['GO']['runtime']
 
     @property
@@ -495,6 +623,7 @@ class Result:
 
     def get_aligned_mol(self):
         xyz = join(self.path, self.data['GO'].get('aligned xyz'))
+        # print(xyz)
         mol = plams.Molecule(xyz)
         mol.name = self.stationary_point
         mol.reaction = self.reaction
@@ -600,7 +729,7 @@ def print_canceled(res, tabs=0):
 
 def get_result(template, substituents, stationary_point, functional='BLYP-D3(BJ)', basis='TZ2P', numerical_quality='Good', phase='vacuum'):
     results = all_results
-    print(results)
+    # print(results)
     results = [r for r in results if r.reaction == template]
     results = [r for r in results if all(sub == substituents[R] for R, sub in r.substituents.items())]
     results = [r for r in results if all((r.functional == functional, r.basis == basis, r.numerical_quality == numerical_quality))]
@@ -622,4 +751,5 @@ if __name__ == '__main__':
     print_failed(res)
     print_canceled(res)
 
- 
+
+    # res = generate_result(r"D:\Users\Yuman\Desktop\MasterProject\calculations\achiral_catalyst.I_tBu_ZnCl2.vacuum\sub_cat_complex") 

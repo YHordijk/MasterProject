@@ -17,6 +17,6 @@ import matplotlib.pyplot as plt
 # 	draw.draw('achiral_catalyst', {'R1':'OMe', 'R2':'tBu', 'Rcat':Rcat})
 # 	draw.draw('achiral_catalyst', {'R1':'OMe', 'R2':'Ph', 'Rcat':Rcat})
 
-draw.draw('achiral_catalyst', {'R1':'Br', 'R2':'Ph', 'Rcat':'AlF3'})
+# draw.draw('achiral_catalyst', {'R1':'Br', 'R2':'Ph', 'Rcat':'AlF3'})
 
-# trends.Eact_EDA()
+trends.Eact_EDA()

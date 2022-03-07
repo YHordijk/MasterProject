@@ -113,6 +113,7 @@ def generate_stationary_points(template, substituents=None, keep_dummy=False):
             mol.substituent_dist = substituent_dist
             mol.delete_atoms = [mol.atoms[i-1] for i in delete_idx]
             mol.get_frags = get_frags
+            mol.template_mol = mol
             if active_atom_idx:
                 mol.active_atom = mol.atoms[int(active_atom_idx)]
             
@@ -189,7 +190,7 @@ def generate_stationary_points(template, substituents=None, keep_dummy=False):
             #substitute the molecule
             main_conn = main_conns[sub_name]
             # print(sub_name, template, substituents, mol.name)
-            mol.substitute(main_conn, sub_mol, sub_conn, bond_length=mol.substituent_dist[sub_name])
+            mol.substitute(main_conn, sub_mol, sub_conn, bond_length=mol.substituent_dist[sub_name], steps=1)
 
         [mol.delete_atom(a) for a in mol.delete_atoms]
 
@@ -292,6 +293,6 @@ def show_reaction(template, substituents=None, simple=False):
     mol_viewer2.show(list(mols.values()), simple=simple)
 
 if __name__ == '__main__':
-    mols = generate_stationary_points('achiral_catalyst', {'Rcat':'AlF3'})
-    print_mols(mols)
-    show_reaction('achiral_catalyst', {'Rcat':'SnCl4', 'R1':'OMe'})
+    # mols = generate_stationary_points('achiral_catalyst', {'Rcat':'AlF3'})
+    # print_mols(mols)
+    show_reaction('achiral_catalyst', {'Rcat':'SnCl4', 'R2':'m-FPh', 'R1':'Me'})
