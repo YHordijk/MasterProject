@@ -1,7 +1,7 @@
 import numpy as np 
 import matplotlib.pyplot as plt
-import data_gen
-import sklearn.kernel_ridge
+# import data_gen
+# import sklearn.kernel_ridge
 import itertools
 
 
@@ -14,10 +14,9 @@ def correlation(y, y_pred):
 	return 1 - vary_pred/vary
 
 
-def linear_regression(data):
-	#derivation: 
-	x = data['x']
-	y = data['y']
+def linear_regression(x, y, add_ones=True):
+	if add_ones:
+		x = np.hstack((np.ones((x.shape[0],1)), x))
 	#perform regression
 	a = np.linalg.inv(x.T@x) @ x.T @ y
 	return {'a':a, 'R2':correlation(y, x@a)}
@@ -31,6 +30,68 @@ def ridge_regression(data, lam):
 	a = np.linalg.inv(x.T@x + lam) @ x.T @ y
 	return {'a':a, 'R2':correlation(y, x@a)}
 
+
+class MLModel:
+	def __init__(self):
+		self.a = np.array([])
+		self.description = 'Template Machine Learning Model'
+		self.trained = False
+
+	def __repr__(self):
+		s = '' 
+		s += self.description + '\n'
+		s += f'This model has{" not"*(not self.trained)} been trained'
+		return s
+
+	def train(self, Xtrain, Ytrain):
+		'''
+		Method that takes training X (m x n) and Y (m x 1) arrays
+		and trains the model to set the parameter "a"
+		'''
+		self.trained = True
+		NotImplemented
+
+	def evaluate(self, Xtest, Ytest):
+		'''
+		Method that takes test X (m x n) and Y (m x 1) arrays
+		and evaluates the model, that is predict the Ytest using
+		trained parameters. Then it will calculate the R2 value
+		'''
+		NotImplemented
+
+	def predict(self, X):
+		'''
+		Method that takes X (m x n) array and 
+		predicts the Y-values corresponding to these datapoints
+		Does not calculate R2
+		'''
+		NotImplemented
+
+
+class LR(MLModel):
+	def __init__(self):
+		super().__init__()
+		self.description = 'Linear Regression Model'
+
+	def train(self, Xtrain, Ytrain, add_ones=True):
+		if add_ones:
+			Xtrain = np.hstack((np.ones((Xtrain.shape[0],1)), Xtrain))
+		#perform regression
+		self.a = np.linalg.inv(Xtrain.T@Xtrain) @ Xtrain.T @ Ytrain
+		self.R2train = correlation(Ytrain, Xtrain@self.a)
+		self.trained = True
+
+	def evaluate(self, Xtest, Ytest, add_ones=True):
+		if add_ones:
+			Xtest = np.hstack((np.ones((Xtest.shape[0],1)), Xtest))
+		Ypred = Xtest@self.a
+		R2 = correlation(Ytest, Ypred)
+		return R2
+
+	def predict(self, X, add_ones=True):
+		if add_ones:
+			X = np.hstack((np.ones((X.shape[0],1)), X))
+		return X@self.a
 
 
 class FeatureMap:
@@ -56,8 +117,7 @@ class QuadraticFM(FeatureMap):
 
 
 
-
-class KRR:
+class KRR(MLModel):
 	def __init__(self, kernel='polynomial', **kwargs):
 		self.kernel_type = kernel
 		if kernel == 'polynomial':
@@ -76,28 +136,3 @@ class KRR:
 	# def get_kernel(self):
 		
 
-
-# help(sklearn.kernel_ridge)
-
-# data = data_gen.random_data(600, 1, noise=0.1)
-# # plt.scatter(data['x'][:,1:], data['y'])
-# # for l in [1000,100,10,1, .1, .01, .001, .0001, .00001]:
-# # 	a = ridge_regression(data,l)
-# # 	plt.scatter(data['x'][:,1:], data['x']@a['a'])
-
-# # plt.show()
-
-# model = KRR()
-# model.train(data['x'], data['y'])
-
-
-U = [1, 2, 3, 4]
-V = [5, 6, 7, 8]
-
-fm = PolynomialFM(5)
-
-fu = fm(U)
-fv = fm(V)
-
-print(fu, fv)
-print(fu.T @ fv)

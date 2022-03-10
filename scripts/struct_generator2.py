@@ -295,4 +295,4 @@ def show_reaction(template, substituents=None, simple=False):
 if __name__ == '__main__':
     # mols = generate_stationary_points('achiral_catalyst', {'Rcat':'AlF3'})
     # print_mols(mols)
-    show_reaction('achiral_catalyst', {'Rcat':'SnCl4', 'R2':'m-FPh', 'R1':'Me'})
+    show_reaction('urea_tBu_Ph', {'R2':'m-FPh', 'R1':'Me', 'Rch':'O'})

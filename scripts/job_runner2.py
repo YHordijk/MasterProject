@@ -338,81 +338,42 @@ sbatch {os.path.basename(file)}
 
     return Njobs
 if __name__ == '__main__':
+    mode = 'GO'
     calc_dir = paths.calculations
     test_mode = False
 
-    basis = 'TZ2P'
-    functional = 'BLYP-D3(BJ)'
-    numerical_quality = 'Good'
+
     n = 0
-    for R1 in ['Me', 'OMe', 'NH2']:
-        # for R2 in ['Ph', 'tBu']:
-        #     run_jobs('no_catalyst', {'R1':R1, 'R2':R2}, phase='vacuum', calc_dir=calc_dir, test_mode=test_mode, basis=basis, functional=functional, numerical_quality=numerical_quality)
-        #     time.sleep(2)
-        for R2 in ['o-FPh', 'm-FPh', 'p-FPh']:
-            for cat in ['I2', 'ZnCl2', 'TiCl4', 'BF3', 'AlF3', 'SnCl4']:
-                n += run_jobs('achiral_catalyst', {'R1':R1, 'R2':R2, 'Rcat':cat}, phase='vacuum', calc_dir=calc_dir, test_mode=test_mode, basis=basis, functional=functional, numerical_quality=numerical_quality)
+    if mode == 'GO':
+        basis = 'TZ2P'
+        functional = 'BLYP-D3(BJ)'
+        numerical_quality = 'Good'
+
+        # for R1 in ['Me', 'OMe', 'NH2']:
+        #     for R2 in ['o-FPh', 'm-FPh', 'p-FPh']:
+        #         for cat in ['I2', 'ZnCl2', 'TiCl4', 'BF3', 'AlF3', 'SnCl4']:
+        #             n += run_jobs('achiral_catalyst', {'R1':R1, 'R2':R2, 'Rcat':cat}, phase='vacuum', calc_dir=calc_dir, test_mode=test_mode, basis=basis, functional=functional, numerical_quality=numerical_quality)
+        #             time.sleep(2)
+
+        for R1  in ['NH2', 'Me', 'OMe']:
+            for R2 in ['Ph', 'tBu']:
+                for Rch in ['O']:
+                    n += run_jobs('urea_tBu_Ph', {'R1':R1, 'R2':R2, 'Rch':Rch}, phase='vacuum', calc_dir=calc_dir, test_mode=test_mode, basis=basis, functional=functional, numerical_quality=numerical_quality)
+                    time.sleep(2)
+
+    if mode == 'SP':
+        filtered_dirs = []
+        dirs = job_results3.get_all_run_dirs() 
+        #filter sub_cat_complex stationary points for achiral_catalysts
+        filtered_dirs += [d for d in dirs if 'achiral_catalyst' in d and os.path.basename(d) in ['sub_cat_complex.002', 'sub_cat_complex']]
+        n = 0
+        for d in filtered_dirs:
+            if not os.path.exists(join(d, 'frag.run.out')):
+                print(d)
+                if not test_mode:
+                    run_SP_job(d)
+                n += 1
                 time.sleep(2)
+                
 
-    # for R2 in ['Ph', 'tBu']:
-    #     for Rch in ['O', 'S']:
-    #         run_jobs('urea_tBu_Ph', {'R1':'H', 'R2':R2, 'Rch':Rch}, phase='vacuum', calc_dir=calc_dir, test_mode=test_mode, basis=basis, functional=functional, numerical_quality=numerical_quality)
-
-    # print(n)
-    # basis = 'TZ2P'
-    # functional = 'OLYP'
-    # numerical_quality = 'VeryGood'
-
-    # for R2 in ['H', 'Ph', 'tBu']:
-    #     run_jobs('no_catalyst', {'R1':'H', 'R2':R2}, phase='vacuum', calc_dir=calc_dir, test_mode=test_mode, basis=basis, functional=functional, numerical_quality=numerical_quality)
-    # for R2 in ['Ph', 'tBu']:
-    #     for cat in ['I2', 'ZnCl2', 'TiCl4', 'BF3', 'AlF3', 'SnCl4']:
-    #         run_jobs('achiral_catalyst', {'R1':'H', 'R2':R2, 'Rcat':cat}, phase='vacuum', calc_dir=calc_dir, test_mode=test_mode, basis=basis, functional=functional, numerical_quality=numerical_quality)
-    # for R2 in ['Ph', 'tBu']:
-    #     for Rch in ['O', 'S']:
-    #         run_jobs('urea_tBu_Ph', {'R1':'H', 'R2':R2, 'Rch':Rch}, phase='vacuum', calc_dir=calc_dir, test_mode=test_mode, basis=basis, functional=functional, numerical_quality=numerical_quality)
-
-
-
-    # basis = 'TZ2P'
-    # functional = 'BLYP-D3(BJ)'
-    # numerical_quality = 'Good'
-
-    # for R2 in ['Ph', 'tBu']:
-    #     for R1 in ['F', 'Cl', 'Br', 'I']:
-    #         run_jobs('no_catalyst', {'R1':R1, 'R2':R2}, phase='vacuum', calc_dir=calc_dir, test_mode=test_mode, basis=basis, functional=functional, numerical_quality=numerical_quality)
-
-
-    # basis = 'TZ2P'
-    # functional = 'BLYP-D3(BJ)'
-    # numerical_quality = 'Good'
-
-    # for R1 in ['H']:
-    #     for R2 in ['Ph', 'tBu']:
-    #         for Rch in ['O', 'S']:
-    #             for Rc1 in ['H', 'Ph']:
-    #                 for Rc2 in ['H', 'tBu']:
-    # # for R1 in ['H']:
-    # #     for R2 in ['Ph']:
-    # #         for Rch in ['O']:
-    # #             for Rc1 in ['H']:
-    # #                 for Rc2 in ['H']:
-    #                     subs = {'R1':R1, 'R2':R2, 'Rch':Rch,'Rch2':Rch,'Rc1':Rc1, 'Rc2':Rc2}
-    #                     run_jobs('squaramide', subs, phase='vacuum', calc_dir=calc_dir, test_mode=test_mode, basis=basis, functional=functional, numerical_quality=numerical_quality)
-
-
-    # filtered_dirs = []
-    # dirs = job_results3.get_all_run_dirs() 
-    # #filter sub_cat_complex stationary points for achiral_catalysts
-    # filtered_dirs += [d for d in dirs if 'achiral_catalyst' in d and os.path.basename(d) in ['sub_cat_complex.002', 'sub_cat_complex']]
-    # n = 0
-    # for d in filtered_dirs:
-    #     # if not os.path.exists(join(d, 'frag.run.out')):
-    #         print(d)
-    #         if not test_mode:
-    #             run_SP_job(d)
-    #         n += 1
-    #         time.sleep(2)
-            
-
-    # print(n)
+    print(n)

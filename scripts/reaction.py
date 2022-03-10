@@ -194,41 +194,68 @@ class Reaction:
 	def show(self, simple=False):
 		mol_viewer2.show_results(self.results, simple=simple)
 
-	def get_reaction_pathways(self):
+	def get_reaction_pathways(self, type='gibbs'):
 		res = self.results
 		res = {r.stationary_point: r for r in res}
+		if type == 'gibbs':
+			if self.reaction == 'urea_tBu_Ph':
+				Renergies = {'R':  res['sub_cat_complex'].gibbs 	+ res['rad'].gibbs,
+							 'TS':  res['TSR'].gibbs,
+							 'P': res['P1R_cat_complex'].gibbs}
 
-		if self.reaction == 'urea_tBu_Ph':
-			Renergies = {'R':  res['sub_cat_complex'].gibbs 	+ res['rad'].gibbs,
-						 'TS':  res['TSR'].gibbs,
-						 'P': res['P1R_cat_complex'].gibbs}
+				Senergies = {'R':  res['sub_cat_complex'].gibbs 	+ res['rad'].gibbs,
+							 'TS':  res['TSS'].gibbs,
+							 'P': res['P1S_cat_complex'].gibbs}
 
-			Senergies = {'R':  res['sub_cat_complex'].gibbs 	+ res['rad'].gibbs,
-						 'TS':  res['TSS'].gibbs,
-						 'P': res['P1S_cat_complex'].gibbs}
-
-			trends = {'(R)':Renergies, '(S)':Senergies}
+				trends = {'(R)':Renergies, '(S)':Senergies}
 
 
-		elif self.reaction == 'no_catalyst':
-			energies = {'R': 	res['sub'].gibbs + res['rad'].gibbs,
-						'TS': 	res['TS'].gibbs,
-						'P': 	res['P1'].gibbs}
+			elif self.reaction == 'no_catalyst':
+				energies = {'R': 	res['sub'].gibbs + res['rad'].gibbs,
+							'TS': 	res['TS'].gibbs,
+							'P': 	res['P1'].gibbs}
 
-			trends = {'':energies}
+				trends = {'':energies}
 
-		elif self.reaction == 'achiral_catalyst':
-			energies = {'R':	res['sub_cat_complex'].gibbs + res['rad'].gibbs,
-						'TS':	res['TS'].gibbs,
-						'P':	res['P1_cat_complex'].gibbs}
+			elif self.reaction == 'achiral_catalyst':
+				energies = {'R':	res['sub_cat_complex'].gibbs + res['rad'].gibbs,
+							'TS':	res['TS'].gibbs,
+							'P':	res['P1_cat_complex'].gibbs}
 
-			trends = {'':energies}
+				trends = {'':energies}
+
+		elif type == 'bond':
+			if self.reaction == 'urea_tBu_Ph':
+				Renergies = {'R':  res['sub_cat_complex'].energy 	+ res['rad'].energy,
+							 'TS':  res['TSR'].energy,
+							 'P': res['P1R_cat_complex'].energy}
+
+				Senergies = {'R':  res['sub_cat_complex'].energy 	+ res['rad'].energy,
+							 'TS':  res['TSS'].energy,
+							 'P': res['P1S_cat_complex'].energy}
+
+				trends = {'(R)':Renergies, '(S)':Senergies}
+
+
+			elif self.reaction == 'no_catalyst':
+				energies = {'R': 	res['sub'].energy + res['rad'].energy,
+							'TS': 	res['TS'].energy,
+							'P': 	res['P1'].energy}
+
+				trends = {'':energies}
+
+			elif self.reaction == 'achiral_catalyst':
+				energies = {'R':	res['sub_cat_complex'].energy + res['rad'].energy,
+							'TS':	res['TS'].energy,
+							'P':	res['P1_cat_complex'].energy}
+
+				trends = {'':energies}
 
 		else: NotImplemented
 		return trends
 
-	def get_activation_energy(self):
-		profile = self.get_reaction_pathways()
+	def get_activation_energy(self, type='gibbs'):
+		profile = self.get_reaction_pathways(type=type)
 		trend_names = profile.keys()
 
 		if self.reaction in ['urea_tBu_Ph', 'achiral_catalyst', 'no_catalyst']:
@@ -276,7 +303,8 @@ class Reaction:
 def get_all_reactions(silent=True):
 	reactions = []
 	for R1 in ['H', 'F', 'Cl', 'Br', 'I', 'OMe', 'Me', 'NH2']:
-		for R2 in ['H', 'tBu', 'Ph']:
+		# for R2 in ['H', 'tBu', 'Ph']:
+		for R2 in ['H', 'tBu', 'Ph', 'o-FPh', 'm-FPh', 'p-FPh']:
 			for Rcat in ['AlF3', 'BF3', 'I2', 'SnCl4', 'TiCl4', 'ZnCl2']:
 				r = Reaction('achiral_catalyst', {'R1':R1, 'R2':R2, 'Rcat':Rcat})
 				if r.complete:

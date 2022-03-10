@@ -325,7 +325,7 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
 
         return EDA
 
-    def get_SP_data():
+    def get_SP_data(silent=True, plot=False):
         files = data['files']
         SP = {}
         if not 'SP out' in files:
@@ -389,20 +389,24 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
             best_occupied_energy = mo_energy[best_occupied_idx]
             best_virtual_idx = virtual_active_cont.index(max(virtual_active_cont))
             best_virtual_energy = mo_energy[best_virtual_idx+len(occupied_active_cont)]
-            print(occupied_active_cont)
+            if not silent:
+                print(occupied_active_cont)
 
-            print(f'Biggest contribution in occupied orbital no. {best_occupied_idx+1}: {occupied_active_cont[best_occupied_idx]*100:.2f}%, E={best_occupied_energy:.3f} ha')
-            print(f'Biggest contribution in virtual  orbital no. {best_virtual_idx+1}({best_virtual_idx+len(occupied_active_cont)+1}): {virtual_active_cont[best_virtual_idx]*100:.2f}%, E={best_virtual_energy:.3f} ha' )
-            # plt.plot(range(len(occupied_active_cont)), occupied_active_cont)
-            # plt.plot(np.arange(len(virtual_active_cont))+len(occupied_active_cont), virtual_active_cont)
-            # plt.xlabel('MO index')
-            # plt.ylabel('C($2p_z$) contribution (%)')
-            # plt.show()
+                print(f'Biggest contribution in occupied orbital no. {best_occupied_idx+1}: {occupied_active_cont[best_occupied_idx]*100:.2f}%, E={best_occupied_energy:.3f} ha')
+                print(f'Biggest contribution in virtual  orbital no. {best_virtual_idx+1}({best_virtual_idx+len(occupied_active_cont)+1}): {virtual_active_cont[best_virtual_idx]*100:.2f}%, E={best_virtual_energy:.3f} ha' )
+            if plot:
+                plt.plot(range(len(occupied_active_cont)), occupied_active_cont)
+                plt.plot(np.arange(len(virtual_active_cont))+len(occupied_active_cont), virtual_active_cont)
+                plt.xlabel('MO index')
+                plt.ylabel('C($2p_z$) contribution (%)')
+                plt.show()
 
-
+            SP['all energies'] = mo_energy
+            SP['occupied all contributions'] = occupied_active_cont
             SP['occupied idx'] = best_occupied_idx
             SP['occupied energy'] = best_occupied_energy
             SP['occupied cont'] = occupied_active_cont[best_occupied_idx]
+            SP['virtual all contributions'] = virtual_active_cont
             SP['virtual idx'] = best_virtual_idx
             SP['virtual energy'] = best_virtual_energy
             SP['virtual cont'] = virtual_active_cont[best_virtual_idx]
@@ -504,10 +508,8 @@ class Result:
     @property
     def energy(self):
         if not 'GO' in self.data: return
-        if 'bond energy' in self.data['GO']:
-            return self.data['GO'].get('bond energy')
+        return self.data['GO'].get('bond energy', None)
 
-        return self.data['GO'].get('output energy')
 
     @property
     def phase(self):

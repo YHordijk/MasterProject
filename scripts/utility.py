@@ -91,6 +91,8 @@ def hartree2kcalmol(v):
 def bohr2angstrom(v):
     return plams.Units.convert(v, 'bohr', 'angstrom')
 
+def hartree2eV(v):
+    return plams.Units.convert(v, 'Hartree', 'eV')
 
 def print_table(header, data, tabs=0):
     #data is provided as columns

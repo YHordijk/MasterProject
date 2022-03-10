@@ -1,22 +1,16 @@
-from analyses import profiles, functional_comparison, draw, trends
+from analyses import profiles, functional_comparison, draw, trends, ML
 import matplotlib.pyplot as plt
 
-# functional_comparison.main()
-# plt.show()
 
-# plt.figure()
-# profiles.achiral_catalyst(R1='F', R2='Ph')
-# plt.figure()
-# profiles.achiral_catalyst(R1='F', R2='tBu')
-# plt.show()
-# profiles.achiral_catalyst_Eact()
-# plt.show()
+mode = 'ML'
+if mode == 'ML':
+	ML.main()
 
-# for Rcat in ['AlF3', 'BF3', 'I2', 'SnCl4', 'TiCl4', 'ZnCl2']:
-# 	print(Rcat)
-# 	draw.draw('achiral_catalyst', {'R1':'OMe', 'R2':'tBu', 'Rcat':Rcat})
-# 	draw.draw('achiral_catalyst', {'R1':'OMe', 'R2':'Ph', 'Rcat':Rcat})
+elif mode == 'view':
+	# for Rcat in ['AlF3', 'BF3', 'I2', 'SnCl4', 'TiCl4', 'ZnCl2']:
+	for Rcat in ['ZnCl2']:
+		for R1 in ['Me', 'NH2', 'OMe']:
+			draw.draw('achiral_catalyst', {'R1':R1, 'R2':'p-FPh', 'Rcat':Rcat})
+		# draw.draw('achiral_catalyst', {'R1':R1, 'R2':'Ph', 'Rcat':Rcat})
 
-# draw.draw('achiral_catalyst', {'R1':'Br', 'R2':'Ph', 'Rcat':'AlF3'})
-
-trends.Eact_EDA()
+	# draw.draw('achiral_catalyst', {'R1':'Br', 'R2':'Ph', 'Rcat':'AlF3'})

@@ -1,6 +1,10 @@
 import paths, os, reaction, csv, job_results3
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
+from utility import hartree2eV as h2e
+from utility import hartree2kcalmol as h2k
+from scipy import stats
+import numpy as np
 
 join = os.path.join
 
@@ -25,10 +29,10 @@ def help(parameter):
 
 def define_parameters():
 	parameters = [
-		'EDA_pauli',
-		'EDA_bonding',
-		'EDA_elstat',
-		'EDA_oi',
+		# 'EDA_pauli',
+		# 'EDA_bonding',
+		# 'EDA_elstat',
+		# 'EDA_oi',
 		'AA_mulliken',
 		'AA_eldens',
 		'AA_hirshfeld',
@@ -41,43 +45,54 @@ def define_parameters():
 	return parameters
 
 
-def get_data(results, parameter):
-	parameters = define_parameters()
-	assert parameter in parameters
-
-	if parameter == 'EDA_pauli':
-		return [r.data['EDA']['pauli'] for r in results]
-	elif parameter == 'EDA_bonding':
-		return [r.data['EDA']['bonding'] for r in results]
-	elif parameter == 'EDA_elstat':
-		return [r.data['EDA']['elstat'] for r in results]
-	elif parameter == 'EDA_oi':
-		return [r.data['EDA']['orbital interaction'] for r in results]
-
-	elif parameter == 'AA_mulliken':
-		return [r.data['GO']['Mulliken charge'][r.active_atom] for r in results]
-	elif parameter == 'AA_eldens':
-		return [r.data['GO']['electron dens at nuclei'][r.active_atom] for r in results]
-	elif parameter == 'AA_hirshfeld':
-		return [r.data['GO']['Hirshfeld charge'][r.active_atom] for r in results]
-	elif parameter == 'AA_voronoi':
-		return [r.data['GO']['Voronoi charge'][r.active_atom] for r in results]
-
-	elif parameter == 'HOMO_contr':
-		return [r.data['SP']['occupied cont'] for r in results]
-	elif parameter == 'HOMO_energy':
-		return [r.data['SP']['occupied energy'] for r in results]
-	elif parameter == 'LUMO_contr':
-		return [r.data['SP']['virtual cont'] for r in results]
-	elif parameter == 'LUMO_energy':
-		return [r.data['SP']['virtual energy'] for r in results]
+def outlier_idx(columns, z_thresh=2.5):
+	oi = []
+	n = columns.shape[1] #number of variables
+	for i in range(n):
+		zs = np.abs(stats.zscore(columns[:,i]))
+		oi = oi + list(np.where(zs >= z_thresh)[0])
+	return list(set(oi))
 
 
-def generate_params(outfile=paths.training_data):
+def generate_data(outfile=paths.training_data, Eact_type='gibbs'):
+	def get_data(results, parameter):
+		parameters = define_parameters()
+		assert parameter in parameters
+
+		if parameter == 'EDA_pauli':
+			return [r.data['EDA']['pauli'] for r in results]
+		elif parameter == 'EDA_bonding':
+			return [r.data['EDA']['bonding'] for r in results]
+		elif parameter == 'EDA_elstat':
+			return [r.data['EDA']['elstat'] for r in results]
+		elif parameter == 'EDA_oi':
+			return [r.data['EDA']['orbital interaction'] for r in results]
+
+		elif parameter == 'AA_mulliken':
+			return [r.data['GO']['Mulliken charge'][r.active_atom] for r in results]
+		elif parameter == 'AA_eldens':
+			return [r.data['GO']['electron dens at nuclei'][r.active_atom] for r in results]
+		elif parameter == 'AA_hirshfeld':
+			return [r.data['GO']['Hirshfeld charge'][r.active_atom] for r in results]
+		elif parameter == 'AA_voronoi':
+			return [r.data['GO']['Voronoi charge'][r.active_atom] for r in results]
+
+		elif parameter == 'HOMO_contr':
+			return [r.data['SP']['occupied cont'] for r in results]
+		elif parameter == 'HOMO_energy':
+			return [r.data['SP']['occupied energy'] for r in results]
+		elif parameter == 'LUMO_contr':
+			return [r.data['SP']['virtual cont'] for r in results]
+		elif parameter == 'LUMO_energy':
+			return [r.data['SP']['virtual energy'] for r in results]
+
 	rxns = reaction.all_reactions
 	#we now look at only achiral catalysts
 	rxns = [r for r in rxns if r.reaction == 'achiral_catalyst']
-	Eact = [r.get_activation_energy()[''] for r in rxns]
+	# for r in rxns:
+	# 	print(r)
+	Eact = [r.get_activation_energy(type='bond')[''] for r in rxns]
+	Gact = [r.get_activation_energy(type='gibbs')[''] for r in rxns]
 	sub_res = []
 	for rxn in rxns:
 		res = [res for res in rxn.results if res.stationary_point == 'sub_cat_complex'][0]
@@ -98,10 +113,11 @@ def generate_params(outfile=paths.training_data):
 			print('❌')
 			print('\t\t', type(e), e)
 
-	meta = ['path', 'Eact']
+	meta = ['path', 'Eact', 'Gact']
 	meta_data = {
 		'path': respaths,
-		'Eact': Eact
+		'Eact': Eact,
+		'Gact': Gact
 	}
 
 	with open(outfile, 'w+', newline='') as file:
@@ -129,11 +145,24 @@ def read_data(infile=paths.training_data):
 	return data
 
 
-def plot_trend(data, param, colors=None, labels=None, unit=''):
+def plot_trend(param, colors=None, labels=None, 
+		xunit='', yunit='kcal/mol', 
+		xscale=1, yscale=h2k(1),
+		fit=True):
+
 	used_labels = set()
-	for i, d in enumerate(data):
-		x = float(d[param])
-		y = float(d['Eact'])
+	X = get_column(data, param, float)
+	Y = get_column(data, 'Eact', float)
+
+	oi = outlier_idx(Y) + outlier_idx(X)
+	X = np.delete(X, oi)
+	Y = np.delete(Y, oi)
+	colors = np.delete(colors, oi, axis=0)
+	labels = np.delete(labels, oi)
+
+	for i in range(X.size):
+		x = X[i] * xscale
+		y = Y[i] * yscale
 		if colors is not None: c = colors[i]
 		else: c = None
 		if labels is not None: 
@@ -144,43 +173,94 @@ def plot_trend(data, param, colors=None, labels=None, unit=''):
 				used_labels.add(l)
 		else: 
 			l = None
-		
 		plt.scatter(x, y, color=c, label=l)
 
-	plt.xlabel(param)
-	plt.ylabel('Eact')
+
+	plt.xlabel(f'{param} ({xunit})')
+	plt.ylabel(f'Eact ({yunit})')
 	
 
-def get_results(data):
+def get_results():
 	respaths = [d['path'] for d in data]
 	res = [r for r in job_results3.all_results if os.path.relpath(r.path, paths.results) in respaths]
 	res = sorted(res, key=lambda r: respaths.index(os.path.relpath(r.path, paths.results)))
 	return res
 
 
+def get_column(param):
+	c = np.array([float(d[param]) for d in data])
+	return c.reshape(-1,1)
+
+def get_all_columns():
+	'''
+	Return a matrix with m rows and n columns 
+	for m datapoints and n dependent variables
+	'''
+	ps = define_parameters()
+	columns = []
+	for p in ps:
+		column = get_column(p)
+		columns.append(column)
+	
+	c = np.array([[float(d[p]) for d in data] for p in ps]).T
+	return c
+
+def split_data(X, Y, f, randomize=True):
+	'''
+	Function that will split data into a training and a test set
+	sizes of datasets are controlled by f \in [0,1]
+	training: f*100 %
+	test: (1-f)*100 %
+	'''
+
+	m = X.shape[0]
+	assert Y.shape[0] == m, f'X and Y have different number of datapoints X: {X.shape[0]}, Y: {Y.shape[0]}'
+	assert 0 <= f <= 1, 'f must be between 0 and 1'
+
+	if randomize:
+		idx = np.arange(m)
+		np.random.shuffle(idx)
+		X = X[idx]
+		Y = Y[idx]
+
+	trainM = int(f*m)
+	testM  = int((1-f)*m)
+	if trainM + testM < m:
+		testM += 1
+
+	return (X[:trainM,:], Y[:trainM,:]), (X[trainM:,:], Y[trainM:,:])
+
+
+generate_data()
+data = read_data()
+
 
 if __name__ == '__main__':
-	generate_params()
+	
 	print('Explanation of parameters:')
 	pl = max(len(p) for p in define_parameters())
 	for p in define_parameters():
 		print(f'\t{p.ljust(pl+4)} {help(p)}')
 
 	cmap = cm.get_cmap('Set1')
-	data = read_data()
-	res = get_results(data)
-	all_R1s = list(set(r.substituents['R1'] for r in res))
-	colors = cmap([all_R1s.index(r.substituents['R1'])/len(all_R1s) for r in res])
-	labels = [r.substituents['R1'] for r in res]
+	
+	res = get_results()
+	# all_R1s = list(set(r.substituents['R1'] for r in res))
+	all_R2s = list(set(r.substituents['R2'] for r in res))
+	# colors = cmap([all_R1s.index(r.substituents['R1'])/len(all_R1s) for r in res])
+	colors = cmap([all_R2s.index(r.substituents['R2'])/len(all_R2s) for r in res])
+	# labels = [r.substituents['R1'] for r in res]
+	labels = [r.substituents['R2'] for r in res]
+
 
 	plt.subplot(2,2,1)
-	plot_trend(data, 'EDA_pauli', colors=colors, labels=labels)
+	plot_trend(data, 'HOMO_contr', colors=colors, labels=labels, xunit='%', xscale=100)
 	plt.subplot(2,2,2)
-	plot_trend(data, 'EDA_bonding', colors=colors, labels=labels)
+	plot_trend(data, 'HOMO_energy', colors=colors, labels=labels, xunit='eV', xscale=h2e(1))
 	plt.subplot(2,2,3)
-	plot_trend(data, 'EDA_elstat', colors=colors, labels=labels)
+	plot_trend(data, 'LUMO_contr', colors=colors, labels=labels, xunit='%', xscale=h2e(1))
 	plt.subplot(2,2,4)
-	plot_trend(data, 'EDA_oi', colors=colors, labels=labels)
+	plot_trend(data, 'LUMO_energy', colors=colors, labels=labels, xunit='eV', xscale=100)
 
 	plt.legend()
 	plt.show()
