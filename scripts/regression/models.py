@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 # import data_gen
 # import sklearn.kernel_ridge
 import itertools
+import kernels
 
 
 def correlation(y, y_pred):
@@ -12,14 +13,6 @@ def correlation(y, y_pred):
 	vary_pred = np.sum((y-y_pred)**2)
 
 	return 1 - vary_pred/vary
-
-
-def linear_regression(x, y, add_ones=True):
-	if add_ones:
-		x = np.hstack((np.ones((x.shape[0],1)), x))
-	#perform regression
-	a = np.linalg.inv(x.T@x) @ x.T @ y
-	return {'a':a, 'R2':correlation(y, x@a)}
 
 
 def ridge_regression(data, lam):
@@ -94,45 +87,66 @@ class LR(MLModel):
 		return X@self.a
 
 
-class FeatureMap:
-	def __call__(self, x):
-		NotImplemented
+class RR(MLModel):
+	def __init__(self):
+		super().__init__()
+		self.lam = None
+		self.description = f'Ridge Regression Model'
 
+	def train(self, Xtrain, Ytrain, lam=1, add_ones=True):
+		if add_ones:
+			Xtrain = np.hstack((np.ones((Xtrain.shape[0],1)), Xtrain))
+		n = Xtrain.shape[1]
+		#perform regression
+		self.a = np.linalg.inv(Xtrain.T@Xtrain + np.eye(n)*lam) @ Xtrain.T @ Ytrain
+		self.R2train = correlation(Ytrain, Xtrain@self.a)
+		self.trained = True
 
-class LinearFM(FeatureMap):
-	def __call__(self, x):
-		return x
-
-class PolynomialFM(FeatureMap):
-	def __init__(self, n):
-		self.n = n
-
-	def __call__(self, x):
-		return np.array(list(itertools.combinations_with_replacement(x, self.n))).reshape(-1,1)
-
-
-class QuadraticFM(FeatureMap):
-	def __call__(self, x):
-		return np.array(list(itertools.combinations_with_replacement(x, 2))).reshape(-1,1)
-
+	def predict(self, X, add_ones=True):
+		if add_ones:
+			X = np.hstack((np.ones((X.shape[0],1)), X))
+		return X@self.a
 
 
 class KRR(MLModel):
-	def __init__(self, kernel='polynomial', **kwargs):
-		self.kernel_type = kernel
-		if kernel == 'polynomial':
-			self.hyperparameters = {'alpha':	kwargs.get('alpha',  1),
-									'degree': 	kwargs.get('degree', 1)}
+	def __init__(self, kernel):
+		'''
+		kernel: instance of one of the subclasses of kernels.Kernel
+		'''
+		super().__init__()
+		self.lam = None
+		self.kernel = kernel
+		self.description = f'Kernel Ridge Regression Model [{kernel}]'
 
-	# def train(self, X, Y):
-	# 	'''
-	# 	X is an array where each row is a datapoint. The number of columns is te number of independent variables
-	# 	Y is an array with observed outcomes corresponding to the data in X
-	# 	'''
+	def train(self, Xtrain, Ytrain, lam=0, add_ones=True, lambda_convergence=1e-3):
+		if add_ones:
+			Xtrain = np.hstack((np.ones((Xtrain.shape[0],1)), Xtrain))
+		m = Xtrain.shape[0]
+		#perform regression
+		K = self.kernel(Xtrain)
+		self.a = Xtrain.T @ np.linalg.inv(np.eye(m)*lam + K) @ Ytrain
+		self.R2train = correlation(Ytrain, Xtrain@self.a)
+		self.trained = True
 
-	# 	N = Y.size
-	# 	m = X.shape[1]
-
-	# def get_kernel(self):
 		
+if __name__ == '__main__':
+	# m = KRR(kernels.Polynomial(2))
+	m = RR()
+	# print(m)
+	X = np.random.rand(50, 5)
+	# print(X)
+	correct_a = np.array([3, 1, 0, .2, 1.5, 0])
+	Y = X@correct_a[1:] + correct_a[0]
+	# plt.plot(correct_a, linewidth=5)
+	# print(Y)
+	for lam in np.linspace(0,1,10):
+		m.train(X, Y, lam)
+		print(m.a)
+		# Ypred = m.predict(X)
+		# plt.plot(m.a)
+		plt.scatter(lam,m.R2train)
+
+	# plt.scatter(Y, Ypred)
+	plt.show()
+
 
