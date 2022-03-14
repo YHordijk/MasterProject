@@ -1,5 +1,7 @@
 import ML_params as MLparams
 import regression.models as MLmodels
+import regression.utils as utils
+import regression.feature_maps as feature_maps
 import matplotlib.pyplot as plt
 import numpy as np
 from utility import hartree2kcalmol as h2k
@@ -19,8 +21,13 @@ def main():
 	Y = np.delete(Y, oi, axis=0)
 	print(f'Removed {len(oi)} outliers')
 
+	pl = feature_maps.Polynomial
+	cfm = feature_maps.CombinedFeatures([pl(1), pl(2)])
+	X = cfm(X)
+	X = utils.add_ones(X)
+
 	#split into train and test sets
-	train, test = MLparams.split_data(X, Y, .8)
+	train, test = utils.split_data(X, Y, .8)
 	Xtrain, Ytrain = train
 	Xtest, Ytest = test
 
@@ -32,7 +39,7 @@ def main():
 	Ypredtrain = LR.predict(Xtrain)
 	Ypredtest = LR.predict(Xtest)
 
-	print(f'Training with {Xtrain.shape[0]} datapoints: R2={LR.R2train}')
+	print(f'Training with {Xtrain.shape[0]} datapoints: R2 = {LR.R2train}')
 	print(f'Testing with  {Xtest.shape[0]} datapoints: R2 = {R2test}')
 	plt.title(r'Prediction of $\Delta E^‡$ using Linear Regression model')
 	plt.scatter(Ytrain*h2k(1), Ypredtrain*h2k(1), color='blue', label=rf'Training, $r^2$={LR.R2train:.3f}')

@@ -29,10 +29,10 @@ def help(parameter):
 
 def define_parameters():
 	parameters = [
-		'EDA_pauli',
-		'EDA_bonding',
-		'EDA_elstat',
-		'EDA_oi',
+		# 'EDA_pauli',
+		# 'EDA_bonding',
+		# 'EDA_elstat',
+		# 'EDA_oi',
 		'AA_mulliken',
 		'AA_eldens',
 		'AA_hirshfeld',
@@ -211,38 +211,11 @@ def get_all_columns():
 	c = np.array([[float(d[p]) for d in data] for p in ps]).T
 	return c
 
-def split_data(X, Y, f, randomize=True):
-	'''
-	Function that will split data into a training and a test set
-	sizes of datasets are controlled by f \in [0,1]
-	training: f*100 %
-	test: (1-f)*100 %
-	'''
-
-	m = X.shape[0]
-	assert Y.shape[0] == m, f'X and Y have different number of datapoints X: {X.shape[0]}, Y: {Y.shape[0]}'
-	assert 0 <= f <= 1, 'f must be between 0 and 1'
-
-	if randomize:
-		idx = np.arange(m)
-		np.random.shuffle(idx)
-		X = X[idx]
-		Y = Y[idx]
-
-	trainM = int(f*m)
-	testM  = int((1-f)*m)
-	if trainM + testM < m:
-		testM += 1
-
-	return (X[:trainM,:], Y[:trainM,:]), (X[trainM:,:], Y[trainM:,:])
-
-
 generate_data()
 data = read_data()
 
 
 if __name__ == '__main__':
-	
 	print('Explanation of parameters:')
 	pl = max(len(p) for p in define_parameters())
 	for p in define_parameters():

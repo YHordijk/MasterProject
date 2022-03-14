@@ -3,29 +3,15 @@ import matplotlib.pyplot as plt
 # import data_gen
 # import sklearn.kernel_ridge
 import itertools
-import kernels
+try:
+	import regression.kernels as kernels
+	import regression.utils as utils
+except:
+	import kernels
+	import utils
 
 
-def correlation(y, y_pred):
-	m = y.size 
-	ymean = np.mean(y)
-	vary = np.sum((y-ymean)**2)
-	vary_pred = np.sum((y-y_pred)**2)
 
-	return 1 - vary_pred/vary
-
-
-def ridge_regression(data, lam):
-	#derivation: 
-	x = data['x']
-	y = data['y']
-	#perform regression
-	a = np.linalg.inv(x.T@x + lam) @ x.T @ y
-	return {'a':a, 'R2':correlation(y, x@a)}
-
-
-def add_ones(X):
-	return np.hstack((np.ones((X.shape[0],1)), X))
 
 
 class MLModel:
@@ -73,12 +59,12 @@ class LR(MLModel):
 	def train(self, Xtrain, Ytrain):
 		#perform regression
 		self.a = np.linalg.inv(Xtrain.T@Xtrain) @ Xtrain.T @ Ytrain
-		self.R2train = correlation(Ytrain, Xtrain@self.a)
+		self.R2train = utils.correlation(Ytrain, Xtrain@self.a)
 		self.trained = True
 
 	def evaluate(self, Xtest, Ytest):
 		Ypred = Xtest@self.a
-		R2 = correlation(Ytest, Ypred)
+		R2 = utils.correlation(Ytest, Ypred)
 		return R2
 
 	def predict(self, X):
@@ -103,7 +89,7 @@ class RR(MLModel):
 		# np.eye(n)*lam @ self.a = Xtrain.T @ (Ytrain - Xtrain @ self.a)
 		# self.a = np.linalg.inv(np.eye(n)*lam) @ Xtrain.T @ (Ytrain - Xtrain @ self.a)
 
-		self.R2train = correlation(Ytrain, Xtrain@self.a)
+		self.R2train = utils.correlation(Ytrain, Xtrain@self.a)
 		self.trained = True
 
 	def predict(self, X):
@@ -125,7 +111,7 @@ class KRR(MLModel):
 		K = self.kernel(Xtrain)
 		self.w = np.linalg.inv(K + np.eye(m)*lam) @ Ytrain
 		self.a = Xtrain.T @ self.w
-		self.R2train = correlation(Ytrain, Xtrain@self.a)
+		self.R2train = utils.correlation(Ytrain, Xtrain@self.a)
 		self.trained = True
 
 	def predict(self, X):
