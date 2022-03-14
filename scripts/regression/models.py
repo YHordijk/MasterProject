@@ -5,10 +5,10 @@ import matplotlib.pyplot as plt
 import itertools
 try:
 	import regression.kernels as kernels
-	import regression.utils as utils
+	import regression.MLutils as MLutils
 except:
 	import kernels
-	import utils
+	import MLutils
 
 
 
@@ -40,7 +40,9 @@ class MLModel:
 		and evaluates the model, that is predict the Ytest using
 		trained parameters. Then it will calculate the R2 value
 		'''
-		NotImplemented
+		Ypred = Xtest@self.a
+		R2 = MLutils.correlation(Ytest, Ypred)
+		return R2
 
 	def predict(self, X):
 		'''
@@ -59,13 +61,8 @@ class LR(MLModel):
 	def train(self, Xtrain, Ytrain):
 		#perform regression
 		self.a = np.linalg.inv(Xtrain.T@Xtrain) @ Xtrain.T @ Ytrain
-		self.R2train = utils.correlation(Ytrain, Xtrain@self.a)
+		self.R2train = MLutils.correlation(Ytrain, Xtrain@self.a)
 		self.trained = True
-
-	def evaluate(self, Xtest, Ytest):
-		Ypred = Xtest@self.a
-		R2 = utils.correlation(Ytest, Ypred)
-		return R2
 
 	def predict(self, X):
 		return X@self.a
@@ -79,17 +76,8 @@ class RR(MLModel):
 
 	def train(self, Xtrain, Ytrain, lam=1):
 		n = Xtrain.shape[1]
-		# G = kernels.Gram(Xtrain)
-		# w = np.linalg.inv(G + np.eye(n)*lam) @ Ytrain
-		# self.a = Xtrain.T @ w
 		self.a = np.linalg.inv(Xtrain.T@Xtrain + np.eye(n)*lam) @ Xtrain.T @ Ytrain
-
-		# Xtrain.T@Xtrain @ self.a + np.eye(n)*lam @ self.a = Xtrain.T @ Ytrain
-		# np.eye(n)*lam @ self.a = Xtrain.T @ Ytrain - Xtrain.T@Xtrain @ self.a
-		# np.eye(n)*lam @ self.a = Xtrain.T @ (Ytrain - Xtrain @ self.a)
-		# self.a = np.linalg.inv(np.eye(n)*lam) @ Xtrain.T @ (Ytrain - Xtrain @ self.a)
-
-		self.R2train = utils.correlation(Ytrain, Xtrain@self.a)
+		self.R2train = MLutils.correlation(Ytrain, Xtrain@self.a)
 		self.trained = True
 
 	def predict(self, X):
@@ -111,7 +99,7 @@ class KRR(MLModel):
 		K = self.kernel(Xtrain)
 		self.w = np.linalg.inv(K + np.eye(m)*lam) @ Ytrain
 		self.a = Xtrain.T @ self.w
-		self.R2train = utils.correlation(Ytrain, Xtrain@self.a)
+		self.R2train = MLutils.correlation(Ytrain, Xtrain@self.a)
 		self.trained = True
 
 	def predict(self, X):

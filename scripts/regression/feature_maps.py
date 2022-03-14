@@ -2,10 +2,10 @@ import numpy as np
 import itertools
 import matplotlib.pyplot as plt
 try:
-	import models, utils
+	import models, MLutils
 except:
 	import regression.models as models
-	import regression.utils as utils
+	import regression.MLutils as MLutils
 
 
 
@@ -18,7 +18,6 @@ class FeatureMap:
 
 	def __repr__(self):
 		return f'{type(self).__name__} Feature Map' 
-
 
 
 class Polynomial(FeatureMap):
@@ -43,6 +42,12 @@ class Polynomial(FeatureMap):
 	def __repr__(self):
 		return f'{type(self).__name__} Feature Map (d = {self.order})'
 
+	def get_feature_labels(self, labels):
+		feature_labels = []
+		for fs in itertools.combinations_with_replacement(labels, self.order):
+			feature_labels.append(' * '.join(fs))
+		return feature_labels
+
 	def single(self, x):
 		feature = []
 		for fs in itertools.combinations_with_replacement(x, self.order):
@@ -66,7 +71,20 @@ class CombinedFeatures:
 			features.append(feature)
 		return np.array(features)
 
+	def __repr__(self):
+		fmstrings = []
+		for fm in self.featuremaps:
+			if type(fm) is Polynomial:
+				fmstrings.append(f'Polynomial({fm.order})')
+		return f'{type(self).__name__} [{" + ".join(fmstrings)}]'
 
+	def get_feature_labels(self, labels):
+		feature_labels = []
+		for fm in self.featuremaps:
+			feature_labels += (fm.get_feature_labels(labels))
+		return feature_labels
+
+	
 
 if __name__ == '__main__':
 	cfm = CombinedFeatures([Polynomial(1), Polynomial(2), Polynomial(3)])
@@ -76,8 +94,8 @@ if __name__ == '__main__':
 	plt.scatter(X, Y)
 	plt.show()
 	X = cfm(X) #featurize the input
-	X = utils.add_ones(X)
-	(Xtrain, Ytrain), (Xtest, Ytest) = utils.split_data(X, Y, 0.8)
+	X = MLutils.add_ones(X)
+	(Xtrain, Ytrain), (Xtest, Ytest) = MLutils.split_data(X, Y, 0.8)
 
 	ML = models.LR()
 	ML.train(Xtrain, Ytrain)

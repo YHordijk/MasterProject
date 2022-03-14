@@ -2,7 +2,19 @@
   "files": {
     "calc_path": "achiral_catalyst.OMe_p-FPh_I2.vacuum\\sub_cat_complex",
     "res_path": "achiral_catalyst.OMe_p-FPh_I2.vacuum\\sub_cat_complex",
+    "EDA adfrkf": "EDA.adf.rkf",
+    "EDA amsrkf": "EDA.ams.rkf",
+    "EDA log": "EDA.log",
     "EDA run script": "frag.run",
+    "EDA out": "frag.run.out",
+    "frag1 adfrkf": "Fragment_1.adf.rkf",
+    "frag1 log": "Fragment_1.log",
+    "frag1 out": "Fragment_1.out",
+    "frag1 rkf": "Fragment_1.rkf",
+    "frag2 adfrkf": "Fragment_2.adf.rkf",
+    "frag2 log": "Fragment_2.log",
+    "frag2 out": "Fragment_2.out",
+    "frag2 rkf": "Fragment_2.rkf",
     "GO run script": "GO.achiral_catalyst.OMe_p-FPh_I2.sub_cat_complex",
     "GO adfrkf": "GO.achiral_catalyst.OMe_p-FPh_I2.sub_cat_complex.adf.rkf",
     "GO amsrkf": "GO.achiral_catalyst.OMe_p-FPh_I2.sub_cat_complex.ams.rkf",
@@ -700,7 +712,12 @@
     "gibbs": -4.928554497592466,
     "enthalpy": -4.865513057206173
   },
-  "EDA": null,
+  "EDA": {
+    "pauli": 0.03419725387967171,
+    "bonding": -0.015448764661910492,
+    "elstat": -0.024728265720909803,
+    "orbital interaction": -0.018070610869688555
+  },
   "SP": {
     "all energies": [
       -1258.476354679537,

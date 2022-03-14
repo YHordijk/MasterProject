@@ -13,6 +13,13 @@ def add_ones(X):
 	return np.hstack((np.ones((X.shape[0],1)), X))
 
 
+def normalize(X):
+	'''
+	Normalizes all data in X by column
+	'''
+	return (X - np.min(X, axis=0))/np.max(X, axis=0)
+
+
 def split_data(X, Y, f, randomize=True):
 	'''
 	Function that will split data into a training and a test set

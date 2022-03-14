@@ -29,10 +29,10 @@ def help(parameter):
 
 def define_parameters():
 	parameters = [
-		# 'EDA_pauli',
-		# 'EDA_bonding',
-		# 'EDA_elstat',
-		# 'EDA_oi',
+		'EDA_pauli',
+		'EDA_bonding',
+		'EDA_elstat',
+		'EDA_oi',
 		'AA_mulliken',
 		'AA_eldens',
 		'AA_hirshfeld',

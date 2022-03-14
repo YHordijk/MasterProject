@@ -2,7 +2,19 @@
   "files": {
     "calc_path": "achiral_catalyst.NH2_o-FPh_SnCl4.vacuum\\sub_cat_complex",
     "res_path": "achiral_catalyst.NH2_o-FPh_SnCl4.vacuum\\sub_cat_complex",
+    "EDA adfrkf": "EDA.adf.rkf",
+    "EDA amsrkf": "EDA.ams.rkf",
+    "EDA log": "EDA.log",
     "EDA run script": "frag.run",
+    "EDA out": "frag.run.out",
+    "frag1 adfrkf": "Fragment_1.adf.rkf",
+    "frag1 log": "Fragment_1.log",
+    "frag1 out": "Fragment_1.out",
+    "frag1 rkf": "Fragment_1.rkf",
+    "frag2 adfrkf": "Fragment_2.adf.rkf",
+    "frag2 log": "Fragment_2.log",
+    "frag2 out": "Fragment_2.out",
+    "frag2 rkf": "Fragment_2.rkf",
     "GO run script": "GO.achiral_catalyst.NH2_o-FPh_SnCl4.sub_cat_complex",
     "GO adfrkf": "GO.achiral_catalyst.NH2_o-FPh_SnCl4.sub_cat_complex.adf.rkf",
     "GO amsrkf": "GO.achiral_catalyst.NH2_o-FPh_SnCl4.sub_cat_complex.ams.rkf",
@@ -726,7 +738,12 @@
     "gibbs": -5.020256025347348,
     "enthalpy": -4.94476941529816
   },
-  "EDA": null,
+  "EDA": {
+    "pauli": 0.10479246466361325,
+    "bonding": -0.0390701184923314,
+    "elstat": -0.07893343274793096,
+    "orbital interaction": -0.04993969239966199
+  },
   "SP": {
     "all energies": [
       -1102.205819652764,
