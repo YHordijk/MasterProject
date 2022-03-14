@@ -2,13 +2,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-
 def Gram(X):
 	'''
 	The Gram matrix is a matrix where each element Gij = <Xi, Xj>
 	Also the inner product matrix
 	'''
 	return X@X.T
+
 
 def distance(X):
 	'''
@@ -32,10 +32,16 @@ class Kernel:
 		return f'{type(self).__name__} Kernel' 
 
 
+class Linear(Kernel):
+	def __call__(self, X):
+		return Gram(X)
+
+
 class Polynomial(Kernel):
 	def __init__(self, order):
 		assert type(order) is int, f'order must be integer, not {type(order)}'
 		assert order >= 1, f'order must be >=1'
+
 		self.order = order
 
 	def __call__(self, X):
@@ -50,10 +56,12 @@ class Polynomial(Kernel):
 	def __repr__(self):
 		return super().__repr__() + f' (d = {self.order})'
 
-class RadialBasisFunction(Kernel):
+
+class Gaussian(Kernel):
 	def __init__(self, sigma2):
 		assert type(sigma2) in [float, int], f'sigma2 must be a floating point value, not {type(sigma2)}'
 		assert sigma2 != 0, 'sigma2 cannot be zero'
+
 		self.sigma2 = sigma2
 
 	def __call__(self, X):
@@ -71,12 +79,14 @@ class RadialBasisFunction(Kernel):
 
 
 
-
-
-
 if __name__ == '__main__':
 	X = np.linspace(-1, 1, 600).reshape(-1,1)
-	Kp = Polynomial(2)
-	K = Kp(X)
-	plt.imshow(K, origin='low')
+	kernel = Gaussian(1/5)
+	K = kernel(X)
+
+	plt.title(kernel)
+	plt.imshow(K, origin='lower', extent=(X.min(),X.max(),X.min(),X.max()))
+	plt.ylabel(r'$X_i$')
+	plt.xlabel(r'$X_j$')
+	plt.colorbar()
 	plt.show()

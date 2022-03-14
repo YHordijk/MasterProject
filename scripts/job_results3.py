@@ -238,7 +238,7 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
                 GO['aligned coords'] = [a.coords for a in m.atoms]
                 # print(GO['aligned coords'])
                 write_xyz(aligned_xyz, GO['elements'], GO['aligned coords'])
-                GO['aligned xyz'] = aligned_xyz
+                GO['aligned xyz'] = os.path.relpath(output_xyz, res_path)
             except Exception as e:
                 print(e)
 

@@ -338,7 +338,7 @@ sbatch {os.path.basename(file)}
 
     return Njobs
 if __name__ == '__main__':
-    mode = 'GO'
+    mode = 'fragment'
     calc_dir = paths.calculations
     test_mode = False
 
@@ -357,7 +357,7 @@ if __name__ == '__main__':
 
         for R1  in ['NH2', 'Me', 'OMe']:
             for R2 in ['Ph', 'tBu']:
-                for Rch in ['O']:
+                for Rch in ['S']:
                     n += run_jobs('urea_tBu_Ph', {'R1':R1, 'R2':R2, 'Rch':Rch}, phase='vacuum', calc_dir=calc_dir, test_mode=test_mode, basis=basis, functional=functional, numerical_quality=numerical_quality)
                     time.sleep(2)
 
@@ -368,12 +368,25 @@ if __name__ == '__main__':
         filtered_dirs += [d for d in dirs if 'achiral_catalyst' in d and os.path.basename(d) in ['sub_cat_complex.002', 'sub_cat_complex']]
         n = 0
         for d in filtered_dirs:
-            if not os.path.exists(join(d, 'frag.run.out')):
+            if not os.path.exists(join(d, 'SP.run.out')):
                 print(d)
                 if not test_mode:
                     run_SP_job(d)
                 n += 1
                 time.sleep(2)
-                
 
+    if mode == 'fragment':
+        filtered_dirs = []
+        dirs = job_results3.get_all_run_dirs() 
+        #filter sub_cat_complex stationary points for achiral_catalysts
+        filtered_dirs += [d for d in dirs if 'achiral_catalyst' in d and os.path.basename(d) in ['sub_cat_complex.002', 'sub_cat_complex']]
+        n = 0
+        for d in filtered_dirs:
+            if not os.path.exists(join(d, 'frag.run.out')):
+                print(d)
+                if not test_mode:
+                    run_frag_job(d)
+                n += 1
+                # time.sleep(2)
+            
     print(n)

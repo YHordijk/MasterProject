@@ -469,7 +469,7 @@
         -0.6403815762750891
       ]
     ],
-    "aligned xyz": "D:\\Users\\Yuman\\Desktop\\MasterProject\\results\\achiral_catalyst.Br_Ph_AlF3.vacuum\\TS\\aligned.xyz",
+    "aligned xyz": "output.xyz",
     "status": "NORMAL TERMINATION with errors",
     "bond energy": -5.495223784424248,
     "Mulliken charge": [

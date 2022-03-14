@@ -29,10 +29,10 @@ def help(parameter):
 
 def define_parameters():
 	parameters = [
-		# 'EDA_pauli',
-		# 'EDA_bonding',
-		# 'EDA_elstat',
-		# 'EDA_oi',
+		'EDA_pauli',
+		'EDA_bonding',
+		'EDA_elstat',
+		'EDA_oi',
 		'AA_mulliken',
 		'AA_eldens',
 		'AA_hirshfeld',
@@ -60,7 +60,13 @@ def generate_data(outfile=paths.training_data, Eact_type='gibbs'):
 		assert parameter in parameters
 
 		if parameter == 'EDA_pauli':
+			for r in results:
+				try:
+					r.data['EDA']['pauli']
+				except:
+					print(r.path)
 			return [r.data['EDA']['pauli'] for r in results]
+
 		elif parameter == 'EDA_bonding':
 			return [r.data['EDA']['bonding'] for r in results]
 		elif parameter == 'EDA_elstat':

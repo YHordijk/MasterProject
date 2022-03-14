@@ -190,7 +190,7 @@ def generate_stationary_points(template, substituents=None, keep_dummy=False):
             #substitute the molecule
             main_conn = main_conns[sub_name]
             # print(sub_name, template, substituents, mol.name)
-            mol.substitute(main_conn, sub_mol, sub_conn, bond_length=mol.substituent_dist[sub_name], steps=1)
+            mol.substitute(main_conn, sub_mol, sub_conn, bond_length=mol.substituent_dist[sub_name], steps=10)
 
         [mol.delete_atom(a) for a in mol.delete_atoms]
 
@@ -205,6 +205,7 @@ def generate_stationary_points(template, substituents=None, keep_dummy=False):
         newm.add_molecule(mol)
         newm.delete_all_bonds()
         newm.guess_bonds()
+        print(newm)
         frag1, frag2 = newm.separate()
         frag1coord = [a.coords for a in frag1.atoms]
         frag2coord = [a.coords for a in frag2.atoms]
@@ -266,7 +267,7 @@ def generate_stationary_points(template, substituents=None, keep_dummy=False):
             if mol.get_frags:
                 get_fragments(mol)
         except:
-            pass
+            raise
         set_active_atom_idx(mol)
         set_plane_idx(mol)
         set_align_idx(mol)
@@ -295,4 +296,5 @@ def show_reaction(template, substituents=None, simple=False):
 if __name__ == '__main__':
     # mols = generate_stationary_points('achiral_catalyst', {'Rcat':'AlF3'})
     # print_mols(mols)
-    show_reaction('urea_tBu_Ph', {'R2':'m-FPh', 'R1':'Me', 'Rch':'O'})
+    # show_reaction('urea_tBu_Ph', {'R2':'m-FPh', 'R1':'Me', 'Rch':'O'})
+    show_reaction('achiral_catalyst', {'Rcat':'BF3'})
