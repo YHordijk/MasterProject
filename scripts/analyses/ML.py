@@ -34,7 +34,7 @@ def main():
 	Xtest, Ytest = test
 
 	#train the model
-	ML.train(Xtrain,Ytrain, 1)
+	ML.train(Xtrain,Ytrain, .1)
 
 	#evaluate the model
 	R2test = ML.evaluate(Xtest, Ytest)
@@ -74,11 +74,11 @@ def main():
 
 	# R2s_training = []
 	# R2s_evaluate = []
-	# lams = np.linspace(0.01, 2, 30)
+	# lams = np.linspace(0.01, .2, 30)
 	# for lam in lams:
 	# 	R2_train = []
 	# 	R2_eval = []
-	# 	for _ in range(5):
+	# 	for _ in range(15):
 	# 		(Xtrain, Ytrain), (Xtest, Ytest) = MLutils.split_data(X, Y, .8)
 	# 		#train the model
 	# 		ML.train(Xtrain,Ytrain, lam)
@@ -87,6 +87,42 @@ def main():
 	# 	R2s_training.append(R2_train)
 	# 	R2s_evaluate.append(R2_eval)
 
-	# plt.plot(lams, np.mean(R2s_training, axis=1))
-	# plt.plot(lams, np.mean(R2s_evaluate, axis=1))
+
+	# plt.plot(lams, np.mean(R2s_training, axis=1), c='b', label='Training')
+	# plt.plot(lams, np.mean(R2s_evaluate, axis=1), c='r', label='Test')
+	# plt.scatter([[l for _ in range(15)] for l in lams], R2s_training, c='b', alpha=.25)
+	# plt.scatter([[l for _ in range(15)] for l in lams], R2s_evaluate, c='r', alpha=.25)
+	# plt.ylabel(r'$r^2$')
+	# plt.xlabel(r'$\lambda$')
+	# plt.legend()
 	# plt.show()
+
+
+	# R2s_training = []
+	# R2s_evaluate = []
+	# fs = np.linspace(0.1, .90, 30)
+	# for f in fs:
+	# 	R2_train = []
+	# 	R2_eval = []
+	# 	for _ in range(15):
+	# 		(Xtrain, Ytrain), (Xtest, Ytest) = MLutils.split_data(X, Y, f)
+	# 		#train the model
+	# 		ML.train(Xtrain,Ytrain, 1)
+	# 		R2_train.append(ML.R2train)
+	# 		R2_eval.append(ML.evaluate(Xtest, Ytest))
+	# 	R2s_training.append(R2_train)
+	# 	R2s_evaluate.append(R2_eval)
+
+
+	# plt.plot(fs, np.mean(R2s_training, axis=1), c='b', label='Training')
+	# plt.plot(fs, np.mean(R2s_evaluate, axis=1), c='r', label='Test')
+	# plt.scatter([[l for _ in range(15)] for l in fs], R2s_training, c='b', alpha=.25)
+	# plt.scatter([[l for _ in range(15)] for l in fs], R2s_evaluate, c='r', alpha=.25)
+	# plt.ylabel(r'$r^2$')
+	# plt.xlabel(r'$f$')
+	# plt.legend()
+	# plt.gca().set_ylim((0,1))
+	# plt.show()
+
+	ML.multi_train(X, Y, f=0.5, N=50, lam=0.1)
+	print(ML.evaluate(X, Y))
