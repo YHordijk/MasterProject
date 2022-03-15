@@ -12,8 +12,6 @@ except:
 
 
 
-
-
 class MLModel:
 	def __init__(self):
 		self.a = np.array([])
@@ -32,6 +30,12 @@ class MLModel:
 		and trains the model to set the parameter "a"
 		'''
 		self.trained = True
+		NotImplemented
+
+	def multi_train(self, X, Y, f, n):
+		'''
+		Method that trains multiple times and then averages the coefficients
+		'''
 		NotImplemented
 
 	def evaluate(self, Xtest, Ytest):
@@ -79,6 +83,47 @@ class RR(MLModel):
 		self.a = np.linalg.inv(Xtrain.T@Xtrain + np.eye(n)*lam) @ Xtrain.T @ Ytrain
 		self.R2train = MLutils.correlation(Ytrain, Xtrain@self.a)
 		self.trained = True
+
+	def multi_train(self, X, Y, f=0.5, N=50, lam=1, silent=False):
+		assert type(N) is int, f'N must be of type int, not {type(N)}'
+		assert N > 0, 'N must be larger than 0'
+		assert type(lam) in [int, float], f'lam must be numeric type, not {type(lam)}'
+		assert lam > 0, f'lam must be larger than 0'
+		assert X.shape[0] == Y.shape[0], f'Dimensions of X ({X.shape[0]}) and Y ({Y.shape[0]}) do not match'
+		assert 0 < f < 1, f'f must be between 0 and 1'
+
+		if not silent:
+			print(f'Training {N} times with split={f*100}% and lambda={lam}')
+
+		n, m = X.shape
+
+		R2s_train = []
+		R2s_test = []
+		coeffs = []
+		for i in range(N):
+			(Xtrain, Ytrain), (Xtest, Ytest) = MLutils.split_data(X, Y, f)
+			self.train(Xtrain, Ytrain, lam)
+			R2s_train.append(self.R2train)
+			R2s_test.append(self.evaluate(Xtest, Ytest))
+			coeffs.append(self.a)
+
+		R2s_train_mean = np.mean(R2s_train)
+		R2s_train_std  = np.std(R2s_train)
+
+		R2s_test_mean  = np.mean(R2s_test)
+		R2s_test_std   = np.std(R2s_test)
+
+		if not silent:
+			print(f'Training complete!')
+			print(f'\tR2 (training) = {R2s_train_mean: .5f} ± {R2s_train_std: .5f}')
+			print(f'\tR2 (test)     = {R2s_test_mean: .5f} ± {R2s_test_std: .5f}')
+
+		self.R2train = R2s_train_mean
+		self.R2train_std = R2s_train_std
+		self.R2test = R2s_test_mean
+		self.R2test_std = R2s_test_std
+		self.a = np.mean(np.array(coeffs), axis=0)
+
 
 	def predict(self, X):
 		return X@self.a
