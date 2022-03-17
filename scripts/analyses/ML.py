@@ -16,16 +16,16 @@ def main():
 	Y = MLparams.get_column('Eact')
 
 	#remove outliers
-	oi = MLparams.outlier_idx(X) + MLparams.outlier_idx(Y)
+	oi = MLparams.outlier_idx(X,2.5) + MLparams.outlier_idx(Y,2.5)
 	X = np.delete(X, oi, axis=0)
 	Y = np.delete(Y, oi, axis=0)
 	print(f'Removed {len(oi)} outliers')
 
-	pl = feature_maps.Polynomial
-	cfm = feature_maps.CombinedFeatures([pl(1), pl(2), pl(3)])
+	cfm = feature_maps.Polynomial(3)
+	X = MLutils.add_ones(X)
 	X = cfm(X)
 	# X = MLutils.normalize(X)
-	X = MLutils.add_ones(X)
+	
 	print(f'There are {X.shape[1]} features per datapoint using {cfm}')
 
 	#split into train and test sets
@@ -34,7 +34,7 @@ def main():
 	Xtest, Ytest = test
 
 	#train the model
-	ML.train(Xtrain,Ytrain, .1)
+	ML.train(Xtrain,Ytrain, 1)
 
 	#evaluate the model
 	R2test = ML.evaluate(Xtest, Ytest)
@@ -65,64 +65,64 @@ def main():
 	plt.legend()
 	plt.show()
 
+	
+
+
+	R2s_training = []
+	R2s_evaluate = []
+	lams = np.linspace(0.01, .2, 30)
+	for lam in lams:
+		R2_train = []
+		R2_eval = []
+		for _ in range(15):
+			(Xtrain, Ytrain), (Xtest, Ytest) = MLutils.split_data(X, Y, .8)
+			#train the model
+			ML.train(Xtrain,Ytrain, lam)
+			R2_train.append(ML.R2train)
+			R2_eval.append(ML.evaluate(Xtest, Ytest))
+		R2s_training.append(R2_train)
+		R2s_evaluate.append(R2_eval)
+
+
+	plt.plot(lams, np.mean(R2s_training, axis=1), c='b', label='Training')
+	plt.plot(lams, np.mean(R2s_evaluate, axis=1), c='r', label='Test')
+	plt.scatter([[l for _ in range(15)] for l in lams], R2s_training, c='b', alpha=.25)
+	plt.scatter([[l for _ in range(15)] for l in lams], R2s_evaluate, c='r', alpha=.25)
+	plt.ylabel(r'$r^2$')
+	plt.xlabel(r'$\lambda$')
+	plt.legend()
+	plt.show()
+
+
+	R2s_training = []
+	R2s_evaluate = []
+	fs = np.linspace(0.1, .90, 30)
+	for f in fs:
+		R2_train = []
+		R2_eval = []
+		for _ in range(15):
+			(Xtrain, Ytrain), (Xtest, Ytest) = MLutils.split_data(X, Y, f)
+			#train the model
+			ML.train(Xtrain,Ytrain, 1)
+			R2_train.append(ML.R2train)
+			R2_eval.append(ML.evaluate(Xtest, Ytest))
+		R2s_training.append(R2_train)
+		R2s_evaluate.append(R2_eval)
+
+
+	plt.plot(fs, np.mean(R2s_training, axis=1), c='b', label='Training')
+	plt.plot(fs, np.mean(R2s_evaluate, axis=1), c='r', label='Test')
+	plt.scatter([[l for _ in range(15)] for l in fs], R2s_training, c='b', alpha=.25)
+	plt.scatter([[l for _ in range(15)] for l in fs], R2s_evaluate, c='r', alpha=.25)
+	plt.ylabel(r'$r^2$')
+	plt.xlabel(r'$f$')
+	plt.legend()
+	plt.gca().set_ylim((0,1))
+	plt.show()
+
+	ML.multi_train(X, Y, f=0.5, N=150, lam=1)
 	sortidx = np.argsort(np.abs(ML.a.flatten()))
-	labels = ['baseline'] + cfm.get_feature_labels(parameters)
+	labels = cfm.get_feature_labels([''] + parameters)
 	print('  Weight | Feature')
 	for i in sortidx[::-1]:
 		print(f'{float(ML.a[i]): .5f} | {labels[i]}')
-
-
-	# R2s_training = []
-	# R2s_evaluate = []
-	# lams = np.linspace(0.01, .2, 30)
-	# for lam in lams:
-	# 	R2_train = []
-	# 	R2_eval = []
-	# 	for _ in range(15):
-	# 		(Xtrain, Ytrain), (Xtest, Ytest) = MLutils.split_data(X, Y, .8)
-	# 		#train the model
-	# 		ML.train(Xtrain,Ytrain, lam)
-	# 		R2_train.append(ML.R2train)
-	# 		R2_eval.append(ML.evaluate(Xtest, Ytest))
-	# 	R2s_training.append(R2_train)
-	# 	R2s_evaluate.append(R2_eval)
-
-
-	# plt.plot(lams, np.mean(R2s_training, axis=1), c='b', label='Training')
-	# plt.plot(lams, np.mean(R2s_evaluate, axis=1), c='r', label='Test')
-	# plt.scatter([[l for _ in range(15)] for l in lams], R2s_training, c='b', alpha=.25)
-	# plt.scatter([[l for _ in range(15)] for l in lams], R2s_evaluate, c='r', alpha=.25)
-	# plt.ylabel(r'$r^2$')
-	# plt.xlabel(r'$\lambda$')
-	# plt.legend()
-	# plt.show()
-
-
-	# R2s_training = []
-	# R2s_evaluate = []
-	# fs = np.linspace(0.1, .90, 30)
-	# for f in fs:
-	# 	R2_train = []
-	# 	R2_eval = []
-	# 	for _ in range(15):
-	# 		(Xtrain, Ytrain), (Xtest, Ytest) = MLutils.split_data(X, Y, f)
-	# 		#train the model
-	# 		ML.train(Xtrain,Ytrain, 1)
-	# 		R2_train.append(ML.R2train)
-	# 		R2_eval.append(ML.evaluate(Xtest, Ytest))
-	# 	R2s_training.append(R2_train)
-	# 	R2s_evaluate.append(R2_eval)
-
-
-	# plt.plot(fs, np.mean(R2s_training, axis=1), c='b', label='Training')
-	# plt.plot(fs, np.mean(R2s_evaluate, axis=1), c='r', label='Test')
-	# plt.scatter([[l for _ in range(15)] for l in fs], R2s_training, c='b', alpha=.25)
-	# plt.scatter([[l for _ in range(15)] for l in fs], R2s_evaluate, c='r', alpha=.25)
-	# plt.ylabel(r'$r^2$')
-	# plt.xlabel(r'$f$')
-	# plt.legend()
-	# plt.gca().set_ylim((0,1))
-	# plt.show()
-
-	ML.multi_train(X, Y, f=0.5, N=50, lam=0.1)
-	print(ML.evaluate(X, Y))

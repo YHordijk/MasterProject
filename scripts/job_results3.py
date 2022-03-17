@@ -383,8 +383,9 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
             active_2pz_idx = SFO.index(active_2pz_SFO)
 
             #get relative occupations
-            occupied_active_cont = [c[active_2pz_idx]/c.sum() for c in occupied_coeff]
-            virtual_active_cont  = [c[active_2pz_idx]/c.sum() for c in virtual_coeff]
+            occupied_active_cont = [c[active_2pz_idx] for c in occupied_coeff]
+            print(occupied_active_cont)
+            virtual_active_cont  = [c[active_2pz_idx] for c in virtual_coeff]
             best_occupied_idx = occupied_active_cont.index(max(occupied_active_cont))
             best_occupied_energy = mo_energy[best_occupied_idx]
             best_virtual_idx = virtual_active_cont.index(max(virtual_active_cont))
@@ -410,8 +411,6 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
             SP['virtual idx'] = best_virtual_idx
             SP['virtual energy'] = best_virtual_energy
             SP['virtual cont'] = virtual_active_cont[best_virtual_idx]
-
-            print(SP)
 
         except:
             print(files['calc_path'])

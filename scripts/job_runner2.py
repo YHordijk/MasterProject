@@ -338,7 +338,7 @@ sbatch {os.path.basename(file)}
 
     return Njobs
 if __name__ == '__main__':
-    mode = 'fragment'
+    mode = 'GO'
     calc_dir = paths.calculations
     test_mode = False
 
@@ -349,17 +349,17 @@ if __name__ == '__main__':
         functional = 'BLYP-D3(BJ)'
         numerical_quality = 'Good'
 
-        # for R1 in ['Me', 'OMe', 'NH2']:
-        #     for R2 in ['o-FPh', 'm-FPh', 'p-FPh']:
-        #         for cat in ['I2', 'ZnCl2', 'TiCl4', 'BF3', 'AlF3', 'SnCl4']:
-        #             n += run_jobs('achiral_catalyst', {'R1':R1, 'R2':R2, 'Rcat':cat}, phase='vacuum', calc_dir=calc_dir, test_mode=test_mode, basis=basis, functional=functional, numerical_quality=numerical_quality)
-        #             time.sleep(2)
+        for R1 in ['Et', 'NMe2']:
+            for R2 in ['Ph', 'tBu', 'o-FPh', 'm-FPh', 'p-FPh']:
+                for cat in ['I2', 'ZnCl2', 'TiCl4', 'BF3', 'AlF3', 'SnCl4']:
+                    n += run_jobs('achiral_catalyst', {'R1':R1, 'R2':R2, 'Rcat':cat}, phase='vacuum', calc_dir=calc_dir, test_mode=test_mode, basis=basis, functional=functional, numerical_quality=numerical_quality)
+                    time.sleep(10)
 
-        for R1  in ['NH2', 'Me', 'OMe']:
-            for R2 in ['Ph', 'tBu']:
-                for Rch in ['S']:
-                    n += run_jobs('urea_tBu_Ph', {'R1':R1, 'R2':R2, 'Rch':Rch}, phase='vacuum', calc_dir=calc_dir, test_mode=test_mode, basis=basis, functional=functional, numerical_quality=numerical_quality)
-                    time.sleep(2)
+        # for R1  in ['NH2', 'Me', 'OMe']:
+        #     for R2 in ['Et', 'NMe2']:
+        #         for Rch in ['S']:
+        #             n += run_jobs('urea_tBu_Ph', {'R1':R1, 'R2':R2, 'Rch':Rch}, phase='vacuum', calc_dir=calc_dir, test_mode=test_mode, basis=basis, functional=functional, numerical_quality=numerical_quality)
+        #             time.sleep(2)
 
     if mode == 'SP':
         filtered_dirs = []

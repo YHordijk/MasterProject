@@ -33,13 +33,13 @@ def define_parameters():
 		'EDA_bonding',
 		'EDA_elstat',
 		'EDA_oi',
-		'AA_mulliken',
+		# 'AA_mulliken',
 		'AA_eldens',
 		'AA_hirshfeld',
 		'AA_voronoi',
-		'HOMO_contr',
+		# 'HOMO_contr',
 		'HOMO_energy',
-		'LUMO_contr',
+		# 'LUMO_contr',
 		'LUMO_energy']
 
 	return parameters

@@ -267,7 +267,7 @@ def generate_stationary_points(template, substituents=None, keep_dummy=False):
             if mol.get_frags:
                 get_fragments(mol)
         except:
-            raise
+            pass
         set_active_atom_idx(mol)
         set_plane_idx(mol)
         set_align_idx(mol)
@@ -297,4 +297,4 @@ if __name__ == '__main__':
     # mols = generate_stationary_points('achiral_catalyst', {'Rcat':'AlF3'})
     # print_mols(mols)
     # show_reaction('urea_tBu_Ph', {'R2':'m-FPh', 'R1':'Me', 'Rch':'O'})
-    show_reaction('achiral_catalyst', {'Rcat':'BF3'})
+    show_reaction('achiral_catalyst', {'R1':'NMe2', 'Rcat':'BF3'})
