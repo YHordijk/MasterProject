@@ -106,6 +106,10 @@ class RR(MLModel):
 			R2s_train.append(self.R2train)
 			R2s_test.append(self.evaluate(Xtest, Ytest))
 			coeffs.append(self.a)
+			# plt.plot(self.a, alpha=1/75, c='k')
+		# plt.ylabel('Coefficient')
+		# plt.xlabel('Feature index')
+		
 
 		R2s_train_mean = np.mean(R2s_train)
 		R2s_train_std  = np.std(R2s_train)
@@ -123,6 +127,12 @@ class RR(MLModel):
 		self.R2test = R2s_test_mean
 		self.R2test_std = R2s_test_std
 		self.a = np.mean(np.array(coeffs), axis=0)
+
+		# plt.plot(self.a, c='r')
+
+		# plt.show()
+
+		MLutils.detect_coefficient_type(coeffs)
 
 
 	def predict(self, X):

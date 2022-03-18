@@ -1,5 +1,5 @@
 import numpy as np
-
+import matplotlib.pyplot as plt
 
 def correlation(y, y_pred):
 	m = y.size 
@@ -44,5 +44,36 @@ def split_data(X, Y, f, randomize=True):
 		testM += 1
 
 	return (X[:trainM,:], Y[:trainM,:]), (X[trainM:,:], Y[trainM:,:])
+
+
+
+def detect_coefficient_type(coeffs, plot=True):
+	'''
+	This function will determine for every coefficient its type
+	type 1 - coefficient consistently close to zero
+	type 2 - coefficient consistently large and either positive or negative
+	type 3 - coefficient consistently large but not consistently positive or negative
+
+	Takes m x n matrix with m coefficient sets and n coefficients in each set
+		list of arrays or list of lists also allowed
+	returns vector with n elements denoting the type (1, 2 or 3)
+	'''
+
+	coeffs = np.array(coeffs)
+	# print(coeffs.shape)
+	m, n = coeffs.shape[0], coeffs.shape[1]
+	coeffs =coeffs.reshape(m,n)
+	mean = coeffs.mean(axis=0)
+	std = coeffs.std(axis=0)
+	fraction_under_zero = np.count_nonzero(coeffs < 0, axis=0)/n
+	print(fraction_under_zero)
+
+	if plot:
+		plt.xlabel('Feature index')
+		plt.ylabel('Coefficient')
+		plt.plot(coeffs.T, alpha=10/m, c='k')
+		plt.plot(mean,c='r')
+		plt.plot(std,c='b')
+		plt.show()
 
 
