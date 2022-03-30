@@ -29,12 +29,26 @@
     "reaction": "achiral_catalyst",
     "stationary point": "TS",
     "task": "TSRC",
+    "TSRC_idx": [
+      2,
+      10
+    ],
     "radical": "True",
     "phase": "vacuum",
     "enantiomer": "N/A",
     "functional": "BLYP-D3(BJ)",
     "basis": "TZ2P",
     "numerical_quality": "Good",
+    "plane_idx": [
+      1,
+      2,
+      3
+    ],
+    "align_idx": [
+      2,
+      1
+    ],
+    "center_idx": 1,
     "hash": "8d61017c4340d9c2d2ebcf6531181dfedbed43cbdf3380049fa18265796f8634"
   },
   "GO": {
@@ -501,7 +515,7 @@
         -1.354582180527791
       ]
     ],
-    "aligned xyz": "output.xyz",
+    "aligned xyz": "aligned.xyz",
     "status": "NORMAL TERMINATION",
     "bond energy": -5.681277532355368,
     "Mulliken charge": [

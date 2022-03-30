@@ -10,6 +10,18 @@ normal_to_plane = 	{'xy':np.array([0,0,1]),
 					 'zy':np.array([1,0,0])}
 
 
+def align_mol(mol, plane_idx=None, align_idx=None, center_idx=None):
+    if plane_idx is not None:
+        align_molecule_to_plane(mol, plane_idx)
+
+    if align_idx is not None:
+        rotate_molecule_in_plane(mol, align_idx)
+
+    if center_idx is not None:
+        center_molecule(mol, center_idx)
+
+
+
 def align_molecule_to_plane(mol, plane_idx=[0,1,2], plane='xy'):
 	'''
 	Aligns a plams.Molecule object to a plane

@@ -287,14 +287,32 @@ def print_mols(mols, tabs=0):
         i += 1
         print('\t'*tabs + f'{i:<3} | {name:<{name_len}} | {mol.task.center(4)} | {str(mol.radical)[0].center(7)} | {mol.enantiomer.center(10)} | {" ".join(str(i).center(3) for i in mol.TSRC_idx)}')
 
+
 def show_reaction(template, substituents=None, simple=False):
     if substituents is None:
         substituents = {}
     mols = generate_stationary_points(template, substituents, keep_dummy=True)
     mol_viewer2.show(list(mols.values()), simple=simple)
 
+
+def get_mol_from_runinfo(file):
+    sp = None
+    reaction = None
+    substituents = {}
+    with open(file) as runinfo:
+        for line in runinfo.readlines():
+            key, value = line.strip().split('=')
+            if key == 'reaction':
+                reaction = value
+            if key == 'stationary_point':
+                sp = value
+            if key.startswith('R'):
+                substituents[key] = value
+    return generate_stationary_points(reaction, substituents)[sp]
+
+
 if __name__ == '__main__':
     # mols = generate_stationary_points('achiral_catalyst', {'Rcat':'AlF3'})
     # print_mols(mols)
     # show_reaction('urea_tBu_Ph', {'R2':'m-FPh', 'R1':'Me', 'Rch':'O'})
-    show_reaction('achiral_catalyst', {'R1':'NMe2', 'Rcat':'BF3'})
+    show_reaction('achiral_catalyst', {'R2':''})

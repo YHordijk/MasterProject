@@ -36,6 +36,16 @@
     "functional": "BLYP-D3(BJ)",
     "basis": "TZ2P",
     "numerical_quality": "Good",
+    "plane_idx": [
+      1,
+      2,
+      3
+    ],
+    "align_idx": [
+      2,
+      1
+    ],
+    "center_idx": 1,
     "hash": "4a3f523184d3dc16ffcd2ce84063d8f1d186b23c161ee64ecaa676e8a83326fb"
   },
   "GO": {
@@ -534,7 +544,7 @@
         1.27669621790587
       ]
     ],
-    "aligned xyz": "output.xyz",
+    "aligned xyz": "aligned.xyz",
     "status": "NORMAL TERMINATION",
     "bond energy": -5.949537384451217,
     "Mulliken charge": [

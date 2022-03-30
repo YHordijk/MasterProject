@@ -90,7 +90,6 @@ def load_plams_molecule(mol):
 				d = np.array([float(x) for x in m.normalmode])
 				newm.normalmode = d.reshape(d.size//3,3)
 			newm.substituents = m.substituents
-			newm.template_mol = m.template_mol
 			newm.center()
 			molobjs.append(newm)
 	return molobjs
@@ -112,13 +111,15 @@ class Molecule:
 		self.name = name
 		self.elements = elements
 		self.positions = positions
+		print(self.positions)
+		self.original_original_pos = self.positions
 
 		self.update_molecule()
 
 
 	def __repr__(self):
 		s = f'{self.name}\n'
-		for e, p in zip(self.elements, self.positions):
+		for e, p in zip(self.elements, self.original_original_pos):
 			s += f'{e:2}\t{p[0]:>10.6f}\t{p[1]:>10.6f}\t{p[2]:>10.6f}\n'
 		return s
 
@@ -331,21 +332,6 @@ class Molecule:
 		self.original_pos = (R @ self.original_pos.T).T
 		if hasattr(self, 'normalmode'):
 			self.normalmode = (R @ self.normalmode.T).T
-
-
-	def align(self):
-		tm = self.template_mol
-		if hasattr(tm, 'plane_idx'):
-			geometry.align_molecule_to_plane(self, tm.plane_idx)
-		if hasattr(tm, 'align_idx'):
-			geometry.rotate_molecule_in_plane(self, tm.align_idx)
-		if hasattr(tm, 'center_idx'):
-			geometry.center_molecule(self, tm.center_idx)
-
-		self.unaligned_original_pos = self.positions
-		print(self.positions)
-
-		# print(self.template_mol)
 
 
 	def guess_bond_matrix(self, **params):

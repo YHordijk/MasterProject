@@ -149,7 +149,7 @@ eor
 cp EDA.results/ams.rkf $SLURM_SUBMIT_DIR/EDA.ams.rkf
 cp EDA.results/adf.rkf $SLURM_SUBMIT_DIR/EDA.adf.rkf
 cp EDA.results/ams.log $SLURM_SUBMIT_DIR/EDA.log
-
+sleep 5
 rm -Rf Fragment_1.results Fragment_2.results EDA.results
 
 echo " " 

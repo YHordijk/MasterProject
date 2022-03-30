@@ -1,5 +1,5 @@
 import scm.plams as plams
-import struct_generator2, paths, os, utility, job_results3, time, sys
+import struct_generator2, paths, os, utility, job_results3, time, sys, geometry
 
 join = os.path.join
 
@@ -16,39 +16,50 @@ sbatch {os.path.basename(file)}
 
     #read information about run
     substituents = {}
+    plane_idx = None
+    align_idx = None
+    center_idx = None
+    frag1idx = None
+    frag2idx = None
     with open(join(calc_path, 'run.info')) as info:
         for line in info.readlines():
             line = line.strip()
-            if line.startswith('R'): R, s = line.split('='); substituents[R] = s
-            if line.startswith('reaction'):          template            = line.split('=')[1]
-            if line.startswith('functional'):        functional          = line.split('=')[1]
-            if line.startswith('basis'):             basis               = line.split('=')[1]
-            if line.startswith('phase'):             phase               = line.split('=')[1]
-            if line.startswith('stationary_point'):  stationary_point    = line.split('=')[1]
-            if line.startswith('radical'):           radical             = line.split('=')[1]
-            if line.startswith('numerical_quality'): numerical_quality   = line.split('=')[1]
+            key, value = line.split('=')
+            if key.startswith('R'):        substituents[key] = value
+            if key == 'reaction':          template            = value
+            if key == 'functional':        functional          = value
+            if key == 'basis':             basis               = value
+            if key == 'phase':             phase               = value
+            if key == 'stationary_point':  stationary_point    = value
+            if key == 'radical':           radical             = value
+            if key == 'numerical_quality': numerical_quality   = value
+            if key == 'plane_idx':         plane_idx           = [int(i) for i in value.split('_')]
+            if key == 'align_idx':         align_idx           = [int(i) for i in value.split('_')]
+            if key == 'center_idx':        center_idx          = int(value)
+            if key == 'frag1idx':          frag1idx            = [int(i) for i in value.split('_')]
+            if key == 'frag2idx':          frag2idx            = [int(i) for i in value.split('_')]
 
     if functional == 'OLYP': return
-    res = job_results3.get_result(template, substituents, stationary_point)
-    print(res)
-    align_mol = res.get_aligned_mol()
-    sg2_mol = align_mol.template_mol
-    if sg2_mol is None: return
+    # if frag1idx is None or frag2idx is None: return
+    molfile = join(calc_path, 'output.xyz')
+    align_mol = plams.Molecule(molfile)
+    geometry.align_mol(align_mol, plane_idx=plane_idx, align_idx=align_idx, center_idx=center_idx)
+
     ATOMS = ''
     for i, atom in enumerate(align_mol.atoms, 1):
-        if i in sg2_mol.frag1idx:
+        if i in frag1idx:
             ATOMS += f'    {atom.symbol:<2}\t{atom.coords[0]:=11.8f}\t{atom.coords[1]:=11.8f}\t{atom.coords[2]:=11.8f}\tf=f1\n'
-        elif i in sg2_mol.frag2idx:
+        elif i in frag2idx:
             ATOMS += f'    {atom.symbol:<2}\t{atom.coords[0]:=11.8f}\t{atom.coords[1]:=11.8f}\t{atom.coords[2]:=11.8f}\tf=f2\n'
 
     ATOMS1 = ''
     for i, atom in enumerate(align_mol.atoms, 1):
-        if i in sg2_mol.frag1idx:
+        if i in frag1idx:
             ATOMS1 += f'    {atom.symbol:<2}\t{atom.coords[0]:=11.8f}\t{atom.coords[1]:=11.8f}\t{atom.coords[2]:=11.8f}\tregion=Region_1\n'
 
     ATOMS2 = ''
     for i, atom in enumerate(align_mol.atoms, 1):
-        if i in sg2_mol.frag2idx:
+        if i in frag2idx:
             ATOMS2 += f'    {atom.symbol:<2}\t{atom.coords[0]:=11.8f}\t{atom.coords[1]:=11.8f}\t{atom.coords[2]:=11.8f}\tregion=Region_2\n'
 
     FUNCTIONAL = {
@@ -88,7 +99,7 @@ sbatch {os.path.basename(file)}
                 run.write(line)
 
     run_job(runscript)
-    print('running?', runscript)
+    # print('running?', runscript)
 
 
 # with open(JR_template) as temp:
@@ -110,24 +121,31 @@ sbatch {os.path.basename(file)}
 """     
         os.system(start_script)
 
-
     #read information about run
     substituents = {}
+    plane_idx = None
+    align_idx = None
+    center_idx = None
     with open(join(calc_path, 'run.info')) as info:
         for line in info.readlines():
             line = line.strip()
-            if line.startswith('R'): R, s = line.split('='); substituents[R] = s
-            if line.startswith('reaction'):          template            = line.split('=')[1]
-            if line.startswith('functional'):        functional          = line.split('=')[1]
-            if line.startswith('basis'):             basis               = line.split('=')[1]
-            if line.startswith('phase'):             phase               = line.split('=')[1]
-            if line.startswith('stationary_point'):  stationary_point    = line.split('=')[1]
-            if line.startswith('radical'):           radical             = line.split('=')[1]
-            if line.startswith('numerical_quality'): numerical_quality   = line.split('=')[1]
+            key, value = line.split('=')
+            if key.startswith('R'):        substituents[key] = value
+            if key == 'reaction':          template            = value
+            if key == 'functional':        functional          = value
+            if key == 'basis':             basis               = value
+            if key == 'phase':             phase               = value
+            if key == 'stationary_point':  stationary_point    = value
+            if key == 'radical':           radical             = value
+            if key == 'numerical_quality': numerical_quality   = value
+            if key == 'plane_idx':         plane_idx           = [int(i) for i in value.split('_')]
+            if key == 'align_idx':         align_idx           = [int(i) for i in value.split('_')]
+            if key == 'center_idx':        center_idx          = int(value)
 
     if functional == 'OLYP': return
-    res = job_results3.get_result(template, substituents, stationary_point)
-    align_mol = res.get_aligned_mol()
+    molfile = join(calc_path, 'output.xyz')
+    align_mol = plams.Molecule(molfile)
+    geometry.align_mol(align_mol, plane_idx=plane_idx, align_idx=align_idx, center_idx=center_idx)
     ATOMS = ''
     for i, atom in enumerate(align_mol.atoms, 1):
         ATOMS += f'    {atom.symbol:<2}\t{atom.coords[0]:=11.8f}\t{atom.coords[1]:=11.8f}\t{atom.coords[2]:=11.8f}\n'
@@ -167,7 +185,7 @@ sbatch {os.path.basename(file)}
                 run.write(line)
 
     run_job(runscript)
-    print('running?', runscript)
+    # print('running?', runscript)
 
 
 
@@ -284,6 +302,18 @@ def run_jobs(template, substituents={}, calc_dir=paths.calculations, phase='vacu
             info.write(f'functional={functional}\n')
             info.write(f'basis={basis}\n')
             info.write(f'numerical_quality={numerical_quality}\n')
+            if hasattr(mol, 'active_atom_idx'):
+                info.write(f'active_atom_idx={mol.active_atom_idx}\n')
+            if hasattr(mol, 'plane_idx'):
+                info.write(f'plane_idx={"_".join([str(i) for i in mol.plane_idx])}\n')
+            if hasattr(mol, 'align_idx'):
+                info.write(f'align_idx={"_".join([str(i) for i in mol.align_idx])}\n')
+            if hasattr(mol, 'center_idx'):
+                info.write(f'center_idx={mol.center_idx}\n')
+            if hasattr(mol, 'frag1idx'):
+                info.write(f'frag1idx={"_".join([str(i) for i in mol.frag1idx])}\n')
+            if hasattr(mol, 'frag2idx'):
+                info.write(f'frag2idx={"_".join([str(i) for i in mol.frag2idx])}\n')
             
 
     def runscript_path(mol):
@@ -337,8 +367,10 @@ sbatch {os.path.basename(file)}
             run_job(runscript_path(mol))
 
     return Njobs
+
+    
 if __name__ == '__main__':
-    mode = 'GO'
+    mode = 'fragment'
     calc_dir = paths.calculations
     test_mode = False
 
@@ -350,10 +382,10 @@ if __name__ == '__main__':
         numerical_quality = 'Good'
 
         for R1 in ['Et', 'NMe2']:
-            for R2 in ['Ph', 'tBu', 'o-FPh', 'm-FPh', 'p-FPh']:
+            for R2 in ['Bz', 'NHMe', 'OEt', 'p-HOPh', 'm-HOPh', 'o-HOPh']:
                 for cat in ['I2', 'ZnCl2', 'TiCl4', 'BF3', 'AlF3', 'SnCl4']:
                     n += run_jobs('achiral_catalyst', {'R1':R1, 'R2':R2, 'Rcat':cat}, phase='vacuum', calc_dir=calc_dir, test_mode=test_mode, basis=basis, functional=functional, numerical_quality=numerical_quality)
-                    time.sleep(10)
+                    time.sleep(1)
 
         # for R1  in ['NH2', 'Me', 'OMe']:
         #     for R2 in ['Et', 'NMe2']:
@@ -372,8 +404,9 @@ if __name__ == '__main__':
                 print(d)
                 if not test_mode:
                     run_SP_job(d)
+                    time.sleep(1)
                 n += 1
-                time.sleep(2)
+                
 
     if mode == 'fragment':
         filtered_dirs = []
@@ -386,7 +419,8 @@ if __name__ == '__main__':
                 print(d)
                 if not test_mode:
                     run_frag_job(d)
+                    time.sleep(1)
                 n += 1
-                # time.sleep(2)
+                
             
     print(n)

@@ -1,12 +1,15 @@
 import numpy as np
-
+import scipy.stats as scipy_stats
 
 def correlation(y, y_pred):
-	m = y.size 
-	ymean = np.mean(y)
-	vary = np.sum((y-ymean)**2)
-	vary_pred = np.sum((y-y_pred)**2)
-	return 1 - vary_pred/vary
+	return scipy_stats.pearsonr(y.flatten(), y_pred.flatten())[0]
+
+def RSS(y, y_pred):
+	''' 
+	Calculates the residual sum of squares
+	'''
+	return np.sum((y-y_pred)**2)/y.size
+
 
 
 def add_ones(X):

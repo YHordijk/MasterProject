@@ -8,9 +8,10 @@ if mode == 'ML':
 
 elif mode == 'view':
 	# for Rcat in ['AlF3', 'BF3', 'I2', 'SnCl4', 'TiCl4', 'ZnCl2']:
-	for Rcat in ['ZnCl2']:
-		for R1 in ['Me', 'NH2', 'OMe']:
-			draw.draw('achiral_catalyst', {'R1':R1, 'R2':'p-FPh', 'Rcat':Rcat})
-		# draw.draw('achiral_catalyst', {'R1':R1, 'R2':'Ph', 'Rcat':Rcat})
+	# 	for R1 in ['Et']:
+	# 		for R2 in ['p-FPh', 'o-FPh', 'm-FPh', 'Ph', 'tBu']:
+	# 			draw.draw('achiral_catalyst', {'R1':R1, 'R2':'p-FPh', 'Rcat':Rcat})
 
-	# draw.draw('achiral_catalyst', {'R1':'Br', 'R2':'Ph', 'Rcat':'AlF3'})
+	draw.draw('achiral_catalyst', {'R1':'NMe2', 'R2':'Ph', 'Rcat':'I2'})
+
+# elif mode == 'vibe_check':

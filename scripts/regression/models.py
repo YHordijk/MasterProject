@@ -20,8 +20,8 @@ class MLModel:
 
 	def __repr__(self):
 		s = '' 
-		s += self.description + '\n'
-		s += f'This model has{" not"*(not self.trained)} been trained'
+		s += self.description
+		# s += f'This model has{" not"*(not self.trained)} been trained'
 		return s
 
 	def train(self, Xtrain, Ytrain):
@@ -44,7 +44,7 @@ class MLModel:
 		and evaluates the model, that is predict the Ytest using
 		trained parameters. Then it will calculate the R2 value
 		'''
-		Ypred = Xtest@self.a
+		Ypred = self.predict(Xtest)
 		R2 = MLutils.correlation(Ytest, Ypred)
 		return R2
 
@@ -79,8 +79,12 @@ class RR(MLModel):
 		self.description = f'Ridge Regression Model'
 
 	def train(self, Xtrain, Ytrain, lam=1):
-		n = Xtrain.shape[1]
-		self.a = np.linalg.inv(Xtrain.T@Xtrain + np.eye(n)*lam) @ Xtrain.T @ Ytrain
+		n, m = Xtrain.shape
+		#standard way
+		# self.a = np.linalg.inv(Xtrain.T@Xtrain + np.eye(n)*lam) @ Xtrain.T @ Ytrain
+		#KRR way
+		w = np.linalg.inv(np.eye(n)*lam + kernels.Gram(Xtrain)) @ Y
+		self.a = Xtrain.T @ w
 		self.R2train = MLutils.correlation(Ytrain, Xtrain@self.a)
 		self.trained = True
 
@@ -152,14 +156,65 @@ class KRR(MLModel):
 		Ypred = K.T @ self.w
 		return Ypred
 
+
+class GPR(MLModel):
+	def __init__(self, kernel):
+		'''
+		kernel: instance of one of the subclasses of kernels.Kernel
+		'''
+		super().__init__()
+		self.lam = None
+		self.kernel = kernel
+		self.description = f'Gaussian Process Regression Model [{kernel}]'
+
+	def train(self, Xtrain, Ytrain, noise=0):
+		'''
+		Training a GPR is simply precomputing the kernel
+		'''
+		print(Xtrain)
+		plt.imshow(self.kernel(Xtrain))
+		plt.show()
+		self.invcov = np.linalg.inv(self.kernel(Xtrain) + np.eye(Xtrain.shape[0]) * (noise + np.finfo(float).eps)) #(K(X,X) + noise*I)^{-1}
+		self.Xtrain = Xtrain
+		self.Ytrain = Ytrain
+
+	def predict(self, X, return_var=False):
+		'''
+		Posterior has mean mu = K(X,X*) (K(X,X) + noise*I)^{-1} Y
+		and covariance matrix sigma = K(X*,X*) - K(X,X*) (K(X,X) + noise*I)^{-1} K(X*, X)
+		and the diagonal of sigma is the variance vector
+		'''
+		#different covariance matrices
+		Kns = self.kernel(self.Xtrain, X) #K(X,X*)
+		Kss = self.kernel(X, X) #K(X*,X*)
+		Ksn = self.kernel(X, self.Xtrain) #K(X*,X)
+
+		mean = Kns.T @ self.invcov @ self.Ytrain
+		if return_var:
+			cov = Kss - Kns.T @ self.invcov @ Ksn.T
+			var = np.diag(cov).reshape(-1,1)
+			return mean, var
+		return mean
+
+	def evaluate(self, Xtest, Ytest):
+		'''
+		Method that takes test X (m x n) and Y (m x 1) arrays
+		and evaluates the model, that is predict the Ytest using
+		trained parameters. Then it will calculate the R2 value
+		'''
+		Ypred = self.predict(Xtest)[0]
+		R2 = MLutils.correlation(Ytest, Ypred)
+		return R2
+
+
 		
 if __name__ == '__main__':
-	# m = KRR(kernels.Polynomial(3))
-	model = RR()
+	model = KRR(kernels.Polynomial(3))
+	# model = RR()
 
 	print(model)
 	X = np.random.rand(100, 300)
-	X = add_ones(X)
+	X = MLutils.add_ones(X)
 	# a0 = np.array([3, 1, 0, .2, 1.5, 0])
 	a0 = np.random.rand(X.shape[1])*2
 	zeroidx = np.random.choice(np.arange(a0.size), replace=False, size=150)
@@ -179,5 +234,6 @@ if __name__ == '__main__':
 
 
 	plt.show()
+
 	plt.plot(lams, R2s)
 	plt.show()

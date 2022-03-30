@@ -49,8 +49,18 @@
     "functional": "OLYP",
     "basis": "TZ2P",
     "numerical_quality": "VeryGood",
-    "hash": "327bf8ba7edaa1e7f6dae360a3d49b1de74cdf5ae85c969413b1f491521e2776",
-    "active atom index": 2
+    "active atom index": 2,
+    "plane_idx": [
+      1,
+      2,
+      3
+    ],
+    "align_idx": [
+      2,
+      1
+    ],
+    "center_idx": 1,
+    "hash": "327bf8ba7edaa1e7f6dae360a3d49b1de74cdf5ae85c969413b1f491521e2776"
   },
   "GO": {
     "runtime": 6134,
@@ -468,7 +478,7 @@
         1.6170995345800532
       ]
     ],
-    "aligned xyz": "output.xyz",
+    "aligned xyz": "aligned.xyz",
     "status": "NORMAL TERMINATION",
     "bond energy": -4.7986321460695205,
     "Mulliken charge": [

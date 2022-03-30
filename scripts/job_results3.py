@@ -163,15 +163,22 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
                         general['basis'] = val
                     elif arg == 'numerical_quality':
                         general['numerical_quality'] = val
+                    elif arg == 'active_atom_idx':
+                        general['active atom index'] = int(val)
+                    elif arg == 'plane_idx':
+                        general['plane_idx'] = [int(i) for i in val.split('_')]
+                    elif arg == 'align_idx':
+                        general['align_idx'] = [int(i) for i in val.split('_')]
+                    elif arg == 'center_idx':
+                        general['center_idx'] = int(val)
+                    elif arg == 'TSRC_idx':
+                        general['TSRC_idx'] = [int(i) for i in val.split('_')]
 
             if 'unique' in general:
                 general['hash'] = utility.hash2(general['unique'])
 
             try:
                 subdict = {x[0]:x[1] for x in general['substituents']}
-                mol = struct_generator2.generate_stationary_points(template=general['reaction'], substituents=subdict)[general['stationary point']]
-                if hasattr(mol, 'active_atom_idx'):
-                    general['active atom index'] = mol.active_atom_idx
             except:
                 pass
 
@@ -229,18 +236,17 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
                 for e, x in zip(el, xyz):
                     m.add_atom(plams.Atom(symbol=e, coords=x))
                 
-                if hasattr(tmol, 'plane_idx'):
-                    geometry.align_molecule_to_plane(m, tmol.plane_idx)
-                if hasattr(tmol, 'align_idx'):
-                    geometry.rotate_molecule_in_plane(m, tmol.align_idx)
-                if hasattr(tmol, 'center_idx'):
-                    geometry.center_molecule(m, tmol.center_idx)
+                plane_idx = data['info'].get('plane_idx', None)
+                align_idx = data['info'].get('align_idx', None)
+                center_idx = data['info'].get('center_idx', None)
+                geometry.align_mol(m, plane_idx=plane_idx, align_idx=align_idx, center_idx=center_idx)
+
                 GO['aligned coords'] = [a.coords for a in m.atoms]
                 # print(GO['aligned coords'])
                 write_xyz(aligned_xyz, GO['elements'], GO['aligned coords'])
-                GO['aligned xyz'] = os.path.relpath(output_xyz, res_path)
+                GO['aligned xyz'] = 'aligned.xyz'
             except Exception as e:
-                print(e)
+                print(type(e), e)
 
             GO['status'] = ams.read('General', 'termination status')
 
@@ -373,7 +379,7 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
             SFO = [(i, n, s) for i, n, s in zip(SFOfrag, SFOprincipal, SFOsubsp)]
             # for s in SFO: print(s)
 
-            activate_atom = atomorder[tmol.active_atom_idx-1]
+            activate_atom = data['info']['active atom index'] - 1
             active_SFOs = [s for s in SFO if s[0] == activate_atom]
 
             #we are interested in the 2pz SFO
@@ -383,9 +389,8 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
             active_2pz_idx = SFO.index(active_2pz_SFO)
 
             #get relative occupations
-            occupied_active_cont = [c[active_2pz_idx] for c in occupied_coeff]
-            print(occupied_active_cont)
-            virtual_active_cont  = [c[active_2pz_idx] for c in virtual_coeff]
+            occupied_active_cont = [c[active_2pz_idx]/c.sum() for c in occupied_coeff]
+            virtual_active_cont  = [c[active_2pz_idx]/c.sum() for c in virtual_coeff]
             best_occupied_idx = occupied_active_cont.index(max(occupied_active_cont))
             best_occupied_energy = mo_energy[best_occupied_idx]
             best_virtual_idx = virtual_active_cont.index(max(virtual_active_cont))
@@ -414,19 +419,34 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
 
         except:
             print(files['calc_path'])
-            raise
         return SP
 
+    def fix_xyz_files():
+        #output file
+        xyz = join(calc_path, data['GO']['output xyz'])
+        with open(xyz, 'r') as f:
+            xyz_lines = f.readlines()
+
+        if len(xyz_lines) == 0:
+            with open(xyz, 'w+') as f:
+                f.write(f'{data["GO"]["natoms"]}\n\n')
+                [f.write(f'{e}\t{c[0]:.8f}\t{c[1]:.8f}\t{c[2]:.8}\n') for e, c in zip(data["GO"]["elements"], data["GO"]["output coords"])]
+
+
+        elif xyz_lines[0].startswith('Molecule'):
+            with open(xyz, 'w+') as f:
+                f.write(f'{data["GO"]["natoms"]}\n\n')
+                [f.write(l) for l in xyz_lines[1:]]
 
 
     data = {}
     data['files']   = get_files()
     data['info']    = get_info()
     subdict = {x[0]:x[1] for x in data['info']['substituents']}
-    tmol = struct_generator2.get_mol(data['info']['reaction'], subdict, data['info']['stationary point'])
     if data['info']['reaction'] == 'achiral_catalyst':
         if data['info']['stationary point'] not in ['sub_cat_complex', 'TS', 'P1_cat_complex', 'rad']: return
     data['GO']      = get_GO_data()
+    fix_xyz_files()
     data['freq']    = get_freq_data()
     data['thermo']  = get_thermo_data()
     data['EDA']     = get_EDA_data()
@@ -460,15 +480,18 @@ def get_all_results(calc_dir=paths.calculations, res_dir=paths.results, regenera
         return check
 
     calc_path_dict = {}
-    for calc_path in get_all_run_dirs(calc_dir):
+    calc_paths = get_all_run_dirs(calc_dir)
+    for i, calc_path in enumerate(calc_paths):
+        utility.loading_bar(i, len(calc_paths)-1, 50)
+
         res_path = join(res_dir, os.path.relpath(calc_path, calc_dir))
         calc_path_dict[res_path] = calc_path
         if check_regenerate(calc_path, res_path):
             try:
                 generate_result(calc_path, calc_dir=calc_dir, res_dir=res_dir)
-            except:
+            except Exception as e:
                 print('failed', calc_path)
-                raise
+                print(type(e).__name__, e)
     res = []
     for res_path in get_all_result_dirs(res_dir):
         # print(res_path)
@@ -487,10 +510,6 @@ class Result:
         self.data = self.read_data()
         if self.data == {}: return
         self._set_status()
-        # try:
-        #     self.write_aligned_xyz()
-        # except:
-        #     pass
 
     def read_data(self):
         if os.path.exists(join(self.path, 'results.json')):
@@ -508,7 +527,6 @@ class Result:
     def energy(self):
         if not 'GO' in self.data: return
         return self.data['GO'].get('bond energy', None)
-
 
     @property
     def phase(self):
@@ -612,14 +630,9 @@ class Result:
         mol.reaction = self.reaction
         mol.normalmode = self.get_imaginary_mode
         mol.substituents = self.substituents
-        mol.template_mol = self.get_template_mol()
         mol.functional = self.functional
         mol.basis = self.basis
         mol.numerical_quality = self.numerical_quality
-        return mol
-
-    def get_template_mol(self):
-        mol = struct_generator2.get_mol(self.reaction, self.substituents, self.stationary_point)
         return mol
 
     def get_aligned_mol(self):
@@ -630,7 +643,6 @@ class Result:
         mol.reaction = self.reaction
         mol.normalmode = self.get_imaginary_mode
         mol.substituents = self.substituents
-        mol.template_mol = self.get_template_mol()
         mol.functional = self.functional
         mol.basis = self.basis
         mol.numerical_quality = self.numerical_quality
@@ -741,8 +753,26 @@ def get_result(template, substituents, stationary_point, functional='BLYP-D3(BJ)
     else:
         return results[0]
 
+def filter(results, template=None, substituents=None, stationary_point=None, functional=None, basis=None, numerical_quality=None, phase=None):
+    if template is not None:
+        results = [r for r in results if r.reaction in template]
+    if substituents is not None:
+        results = [r for r in results if all(sub == substituents[R] for R, sub in r.substituents.items())]
+    if functional is not None:
+        results = [r for r in results if r.functional == functional]
+    if basis is not None:
+        results = [r for r in results if r.basis == basis]
+    if numerical_quality is not None:
+        results = [r for r in results if r.numerical_quality == numerical_quality]
+    if phase is not None:
+        results = [r for r in results if r.phase == phase]
+    if stationary_point is not None:
+        results = [r for r in results if r.stationary_point == stationary_point]
 
-all_results = get_all_results()
+    return results
+
+
+
 
 if __name__ == '__main__':
     calc_dir = join(paths.master, 'calculations_test')
@@ -754,3 +784,7 @@ if __name__ == '__main__':
 
 
     # res = generate_result(r"D:\Users\Yuman\Desktop\MasterProject\calculations\achiral_catalyst.I_tBu_ZnCl2.vacuum\sub_cat_complex") 
+
+else:
+    print('Loading all results:')
+    all_results = get_all_results()

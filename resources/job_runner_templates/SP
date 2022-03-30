@@ -53,6 +53,7 @@ eor
 cp ams.results/ams.rkf $SLURM_SUBMIT_DIR/SP.ams.rkf
 cp ams.results/adf.rkf $SLURM_SUBMIT_DIR/SP.adf.rkf
 cp ams.results/ams.log $SLURM_SUBMIT_DIR/SP.log
+sleep 5
 rm -r ams.results
 
 amsreport $SLURM_SUBMIT_DIR/${SLURM_JOB_NAME}.adf.rkf geometry-a* > $SLURM_SUBMIT_DIR/output.xyz

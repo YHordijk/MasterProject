@@ -36,6 +36,16 @@
     "functional": "OLYP",
     "basis": "TZ2P",
     "numerical_quality": "VeryGood",
+    "plane_idx": [
+      1,
+      2,
+      3
+    ],
+    "align_idx": [
+      2,
+      1
+    ],
+    "center_idx": 1,
     "hash": "ed7b523ad7d6bd648ad8f5ccbc95bb9ef346a9d7993245b77cd9a9fc249bba5c"
   },
   "GO": {
@@ -470,7 +480,7 @@
         2.7160370793371804
       ]
     ],
-    "aligned xyz": "output.xyz",
+    "aligned xyz": "aligned.xyz",
     "status": "NORMAL TERMINATION",
     "bond energy": -5.5952554511158015,
     "Mulliken charge": [

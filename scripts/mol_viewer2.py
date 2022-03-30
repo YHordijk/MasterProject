@@ -17,16 +17,14 @@ def show(mols, simple=False):
 	scr = screen.Screen(size=(1600,900))
 	if simple:
 		scr.draw_mode = 'simple'
-	[mol.center() for mol in mols]
+	# [mol.center() for mol in mols]
 	scr.draw_molecules(mols)
 
 
 def show_results(results, simple=False):
-	mols = [r.get_mol() for r in results]
+	mols = [r.get_aligned_mol() for r in results]
+	[print(mol) for mol in mols]
 	mols = [molecule.load_plams_molecule(m)[0] for m in mols]
-	# plane_idx = [t.plane_idx for t in tmplt_mols]
-	# [geometry.align_molecule(mol, plane_idx=i) for mol, i in zip(mols, plane_idx)]
-	[mol.align() for mol in mols]
 	scr = screen.Screen(size=(1600, 900))
 	if simple:
 		scr.draw_mode = 'simple'
