@@ -22,8 +22,9 @@ def show(mols, simple=False):
 
 
 def show_results(results, simple=False):
-	mols = [r.get_aligned_mol() for r in results]
-	[print(mol) for mol in mols]
+	# mols = [r.get_aligned_mol() for r in results]
+	mols = [r.get_mol() for r in results]
+	# [print(mol) for mol in mols]
 	mols = [molecule.load_plams_molecule(m)[0] for m in mols]
 	scr = screen.Screen(size=(1600, 900))
 	if simple:

@@ -85,7 +85,7 @@ def get_sorted_dict_values(d):
 
 
 def loading_bar(i, N, Nsegments=50, fill_char='▪', empty_char=' ', center_char='■'):
-    if i%(N//(Nsegments)) == 0 or i == N:
+    if i%(N//min(N,Nsegments)) == 0 or i == N:
         segment = int(i/N*Nsegments)
         fill_seg = fill_char*segment
         if segment == Nsegments:
@@ -98,6 +98,8 @@ def loading_bar(i, N, Nsegments=50, fill_char='▪', empty_char=' ', center_char
 
         print(f'{i:{int(np.log10(N))+1}}/{N} [{fill_seg + center_seg + empty_seg}] {i/N*100:.1f}%', end='\r')
 
+        if i == N:
+            print()
 
 
 def hartree2kcalmol(v):

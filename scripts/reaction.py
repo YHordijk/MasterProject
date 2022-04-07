@@ -302,8 +302,10 @@ class Reaction:
 
 def get_all_reactions(silent=True):
 	reactions = []
-	for R1 in ['H', 'F', 'Cl', 'Br', 'I', 'OMe', 'Me', 'NH2']:
+	for R1 in ['H', 'F', 'Cl', 'Br', 'I', 'OMe', 'Me', 'NH2', 'Et', 'NMe2', ]:
+	# for R1 in ['H', 'F', 'Cl', 'Br', 'I', 'OMe', 'Me']:
 		# for R2 in ['H', 'tBu', 'Ph']:
+		# for R2 in ['H', 'tBu', 'Ph', 'o-FPh', 'm-FPh', 'p-FPh', 'NHMe', 'OEt', 'o-HOPh', 'm-HOPh', 'p-HOPh', 'Bz']:
 		for R2 in ['H', 'tBu', 'Ph', 'o-FPh', 'm-FPh', 'p-FPh']:
 			for Rcat in ['AlF3', 'BF3', 'I2', 'SnCl4', 'TiCl4', 'ZnCl2']:
 				r = Reaction('achiral_catalyst', {'R1':R1, 'R2':R2, 'Rcat':Rcat})
@@ -312,6 +314,23 @@ def get_all_reactions(silent=True):
 				else:
 					if not silent: print('Reaction not complete', r, r.incomplete_reason)
 	return reactions
+
+
+def filter(reactions, template=None, substituents=None, functional=None, basis=None, numerical_quality=None, phase=None):
+    if template is not None:
+        reactions = [r for r in reactions if r.reaction in template]
+    if substituents is not None:
+        reactions = [r for r in reactions if all(sub == substituents[R] for R, sub in r.substituents.items())]
+    if functional is not None:
+        reactions = [r for r in reactions if r.functional == functional]
+    if basis is not None:
+        reactions = [r for r in reactions if r.basis == basis]
+    if numerical_quality is not None:
+        reactions = [r for r in reactions if r.numerical_quality == numerical_quality]
+    if phase is not None:
+        reactions = [r for r in reactions if r.phase == phase]
+
+    return results
 
 
 all_reactions = get_all_reactions()

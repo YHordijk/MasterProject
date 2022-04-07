@@ -1,14 +1,14 @@
 {
   "files": {
-    "calc_path": "achiral_catalyst.H_Ph_I2.vacuum\\rad",
-    "res_path": "achiral_catalyst.H_Ph_I2.vacuum\\rad",
+    "calc_path": "achiral_catalyst.H_Ph_I2.vacuum/rad",
+    "res_path": "achiral_catalyst.H_Ph_I2.vacuum/rad",
+    "GO log": "GO.achiral_catalyst.H_Ph_I2.rad.log",
+    "run info": "run.info",
     "GO run script": "GO.achiral_catalyst.H_Ph_I2.rad",
     "GO adfrkf": "GO.achiral_catalyst.H_Ph_I2.rad.adf.rkf",
-    "GO amsrkf": "GO.achiral_catalyst.H_Ph_I2.rad.ams.rkf",
-    "GO log": "GO.achiral_catalyst.H_Ph_I2.rad.log",
     "GO out": "GO.achiral_catalyst.H_Ph_I2.rad.out",
     "input xyz": "input.xyz",
-    "run info": "run.info"
+    "GO amsrkf": "GO.achiral_catalyst.H_Ph_I2.rad.ams.rkf"
   },
   "info": {
     "substituents": [],
@@ -93,7 +93,7 @@
       [
         1.8352479581008376,
         -0.9103808180350507,
-        0.0009649043294837623
+        0.0009649043294837067
       ],
       [
         0.0,
@@ -106,7 +106,7 @@
         0.0009649043294841508
       ],
       [
-        -0.12903407872466022,
+        -0.12903407872466044,
         2.0445268980769056,
         0.0009649043294843729
       ]

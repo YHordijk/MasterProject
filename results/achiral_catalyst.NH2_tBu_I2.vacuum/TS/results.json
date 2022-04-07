@@ -1,14 +1,14 @@
 {
   "files": {
-    "calc_path": "achiral_catalyst.NH2_tBu_I2.vacuum\\TS",
-    "res_path": "achiral_catalyst.NH2_tBu_I2.vacuum\\TS",
-    "input xyz": "input.xyz",
-    "run info": "run.info",
+    "calc_path": "achiral_catalyst.NH2_tBu_I2.vacuum/TS",
+    "res_path": "achiral_catalyst.NH2_tBu_I2.vacuum/TS",
     "GO run script": "TSRC.achiral_catalyst.NH2_tBu_I2.TS",
-    "GO adfrkf": "TSRC.achiral_catalyst.NH2_tBu_I2.TS.adf.rkf",
-    "GO amsrkf": "TSRC.achiral_catalyst.NH2_tBu_I2.TS.ams.rkf",
+    "run info": "run.info",
     "GO log": "TSRC.achiral_catalyst.NH2_tBu_I2.TS.log",
-    "GO out": "TSRC.achiral_catalyst.NH2_tBu_I2.TS.out"
+    "input xyz": "input.xyz",
+    "GO amsrkf": "TSRC.achiral_catalyst.NH2_tBu_I2.TS.ams.rkf",
+    "GO out": "TSRC.achiral_catalyst.NH2_tBu_I2.TS.out",
+    "GO adfrkf": "TSRC.achiral_catalyst.NH2_tBu_I2.TS.adf.rkf"
   },
   "info": {
     "substituents": [
@@ -402,11 +402,11 @@
       [
         -1.1887596695880367,
         -1.659269468660911,
-        0.2916352883499479
+        0.2916352883499478
       ],
       [
         -0.5936211586668696,
-        1.2858246204787087,
+        1.2858246204787096,
         -5.1033910483262925
       ],
       [
@@ -416,8 +416,8 @@
       ],
       [
         0.7565720228851438,
-        -1.9352871679771186,
-        -4.972414884275662
+        -1.9352871679771184,
+        -4.972414884275663
       ],
       [
         -0.7973134380304403,
@@ -467,7 +467,7 @@
       [
         -2.3499053909595213,
         4.380894337758722,
-        4.1499801508352165
+        4.149980150835216
       ],
       [
         0.556602970496626,
@@ -476,7 +476,7 @@
       ],
       [
         -2.3605075931460267,
-        1.033149955918002,
+        1.0331499559180028,
         4.383505816636582
       ],
       [
@@ -492,25 +492,25 @@
       [
         -4.154935536045633,
         2.5656074025122364,
-        -2.4147283472047376
+        -2.414728347204737
       ],
       [
-        -0.9239442760692782,
+        -0.9239442760692773,
         6.541253854603196,
         0.043563224673276
       ],
       [
         2.0086865138725027,
-        4.981487151418817,
+        4.98148715141882,
         0.36981602061062613
       ],
       [
         8.682401801271915,
-        0.9804410620160033,
+        0.9804410620160042,
         2.735594410648461
       ],
       [
-        11.284263838955779,
+        11.284263838955777,
         4.948010235327711,
         5.06422495255894
       ]

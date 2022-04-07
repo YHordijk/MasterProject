@@ -4,7 +4,8 @@ import matplotlib.pyplot as plt
 
 mode = 'ML'
 if mode == 'ML':
-	ML.main()
+	# ML.main('KRR', out_path_idx=6, kernel='rbf')
+	ML.optimize(model='KRR', kernel='rbf', out_path_idx=1)
 
 elif mode == 'view':
 	# for Rcat in ['AlF3', 'BF3', 'I2', 'SnCl4', 'TiCl4', 'ZnCl2']:

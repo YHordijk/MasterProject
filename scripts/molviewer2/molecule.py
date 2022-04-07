@@ -11,6 +11,7 @@ import itertools as it
 import scm.plams as plams
 import geometry
 
+silent = True
 
 #####	====================	molecule loading	====================	#####
 
@@ -63,7 +64,7 @@ def _load_molecule_from_pubchem(name):
 
 def load_molecule(arg):
 	#test if its a path
-	print(os.path.exists(arg))
+	# print(os.path.exists(arg))
 	if os.path.exists(arg):
 		return _load_molecule_from_path(arg, name=arg)
 	elif os.path.exists(xyz_path + arg + '.xyz'):
@@ -111,7 +112,6 @@ class Molecule:
 		self.name = name
 		self.elements = elements
 		self.positions = positions
-		print(self.positions)
 		self.original_original_pos = self.positions
 
 		self.update_molecule()
@@ -414,7 +414,8 @@ class Molecule:
 		
 		for iter in range(max_iter):
 			if all_saturated():
-				print('✔️ Bond order guessing succesful!')
+				if not silent:
+					print('✔️ Bond order guessing succesful!')
 				break #final condition
 
 			B = np.zeros((N,N)).astype(int)
@@ -448,7 +449,9 @@ class Molecule:
 					B[b,a] += 1
 					if saturated(a): break
 
-		if not all_saturated(): print('❌ Bond order guessing failed 😥')
+		if not all_saturated(): 
+			if not silent:
+				print('❌ Bond order guessing failed 😥')
 
 
 

@@ -3,12 +3,21 @@ import matplotlib.pyplot as plt
 # import data_gen
 # import sklearn.kernel_ridge
 import itertools
+import utility
 try:
 	import regression.kernels as kernels
 	import regression.MLutils as MLutils
 except:
 	import kernels
 	import MLutils
+
+import sklearn.linear_model as sklm
+import sklearn.kernel_ridge as skkr
+import sklearn.model_selection as skms
+import sklearn.gaussian_process as skgs
+import skopt, skopt.space
+
+np.seterr(under='ignore')
 
 
 
@@ -32,7 +41,7 @@ class MLModel:
 		self.trained = True
 		NotImplemented
 
-	def multi_train(self, X, Y, f, n):
+	def multi_train(self, X, Y, f=0.5, N=50, lam=1, silent=False):
 		'''
 		Method that trains multiple times and then averages the coefficients
 		'''
@@ -45,7 +54,7 @@ class MLModel:
 		trained parameters. Then it will calculate the R2 value
 		'''
 		Ypred = self.predict(Xtest)
-		R2 = MLutils.correlation(Ytest, Ypred)
+		R2 = MLutils.correlation(Ytest, Ypred)**2
 		return R2
 
 	def predict(self, X):
@@ -72,6 +81,8 @@ class LR(MLModel):
 		return X@self.a
 
 
+
+
 class RR(MLModel):
 	def __init__(self):
 		super().__init__()
@@ -83,9 +94,9 @@ class RR(MLModel):
 		#standard way
 		# self.a = np.linalg.inv(Xtrain.T@Xtrain + np.eye(n)*lam) @ Xtrain.T @ Ytrain
 		#KRR way
-		w = np.linalg.inv(np.eye(n)*lam + kernels.Gram(Xtrain)) @ Y
+		w = np.linalg.inv(np.eye(n)*lam + kernels.Gram(Xtrain)) @ Ytrain
 		self.a = Xtrain.T @ w
-		self.R2train = MLutils.correlation(Ytrain, Xtrain@self.a)
+		self.R2train = MLutils.correlation(Ytrain, Xtrain@self.a)**2
 		self.trained = True
 
 	def multi_train(self, X, Y, f=0.5, N=50, lam=1, silent=False):
@@ -110,6 +121,10 @@ class RR(MLModel):
 			R2s_train.append(self.R2train)
 			R2s_test.append(self.evaluate(Xtest, Ytest))
 			coeffs.append(self.a)
+			# plt.plot(self.a, alpha=1/75, c='k')
+		# plt.ylabel('Coefficient')
+		# plt.xlabel('Feature index')
+		
 
 		R2s_train_mean = np.mean(R2s_train)
 		R2s_train_std  = np.std(R2s_train)
@@ -128,9 +143,46 @@ class RR(MLModel):
 		self.R2test_std = R2s_test_std
 		self.a = np.mean(np.array(coeffs), axis=0)
 
+		# plt.plot(self.a, c='r')
+
+		# plt.show()
+
+		MLutils.detect_coefficient_type(coeffs)
+
 
 	def predict(self, X):
 		return X@self.a
+
+
+class SK_RR(RR):
+	def __init__(self):
+		super().__init__()
+		self.description = f'SKLearn Ridge Regression Model'
+
+	def train(self, Xtrain, Ytrain, lam=1):
+		self.model = sklm.Ridge(alpha=lam)
+		self.model.fit(Xtrain, Ytrain)
+		self.R2train = self.model.score(Xtrain, Ytrain)
+		self.trained = True
+
+	def predict(self, X):
+		return self.model.predict(X)
+
+	def optimize(self, X, Y, iters=100):
+		def on_step(r):
+			utility.loading_bar(len(r['x_iters']), iters)
+
+		self.model = sklm.Ridge()
+		space = {'alpha':skopt.space.Real(0,10)}
+
+		search = skopt.BayesSearchCV(self.model, space, n_iter=iters, cv=3, verbose=0, scoring='r2')
+		print(f'Optimizing model {self.model}')
+		search.fit(X, Y, callback=on_step)
+		print(f'found best parameters with score {search.best_score_}:')
+		for p, v in search.best_params_.items():
+			print(p, v)
+		self.model = sklm.Ridge(**search.best_params_)
+		self.model.fit(X,Y)
 
 
 class KRR(MLModel):
@@ -143,7 +195,7 @@ class KRR(MLModel):
 		self.kernel = kernel
 		self.description = f'Kernel Ridge Regression Model [{kernel}]'
 
-	def train(self, Xtrain, Ytrain, lam=1, lambda_convergence=1e-3):
+	def train(self, Xtrain, Ytrain, lam=1):
 		m = Xtrain.shape[0]
 		K = self.kernel(Xtrain)
 		self.w = np.linalg.inv(K + np.eye(m)*lam) @ Ytrain
@@ -152,9 +204,71 @@ class KRR(MLModel):
 		self.trained = True
 
 	def predict(self, X):
-		K = self.kernel(X)
-		Ypred = K.T @ self.w
+		# K = self.kernel(X)
+		# Ypred = K.T @ self.w
+		Ypred = X@self.a
 		return Ypred
+
+
+class SK_KRR(KRR):
+	def __init__(self, kernel, order=None, gamma=None, coef0=None):
+		'''
+		kernel: one of [‘additive_chi2’, ‘chi2’, ‘linear’, ‘poly’, ‘polynomial’, ‘rbf’, ‘laplacian’, ‘sigmoid’, ‘cosine’]
+		'''
+		self.lam = None
+		self.kernel = kernel
+		self._order = order
+		self._gamma = gamma
+		self._coef0 = coef0
+		self.description = f'SKLearn Kernel Ridge Regression Model [{kernel}]'
+
+	def train(self, Xtrain, Ytrain, lam=1):
+		self.model = skkr.KernelRidge(kernel=self.kernel, alpha=lam, gamma=self._gamma, degree=self._order, coef0=self._coef0)
+		self.model.fit(Xtrain, Ytrain)
+		self.R2train = self.model.score(Xtrain, Ytrain)
+		self.trained = True
+
+	def predict(self, X):
+		return self.model.predict(X)
+
+	def cross_validate(self, X, Y, cv=3):
+		self.model = skkr.KernelRidge(kernel=self.kernel)
+		cv_res = skms.cross_validate(self.model,X,Y,cv=cv,return_estimator=True)
+		smax = 0
+		for model, score in zip(cv_res['estimator'], cv_res['test_score']):
+			print(model.get_params())
+			if score > smax:
+				smax = score
+				best_model = model
+		self.model = best_model
+
+
+	def optimize(self, X, Y, iters=100):
+		def on_step(r):
+			utility.loading_bar(len(r['x_iters']), iters)
+
+		self.model = skkr.KernelRidge(kernel=self.kernel)
+		if self.kernel in ['rbf', 'laplacian']:
+			space = {'alpha': skopt.space.Real(0, 5),
+					 'gamma': skopt.space.Real(1e-10, 10)}
+		elif self.kernel == 'poly':
+			space = {'alpha': skopt.space.Real(0, 2),
+					 'gamma': skopt.space.Real(0, 2),
+					 'coef0': skopt.space.Real(0, 10),
+					 'degree': skopt.space.Integer(2,4)}
+		elif self.kernel == 'sigmoid':
+			space = {'alpha': skopt.space.Real(0, 2),
+					 'gamma': skopt.space.Real(-5, 5),
+					 'coef0': skopt.space.Real(-5, 5)}
+
+		search = skopt.BayesSearchCV(self.model, space, n_iter=iters, cv=3, verbose=0, scoring='r2')
+		print(f'Optimizing model {self.model}')
+		search.fit(X, Y, callback=on_step)
+		print(f'found best parameters with score {search.best_score_}:')
+		for p, v in search.best_params_.items():
+			print(p, v)
+		self.model = skkr.KernelRidge(kernel=self.kernel, **search.best_params_)
+		self.model.fit(X,Y)
 
 
 class GPR(MLModel):
@@ -171,9 +285,6 @@ class GPR(MLModel):
 		'''
 		Training a GPR is simply precomputing the kernel
 		'''
-		print(Xtrain)
-		plt.imshow(self.kernel(Xtrain))
-		plt.show()
 		self.invcov = np.linalg.inv(self.kernel(Xtrain) + np.eye(Xtrain.shape[0]) * (noise + np.finfo(float).eps)) #(K(X,X) + noise*I)^{-1}
 		self.Xtrain = Xtrain
 		self.Ytrain = Ytrain
@@ -205,6 +316,19 @@ class GPR(MLModel):
 		Ypred = self.predict(Xtest)[0]
 		R2 = MLutils.correlation(Ytest, Ypred)
 		return R2
+
+
+class SK_GPR(GPR):
+	def __init__(self, kernel):
+		'''
+		kernel: instance of one of the subclasses of kernels.Kernel
+		'''
+		super().__init__(kernel)
+		self.description = f'SK Gaussian Process Regression Model [{kernel}]'
+
+	def train(self, Xtrain, Ytrain, noise=1e-10):
+		self.model = skgp.GaussianProcessRegressor(alpha=noise)
+
 
 
 		

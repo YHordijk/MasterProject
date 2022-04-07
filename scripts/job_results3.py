@@ -349,16 +349,13 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
             coeffs = np.abs(np.array(coeffs).reshape((nmo, nmo)))
             occupations = SPadfrkf.read('A', 'froc_A')
             occupied = [i for i in range(nmo) if occupations[i] > 0]
-            virtual = [i for i in range(nmo) if occupations[i] == 0]
-            # print(occupied)
-            # print(virtual)
+            virtual =  [i for i in range(nmo) if occupations[i] == 0]
             assert len(occupied) + len(virtual) == nmo, f'occupied ({len(occupied)}) and virtual ({len(virtual)}) MOs dont add up to nmo ({nmo})'
 
             occupied_coeff = [coeffs[i] for i in occupied]
             virtual_coeff = [coeffs[i] for i in virtual]
 
             #read in the identities of the SFOs
-            fragtypes = SPadfrkf.read('Geometry', 'fragmenttype')
             #the order of atoms is not the same as input
             #atom 1 in the input is atomorder[0] in the internal order
             atomorder = SPadfrkf.read('Geometry', 'atom order index')
@@ -372,29 +369,47 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
             #sort SFOs for each atom by inputorder
             SFOsubsp_by_atom = [[s for i, s in zip(SFOfrag, SFOsubsp) if i == j] for j in atomorder]
             SFOidx_by_atom = [[n for n, i in zip(range(nSFO), SFOfrag) if i == j] for j in atomorder]
-            # for s in SFOsubsp_by_atom: print(s)
-            # for s in SFOidx_by_atom: print(s)
 
             #summarize SFOs as tuples (atom_idx, principal_quantum_number, subspecies)
             SFO = [(i, n, s) for i, n, s in zip(SFOfrag, SFOprincipal, SFOsubsp)]
-            # for s in SFO: print(s)
 
-            activate_atom = data['info']['active atom index'] - 1
+            activate_atom = data['info']['active atom index'] - 1 #atomnumber in input
+            activate_atom = atomorder[activate_atom] #convert to internal ordering
             active_SFOs = [s for s in SFO if s[0] == activate_atom]
 
             #we are interested in the 2pz SFO
-            ifo = 1
+            ifo = 1 #adf starts counting principal qn for p-orbitals from 1 instead of 2
             subsp = 'P:z'
-            active_2pz_SFO = [s for s in active_SFOs if s[1] == ifo and s[2] == subsp][0]
-            active_2pz_idx = SFO.index(active_2pz_SFO)
+            active_2pz_SFO = [s for s in active_SFOs if s[1] == ifo and s[2] == subsp]
+            active_2pz_idx = SFO.index(active_2pz_SFO[0])
 
             #get relative occupations
-            occupied_active_cont = [c[active_2pz_idx]/c.sum() for c in occupied_coeff]
-            virtual_active_cont  = [c[active_2pz_idx]/c.sum() for c in virtual_coeff]
-            best_occupied_idx = occupied_active_cont.index(max(occupied_active_cont))
+            occupied_active_cont = [c[active_2pz_idx] for c in occupied_coeff]
+            virtual_active_cont  = [c[active_2pz_idx] for c in virtual_coeff]
+            
+            occupied_active_cont_norm = [c[active_2pz_idx]/c.sum() for c in occupied_coeff]
+            virtual_active_cont_norm  = [c[active_2pz_idx]/c.sum() for c in virtual_coeff]
+
+            plt.plot(occupied_active_cont_norm)
+            plt.plot(virtual_active_cont_norm)
+
+            #select highest contribution
+            best_occupied_idx = occupied_active_cont_norm.index(max(occupied_active_cont_norm))
+            #select first non-zero contribution
+            
             best_occupied_energy = mo_energy[best_occupied_idx]
-            best_virtual_idx = virtual_active_cont.index(max(virtual_active_cont))
-            best_virtual_energy = mo_energy[best_virtual_idx+len(occupied_active_cont)]
+
+            for homo in occupied_active_cont[::-1]:
+                if homo > 1e-6:
+                    best_occupied_idx = occupied_active_cont.index(homo)
+            for lumo in virtual_active_cont:
+                if lumo > 1e-6:
+                    best_virtual_idx = virtual_active_cont.index()
+
+            # best_virtual_idx = virtual_active_cont_norm.index(max(virtual_active_cont_norm))
+            # best_virtual_energy = mo_energy[best_virtual_idx+len(occupied_active_cont)]
+            # plt.show()
+
             if not silent:
                 print(occupied_active_cont)
 
@@ -482,8 +497,6 @@ def get_all_results(calc_dir=paths.calculations, res_dir=paths.results, regenera
     calc_path_dict = {}
     calc_paths = get_all_run_dirs(calc_dir)
     for i, calc_path in enumerate(calc_paths):
-        utility.loading_bar(i, len(calc_paths)-1, 50)
-
         res_path = join(res_dir, os.path.relpath(calc_path, calc_dir))
         calc_path_dict[res_path] = calc_path
         if check_regenerate(calc_path, res_path):
@@ -493,8 +506,9 @@ def get_all_results(calc_dir=paths.calculations, res_dir=paths.results, regenera
                 print('failed', calc_path)
                 print(type(e).__name__, e)
     res = []
-    for res_path in get_all_result_dirs(res_dir):
-        # print(res_path)
+    res_paths = get_all_result_dirs(res_dir)
+    for i, res_path in enumerate(res_paths):
+        utility.loading_bar(i, len(res_paths)-1, 50)
         r = Result(res_path, calc_path=calc_path_dict.get(res_path, None))
         if not r.data == {}:
             res.append(r)
@@ -781,9 +795,6 @@ if __name__ == '__main__':
     # summarize_calculations(res)
     print_failed(res)
     print_canceled(res)
-
-
-    # res = generate_result(r"D:\Users\Yuman\Desktop\MasterProject\calculations\achiral_catalyst.I_tBu_ZnCl2.vacuum\sub_cat_complex") 
 
 else:
     print('Loading all results:')

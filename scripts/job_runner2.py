@@ -1,5 +1,7 @@
 import scm.plams as plams
 import struct_generator2, paths, os, utility, job_results3, time, sys, geometry
+from utility import bohr2angstrom
+b2a = bohr2angstrom(1)
 
 join = os.path.join
 
@@ -48,19 +50,19 @@ sbatch {os.path.basename(file)}
     ATOMS = ''
     for i, atom in enumerate(align_mol.atoms, 1):
         if i in frag1idx:
-            ATOMS += f'    {atom.symbol:<2}\t{atom.coords[0]:=11.8f}\t{atom.coords[1]:=11.8f}\t{atom.coords[2]:=11.8f}\tf=f1\n'
+            ATOMS += f'    {atom.symbol:<2}\t{atom.coords[0]*b2a:=11.8f}\t{atom.coords[1]*b2a:=11.8f}\t{atom.coords[2]*b2a:=11.8f}\tf=f1\n'
         elif i in frag2idx:
-            ATOMS += f'    {atom.symbol:<2}\t{atom.coords[0]:=11.8f}\t{atom.coords[1]:=11.8f}\t{atom.coords[2]:=11.8f}\tf=f2\n'
+            ATOMS += f'    {atom.symbol:<2}\t{atom.coords[0]*b2a:=11.8f}\t{atom.coords[1]*b2a:=11.8f}\t{atom.coords[2]*b2a:=11.8f}\tf=f2\n'
 
     ATOMS1 = ''
     for i, atom in enumerate(align_mol.atoms, 1):
         if i in frag1idx:
-            ATOMS1 += f'    {atom.symbol:<2}\t{atom.coords[0]:=11.8f}\t{atom.coords[1]:=11.8f}\t{atom.coords[2]:=11.8f}\tregion=Region_1\n'
+            ATOMS1 += f'    {atom.symbol:<2}\t{atom.coords[0]*b2a:=11.8f}\t{atom.coords[1]*b2a:=11.8f}\t{atom.coords[2]*b2a:=11.8f}\tregion=Region_1\n'
 
     ATOMS2 = ''
     for i, atom in enumerate(align_mol.atoms, 1):
         if i in frag2idx:
-            ATOMS2 += f'    {atom.symbol:<2}\t{atom.coords[0]:=11.8f}\t{atom.coords[1]:=11.8f}\t{atom.coords[2]:=11.8f}\tregion=Region_2\n'
+            ATOMS2 += f'    {atom.symbol:<2}\t{atom.coords[0]*b2a:=11.8f}\t{atom.coords[1]*b2a:=11.8f}\t{atom.coords[2]*b2a:=11.8f}\tregion=Region_2\n'
 
     FUNCTIONAL = {
             'OLYP': 'GGA OLYP',
@@ -148,7 +150,7 @@ sbatch {os.path.basename(file)}
     geometry.align_mol(align_mol, plane_idx=plane_idx, align_idx=align_idx, center_idx=center_idx)
     ATOMS = ''
     for i, atom in enumerate(align_mol.atoms, 1):
-        ATOMS += f'    {atom.symbol:<2}\t{atom.coords[0]:=11.8f}\t{atom.coords[1]:=11.8f}\t{atom.coords[2]:=11.8f}\n'
+        ATOMS += f'    {atom.symbol:<2}\t{atom.coords[0]*b2a:=11.8f}\t{atom.coords[1]*b2a:=11.8f}\t{atom.coords[2]*b2a:=11.8f}\n'
 
     FUNCTIONAL = {
             'OLYP': 'GGA OLYP',
@@ -370,9 +372,9 @@ sbatch {os.path.basename(file)}
 
     
 if __name__ == '__main__':
-    mode = 'fragment'
+    mode = 'GO'
     calc_dir = paths.calculations
-    test_mode = False
+    test_mode = True
 
 
     n = 0
@@ -385,7 +387,7 @@ if __name__ == '__main__':
             for R2 in ['Bz', 'NHMe', 'OEt', 'p-HOPh', 'm-HOPh', 'o-HOPh']:
                 for cat in ['I2', 'ZnCl2', 'TiCl4', 'BF3', 'AlF3', 'SnCl4']:
                     n += run_jobs('achiral_catalyst', {'R1':R1, 'R2':R2, 'Rcat':cat}, phase='vacuum', calc_dir=calc_dir, test_mode=test_mode, basis=basis, functional=functional, numerical_quality=numerical_quality)
-                    time.sleep(1)
+                    # time.sleep(1)
 
         # for R1  in ['NH2', 'Me', 'OMe']:
         #     for R2 in ['Et', 'NMe2']:
@@ -400,7 +402,7 @@ if __name__ == '__main__':
         filtered_dirs += [d for d in dirs if 'achiral_catalyst' in d and os.path.basename(d) in ['sub_cat_complex.002', 'sub_cat_complex']]
         n = 0
         for d in filtered_dirs:
-            if not os.path.exists(join(d, 'SP.run.out')):
+            # if not os.path.exists(join(d, 'SP.run.out')):
                 print(d)
                 if not test_mode:
                     run_SP_job(d)
@@ -413,9 +415,14 @@ if __name__ == '__main__':
         dirs = job_results3.get_all_run_dirs() 
         #filter sub_cat_complex stationary points for achiral_catalysts
         filtered_dirs += [d for d in dirs if 'achiral_catalyst' in d and os.path.basename(d) in ['sub_cat_complex.002', 'sub_cat_complex']]
+        filtered_dirs = ['/scistor/tc/yhk800/MasterProject/calculations/achiral_catalyst.H_Ph_AlF3.vacuum/sub_cat_complex',
+                         '/scistor/tc/yhk800/MasterProject/calculations/achiral_catalyst.H_Ph_I2.vacuum/sub_cat_complex',
+                         '/scistor/tc/yhk800/MasterProject/calculations/achiral_catalyst.H_tBu_BF3.vacuum/sub_cat_complex',
+                         '/scistor/tc/yhk800/MasterProject/calculations/achiral_catalyst.H_Ph_BF3.vacuum/sub_cat_complex',
+                         '/scistor/tc/yhk800/MasterProject/calculations/achiral_catalyst.H_Ph_SnCl4.vacuum/sub_cat_complex']
         n = 0
         for d in filtered_dirs:
-            if not os.path.exists(join(d, 'frag.run.out')):
+            # if not os.path.exists(join(d, 'frag.run.out')):
                 print(d)
                 if not test_mode:
                     run_frag_job(d)

@@ -5,6 +5,7 @@ from utility import hartree2eV as h2e
 from utility import hartree2kcalmol as h2k
 from scipy import stats
 import numpy as np
+from regression import MLutils
 
 join = os.path.join
 
@@ -14,13 +15,13 @@ def help(parameter):
 	'EDA_bonding': 	'Bonding energy difference between substrate and catalyst fragments, unit=[ha]',
 	'EDA_elstat': 	'Electrostatic repulsion term between substrate and catalyst fragments, unit=[ha]',
 	'EDA_oi': 		'Orbital interaction term between substrate and catalyst fragments, unit=[ha]',
-	'AA_mulliken': 	'Active atom Mulliken charge on substrate/catalyst complex',
-	'AA_eldens': 	'Active atom electron density catalyst complex',
-	'AA_hirshfeld': 'Active atom Hirshfeld charge on substrate/catalyst complex',
-	'AA_voronoi': 	'Active atom Voronoi charge on substrate/catalyst complex',
-	'HOMO_contr': 	'Highest contribution of active atom C[2pz] AO on occupied MOs',
+	'AA_mulliken': 	'Active atom Mulliken charge on substrate/catalyst complex, unit=[a.u.]',
+	'AA_eldens': 	'Active atom electron density catalyst complex, unit=[a.u.]',
+	'AA_hirshfeld': 'Active atom Hirshfeld charge on substrate/catalyst complex, unit=[a.u.]',
+	'AA_voronoi': 	'Active atom Voronoi charge on substrate/catalyst complex, unit=[a.u.]',
+	'HOMO_coeff': 	'Highest contribution of active atom C[2pz] AO on occupied MOs',
 	'HOMO_energy': 	'Energy of occupied MO with highest active atom C[2pz] contribution, unit=[ha]',
-	'LUMO_contr': 	'Highest contribution of active atom C[2pz] AO on virtual MOs',
+	'LUMO_coeff': 	'Highest contribution of active atom C[2pz] AO on virtual MOs',
 	'LUMO_energy': 	'Energy of virtual MO with highest active atom C[2pz] contribution, unit=[ha]',
 	}[parameter]
 
@@ -28,18 +29,19 @@ def help(parameter):
 
 
 def define_parameters():
+	#comment out the param you dont want to use
 	parameters = [
 		'EDA_pauli',
 		'EDA_bonding',
 		'EDA_elstat',
 		'EDA_oi',
-		'AA_mulliken',
+		# 'AA_mulliken',
 		'AA_eldens',
 		'AA_hirshfeld',
 		'AA_voronoi',
-		'HOMO_contr',
+		'HOMO_coeff',
 		'HOMO_energy',
-		'LUMO_contr',
+		'LUMO_coeff',
 		'LUMO_energy']
 
 	return parameters
@@ -60,11 +62,6 @@ def generate_data(outfile=paths.training_data, Eact_type='gibbs'):
 		assert parameter in parameters
 
 		if parameter == 'EDA_pauli':
-			for r in results:
-				try:
-					r.data['EDA']['pauli']
-				except:
-					print(r.path)
 			return [r.data['EDA']['pauli'] for r in results]
 
 		elif parameter == 'EDA_bonding':
@@ -83,11 +80,11 @@ def generate_data(outfile=paths.training_data, Eact_type='gibbs'):
 		elif parameter == 'AA_voronoi':
 			return [r.data['GO']['Voronoi charge'][r.active_atom] for r in results]
 
-		elif parameter == 'HOMO_contr':
+		elif parameter == 'HOMO_coeff':
 			return [r.data['SP']['occupied cont'] for r in results]
 		elif parameter == 'HOMO_energy':
 			return [r.data['SP']['occupied energy'] for r in results]
-		elif parameter == 'LUMO_contr':
+		elif parameter == 'LUMO_coeff':
 			return [r.data['SP']['virtual cont'] for r in results]
 		elif parameter == 'LUMO_energy':
 			return [r.data['SP']['virtual energy'] for r in results]
@@ -117,7 +114,7 @@ def generate_data(outfile=paths.training_data, Eact_type='gibbs'):
 			print('✔️')
 		except Exception as e:
 			print('❌')
-			print('\t\t', type(e), e)
+			# print('\t\t', type(e), e)
 
 	meta = ['path', 'Eact', 'Gact']
 	meta_data = {
@@ -132,12 +129,16 @@ def generate_data(outfile=paths.training_data, Eact_type='gibbs'):
 		writer.writerow(meta + parameters)
 
 		for i in range(len(sub_res)):
-			row = []
-			for p in meta:
-				row.append(meta_data[p][i])
-			for p in parameters:
-				row.append(data[p][i])
-			writer.writerow(row)
+			try:
+				row = []
+				for p in meta:
+					row.append(meta_data[p][i])
+				for p in parameters:
+					row.append(data[p][i])
+				writer.writerow(row)
+			except Exception as e:
+				print(e)
+				continue
 
 
 def read_data(infile=paths.training_data):
@@ -147,24 +148,28 @@ def read_data(infile=paths.training_data):
 		reader = csv.DictReader(file)
 		for row in reader:
 			data.append(row)
-
 	return data
 
 
 def plot_trend(param, colors=None, labels=None, 
 		xunit='', yunit='kcal/mol', 
-		xscale=1, yscale=h2k(1),
+		xscale=1, yscale=1,
 		fit=True):
 
 	used_labels = set()
-	X = get_column(data, param, float)
-	Y = get_column(data, 'Eact', float)
-
+	X = get_column(param)
+	Y = get_column('Eact')
+	
 	oi = outlier_idx(Y) + outlier_idx(X)
 	X = np.delete(X, oi)
 	Y = np.delete(Y, oi)
 	colors = np.delete(colors, oi, axis=0)
 	labels = np.delete(labels, oi)
+
+	X, X_norm_data = MLutils.prepare_data(X, False, True)
+	Y, Y_norm_data = MLutils.prepare_data(Y)
+
+	X = MLutils.unprepare_data(X, X_norm_data)
 
 	for i in range(X.size):
 		x = X[i] * xscale
@@ -181,8 +186,10 @@ def plot_trend(param, colors=None, labels=None,
 			l = None
 		plt.scatter(x, y, color=c, label=l)
 
-
-	plt.xlabel(f'{param} ({xunit})')
+	if xunit != '':
+		plt.xlabel(f'{param} ({xunit})')
+	else:
+		plt.xlabel(f'{param}')
 	plt.ylabel(f'Eact ({yunit})')
 	
 
@@ -214,7 +221,6 @@ def get_all_columns():
 generate_data()
 data = read_data()
 
-
 if __name__ == '__main__':
 	print('Explanation of parameters:')
 	pl = max(len(p) for p in define_parameters())
@@ -231,15 +237,24 @@ if __name__ == '__main__':
 	# labels = [r.substituents['R1'] for r in res]
 	labels = [r.substituents['R2'] for r in res]
 
+	plt.subplot(2,2,1)
+	plot_trend('HOMO_coeff',  colors=colors, labels=labels)
+	plt.subplot(2,2,2)
+	plot_trend('HOMO_energy', colors=colors, labels=labels, xunit='eV', xscale=1)
+	plt.subplot(2,2,3)
+	plot_trend('LUMO_coeff',  colors=colors, labels=labels)
+	plt.subplot(2,2,4)
+	plot_trend('LUMO_energy', colors=colors, labels=labels, xunit='eV', xscale=1)
+	plt.legend()
+	plt.show()
 
 	plt.subplot(2,2,1)
-	plot_trend(data, 'HOMO_contr', colors=colors, labels=labels, xunit='%', xscale=100)
+	plot_trend('AA_mulliken',  colors=colors, labels=labels, xunit='a.u.')
 	plt.subplot(2,2,2)
-	plot_trend(data, 'HOMO_energy', colors=colors, labels=labels, xunit='eV', xscale=h2e(1))
+	plot_trend('AA_eldens', colors=colors, labels=labels, xunit='a.u.')
 	plt.subplot(2,2,3)
-	plot_trend(data, 'LUMO_contr', colors=colors, labels=labels, xunit='%', xscale=h2e(1))
+	plot_trend('AA_hirshfeld',  colors=colors, labels=labels, xunit='a.u.')
 	plt.subplot(2,2,4)
-	plot_trend(data, 'LUMO_energy', colors=colors, labels=labels, xunit='eV', xscale=100)
-
+	plot_trend('AA_voronoi', colors=colors, labels=labels, xunit='a.u.')
 	plt.legend()
 	plt.show()
