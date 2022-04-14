@@ -5,11 +5,9 @@ import numpy as np
 
 join = os.path.join
 
-def write_mol(mol, path, comment=None):
+def write_mol(mol, path, comment=''):
     with open(path, 'w+') as file:
         file.write(f'{len(mol.atoms)}\n')
-        if comment is None:
-            comment = ', '.join(mol.flags)
         file.write(comment + '\n')
         for a in mol.atoms:
             file.write(f'{a.symbol}\t{a.coords[0]: .8f}\t{a.coords[1]: .8f}\t{a.coords[2]: .8f}\n')
@@ -48,7 +46,7 @@ def hash_from_info(info_path):
             if line.startswith('unique='):
                 hashstr = line.strip().split('=')[1]
                 break
-    return hashlib.sha256(hashstr.encode('utf-8')).hexdigest()
+    return hash2(hashstr)
 
 
 def hash2(hashstr):
@@ -71,11 +69,11 @@ def hash_collision(h, calc_dir=paths.calculations):
     hashes = [hash_from_info(join(d, 'run.info')) for d in dirs]
     return h in hashes
 
+
 def get_colliding_dirs(h, calc_dir=paths.calculations):
     dirs = get_all_run_dirs(calc_dir)
     dirs = [d for d in dirs if hash_from_info(join(d, 'run.info'))]
     return dirs
-
 
 
 def get_sorted_dict_values(d):
@@ -84,8 +82,8 @@ def get_sorted_dict_values(d):
     return [v[i] for i in idx]
 
 
-def loading_bar(i, N, Nsegments=50, fill_char='▪', empty_char=' ', center_char='■'):
-    if i%(N//min(N,Nsegments)) == 0 or i == N:
+def loading_bar(i, N, Nsegments=50, Nsteps=10, fill_char='=', empty_char='.', center_char='>'):
+    if i%(N//min(N,Nsteps)) == 0 or i == N:
         segment = int(i/N*Nsegments)
         fill_seg = fill_char*segment
         if segment == Nsegments:
@@ -116,4 +114,3 @@ def print_table(header, data, tabs=0):
     assert len(header) == len(data)
 
     
-

@@ -95,4 +95,3 @@ def detect_coefficient_type(coeffs, plot=True):
 		plt.plot(std,c='b',label='feature std')
 		plt.show()
 
-

@@ -123,6 +123,12 @@ class Molecule:
 			s += f'{e:2}\t{p[0]:>10.6f}\t{p[1]:>10.6f}\t{p[2]:>10.6f}\n'
 		return s
 
+	def get_xyz(self):
+		s = f'{self.natoms}\n{self.name}\n'
+		for e, p in zip(self.elements, self.original_original_pos):
+			s += f'{e:2}\t{p[0]:>10.6f}\t{p[1]:>10.6f}\t{p[2]:>10.6f}\n'
+		return s
+
 
 	def update_molecule(self):
 		#this should be run anytime changes are made to the molecules positions and elements

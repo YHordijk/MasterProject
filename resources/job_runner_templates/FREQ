@@ -1,0 +1,69 @@
+#!/bin/bash
+#SBATCH -N [NODES]
+#SBATCH -t 240:00:00
+#SBATCH --ntasks-per-node=[CORES]
+#SBATCH --partition=tc
+
+echo "== Starting FREQ run at $(date)"
+echo "== Job ID: ${SLURM_JOBID}"
+echo "== Node list: ${SLURM_NODELIST}"
+echo "== Submit dir. : ${SLURM_SUBMIT_DIR}"
+echo "== Scratch dir. : ${TMPDIR}"
+
+
+module load ams
+module list
+
+
+echo "========= FREQUENCIES ========="
+$AMSBIN/ams <<eor>$SLURM_SUBMIT_DIR/${SLURM_JOB_NAME}_FREQ.out
+
+Task SinglePoint
+
+System
+  Atoms
+[ATOMS]
+  End
+End
+
+Properties
+  NormalModes Yes
+End
+NormalModes
+  ReScanFreqRange -10000000.0 20.0 
+End
+PESPointCharacter
+    NegativeFrequenciesTolerance -30
+End
+
+Engine ADF
+  
+  BASIS
+     type [BASIS]
+     core none
+  END
+  
+  SYMMETRY NOSYM
+  
+  SCF
+     ITERATIONS 99
+     Converge 1.0e-6 
+  END
+  
+  XC
+    [FUNCTIONAL]
+  END
+  
+  NumericalQuality [NUMERICALQUALITY]
+  [RADICAL]
+ENDEngine
+
+eor
+
+cp ams.results/ams.rkf $SLURM_SUBMIT_DIR/${SLURM_JOB_NAME}.ams.rkf
+cp ams.results/adf.rkf $SLURM_SUBMIT_DIR/${SLURM_JOB_NAME}.adf.rkf
+cp ams.results/ams.log $SLURM_SUBMIT_DIR/${SLURM_JOB_NAME}.log
+sleep 5
+rm -r ams.results
+
+amsreport $SLURM_SUBMIT_DIR/${SLURM_JOB_NAME}.adf.rkf geometry-a* > $SLURM_SUBMIT_DIR/output.xyz

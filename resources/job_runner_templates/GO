@@ -4,7 +4,7 @@
 #SBATCH --ntasks-per-node=[CORES]
 #SBATCH --partition=tc
 
-echo "== Starting run at $(date)"
+echo "== Starting GO run at $(date)"
 echo "== Job ID: ${SLURM_JOBID}"
 echo "== Node list: ${SLURM_NODELIST}"
 echo "== Submit dir. : ${SLURM_SUBMIT_DIR}"
@@ -27,7 +27,7 @@ Task GeometryOptimization
 
 System
   Atoms
-     [ATOMS]
+[ATOMS]
   End
 End
 
@@ -75,16 +75,6 @@ System
   Atoms
      ${PREOPT_ATOMS}
   End
-End
-
-Properties
-  NormalModes Yes
-End
-NormalModes
-  ReScanFreqRange -10000000.0 20.0 
-End
-PESPointCharacter
-    NegativeFrequenciesTolerance -30
 End
 
 Engine ADF

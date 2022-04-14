@@ -1,0 +1,12 @@
+reaction=achiral_radical_addition
+stationary_point=TS
+TSRC_idx=2_10
+radical=True
+sorted_substituents=Et_Bz_TiCl4
+R1=Et
+R2=Bz
+Rcat=TiCl4
+enantiomer=N/A
+plane_idx=1_2_3
+align_idx=2_1
+center_idx=1

@@ -35,7 +35,7 @@ def define_parameters():
 		'EDA_bonding',
 		'EDA_elstat',
 		'EDA_oi',
-		# 'AA_mulliken',
+		'AA_mulliken',
 		'AA_eldens',
 		'AA_hirshfeld',
 		'AA_voronoi',
@@ -153,23 +153,23 @@ def read_data(infile=paths.training_data):
 
 def plot_trend(param, colors=None, labels=None, 
 		xunit='', yunit='kcal/mol', 
-		xscale=1, yscale=1,
+		xscale=1, yscale=h2k(1),
 		fit=True):
 
 	used_labels = set()
 	X = get_column(param)
 	Y = get_column('Eact')
 	
-	oi = outlier_idx(Y) + outlier_idx(X)
-	X = np.delete(X, oi)
-	Y = np.delete(Y, oi)
-	colors = np.delete(colors, oi, axis=0)
-	labels = np.delete(labels, oi)
+	# oi = outlier_idx(Y) + outlier_idx(X)
+	# X = np.delete(X, oi)
+	# Y = np.delete(Y, oi)
+	# colors = np.delete(colors, oi, axis=0)
+	# labels = np.delete(labels, oi)
 
-	X, X_norm_data = MLutils.prepare_data(X, False, True)
-	Y, Y_norm_data = MLutils.prepare_data(Y)
+	# X, X_norm_data = MLutils.prepare_data(X, False, True)
+	# Y, Y_norm_data = MLutils.prepare_data(Y)
 
-	X = MLutils.unprepare_data(X, X_norm_data)
+	# X = MLutils.unprepare_data(X, X_norm_data)
 
 	for i in range(X.size):
 		x = X[i] * xscale
@@ -218,6 +218,12 @@ def get_all_columns():
 	c = np.array([[float(d[p]) for d in data] for p in ps]).T
 	return c
 
+
+def tf_dataset():
+	import tensorflow.data as tfdata
+	print(data)
+
+
 generate_data()
 data = read_data()
 
@@ -238,6 +244,17 @@ if __name__ == '__main__':
 	labels = [r.substituents['R2'] for r in res]
 
 	plt.subplot(2,2,1)
+	plot_trend('EDA_oi',  colors=colors, labels=labels, xunit='Ha')
+	plt.subplot(2,2,2)
+	plot_trend('EDA_pauli', colors=colors, labels=labels, xunit='Ha', xscale=1)
+	plt.subplot(2,2,3)
+	plot_trend('EDA_elstat',  colors=colors, labels=labels, xunit='Ha')
+	plt.subplot(2,2,4)
+	plot_trend('EDA_bonding', colors=colors, labels=labels, xunit='Ha', xscale=1)
+	plt.legend()
+	plt.show()
+
+	plt.subplot(2,2,1)
 	plot_trend('HOMO_coeff',  colors=colors, labels=labels)
 	plt.subplot(2,2,2)
 	plot_trend('HOMO_energy', colors=colors, labels=labels, xunit='eV', xscale=1)
@@ -249,12 +266,12 @@ if __name__ == '__main__':
 	plt.show()
 
 	plt.subplot(2,2,1)
-	plot_trend('AA_mulliken',  colors=colors, labels=labels, xunit='a.u.')
+	plot_trend('AA_mulliken', colors=colors, labels=labels, xunit='a.u.')
 	plt.subplot(2,2,2)
-	plot_trend('AA_eldens', colors=colors, labels=labels, xunit='a.u.')
+	plot_trend('AA_eldens',   colors=colors, labels=labels, xunit='a.u.')
 	plt.subplot(2,2,3)
-	plot_trend('AA_hirshfeld',  colors=colors, labels=labels, xunit='a.u.')
+	plot_trend('AA_hirshfeld',colors=colors, labels=labels, xunit='a.u.')
 	plt.subplot(2,2,4)
-	plot_trend('AA_voronoi', colors=colors, labels=labels, xunit='a.u.')
+	plot_trend('AA_voronoi',  colors=colors, labels=labels, xunit='a.u.')
 	plt.legend()
 	plt.show()

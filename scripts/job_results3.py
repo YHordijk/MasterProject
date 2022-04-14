@@ -394,10 +394,10 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
             plt.plot(virtual_active_cont_norm)
 
             #select highest contribution
-            best_occupied_idx = occupied_active_cont_norm.index(max(occupied_active_cont_norm))
+            # best_occupied_idx = occupied_active_cont_norm.index(max(occupied_active_cont_norm))
             #select first non-zero contribution
             
-            best_occupied_energy = mo_energy[best_occupied_idx]
+            
 
             for homo in occupied_active_cont[::-1]:
                 if homo > 1e-6:
@@ -406,8 +406,10 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
                 if lumo > 1e-6:
                     best_virtual_idx = virtual_active_cont.index()
 
+            best_occupied_energy = mo_energy[best_occupied_idx]
+
             # best_virtual_idx = virtual_active_cont_norm.index(max(virtual_active_cont_norm))
-            # best_virtual_energy = mo_energy[best_virtual_idx+len(occupied_active_cont)]
+            best_virtual_energy = mo_energy[best_virtual_idx+len(occupied_active_cont)]
             # plt.show()
 
             if not silent:

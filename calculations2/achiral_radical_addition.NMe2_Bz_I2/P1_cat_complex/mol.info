@@ -1,0 +1,12 @@
+reaction=achiral_radical_addition
+stationary_point=P1_cat_complex
+TSRC_idx=N/A
+radical=True
+sorted_substituents=NMe2_Bz_I2
+R1=NMe2
+R2=Bz
+Rcat=I2
+enantiomer=N/A
+plane_idx=1_2_3
+align_idx=2_1
+center_idx=1

@@ -1,0 +1,8 @@
+reaction=achiral_radical_addition
+stationary_point=rad
+TSRC_idx=N/A
+radical=True
+sorted_substituents=
+enantiomer=N/A
+plane_idx=0_2_3
+center_idx=1

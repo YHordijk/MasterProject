@@ -1,0 +1,5 @@
+reaction=achiral_radical_addition
+sorted_substituents=NMe2_Bz_ZnCl2
+R1=NMe2
+R2=Bz
+Rcat=ZnCl2

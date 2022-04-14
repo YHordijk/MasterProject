@@ -1,0 +1,155 @@
+#!/bin/bash
+#SBATCH -N 1
+#SBATCH -t 240:00:00
+#SBATCH --ntasks-per-node=64
+#SBATCH --partition=tc
+
+echo "== Starting GO run at $(date)"
+echo "== Job ID: ${SLURM_JOBID}"
+echo "== Node list: ${SLURM_NODELIST}"
+echo "== Submit dir. : ${SLURM_SUBMIT_DIR}"
+echo "== Scratch dir. : ${TMPDIR}"
+
+
+module load ams
+module list
+
+
+
+echo "========= PREOPTIMIZING ========="
+# This is the pre-optimization step
+# First use low level of theory (DZP, numerical quality normal)
+# Extract the structure using amsreport and save it to a file
+# Read in the structure skipping the first row and inputting it in the next run
+$AMSBIN/ams <<eor>$SLURM_SUBMIT_DIR/${SLURM_JOB_NAME}_preopt.out
+
+Task GeometryOptimization
+
+System
+  Atoms
+    H 	 1.55360701	 2.09570281	 0.38173816
+    C 	 3.55291436	 1.14853919	 0.21435871
+    C 	 2.07078916	 1.14952439	 0.21453964
+    C 	 1.24159165	 0.00000000	 0.00000000
+    O 	 0.00000000	 0.00000000	 0.00000000
+    H 	 3.92338172	 0.12754951	 0.09632663
+    H 	 5.26234187	 1.81851085	 1.37700785
+    H 	 3.90364942	 1.26299971	 2.36806486
+    C 	 4.17109932	 1.81120622	 1.45947707
+    H 	 3.83380124	 2.84662905	 1.57520481
+    N 	 1.96213229	-1.26000036	-0.23263766
+    C 	 1.45925280	-1.83815411	-1.47861298
+    C 	 1.70787187	-2.13701131	 0.91008167
+    H 	 1.65019907	-1.13031209	-2.28557397
+    H 	 0.38225372	-2.04657594	-1.42683242
+    H 	 1.99234221	-2.76676492	-1.68634422
+    H 	 2.24827496	-3.07441368	 0.77261928
+    H 	 0.63781615	-2.35377955	 1.02857303
+    H 	 2.07639234	-1.64262570	 1.80922702
+    C 	 4.02311034	 1.93208753	-1.02522499
+    C 	 5.52365031	 2.01654758	-1.02415503
+    C 	 6.32383162	 0.76181899	-1.04754152
+    C 	 7.66696648	 0.81572902	-1.04698360
+    C 	 8.35750532	 2.12709902	-1.02303671
+    C 	 7.64118597	 3.26336800	-1.00186085
+    C 	 6.15823549	 3.20812069	-1.00239807
+    H 	 3.68354199	 1.40051002	-1.93887738
+    H 	 3.55246161	 2.93871918	-1.00651827
+    H 	 5.82353758	-0.20166522	-1.06513796
+    H 	 8.24880914	-0.10028028	-1.06405605
+    H 	 9.44225372	 2.16646827	-1.02266298
+    H 	 8.14521792	 4.22430690	-0.98431254
+    H 	 5.59800607	 4.13828093	-0.98507180
+    Al	-1.57800213	 2.55145238	 0.00000000
+    F 	-0.80348902	 3.03046714	-1.33678221
+    F 	-0.98066398	 2.92088937	 1.45705724
+    F 	-2.94985340	 1.70300064	-0.12027504
+
+  End
+End
+
+Engine ADF
+  
+  BASIS
+     type TZ2P
+     core none
+  END
+  
+  SYMMETRY NOSYM
+  
+  SCF
+     ITERATIONS 99
+     Converge 1.0e-6 
+  END
+  
+  XC
+    GGA BLYP
+    DISPERSION GRIMME3 BJDAMP
+  END
+  
+  NumericalQuality NORMAL
+  
+  SpinPolarization 1
+  Unrestricted Yes
+
+ENDEngine
+
+eor
+
+cp ams.results/ams.rkf $SLURM_SUBMIT_DIR/${SLURM_JOB_NAME}_preopt.ams.rkf
+cp ams.results/adf.rkf $SLURM_SUBMIT_DIR/${SLURM_JOB_NAME}_preopt.adf.rkf
+cp ams.results/ams.log $SLURM_SUBMIT_DIR/${SLURM_JOB_NAME}_preopt.log
+sleep 5
+rm -r ams.results
+
+amsreport $SLURM_SUBMIT_DIR/${SLURM_JOB_NAME}_preopt.adf.rkf geometry-a* > $SLURM_SUBMIT_DIR/preopt.xyz
+PREOPT_ATOMS=$(awk -v c=1 'i++ < c {next};1' $SLURM_SUBMIT_DIR/preopt.xyz)
+
+
+echo "========= OPTIMIZING ========="
+# HIGH QUALITY OPTIMIZATION
+$AMSBIN/ams <<eor>$SLURM_SUBMIT_DIR/$SLURM_JOB_NAME.out
+
+Task GeometryOptimization
+
+System
+  Atoms
+     ${PREOPT_ATOMS}
+  End
+End
+
+Engine ADF
+  
+  BASIS
+     type TZ2P
+     core none
+  END
+  
+  SYMMETRY NOSYM
+  
+  SCF
+     ITERATIONS 99
+     Converge 1.0e-6 
+  END
+  
+  XC
+    GGA BLYP
+    DISPERSION GRIMME3 BJDAMP
+  END
+  
+  NumericalQuality Good
+  
+  SpinPolarization 1
+  Unrestricted Yes
+
+ENDEngine
+
+eor
+
+cp ams.results/ams.rkf $SLURM_SUBMIT_DIR/${SLURM_JOB_NAME}.ams.rkf
+cp ams.results/adf.rkf $SLURM_SUBMIT_DIR/${SLURM_JOB_NAME}.adf.rkf
+cp ams.results/ams.log $SLURM_SUBMIT_DIR/${SLURM_JOB_NAME}.log
+sleep 5
+rm -r ams.results
+
+amsreport $SLURM_SUBMIT_DIR/${SLURM_JOB_NAME}.adf.rkf geometry-a* > $SLURM_SUBMIT_DIR/output.xyz

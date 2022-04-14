@@ -356,27 +356,27 @@ if __name__ == '__main__':
 	# plt.show()
 
 	plt.figure()
-	rxn_no_cat = Reaction('no_catalyst', {'R1':'H', 'R2':'Ph'})
+	# rxn_no_cat = Reaction('no_catalyst', {'R1':'H', 'R2':'Ph'})
 	rxns = [Reaction('achiral_catalyst', {'R1':'H', 'R2':'Ph', 'Rcat':Rcat}) for Rcat in ['AlF3', 'BF3', 'I2', 'SnCl4', 'TiCl4', 'ZnCl2']]
 	for rxn in rxns:
 		if not rxn.complete: continue
 		rxn.plot_reaction_profile(name=f'Cat={rxn.substituents["Rcat"]}')
 		# print(rxn, h2k(rxn.get_activation_energy()['']))
-	rxn_no_cat.plot_reaction_profile(name=f'No cat', format='--k')
+	# rxn_no_cat.plot_reaction_profile(name=f'No cat', format='--k')
 	plt.title('Achiral catalyst (R1=H, R2=Ph) @BLYP-D3(BJ)/TZ2P (Good)')
 	plt.xlabel(r'$\xi$')
 	plt.ylabel(r'$\Delta G \quad (kcal/mol)$')
 	# plt.show()
 
 	plt.figure()
-	rxn_no_cat = Reaction('no_catalyst', {'R1':'H', 'R2':'tBu'})
+	# rxn_no_cat = Reaction('no_catalyst', {'R1':'H', 'R2':'tBu'})
 	rxns = [Reaction('achiral_catalyst', {'R1':'H', 'R2':'tBu', 'Rcat':Rcat}) for Rcat in ['AlF3', 'BF3', 'I2', 'SnCl4', 'TiCl4', 'ZnCl2']]
 	for rxn in rxns:
 		if not rxn.complete: continue
 		rxn.plot_reaction_profile(name=f'Cat={rxn.substituents["Rcat"]}')
 		# print(rxn, h2k(rxn.get_activation_energy()['']))
-	rxn_no_cat.plot_reaction_profile(name=f'No cat', format='--k')
-	rxn_no_cat.print_energies()
+	# rxn_no_cat.plot_reaction_profile(name=f'No cat', format='--k')
+	# rxn_no_cat.print_energies()
 	plt.title('Achiral catalyst (R1=H, R2=tBu) @BLYP-D3(BJ)/TZ2P (Good)')
 	plt.xlabel(r'$\xi$')
 	plt.ylabel(r'$\Delta G \quad (kcal/mol)$')

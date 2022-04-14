@@ -1,0 +1,5 @@
+reaction=achiral_radical_addition
+sorted_substituents=Et_Bz_AlF3
+R1=Et
+R2=Bz
+Rcat=AlF3

@@ -27,7 +27,7 @@ Task TransitionStateSearch
 
 TransitionStateSearch
   ReactionCoordinate
-    [TSRC]
+[TSRC]
   End
 End
 

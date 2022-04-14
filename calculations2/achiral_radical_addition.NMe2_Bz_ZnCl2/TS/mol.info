@@ -1,0 +1,12 @@
+reaction=achiral_radical_addition
+stationary_point=TS
+TSRC_idx=2_10
+radical=True
+sorted_substituents=NMe2_Bz_ZnCl2
+R1=NMe2
+R2=Bz
+Rcat=ZnCl2
+enantiomer=N/A
+plane_idx=1_2_3
+align_idx=2_1
+center_idx=1

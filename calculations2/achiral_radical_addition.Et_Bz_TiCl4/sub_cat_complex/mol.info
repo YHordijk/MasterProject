@@ -1,0 +1,15 @@
+reaction=achiral_radical_addition
+stationary_point=sub_cat_complex
+TSRC_idx=N/A
+radical=False
+sorted_substituents=Et_Bz_TiCl4
+R2=Bz
+R1=Et
+Rcat=TiCl4
+enantiomer=N/A
+active_atom_idx=2
+plane_idx=1_2_3
+align_idx=2_1
+center_idx=1
+frag1idx=1_2_3_4_5_6_7_8_9_10_11_12_13_14_15_16_17_18_19_20_21_22_23_24_25_26_27
+frag2idx=28_29_30_31_32

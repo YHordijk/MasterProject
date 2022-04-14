@@ -476,8 +476,8 @@ class Screen:
 		def copy_atoms():
 			p = self.mols[state['molidx']]
 			p.original_original_pos[:,1] *= -1
-			print(p.__repr__())
-			pyperclip.copy(p.__repr__())
+			# print(p.__repr__())
+			pyperclip.copy(p.get_xyz())
 			p.original_original_pos[:,1] *= -1
 			print('Copied atoms!')
 
