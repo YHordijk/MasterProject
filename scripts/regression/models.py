@@ -262,7 +262,7 @@ class SK_KRR(KRR):
 					 'coef0': skopt.space.Real(-5, 5)}
 
 		search = skopt.BayesSearchCV(self.model, space, n_iter=iters, cv=3, verbose=0, scoring='r2')
-		print(f'Optimizing model {self.model}')
+		print(f'Optimizing model {self.model} using Bayesian Search')
 		search.fit(X, Y, callback=on_step)
 		print(f'found best parameters with score {search.best_score_}:')
 		for p, v in search.best_params_.items():

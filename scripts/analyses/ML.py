@@ -474,8 +474,8 @@ def optimize(model='KRR', kernel='rbf', out_path_idx=0):
 		Ytrain = 	  MLutils.unprepare_data(Ytrain, Y_norm_data)      * utility.hartree2kcalmol(1)
 		Ytest = 	  MLutils.unprepare_data(Ytest, Y_norm_data)       * utility.hartree2kcalmol(1)
 
-		plt.scatter(Ytrain, Ypred_train)
-		plt.scatter(Ytest, Ypred_test)
+		plt.scatter(Ytrain, Ypred_train, label='Training set')
+		plt.scatter(Ytest, Ypred_test, label='Testing set')
 		plt.xlabel(r'$E^‡$ (kcal/mol)')
 		plt.ylabel(r'$E^‡_{pred}$ (kcal/mol)')
 		plt.title(f'Prediction performance for {ML}')
@@ -485,6 +485,7 @@ def optimize(model='KRR', kernel='rbf', out_path_idx=0):
 
 		plt.gca().set_xlim(mi, ma)
 		plt.gca().set_ylim(mi, ma)
+		plt.legend()
 		plt.plot((ma, mi), (ma, mi), 'k--')
 
 
@@ -498,9 +499,11 @@ def optimize(model='KRR', kernel='rbf', out_path_idx=0):
 	oi = MLparams.outlier_idx(X,2.5) + MLparams.outlier_idx(Y,2.5)
 	X = np.delete(X, oi, axis=0)
 	Y = np.delete(Y, oi, axis=0)
+	print(f'Removed {len(oi)} outliers')
+
 	X, X_norm_data = MLutils.prepare_data(X, True, True)
 	Y, Y_norm_data = MLutils.prepare_data(Y, True, True)
-	print(f'Removed {len(oi)} outliers')
+	print(f'Normalized data')
 
 	
 

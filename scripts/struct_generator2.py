@@ -7,6 +7,22 @@ except: pass
 join = os.path.join
 
 
+def get_mol_info(template, stationary_point):
+    molfile = join(paths.SGT, template, f'{stationary_point}.xyz')
+
+    with open(molfile) as mol:
+        flags = mol.readlines()[1]
+        return [f.strip().split('=') for f in flags.split()]
+
+
+
+def get_meta_info(template):
+    template_meta = join(paths.SGT, template, 'meta.info')
+
+    with open(template_meta) as meta:
+        return [m.strip().split() for m in meta.readlines()]
+
+
 def get_mol(template, substituents, stationary_point):
     mols = generate_stationary_points(template, substituents)
     if stationary_point in mols:
@@ -205,7 +221,7 @@ def generate_stationary_points(template, substituents=None, keep_dummy=False):
         newm.add_molecule(mol)
         newm.delete_all_bonds()
         newm.guess_bonds()
-        print(newm)
+        # print(newm)
         frag1, frag2 = newm.separate()
         frag1coord = [a.coords for a in frag1.atoms]
         frag2coord = [a.coords for a in frag2.atoms]

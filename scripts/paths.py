@@ -9,6 +9,7 @@ results = 				os.path.join(master, 'results')
 training_data =			os.path.join(results, 'params.csv')
 calculations = 			os.path.join(master, 'calculations')
 calculations2 = 		os.path.join(master, 'calculations2')
+calculations_test =     os.path.join(master, 'calculations_test')
 results_table = 		os.path.join(results, 'master_results_table.csv')
 results_table_pretty = 	os.path.join(results, 'results_formatted.xlsx')
 
@@ -18,8 +19,26 @@ SGT = 					os.path.join(resources, 'struct_generator_templates')
 SGT_substituents = 		os.path.join(SGT, 'substituents')
 input_xyz = 			os.path.join(resources, 'input_xyz')
 opt_xyz = 				os.path.join(resources, 'opt_xyz')
+COSMO_radii =           os.path.join(resources, 'COSMO_radii')
+COSMO_rkf =             os.path.join(resources, 'COSMO_rkf')
 
-__all__ = [master, scripts, results, resources, input_xyz, results_table, calculations, calculations2, SGT, SGT_substituents, results_table_pretty, training_data]
+__all__ = [master, 
+		   scripts, 
+		   results, 
+		   resources, 
+		   input_xyz, 
+		   results_table, 
+		   calculations, 
+		   calculations2, 
+		   calculations_test, 
+		   SGT, 
+		   SGT_substituents, 
+		   results_table_pretty, 
+		   training_data,
+		   COSMO_radii,
+		   COSMO_rkf,
+		   ]
+
 def check_paths():
 	if not all(map(os.path.exists, __all__)):
 		print('[paths.py]: Warning, not all paths exist.')

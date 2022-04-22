@@ -7,7 +7,7 @@ join = os.path.join
 
 
 
-def run_frag_job(calc_path):
+def run_frag_job(calc_path, rerun=False):
     def run_job(file):
         start_script = f"""#!/bin/bash
 cd {os.path.dirname(file)}
@@ -115,7 +115,7 @@ sbatch {os.path.basename(file)}
 #                     run.write(line)
 
 
-def run_SP_job(calc_path):
+def run_SP_job(calc_path, rerun=False):
     def run_job(file):
         start_script = f"""#!/bin/bash
 cd {os.path.dirname(file)}
@@ -192,7 +192,8 @@ sbatch {os.path.basename(file)}
 
 
 def run_jobs(template, substituents={}, calc_dir=paths.calculations, phase='vacuum', 
-                test_mode=False, basis='DZP', functional='BLYP-D3(BJ)', numerical_quality='Good'):
+                test_mode=False, basis='DZP', functional='BLYP-D3(BJ)', numerical_quality='Good',
+                skip_hash_check=[]):
 
     assert basis in ['SZ', 'DZ', 'DZP', 'TZP', 'TZ2P', 'QZ4P']
     assert functional in ['OLYP', 'BLYP-D3(BJ)', 'M06L']
@@ -337,7 +338,7 @@ sbatch {os.path.basename(file)}
         # if mol_name != 'P2': continue
         mol.phase = phase
 
-        if utility.hash_collision(hash(mol), calc_dir):
+        if utility.hash_collision(hash(mol), calc_dir) and not mol_name in skip_hash_check:
             print(f'Hash collision detected {i} {mol_name}')
             continue
         Njobs += 1
@@ -373,9 +374,11 @@ sbatch {os.path.basename(file)}
 
     
 if __name__ == '__main__':
-    mode = 'GO'
+    mode = 'fragment'
     calc_dir = paths.calculations
-    test_mode = True
+    test_mode = False
+    skip_hash_check = ['sub_cat_complex', 'TS', 'P1_cat_complex']
+    skip_hash_check = []
 
 
     n = 0
@@ -384,10 +387,12 @@ if __name__ == '__main__':
         functional = 'BLYP-D3(BJ)'
         numerical_quality = 'Good'
 
-        for R1 in ['Et', 'NMe2']:
-            for R2 in ['Bz', 'NHMe', 'OEt', 'p-HOPh', 'm-HOPh', 'o-HOPh']:
-                for cat in ['I2', 'ZnCl2', 'TiCl4', 'BF3', 'AlF3', 'SnCl4']:
-                    n += run_jobs('achiral_catalyst', {'R1':R1, 'R2':R2, 'Rcat':cat}, phase='vacuum', calc_dir=calc_dir, test_mode=test_mode, basis=basis, functional=functional, numerical_quality=numerical_quality)
+        # for R1 in ['Et', 'NMe2']:
+        for R1 in ['H']:
+            # for R2 in ['Bz', 'NHMe', 'OEt', 'p-HOPh', 'm-HOPh', 'o-HOPh']:
+            for R2 in ['Ph']:
+                for cat in ['BF3']:
+                    n += run_jobs('achiral_catalyst', {'R1':R1, 'R2':R2, 'Rcat':cat}, phase='vacuum', calc_dir=calc_dir, test_mode=test_mode, basis=basis, functional=functional, numerical_quality=numerical_quality, skip_hash_check=skip_hash_check)
                     # time.sleep(1)
 
         # for R1  in ['NH2', 'Me', 'OMe']:
@@ -400,7 +405,24 @@ if __name__ == '__main__':
         filtered_dirs = []
         dirs = job_results3.get_all_run_dirs() 
         #filter sub_cat_complex stationary points for achiral_catalysts
-        filtered_dirs += [d for d in dirs if 'achiral_catalyst' in d and os.path.basename(d) in ['sub_cat_complex.002', 'sub_cat_complex']]
+        filtered_dirs += [d for d in dirs if 'achiral_catalyst' in d and os.path.basename(d).startswith('sub_cat_complex')]
+        filtered_dirs = ['/scistor/tc/yhk800/MasterProject/calculations/achiral_catalyst.NMe2_m-HOPh_I2.vacuum/sub_cat_complex',
+                         '/scistor/tc/yhk800/MasterProject/calculations/achiral_catalyst.NMe2_m-HOPh_AlF3.vacuum/sub_cat_complex',
+                         '/scistor/tc/yhk800/MasterProject/calculations/achiral_catalyst.NMe2_m-HOPh_BF3.vacuum/sub_cat_complex',
+                         '/scistor/tc/yhk800/MasterProject/calculations/achiral_catalyst.NMe2_m-HOPh_TiCl4.vacuum/sub_cat_complex',
+                         '/scistor/tc/yhk800/MasterProject/calculations/achiral_catalyst.Et_m-HOPh_AlF3.vacuum/sub_cat_complex',
+                         '/scistor/tc/yhk800/MasterProject/calculations/achiral_catalyst.Et_m-HOPh_BF3.vacuum/sub_cat_complex',
+                         '/scistor/tc/yhk800/MasterProject/calculations/achiral_catalyst.Et_m-HOPh_I2.vacuum/sub_cat_complex',
+                         '/scistor/tc/yhk800/MasterProject/calculations/achiral_catalyst.Et_m-HOPh_SnCl4.vacuum/sub_cat_complex',
+                         '/scistor/tc/yhk800/MasterProject/calculations/achiral_catalyst.Et_m-HOPh_TiCl4.vacuum/sub_cat_complex',
+                         '/scistor/tc/yhk800/MasterProject/calculations/achiral_catalyst.Et_m-FPh_AlF3.vacuum/sub_cat_complex',
+                         '/scistor/tc/yhk800/MasterProject/calculations/achiral_catalyst.NH2_o-FPh_AlF3.vacuum/sub_cat_complex',
+                         '/scistor/tc/yhk800/MasterProject/calculations/achiral_catalyst.NMe2_m-FPh_AlF3.vacuum/sub_cat_complex',
+                         '/scistor/tc/yhk800/MasterProject/calculations/achiral_catalyst.NMe2_m-FPh_BF3.vacuum/sub_cat_complex',
+                         '/scistor/tc/yhk800/MasterProject/calculations/achiral_catalyst.NMe2_o-HOPh_SnCl4.vacuum/sub_cat_complex',
+                         '']
+                         #/scistor/tc/yhk800/MasterProject/calculations/achiral_catalyst.NMe2_NHMe_BF3.vacuum/TS
+        # filtered_dirs += [d for d in dirs if 'no_catalyst' in d and os.path.basename(d).startswith('sub')]
         n = 0
         for d in filtered_dirs:
             # if not os.path.exists(join(d, 'SP.run.out')):
@@ -415,12 +437,22 @@ if __name__ == '__main__':
         filtered_dirs = []
         dirs = job_results3.get_all_run_dirs() 
         #filter sub_cat_complex stationary points for achiral_catalysts
-        filtered_dirs += [d for d in dirs if 'achiral_catalyst' in d and os.path.basename(d) in ['sub_cat_complex.002', 'sub_cat_complex']]
-        filtered_dirs = ['/scistor/tc/yhk800/MasterProject/calculations/achiral_catalyst.H_Ph_AlF3.vacuum/sub_cat_complex',
-                         '/scistor/tc/yhk800/MasterProject/calculations/achiral_catalyst.H_Ph_I2.vacuum/sub_cat_complex',
-                         '/scistor/tc/yhk800/MasterProject/calculations/achiral_catalyst.H_tBu_BF3.vacuum/sub_cat_complex',
-                         '/scistor/tc/yhk800/MasterProject/calculations/achiral_catalyst.H_Ph_BF3.vacuum/sub_cat_complex',
-                         '/scistor/tc/yhk800/MasterProject/calculations/achiral_catalyst.H_Ph_SnCl4.vacuum/sub_cat_complex']
+        filtered_dirs += [d for d in dirs if 'achiral_catalyst' in d and os.path.basename(d).startswith('sub_cat_complex')]
+        filtered_dirs = ['/scistor/tc/yhk800/MasterProject/calculations/achiral_catalyst.NMe2_m-HOPh_I2.vacuum/sub_cat_complex',
+                         '/scistor/tc/yhk800/MasterProject/calculations/achiral_catalyst.NMe2_m-HOPh_AlF3.vacuum/sub_cat_complex',
+                         '/scistor/tc/yhk800/MasterProject/calculations/achiral_catalyst.NMe2_m-HOPh_BF3.vacuum/sub_cat_complex',
+                         '/scistor/tc/yhk800/MasterProject/calculations/achiral_catalyst.NMe2_m-HOPh_TiCl4.vacuum/sub_cat_complex',
+                         '/scistor/tc/yhk800/MasterProject/calculations/achiral_catalyst.Et_m-HOPh_AlF3.vacuum/sub_cat_complex',
+                         '/scistor/tc/yhk800/MasterProject/calculations/achiral_catalyst.Et_m-HOPh_BF3.vacuum/sub_cat_complex',
+                         '/scistor/tc/yhk800/MasterProject/calculations/achiral_catalyst.Et_m-HOPh_I2.vacuum/sub_cat_complex',
+                         '/scistor/tc/yhk800/MasterProject/calculations/achiral_catalyst.Et_m-HOPh_SnCl4.vacuum/sub_cat_complex',
+                         '/scistor/tc/yhk800/MasterProject/calculations/achiral_catalyst.Et_m-HOPh_TiCl4.vacuum/sub_cat_complex',
+                         '/scistor/tc/yhk800/MasterProject/calculations/achiral_catalyst.Et_m-FPh_AlF3.vacuum/sub_cat_complex',
+                         '/scistor/tc/yhk800/MasterProject/calculations/achiral_catalyst.NH2_o-FPh_AlF3.vacuum/sub_cat_complex',
+                         '/scistor/tc/yhk800/MasterProject/calculations/achiral_catalyst.NMe2_m-FPh_AlF3.vacuum/sub_cat_complex',
+                         '/scistor/tc/yhk800/MasterProject/calculations/achiral_catalyst.NMe2_m-FPh_BF3.vacuum/sub_cat_complex',
+                         '/scistor/tc/yhk800/MasterProject/calculations/achiral_catalyst.NMe2_o-HOPh_SnCl4.vacuum/sub_cat_complex',
+                         '']
         n = 0
         for d in filtered_dirs:
             # if not os.path.exists(join(d, 'frag.run.out')):

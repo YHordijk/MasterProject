@@ -390,31 +390,19 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
             occupied_active_cont_norm = [c[active_2pz_idx]/c.sum() for c in occupied_coeff]
             virtual_active_cont_norm  = [c[active_2pz_idx]/c.sum() for c in virtual_coeff]
 
-            plt.plot(occupied_active_cont_norm)
-            plt.plot(virtual_active_cont_norm)
-
-            #select highest contribution
-            # best_occupied_idx = occupied_active_cont_norm.index(max(occupied_active_cont_norm))
-            #select first non-zero contribution
-            
-            
-
             for homo in occupied_active_cont[::-1]:
                 if homo > 1e-6:
                     best_occupied_idx = occupied_active_cont.index(homo)
+                    break
             for lumo in virtual_active_cont:
                 if lumo > 1e-6:
-                    best_virtual_idx = virtual_active_cont.index()
+                    best_virtual_idx = virtual_active_cont.index(lumo)
+                    break
 
             best_occupied_energy = mo_energy[best_occupied_idx]
-
-            # best_virtual_idx = virtual_active_cont_norm.index(max(virtual_active_cont_norm))
             best_virtual_energy = mo_energy[best_virtual_idx+len(occupied_active_cont)]
-            # plt.show()
 
             if not silent:
-                print(occupied_active_cont)
-
                 print(f'Biggest contribution in occupied orbital no. {best_occupied_idx+1}: {occupied_active_cont[best_occupied_idx]*100:.2f}%, E={best_occupied_energy:.3f} ha')
                 print(f'Biggest contribution in virtual  orbital no. {best_virtual_idx+1}({best_virtual_idx+len(occupied_active_cont)+1}): {virtual_active_cont[best_virtual_idx]*100:.2f}%, E={best_virtual_energy:.3f} ha' )
             if plot:
@@ -436,6 +424,7 @@ def generate_result(calc_path, calc_dir=paths.calculations, res_dir=paths.result
 
         except:
             print(files['calc_path'])
+            raise
         return SP
 
     def fix_xyz_files():
@@ -498,7 +487,9 @@ def get_all_results(calc_dir=paths.calculations, res_dir=paths.results, regenera
 
     calc_path_dict = {}
     calc_paths = get_all_run_dirs(calc_dir)
+    print('Checking/generating results ...')
     for i, calc_path in enumerate(calc_paths):
+        utility.loading_bar(i, len(calc_paths)-1, 50)
         res_path = join(res_dir, os.path.relpath(calc_path, calc_dir))
         calc_path_dict[res_path] = calc_path
         if check_regenerate(calc_path, res_path):
@@ -509,6 +500,7 @@ def get_all_results(calc_dir=paths.calculations, res_dir=paths.results, regenera
                 print(type(e).__name__, e)
     res = []
     res_paths = get_all_result_dirs(res_dir)
+    print('Loading results ...')
     for i, res_path in enumerate(res_paths):
         utility.loading_bar(i, len(res_paths)-1, 50)
         r = Result(res_path, calc_path=calc_path_dict.get(res_path, None))
@@ -516,6 +508,8 @@ def get_all_results(calc_dir=paths.calculations, res_dir=paths.results, regenera
             res.append(r)
 
     return res
+
+
 
 
 
@@ -794,7 +788,8 @@ if __name__ == '__main__':
     calc_dir = join(paths.master, 'calculations_test')
     calc_dir = paths.calculations
     res = get_all_results(calc_dir=calc_dir, regenerate_all=True)
-    # summarize_calculations(res)
+    # generate_result(r"D:\Users\Yuman\Desktop\MasterProject\calculations\achiral_catalyst.Cl_Ph_TiCl4.vacuum\sub_cat_complex")
+    summarize_calculations(res)
     print_failed(res)
     print_canceled(res)
 

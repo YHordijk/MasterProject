@@ -1,32 +1,32 @@
 {
   "files": {
-    "calc_path": "achiral_catalyst.Me_o-FPh_SnCl4.vacuum/sub_cat_complex",
-    "res_path": "achiral_catalyst.Me_o-FPh_SnCl4.vacuum/sub_cat_complex",
-    "EDA run script": "frag.run",
-    "SP amsrkf": "SP.ams.rkf",
-    "run info": "run.info",
-    "frag1 adfrkf": "Fragment_1.adf.rkf",
-    "frag2 rkf": "Fragment_2.rkf",
-    "SP adfrkf": "SP.adf.rkf",
-    "input xyz": "input.xyz",
-    "GO out": "GO.achiral_catalyst.Me_o-FPh_SnCl4.sub_cat_complex.out",
-    "GO run script": "GO.achiral_catalyst.Me_o-FPh_SnCl4.sub_cat_complex",
-    "SP log": "SP.log",
-    "frag1 out": "Fragment_1.out",
-    "frag2 log": "Fragment_2.log",
-    "SP out": "SP.run.out",
-    "frag2 adfrkf": "Fragment_2.adf.rkf",
-    "EDA out": "frag.run.out",
-    "frag1 log": "Fragment_1.log",
-    "frag2 out": "Fragment_2.out",
+    "calc_path": "achiral_catalyst.Me_o-FPh_SnCl4.vacuum\\sub_cat_complex",
+    "res_path": "achiral_catalyst.Me_o-FPh_SnCl4.vacuum\\sub_cat_complex",
     "EDA adfrkf": "EDA.adf.rkf",
-    "GO adfrkf": "GO.achiral_catalyst.Me_o-FPh_SnCl4.sub_cat_complex.adf.rkf",
-    "GO log": "GO.achiral_catalyst.Me_o-FPh_SnCl4.sub_cat_complex.log",
-    "SP run script": "SP.run",
-    "frag1 rkf": "Fragment_1.rkf",
+    "EDA amsrkf": "EDA.ams.rkf",
     "EDA log": "EDA.log",
+    "EDA run script": "frag.run",
+    "EDA out": "frag.run.out",
+    "frag1 adfrkf": "Fragment_1.adf.rkf",
+    "frag1 log": "Fragment_1.log",
+    "frag1 out": "Fragment_1.out",
+    "frag1 rkf": "Fragment_1.rkf",
+    "frag2 adfrkf": "Fragment_2.adf.rkf",
+    "frag2 log": "Fragment_2.log",
+    "frag2 out": "Fragment_2.out",
+    "frag2 rkf": "Fragment_2.rkf",
+    "GO run script": "GO.achiral_catalyst.Me_o-FPh_SnCl4.sub_cat_complex",
+    "GO adfrkf": "GO.achiral_catalyst.Me_o-FPh_SnCl4.sub_cat_complex.adf.rkf",
     "GO amsrkf": "GO.achiral_catalyst.Me_o-FPh_SnCl4.sub_cat_complex.ams.rkf",
-    "EDA amsrkf": "EDA.ams.rkf"
+    "GO log": "GO.achiral_catalyst.Me_o-FPh_SnCl4.sub_cat_complex.log",
+    "GO out": "GO.achiral_catalyst.Me_o-FPh_SnCl4.sub_cat_complex.out",
+    "input xyz": "input.xyz",
+    "run info": "run.info",
+    "SP adfrkf": "SP.adf.rkf",
+    "SP amsrkf": "SP.ams.rkf",
+    "SP log": "SP.log",
+    "SP run script": "SP.run",
+    "SP out": "SP.run.out"
   },
   "info": {
     "substituents": [
@@ -370,8 +370,8 @@
     "aligned coords": [
       [
         3.615660079277422,
-        1.7526331155207686,
-        0.002411147202904862
+        1.7526331155207688,
+        0.0024111472029048064
       ],
       [
         0.0,
@@ -379,8 +379,8 @@
         0.0
       ],
       [
-        2.5675426154468255,
-        4.440892098500626e-16,
+        2.5675426154468264,
+        4.579669976578771e-16,
         0.0
       ],
       [
@@ -389,94 +389,94 @@
         0.0
       ],
       [
-        6.432409240952344,
-        -2.256604307968553,
+        6.432409240952345,
+        -2.2566043079685527,
         -0.0027922698019073877
       ],
       [
-        -0.9683361158924537,
-        -1.8181539579911112,
-        -0.0023077478049778333
+        -0.9683361158924519,
+        -1.818153957991111,
+        -0.0023077478049776667
       ],
       [
-        -4.355469840338003,
-        1.6562147169752586,
-        0.001188079478087134
+        -4.355469840338005,
+        1.6562147169752588,
+        0.001188079478087023
       ],
       [
-        -6.128316391426456,
+        -6.128316391426457,
         3.596472060558573,
-        0.010060791150394544
+        0.01006079115039421
       ],
       [
         -5.31600176022452,
         6.1164609135081776,
-        0.02018737893634287
+        0.020187378936342926
       ],
       [
-        -2.7339949232377805,
+        -2.7339949232377823,
         6.67756880546535,
-        0.02155255224490199
+        0.021552552244901824
       ],
       [
-        -0.9983150410065225,
-        4.7106066586212805,
+        -0.9983150410065242,
+        4.71060665862128,
         0.014707081077107664
       ],
       [
         -1.7191830589305699,
-        2.1386833412652955,
-        0.0042155777949119955
+        2.1386833412652964,
+        0.0042155777949118844
       ],
       [
         -4.980586507828637,
-        -0.3025975976497519,
-        -0.0066592361676037215
+        -0.30259759764975214,
+        -0.0066592361676034995
       ],
       [
         -8.13410718774525,
-        3.1563195632760954,
-        0.008847368846287507
+        3.1563195632760945,
+        0.008847368846287562
       ],
       [
-        -6.685048860814124,
-        7.648210918953115,
-        0.026162926533797093
+        -6.685048860814126,
+        7.648210918953114,
+        0.026162926533797037
       ],
       [
-        -2.0461953506797723,
-        8.61197532871722,
-        0.028371042198708507
+        -2.046195350679774,
+        8.611975328717218,
+        0.028371042198708396
       ],
       [
         1.4999723738488306,
-        5.333779586809936,
-        0.017495255995163717
+        5.333779586809935,
+        0.017495255995163606
       ],
       [
         2.8230491465617424,
-        -4.893201448334425,
-        0.0069581356759044755
+        -4.893201448334424,
+        0.006958135675904753
       ],
       [
-        1.591626751320196,
-        -5.120527602585861,
+        1.591626751320197,
+        -5.1205276025858595,
         -1.6442677026843933
       ],
       [
         1.6583026946546253,
         -5.136801935542206,
-        1.704334085603182
+        1.7043340856031821
       ],
       [
-        4.292771766191653,
+        4.292771766191654,
         -6.339567217067263,
-        -0.027100400466766594
+        -0.027100400466766428
       ],
       [
         9.535885720462145,
         1.070896391724673,
-        -0.023284392880438376
+        -0.023284392880438487
       ],
       [
         7.5470590986488375,
@@ -489,14 +489,14 @@
         -3.894311258776739
       ],
       [
-        12.674312546574239,
-        4.323417396489324,
-        -0.046783041845674556
+        12.674312546574237,
+        4.323417396489325,
+        -0.04678304184567467
       ],
       [
-        12.214620665072704,
-        -2.497136023654619,
-        -0.021976799347392217
+        12.214620665072706,
+        -2.4971360236546185,
+        -0.021976799347392384
       ]
     ],
     "aligned xyz": "aligned.xyz",
@@ -1518,9 +1518,9 @@
       0.00047946406751664676,
       0.21477313992702907
     ],
-    "occupied idx": 90,
-    "occupied energy": -0.31195055107340464,
-    "occupied cont": 0.4456004328590232,
+    "occupied idx": 101,
+    "occupied energy": -0.24504792667304015,
+    "occupied cont": 0.21477313992702907,
     "virtual all contributions": [
       0.566573081347042,
       0.0023613101192807868,

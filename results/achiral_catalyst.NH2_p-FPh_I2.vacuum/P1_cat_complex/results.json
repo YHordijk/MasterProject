@@ -1,14 +1,14 @@
 {
   "files": {
-    "calc_path": "achiral_catalyst.NH2_p-FPh_I2.vacuum/P1_cat_complex",
-    "res_path": "achiral_catalyst.NH2_p-FPh_I2.vacuum/P1_cat_complex",
-    "input xyz": "input.xyz",
-    "GO out": "GO.achiral_catalyst.NH2_p-FPh_I2.P1_cat_complex.out",
-    "run info": "run.info",
+    "calc_path": "achiral_catalyst.NH2_p-FPh_I2.vacuum\\P1_cat_complex",
+    "res_path": "achiral_catalyst.NH2_p-FPh_I2.vacuum\\P1_cat_complex",
     "GO run script": "GO.achiral_catalyst.NH2_p-FPh_I2.P1_cat_complex",
     "GO adfrkf": "GO.achiral_catalyst.NH2_p-FPh_I2.P1_cat_complex.adf.rkf",
+    "GO amsrkf": "GO.achiral_catalyst.NH2_p-FPh_I2.P1_cat_complex.ams.rkf",
     "GO log": "GO.achiral_catalyst.NH2_p-FPh_I2.P1_cat_complex.log",
-    "GO amsrkf": "GO.achiral_catalyst.NH2_p-FPh_I2.P1_cat_complex.ams.rkf"
+    "GO out": "GO.achiral_catalyst.NH2_p-FPh_I2.P1_cat_complex.out",
+    "input xyz": "input.xyz",
+    "run info": "run.info"
   },
   "info": {
     "substituents": [
@@ -390,12 +390,12 @@
         -2.1852675781157687
       ],
       [
-        -0.08211796129631921,
+        -0.08211796129631832,
         2.8890505218495663,
-        -0.4192654664732687
+        -0.4192654664732689
       ],
       [
-        0.8612545386310897,
+        0.8612545386310901,
         3.8775792655754033,
         1.137805148990037
       ],
@@ -406,17 +406,17 @@
       ],
       [
         2.180222155646379,
-        -7.218838242117243,
+        -7.218838242117242,
         0.4615950561781026
       ],
       [
-        -0.1068871555989146,
-        -4.959980564664667,
-        1.1051008175174402
+        -0.10688715559891371,
+        -4.959980564664666,
+        1.1051008175174397
       ],
       [
         -0.3831926440503608,
-        -0.29644004312012306,
+        -0.2964400431201222,
         4.802405463759534
       ],
       [
@@ -426,7 +426,7 @@
       ],
       [
         -4.050347631102216,
-        -2.0811957926539852,
+        -2.0811957926539857,
         6.777507945194483
       ],
       [
@@ -440,7 +440,7 @@
         2.2570984534425915
       ],
       [
-        -1.430278722595685,
+        -1.430278722595686,
         -0.7568858152064504,
         2.4046390381407172
       ],
@@ -467,11 +467,11 @@
       [
         -4.656538493875429,
         -2.2676743081915016,
-        0.4145870168486083
+        0.4145870168486079
       ],
       [
         9.076459975015553,
-        -1.211323437370198,
+        -1.2113234373701975,
         -2.4969687916428223
       ],
       [

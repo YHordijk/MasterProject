@@ -1,32 +1,32 @@
 {
   "files": {
-    "calc_path": "achiral_catalyst.NMe2_m-HOPh_SnCl4.vacuum/sub_cat_complex",
-    "res_path": "achiral_catalyst.NMe2_m-HOPh_SnCl4.vacuum/sub_cat_complex",
-    "GO adfrkf": "GO.achiral_catalyst.NMe2_m-HOPh_SnCl4.sub_cat_complex.adf.rkf",
-    "SP run script": "SP.run",
-    "frag1 log": "Fragment_1.log",
-    "frag2 out": "Fragment_2.out",
+    "calc_path": "achiral_catalyst.NMe2_m-HOPh_SnCl4.vacuum\\sub_cat_complex",
+    "res_path": "achiral_catalyst.NMe2_m-HOPh_SnCl4.vacuum\\sub_cat_complex",
+    "EDA adfrkf": "EDA.adf.rkf",
+    "EDA amsrkf": "EDA.ams.rkf",
+    "EDA log": "EDA.log",
+    "EDA run script": "frag.run",
     "EDA out": "frag.run.out",
-    "SP amsrkf": "SP.ams.rkf",
-    "GO amsrkf": "GO.achiral_catalyst.NMe2_m-HOPh_SnCl4.sub_cat_complex.ams.rkf",
-    "SP out": "SP.run.out",
-    "SP adfrkf": "SP.adf.rkf",
+    "frag1 adfrkf": "Fragment_1.adf.rkf",
+    "frag1 log": "Fragment_1.log",
+    "frag1 out": "Fragment_1.out",
     "frag1 rkf": "Fragment_1.rkf",
     "frag2 adfrkf": "Fragment_2.adf.rkf",
-    "GO out": "GO.achiral_catalyst.NMe2_m-HOPh_SnCl4.sub_cat_complex.out",
-    "EDA log": "EDA.log",
-    "frag2 rkf": "Fragment_2.rkf",
-    "input xyz": "input.xyz",
-    "GO log": "GO.achiral_catalyst.NMe2_m-HOPh_SnCl4.sub_cat_complex.log",
-    "run info": "run.info",
-    "EDA amsrkf": "EDA.ams.rkf",
-    "EDA run script": "frag.run",
-    "GO run script": "GO.achiral_catalyst.NMe2_m-HOPh_SnCl4.sub_cat_complex",
-    "frag1 out": "Fragment_1.out",
     "frag2 log": "Fragment_2.log",
-    "frag1 adfrkf": "Fragment_1.adf.rkf",
-    "EDA adfrkf": "EDA.adf.rkf",
-    "SP log": "SP.log"
+    "frag2 out": "Fragment_2.out",
+    "frag2 rkf": "Fragment_2.rkf",
+    "GO run script": "GO.achiral_catalyst.NMe2_m-HOPh_SnCl4.sub_cat_complex",
+    "GO adfrkf": "GO.achiral_catalyst.NMe2_m-HOPh_SnCl4.sub_cat_complex.adf.rkf",
+    "GO amsrkf": "GO.achiral_catalyst.NMe2_m-HOPh_SnCl4.sub_cat_complex.ams.rkf",
+    "GO log": "GO.achiral_catalyst.NMe2_m-HOPh_SnCl4.sub_cat_complex.log",
+    "GO out": "GO.achiral_catalyst.NMe2_m-HOPh_SnCl4.sub_cat_complex.out",
+    "input xyz": "input.xyz",
+    "run info": "run.info",
+    "SP adfrkf": "SP.adf.rkf",
+    "SP amsrkf": "SP.ams.rkf",
+    "SP log": "SP.log",
+    "SP run script": "SP.run",
+    "SP out": "SP.run.out"
   },
   "info": {
     "substituents": [
@@ -435,8 +435,8 @@
     "output xyz": "output.xyz",
     "aligned coords": [
       [
-        3.598369735368939,
-        1.7196505303482246,
+        3.598369735368938,
+        1.7196505303482248,
         0.39067996436829144
       ],
       [
@@ -466,23 +466,23 @@
       ],
       [
         -1.3662613144336149,
-        8.769754513462242,
+        8.769754513462246,
         2.8963602836152678
       ],
       [
-        0.4244843410179815,
-        8.618838689811192,
+        0.4244843410179806,
+        8.618838689811195,
         3.2972580620707186
       ],
       [
         -2.2171814053524326,
         6.52570479665298,
-        1.888344390786068
+        1.8883443907860682
       ],
       [
-        -4.802917573350806,
-        6.372025499976869,
-        1.2980848328967056
+        -4.802917573350804,
+        6.3720254999768695,
+        1.298084832896706
       ],
       [
         -5.776244860561841,
@@ -506,12 +506,12 @@
       ],
       [
         -6.005310823523288,
-        8.000098940550476,
+        8.000098940550474,
         1.6471645813952898
       ],
       [
-        -7.780416247892573,
-        3.9993932420373417,
+        -7.780416247892575,
+        3.9993932420373426,
         -0.11700218691744446
       ],
       [
@@ -520,18 +520,18 @@
         2.001429833475997
       ],
       [
-        -4.982935773235406,
+        -4.982935773235404,
         0.2891431874358812,
         -0.8254371474568543
       ],
       [
-        3.762988287768742,
-        -4.224381221518069,
-        -1.5871012809731915
+        3.7629882877687417,
+        -4.224381221518068,
+        -1.587101280973191
       ],
       [
-        5.2396076391410995,
-        -6.564055523683634,
+        5.2396076391411,
+        -6.564055523683635,
         -1.2832569679793595
       ],
       [
@@ -541,16 +541,16 @@
       ],
       [
         6.030849553924577,
-        -6.635870959461356,
+        -6.635870959461355,
         0.6152222575739483
       ],
       [
         6.785568591654004,
-        -6.6253485651203805,
+        -6.62534856512038,
         -2.6653934507515378
       ],
       [
-        3.9866484042417385,
+        3.9866484042417394,
         -8.180641795755506,
         -1.6014723296994422
       ],
@@ -560,18 +560,18 @@
         -3.5955704651194016
       ],
       [
-        3.2220904318599484,
-        -4.820457597020271,
+        3.22209043185995,
+        -4.82045759702027,
         -5.465948992798035
       ],
       [
         1.5586657773609174,
-        -2.178005352401962,
+        -2.1780053524019616,
         -4.206861067622551
       ],
       [
         6.282597770874998,
-        -0.998611337265205,
+        -0.9986113372652047,
         5.6323845104881824
       ],
       [
@@ -581,17 +581,17 @@
       ],
       [
         9.844825789589368,
-        -3.7109645651892467,
+        -3.7109645651892462,
         5.574537977380338
       ],
       [
-        6.625402456074592,
-        0.336104108269182,
+        6.6254024560745925,
+        0.3361041082691826,
         9.957643225052196
       ],
       [
         2.175314208402959,
-        -2.82545395521837,
+        -2.8254539552183697,
         6.055250254721228
       ]
     ],
@@ -1778,9 +1778,9 @@
       0.2279138345116759,
       0.0494813515564917
     ],
-    "occupied idx": 97,
-    "occupied energy": -0.2897662588739626,
-    "occupied cont": 0.26019079994492605,
+    "occupied idx": 109,
+    "occupied energy": -0.21630364622426917,
+    "occupied cont": 0.0494813515564917,
     "virtual all contributions": [
       0.13276668963498947,
       0.5780891350886812,
@@ -2400,8 +2400,8 @@
       0.007518264140347304,
       0.0038598533526963247
     ],
-    "virtual idx": 1,
-    "virtual energy": -0.1142232008309626,
-    "virtual cont": 0.5780891350886812
+    "virtual idx": 0,
+    "virtual energy": -0.1336947652125241,
+    "virtual cont": 0.13276668963498947
   }
 }

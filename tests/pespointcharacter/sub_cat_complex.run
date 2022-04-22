@@ -1,0 +1,55 @@
+#!/bin/sh
+
+"$AMSBIN/ams" << eor
+
+Task GeometryOptimization
+Properties
+    PESPointCharacter Yes
+End
+System
+    Atoms
+        H 1.327412 2.454083 -0.604951 adf.R=1.20
+        C 3.104769 1.315729 -0.664642 adf.R=1.40
+        C 1.778526 1.472267 -0.504739 adf.R=1.82
+        C 0.883194 0.361104 -0.19882 adf.R=1.858
+        O -0.365191 0.530287 -0.058703 adf.R=1.792
+        H 3.59391 0.351112 -0.567392 adf.R=1.70
+        B -1.200094 1.929945 -0.168826 adf.R=1.80
+        F -2.499943 1.532328 0.078412 adf.R=1.75
+        F -1.002815 2.4045 -1.460316 adf.R=1.88
+        F -0.682246 2.770051 0.809854 adf.R=2.75
+        C 1.387031 -1.040239 -0.016505 adf.R=2.27
+        H 2.013981 -1.088397 0.883679 adf.R=1.73
+        H 2.009188 -1.347465 -0.863338 adf.R=1.967
+        H 0.543949 -1.723283 0.09546 adf.R=2.10
+        H 3.743841 2.1656 -0.884873 adf.R=1.80
+    End
+    BondOrders
+         1 3 1.0
+         2 3 2.0
+         2 6 1.0
+         2 15 1.0
+         3 4 1.0
+         4 5 2.0
+         4 11 1.0
+         7 8 1.0
+         7 9 1.0
+         7 10 1.0
+         11 12 1.0
+         11 13 1.0
+         11 14 1.0
+    End
+End
+
+Engine ADF
+    Solvation
+        Surf Delley
+        Solv name=Dichloromethane cav0=0.0 cav1=0.0067639
+        Charged method=CONJ
+        C-Mat POT
+        SCF VAR ALL 
+        CSMRSP
+    End
+EndEngine
+eor
+

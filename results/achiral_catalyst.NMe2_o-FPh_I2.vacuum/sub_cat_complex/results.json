@@ -1,32 +1,32 @@
 {
   "files": {
-    "calc_path": "achiral_catalyst.NMe2_o-FPh_I2.vacuum/sub_cat_complex",
-    "res_path": "achiral_catalyst.NMe2_o-FPh_I2.vacuum/sub_cat_complex",
+    "calc_path": "achiral_catalyst.NMe2_o-FPh_I2.vacuum\\sub_cat_complex",
+    "res_path": "achiral_catalyst.NMe2_o-FPh_I2.vacuum\\sub_cat_complex",
+    "EDA adfrkf": "EDA.adf.rkf",
+    "EDA amsrkf": "EDA.ams.rkf",
+    "EDA log": "EDA.log",
     "EDA run script": "frag.run",
-    "input xyz": "input.xyz",
+    "EDA out": "frag.run.out",
+    "frag1 adfrkf": "Fragment_1.adf.rkf",
+    "frag1 log": "Fragment_1.log",
+    "frag1 out": "Fragment_1.out",
+    "frag1 rkf": "Fragment_1.rkf",
+    "frag2 adfrkf": "Fragment_2.adf.rkf",
+    "frag2 log": "Fragment_2.log",
+    "frag2 out": "Fragment_2.out",
     "frag2 rkf": "Fragment_2.rkf",
+    "GO run script": "GO.achiral_catalyst.NMe2_o-FPh_I2.sub_cat_complex",
+    "GO adfrkf": "GO.achiral_catalyst.NMe2_o-FPh_I2.sub_cat_complex.adf.rkf",
+    "GO amsrkf": "GO.achiral_catalyst.NMe2_o-FPh_I2.sub_cat_complex.ams.rkf",
+    "GO log": "GO.achiral_catalyst.NMe2_o-FPh_I2.sub_cat_complex.log",
+    "GO out": "GO.achiral_catalyst.NMe2_o-FPh_I2.sub_cat_complex.out",
+    "input xyz": "input.xyz",
     "run info": "run.info",
     "SP adfrkf": "SP.adf.rkf",
-    "SP out": "SP.run.out",
-    "frag1 adfrkf": "Fragment_1.adf.rkf",
     "SP amsrkf": "SP.ams.rkf",
-    "GO log": "GO.achiral_catalyst.NMe2_o-FPh_I2.sub_cat_complex.log",
-    "frag1 out": "Fragment_1.out",
-    "frag2 log": "Fragment_2.log",
-    "SP run script": "SP.run",
-    "GO adfrkf": "GO.achiral_catalyst.NMe2_o-FPh_I2.sub_cat_complex.adf.rkf",
     "SP log": "SP.log",
-    "EDA amsrkf": "EDA.ams.rkf",
-    "frag2 adfrkf": "Fragment_2.adf.rkf",
-    "GO run script": "GO.achiral_catalyst.NMe2_o-FPh_I2.sub_cat_complex",
-    "GO out": "GO.achiral_catalyst.NMe2_o-FPh_I2.sub_cat_complex.out",
-    "frag1 log": "Fragment_1.log",
-    "frag2 out": "Fragment_2.out",
-    "EDA adfrkf": "EDA.adf.rkf",
-    "GO amsrkf": "GO.achiral_catalyst.NMe2_o-FPh_I2.sub_cat_complex.ams.rkf",
-    "EDA log": "EDA.log",
-    "frag1 rkf": "Fragment_1.rkf",
-    "EDA out": "frag.run.out"
+    "SP run script": "SP.run",
+    "SP out": "SP.run.out"
   },
   "info": {
     "substituents": [
@@ -406,7 +406,7 @@
         0.0
       ],
       [
-        4.154106120587335,
+        4.154106120587334,
         -2.2966798745983317,
         0.0
       ],
@@ -418,57 +418,57 @@
       [
         -1.0133902034940556,
         -1.756918650784959,
-        -0.34467411008690263
+        -0.34467411008690174
       ],
       [
         -0.6856576063995856,
         4.335962161563149,
-        1.8789205363701953
+        1.8789205363701948
       ],
       [
-        -2.2461604263499986,
-        6.403294830502678,
-        2.3505780641025993
+        -2.246160426349997,
+        6.403294830502676,
+        2.3505780641026
       ],
       [
         -4.7499683384792295,
-        6.408450963986981,
+        6.408450963986982,
         1.4873946873239814
       ],
       [
-        -5.69792157201641,
+        -5.697921572016412,
         4.3288373648650875,
         0.1598424814581656
       ],
       [
-        -4.103405329654045,
+        -4.103405329654043,
         2.2910707805117285,
         -0.28031273530783984
       ],
       [
         -1.5711144658799832,
-        2.216231658514717,
-        0.5179534748190613
+        2.216231658514718,
+        0.5179534748190608
       ],
       [
         1.2242735664834505,
         4.304906384377091,
-        2.632456581804634
+        2.6324565818046337
       ],
       [
         -1.523264125908029,
-        7.9990400203129575,
-        3.4228322674199436
+        7.999040020312959,
+        3.422832267419943
       ],
       [
-        -5.972889388165937,
+        -5.972889388165939,
         8.016695665244416,
         1.8610531110175148
       ],
       [
         -7.631685456524037,
         4.268152200369732,
-        -0.5275140204122373
+        -0.5275140204122364
       ],
       [
         -5.046624434951076,
@@ -477,7 +477,7 @@
       ],
       [
         3.7659666315583005,
-        -4.1823241312941315,
+        -4.182324131294131,
         -1.714175363141302
       ],
       [
@@ -492,27 +492,27 @@
       ],
       [
         6.005923178236166,
-        -6.670655648917414,
+        -6.670655648917415,
         0.40725287903789864
       ],
       [
         6.756002552655938,
-        -6.588805806362588,
-        -2.87570793928142
+        -6.588805806362587,
+        -2.875707939281419
       ],
       [
-        3.947852919466748,
+        3.9478529194667487,
         -8.143940167766134,
-        -1.8439675631288797
+        -1.8439675631288788
       ],
       [
         0.5713814372935859,
-        -5.153080561616234,
+        -5.153080561616233,
         -3.9396589043637107
       ],
       [
         3.3924171173756568,
-        -4.49927577027218,
+        -4.499275770272179,
         -5.65235162610565
       ],
       [
@@ -1605,9 +1605,9 @@
       0.07470529049393224,
       0.05285914284360844
     ],
-    "occupied idx": 95,
-    "occupied energy": -0.2860040247745873,
-    "occupied cont": 0.4290086528710133,
+    "occupied idx": 103,
+    "occupied energy": -0.1941257037905617,
+    "occupied cont": 0.05285914284360844,
     "virtual all contributions": [
       0.0684994778580374,
       0.5607166498910107,
@@ -2170,8 +2170,8 @@
       0.0010626964728850245,
       0.0037026786289973915
     ],
-    "virtual idx": 1,
-    "virtual energy": -0.09997056294872968,
-    "virtual cont": 0.5607166498910107
+    "virtual idx": 0,
+    "virtual energy": -0.12030355461834795,
+    "virtual cont": 0.0684994778580374
   }
 }

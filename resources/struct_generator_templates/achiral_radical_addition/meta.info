@@ -1,3 +1,4 @@
 subdefault R1 H
 subdefault R2 H
 subdefault Rcat I2
+activation_energy +TS -rad -sub_cat_complex

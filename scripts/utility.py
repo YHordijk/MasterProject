@@ -1,7 +1,7 @@
 import paths, hashlib, os
 import scm.plams as plams
 import numpy as np
-
+from time import perf_counter
 
 join = os.path.join
 
@@ -82,19 +82,27 @@ def get_sorted_dict_values(d):
     return [v[i] for i in idx]
 
 
+loading_bar_start_time = 0
 def loading_bar(i, N, Nsegments=50, Nsteps=10, fill_char='=', empty_char='.', center_char='>'):
     if i%(N//min(N,Nsteps)) == 0 or i == N:
+        global loading_bar_start_time
         segment = int(i/N*Nsegments)
         fill_seg = fill_char*segment
         if segment == Nsegments:
             center_seg = fill_char
         elif i == 0:
             center_seg = empty_char
+            
         else:
             center_seg = center_char
         empty_seg = empty_char*(Nsegments-segment)
 
-        print(f'{i:{int(np.log10(N))+1}}/{N} [{fill_seg + center_seg + empty_seg}] {i/N*100:.1f}%', end='\r')
+        if i == 0:
+            loading_bar_start_time = perf_counter()
+            eta = '???'
+        else:
+            eta = f'{(perf_counter() - loading_bar_start_time)/max(i,1) * (N-i):.1f}'
+        print(f'{i:{int(np.log10(N))+1}}/{N} [{fill_seg + center_seg + empty_seg}] {i/N*100:>5.1f}% ETA: {eta}s', end='\r')
 
         if i == N:
             print()

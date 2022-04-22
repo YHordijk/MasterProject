@@ -136,6 +136,10 @@ class Reaction:
 	def __repr__(self):
 		return f'{self.reaction} ({", ".join(f"{R}={s}" for R, s in self.substituents.items())}) @ ({self.basis}/{self.functional}, numerical_quality={self.numerical_quality})'
 
+	def __getitem__(self, key):
+		if key in set(r.stationary_point for r in self.results):
+			return {r.stationary_point:r for r in self.results}[key]
+
 	def print_reaction(self):
 		print(f'Reaction: {self.reaction}')
 		print(f'')
@@ -305,8 +309,8 @@ def get_all_reactions(silent=True):
 	for R1 in ['H', 'F', 'Cl', 'Br', 'I', 'OMe', 'Me', 'NH2', 'Et', 'NMe2', ]:
 	# for R1 in ['H', 'F', 'Cl', 'Br', 'I', 'OMe', 'Me']:
 		# for R2 in ['H', 'tBu', 'Ph']:
-		# for R2 in ['H', 'tBu', 'Ph', 'o-FPh', 'm-FPh', 'p-FPh', 'NHMe', 'OEt', 'o-HOPh', 'm-HOPh', 'p-HOPh', 'Bz']:
-		for R2 in ['H', 'tBu', 'Ph', 'o-FPh', 'm-FPh', 'p-FPh']:
+		for R2 in ['H', 'tBu', 'Ph', 'o-FPh', 'm-FPh', 'p-FPh', 'NHMe', 'OEt', 'o-HOPh', 'm-HOPh', 'p-HOPh', 'Bz']:
+		# for R2 in ['H', 'tBu', 'Ph', 'o-FPh', 'm-FPh', 'p-FPh']:
 			for Rcat in ['AlF3', 'BF3', 'I2', 'SnCl4', 'TiCl4', 'ZnCl2']:
 				r = Reaction('achiral_catalyst', {'R1':R1, 'R2':R2, 'Rcat':Rcat})
 				if r.complete:
@@ -356,34 +360,72 @@ if __name__ == '__main__':
 	# plt.show()
 
 	plt.figure()
-	# rxn_no_cat = Reaction('no_catalyst', {'R1':'H', 'R2':'Ph'})
+	rxn_no_cat = Reaction('no_catalyst', {'R1':'H', 'R2':'Ph'})
 	rxns = [Reaction('achiral_catalyst', {'R1':'H', 'R2':'Ph', 'Rcat':Rcat}) for Rcat in ['AlF3', 'BF3', 'I2', 'SnCl4', 'TiCl4', 'ZnCl2']]
 	for rxn in rxns:
 		if not rxn.complete: continue
 		rxn.plot_reaction_profile(name=f'Cat={rxn.substituents["Rcat"]}')
 		# print(rxn, h2k(rxn.get_activation_energy()['']))
-	# rxn_no_cat.plot_reaction_profile(name=f'No cat', format='--k')
+	rxn_no_cat.plot_reaction_profile(name=f'No cat', format='--k')
 	plt.title('Achiral catalyst (R1=H, R2=Ph) @BLYP-D3(BJ)/TZ2P (Good)')
 	plt.xlabel(r'$\xi$')
 	plt.ylabel(r'$\Delta G \quad (kcal/mol)$')
 	# plt.show()
 
 	plt.figure()
-	# rxn_no_cat = Reaction('no_catalyst', {'R1':'H', 'R2':'tBu'})
+	rxn_no_cat = Reaction('no_catalyst', {'R1':'H', 'R2':'tBu'})
 	rxns = [Reaction('achiral_catalyst', {'R1':'H', 'R2':'tBu', 'Rcat':Rcat}) for Rcat in ['AlF3', 'BF3', 'I2', 'SnCl4', 'TiCl4', 'ZnCl2']]
 	for rxn in rxns:
 		if not rxn.complete: continue
 		rxn.plot_reaction_profile(name=f'Cat={rxn.substituents["Rcat"]}')
 		# print(rxn, h2k(rxn.get_activation_energy()['']))
-	# rxn_no_cat.plot_reaction_profile(name=f'No cat', format='--k')
+	rxn_no_cat.plot_reaction_profile(name=f'No cat', format='--k')
 	# rxn_no_cat.print_energies()
 	plt.title('Achiral catalyst (R1=H, R2=tBu) @BLYP-D3(BJ)/TZ2P (Good)')
 	plt.xlabel(r'$\xi$')
 	plt.ylabel(r'$\Delta G \quad (kcal/mol)$')
-	plt.show()
 
 
-	rxn = Reaction('achiral_catalyst', {'Rcat':'I2', 'R1':'H', 'R2':'Ph'})
-	rxn.show()
+	# rxn = Reaction('achiral_catalyst', {'Rcat':'I2', 'R1':'H', 'R2':'Ph'})
+	# rxn.show()
+
 	# rxn = Reaction('achiral_catalyst', {'Rcat':'TiCl4', 'R1':'H', 'R2':'Ph'})
 	# rxn.show()
+	
+
+	plt.figure()
+
+	R1 = 'Me'
+	R2 = 'tBu'
+	plt.title(f'Achiral radical addicition [R2={R2}, R1={R1}]')
+	rxn_no_cat = Reaction('no_catalyst', {'R1':R1, 'R2':R2})
+	rxns = [Reaction('achiral_catalyst', {'R1':R1, 'R2':R2, 'Rcat':Rcat}) for Rcat in ['AlF3', 'BF3', 'I2', 'SnCl4', 'TiCl4', 'ZnCl2']]
+
+	sub_no_cat = rxn_no_cat['sub']
+	subs = [rxn['sub_cat_complex'] for rxn in rxns]
+	for rxn, sub in zip(rxns, subs):
+		print(rxn, sub)
+		plt.scatter(sub.data['SP']['occupied energy'], rxn.get_activation_energy()[''], label=rxn.substituents['Rcat'])
+	plt.scatter(sub_no_cat.data['SP']['occupied energy'], rxn_no_cat.get_activation_energy()[''], label='No Cat')
+	plt.legend()
+
+
+
+	# plt.figure()
+	# plt.title('R2=Ph')
+	# rxn_no_cat = Reaction('no_catalyst', {'R1':'H', 'R2':'Ph'})
+	# rxns = [Reaction('achiral_catalyst', {'R1':'H', 'R2':'Ph', 'Rcat':Rcat}) for Rcat in ['AlF3', 'BF3', 'I2', 'SnCl4', 'TiCl4', 'ZnCl2']]
+
+	# sub_no_cat = rxn_no_cat['sub']
+	# subs = [rxn['sub_cat_complex'] for rxn in rxns]
+	# for rxn, sub in zip(rxns, subs):
+	# 	try:
+	# 		plt.scatter(sub.data['SP']['virtual energy'], rxn.get_activation_energy()[''], label=rxn.substituents['Rcat'])
+	# 	except:
+	# 		print(rxn)
+	# 		pass
+	# plt.scatter(sub_no_cat.data['SP']['virtual energy'], rxn_no_cat.get_activation_energy()[''], label='No Cat')
+	# plt.legend()
+
+	plt.show()
+	

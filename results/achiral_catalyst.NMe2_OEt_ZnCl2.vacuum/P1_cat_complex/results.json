@@ -1,14 +1,14 @@
 {
   "files": {
-    "calc_path": "achiral_catalyst.NMe2_OEt_ZnCl2.vacuum/P1_cat_complex",
-    "res_path": "achiral_catalyst.NMe2_OEt_ZnCl2.vacuum/P1_cat_complex",
-    "GO adfrkf": "GO.achiral_catalyst.NMe2_OEt_ZnCl2.P1_cat_complex.adf.rkf",
-    "run info": "run.info",
-    "GO log": "GO.achiral_catalyst.NMe2_OEt_ZnCl2.P1_cat_complex.log",
-    "input xyz": "input.xyz",
-    "GO amsrkf": "GO.achiral_catalyst.NMe2_OEt_ZnCl2.P1_cat_complex.ams.rkf",
+    "calc_path": "achiral_catalyst.NMe2_OEt_ZnCl2.vacuum\\P1_cat_complex",
+    "res_path": "achiral_catalyst.NMe2_OEt_ZnCl2.vacuum\\P1_cat_complex",
     "GO run script": "GO.achiral_catalyst.NMe2_OEt_ZnCl2.P1_cat_complex",
-    "GO out": "GO.achiral_catalyst.NMe2_OEt_ZnCl2.P1_cat_complex.out"
+    "GO adfrkf": "GO.achiral_catalyst.NMe2_OEt_ZnCl2.P1_cat_complex.adf.rkf",
+    "GO amsrkf": "GO.achiral_catalyst.NMe2_OEt_ZnCl2.P1_cat_complex.ams.rkf",
+    "GO log": "GO.achiral_catalyst.NMe2_OEt_ZnCl2.P1_cat_complex.log",
+    "GO out": "GO.achiral_catalyst.NMe2_OEt_ZnCl2.P1_cat_complex.out",
+    "input xyz": "input.xyz",
+    "run info": "run.info"
   },
   "info": {
     "substituents": [
@@ -411,7 +411,7 @@
       [
         3.7723696743733988,
         -3.2265654880741637,
-        -2.220446049250313e-16
+        -3.3306690738754696e-16
       ],
       [
         5.441440384824025,
@@ -420,13 +420,13 @@
       ],
       [
         -1.1589139696071609,
-        -1.4690642858320504,
+        -1.4690642858320508,
         -0.9014901283650365
       ],
       [
         -2.5424079797909735,
-        3.0261172867417545,
-        -1.0337054501676708
+        3.0261172867417554,
+        -1.0337054501676706
       ],
       [
         0.006266554102422717,
@@ -435,16 +435,16 @@
       ],
       [
         -0.5289784488789504,
-        2.5736356555572546,
-        -1.1907280232824957
+        2.5736356555572555,
+        -1.1907280232824955
       ],
       [
         0.559377944326843,
         4.041810510758436,
-        -0.21865293517805084
+        -0.21865293517805096
       ],
       [
-        2.9114428344547347,
+        2.911442834454735,
         -4.999358069593995,
         -1.6552881629488818
       ],
@@ -459,9 +459,9 @@
         -4.004808184764934
       ],
       [
-        4.211462274459694,
+        4.211462274459695,
         -8.002157397603249,
-        0.5878997195548752
+        0.587899719554875
       ],
       [
         5.383553013023994,
@@ -475,7 +475,7 @@
       ],
       [
         -0.3321431655567606,
-        -5.162895677370541,
+        -5.16289567737054,
         -4.008168824829226
       ],
       [
@@ -500,12 +500,12 @@
       ],
       [
         -2.2435979665477044,
-        -1.7111235946129635,
+        -1.711123594612964,
         6.5056884908432
       ],
       [
         0.24143381080774162,
-        -3.5119985775577405,
+        -3.511998577557741,
         3.8202856667279343
       ],
       [
@@ -520,7 +520,7 @@
       ],
       [
         -2.792222049405729,
-        -3.4894266545722563,
+        -3.489426654572256,
         7.416564929310142
       ],
       [

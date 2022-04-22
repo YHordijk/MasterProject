@@ -204,6 +204,10 @@ def get_column(param):
 	c = np.array([float(d[param]) for d in data])
 	return c.reshape(-1,1)
 
+def get_columns(params):
+	c = np.array([[float(d[param]) for param in params] for d in data])
+	return c
+
 def get_all_columns():
 	'''
 	Return a matrix with m rows and n columns 
@@ -219,9 +223,15 @@ def get_all_columns():
 	return c
 
 
-def tf_dataset():
+def tf_dataset(f):
 	import tensorflow.data as tfdata
-	print(data)
+	keys = define_parameters()
+	X = get_all_columns()
+	Y = get_columns(['Eact', 'Gact'])
+	X, _ = MLutils.prepare_data(X)
+	Y, _ = MLutils.prepare_data(Y)
+
+	return X, Y
 
 
 generate_data()
@@ -236,12 +246,13 @@ if __name__ == '__main__':
 	cmap = cm.get_cmap('Set1')
 	
 	res = get_results()
+	label_key = 'R2'
 	# all_R1s = list(set(r.substituents['R1'] for r in res))
-	all_R2s = list(set(r.substituents['R2'] for r in res))
+	all_subs = list(set(r.substituents[label_key] for r in res))
 	# colors = cmap([all_R1s.index(r.substituents['R1'])/len(all_R1s) for r in res])
-	colors = cmap([all_R2s.index(r.substituents['R2'])/len(all_R2s) for r in res])
+	colors = cmap([all_subs.index(r.substituents[label_key])/len(all_subs) for r in res])
 	# labels = [r.substituents['R1'] for r in res]
-	labels = [r.substituents['R2'] for r in res]
+	labels = [r.substituents[label_key] for r in res]
 
 	plt.subplot(2,2,1)
 	plot_trend('EDA_oi',  colors=colors, labels=labels, xunit='Ha')

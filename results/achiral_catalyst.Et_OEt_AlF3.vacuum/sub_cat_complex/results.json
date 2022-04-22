@@ -1,32 +1,32 @@
 {
   "files": {
-    "calc_path": "achiral_catalyst.Et_OEt_AlF3.vacuum/sub_cat_complex",
-    "res_path": "achiral_catalyst.Et_OEt_AlF3.vacuum/sub_cat_complex",
-    "EDA log": "EDA.log",
-    "frag2 out": "Fragment_2.out",
-    "frag2 adfrkf": "Fragment_2.adf.rkf",
-    "SP run script": "SP.run",
-    "frag1 log": "Fragment_1.log",
+    "calc_path": "achiral_catalyst.Et_OEt_AlF3.vacuum\\sub_cat_complex",
+    "res_path": "achiral_catalyst.Et_OEt_AlF3.vacuum\\sub_cat_complex",
     "EDA adfrkf": "EDA.adf.rkf",
-    "input xyz": "input.xyz",
-    "frag1 rkf": "Fragment_1.rkf",
     "EDA amsrkf": "EDA.ams.rkf",
+    "EDA log": "EDA.log",
     "EDA run script": "frag.run",
     "EDA out": "frag.run.out",
-    "run info": "run.info",
-    "GO log": "GO.achiral_catalyst.Et_OEt_AlF3.sub_cat_complex.log",
-    "SP amsrkf": "SP.ams.rkf",
-    "GO out": "GO.achiral_catalyst.Et_OEt_AlF3.sub_cat_complex.out",
     "frag1 adfrkf": "Fragment_1.adf.rkf",
-    "frag2 rkf": "Fragment_2.rkf",
-    "GO adfrkf": "GO.achiral_catalyst.Et_OEt_AlF3.sub_cat_complex.adf.rkf",
-    "SP adfrkf": "SP.adf.rkf",
-    "SP out": "SP.run.out",
-    "frag2 log": "Fragment_2.log",
+    "frag1 log": "Fragment_1.log",
     "frag1 out": "Fragment_1.out",
-    "SP log": "SP.log",
+    "frag1 rkf": "Fragment_1.rkf",
+    "frag2 adfrkf": "Fragment_2.adf.rkf",
+    "frag2 log": "Fragment_2.log",
+    "frag2 out": "Fragment_2.out",
+    "frag2 rkf": "Fragment_2.rkf",
     "GO run script": "GO.achiral_catalyst.Et_OEt_AlF3.sub_cat_complex",
-    "GO amsrkf": "GO.achiral_catalyst.Et_OEt_AlF3.sub_cat_complex.ams.rkf"
+    "GO adfrkf": "GO.achiral_catalyst.Et_OEt_AlF3.sub_cat_complex.adf.rkf",
+    "GO amsrkf": "GO.achiral_catalyst.Et_OEt_AlF3.sub_cat_complex.ams.rkf",
+    "GO log": "GO.achiral_catalyst.Et_OEt_AlF3.sub_cat_complex.log",
+    "GO out": "GO.achiral_catalyst.Et_OEt_AlF3.sub_cat_complex.out",
+    "input xyz": "input.xyz",
+    "run info": "run.info",
+    "SP adfrkf": "SP.adf.rkf",
+    "SP amsrkf": "SP.ams.rkf",
+    "SP log": "SP.log",
+    "SP run script": "SP.run",
+    "SP out": "SP.run.out"
   },
   "info": {
     "substituents": [
@@ -369,7 +369,7 @@
       ],
       [
         2.571091194979884,
-        -2.220446049250313e-16,
+        -1.942890293094024e-16,
         -1.1102230246251565e-16
       ],
       [
@@ -379,7 +379,7 @@
       ],
       [
         6.442914542117605,
-        -2.1737893907272787,
+        -2.1737893907272783,
         -0.06704144575647847
       ],
       [
@@ -390,7 +390,7 @@
       [
         -1.2978481445343295,
         2.160962527167881,
-        0.02390381217884574
+        0.02390381217884585
       ],
       [
         -4.074372176937562,
@@ -404,7 +404,7 @@
       ],
       [
         -4.668644587324353,
-        0.8197898015711163,
+        0.8197898015711158,
         1.590335595455524
       ],
       [
@@ -414,17 +414,17 @@
       ],
       [
         -4.564014982599359,
-        5.570174893004482,
+        5.5701748930044825,
         1.829825608265725
       ],
       [
         -7.209164225479212,
         4.534973668844697,
-        0.03153413319026299
+        0.03153413319026288
       ],
       [
         -4.489849660174995,
-        5.7457842928029494,
+        5.745784292802949,
         -1.5296800796517886
       ],
       [
@@ -433,7 +433,7 @@
         -0.20064826772130778
       ],
       [
-        2.8685997194203754,
+        2.8685997194203745,
         -4.893065712101458,
         0.1187301048276368
       ],
@@ -455,11 +455,11 @@
       [
         1.892785455010996,
         -5.050461299956321,
-        1.9482813512398294
+        1.9482813512398298
       ],
       [
         1.3848867563910972,
-        -5.008878749641135,
+        -5.008878749641134,
         -1.328381053796078
       ],
       [
@@ -474,13 +474,13 @@
       ],
       [
         9.62376913729393,
-        0.1030796648852973,
+        0.10307966488529735,
         -3.5351578588407606
       ],
       [
         11.183358634783076,
         -0.608808657154605,
-        1.5806656617263006
+        1.5806656617263002
       ]
     ],
     "aligned xyz": "aligned.xyz",
